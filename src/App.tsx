@@ -6,6 +6,7 @@ import { BuySection } from './components/BuySection';
 import { FurnitureCatalog } from './components/FurnitureCatalog';
 import { AboutUs } from './components/AboutUs';
 import { ContactSection } from './components/ContactSection';
+import { ChatWidget } from './components/ChatWidget';
 
 export default function App() {
   return (
@@ -32,6 +33,7 @@ export default function App() {
           </div>
         </div>
       </footer>
+      <ChatWidget />
     </div>
   );
 }
