@@ -166,12 +166,12 @@ export function BuySection() {
             Schedule a consultation to discuss your needs, see materials firsthand, 
             and understand exactly what you're paying for.
           </p>
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-10 py-4 bg-[#FAF7F2] text-[#2C2419] tracking-wide transition-all hover:bg-white hover:shadow-2xl"
+          <a
+            href="#contact"
+            className="px-10 py-4 bg-[#FAF7F2] text-[#2C2419] tracking-wide transition-all hover:bg-white hover:shadow-2xl inline-flex items-center justify-center"
           >
             Schedule Consultation
-          </button>
+          </a>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MessageCircle, Sparkles, X } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 type ChatRole = 'user' | 'bot';
 
@@ -156,7 +157,7 @@ export function ChatWidget() {
               </button>
             </form>
             <div className="chat-disclaimer">
-              Template assistant for now. Call 6206108923 or email ranjeet@altercraft.in.
+              Template assistant for now. Call {siteDetails.phone} or email {siteDetails.email}.
             </div>
           </div>
         </div>

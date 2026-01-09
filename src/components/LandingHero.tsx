@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { ArrowRight } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function LandingHero() {
   return (
@@ -9,6 +9,7 @@ export function LandingHero() {
         <ImageWithFallback 
           src="https://images.unsplash.com/photo-1668365011614-9c4a49a0e89d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBsaXZpbmclMjByb29tJTIwZnVybml0dXJlfGVufDF8fHx8MTc2NzA3MzU2NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
           alt="Modern living room furniture"
+          loading="eager"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#2C2419]/80 via-[#2C2419]/70 to-[#2C2419]/85" />
@@ -17,33 +18,34 @@ export function LandingHero() {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center text-[#FAF7F2] py-32">
         <div className="mb-8">
           <div className="inline-block px-4 py-2 border border-[#D4C5B0]/30 rounded-full mb-6">
-            <span className="text-sm tracking-widest text-[#D4C5B0]">RENT · OWN · UPGRADE</span>
+            <span className="text-sm tracking-widest text-[#D4C5B0]">CUSTOM + MODULAR FURNITURE</span>
           </div>
         </div>
         
         <h1 className="mb-8 text-[#FAF7F2] leading-tight max-w-4xl mx-auto">
-          Quality Furniture on Your Terms
+          AlterCraft Furniture: Custom Wall Almirah & Modular Units
         </h1>
         
         <p className="text-2xl text-[#D4C5B0] max-w-3xl mx-auto mb-12 leading-relaxed">
-          Rent premium furniture with full maintenance support, or buy with a 3-year guarantee. 
-          Your space, your choice.
+          Budget-friendly modular furniture made to your size. Doorstep delivery and on-site assembly
+          within {siteDetails.serviceRadius}.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button 
-            onClick={() => document.getElementById('rent')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-10 py-5 bg-[#6B5D4F] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#5A4D3F] hover:shadow-2xl flex items-center gap-3 group"
+          <a
+            href={siteDetails.whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            className="px-10 py-5 bg-[#6B5D4F] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#5A4D3F] hover:shadow-2xl"
           >
-            Explore Rentals
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-          <button 
-            onClick={() => document.getElementById('buy')?.scrollIntoView({ behavior: 'smooth' })}
+            Get Quote on WhatsApp
+          </a>
+          <a
+            href={siteDetails.phoneHref}
             className="px-10 py-5 bg-transparent border-2 border-[#D4C5B0] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#D4C5B0]/10 hover:shadow-2xl"
           >
-            View Collection
-          </button>
+            Call Now
+          </a>
         </div>
 
         <div className="mt-20 grid grid-cols-3 gap-12 max-w-3xl mx-auto pt-12 border-t border-[#D4C5B0]/20">

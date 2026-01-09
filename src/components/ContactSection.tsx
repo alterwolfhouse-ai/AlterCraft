@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -160,7 +161,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Email</div>
-                    <div className="text-[#2C2419]">ranjeet@altercraft.in</div>
+                    <div className="text-[#2C2419]">{siteDetails.email}</div>
                   </div>
                 </div>
 
@@ -170,7 +171,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Phone</div>
-                    <div className="text-[#2C2419]">6206108923</div>
+                    <div className="text-[#2C2419]">{siteDetails.phone}</div>
                   </div>
                 </div>
 
@@ -182,7 +183,7 @@ export function ContactSection() {
                     <div className="text-sm text-[#6B5D4F] mb-1">Location</div>
                     <div className="text-[#2C2419]">
                       Workshop & Studio<br />
-                      City, India
+                      {siteDetails.cityBase}
                     </div>
                   </div>
                 </div>

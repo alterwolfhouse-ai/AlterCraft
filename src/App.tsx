@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navigation } from './components/Navigation';
 import { LandingHero } from './components/LandingHero';
+import { HowItWorksStrip } from './components/HowItWorksStrip';
+import { ProductHighlights } from './components/ProductHighlights';
 import { RentSection } from './components/RentSection';
 import { BuySection } from './components/BuySection';
-import { FurnitureCatalog } from './components/FurnitureCatalog';
 import { AboutUs } from './components/AboutUs';
 import { ContactSection } from './components/ContactSection';
 import { ChatWidget } from './components/ChatWidget';
+import { siteDetails } from './data/siteDetails';
 
 export default function App() {
   return (
@@ -14,9 +16,10 @@ export default function App() {
       <Navigation />
       <main>
         <LandingHero />
+        <HowItWorksStrip />
+        <ProductHighlights />
         <RentSection />
         <BuySection />
-        <FurnitureCatalog />
         <div id="about-us">
           <AboutUs />
         </div>
@@ -28,7 +31,24 @@ export default function App() {
             <h3 className="text-xl mb-2">AlterCraft Woods & Furniture</h3>
             <p className="text-[#9A8A77]">Rent premium furniture or buy with a 3-year guarantee.</p>
           </div>
-          <div className="text-sm text-[#9A8A77]">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-[#9A8A77]">
+            <a href={siteDetails.phoneHref} className="hover:text-[#FAF7F2] transition-colors">
+              Phone: {siteDetails.phone}
+            </a>
+            <a
+              href={siteDetails.whatsappHref}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#FAF7F2] transition-colors"
+            >
+              WhatsApp: {siteDetails.phone}
+            </a>
+            <span>
+              {siteDetails.cityBase} · {siteDetails.serviceRadius} radius
+            </span>
+            <span>{siteDetails.workingHours}</span>
+          </div>
+          <div className="text-sm text-[#9A8A77] mt-6">
             © {new Date().getFullYear()} AlterCraft. All rights reserved.
           </div>
         </div>

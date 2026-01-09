@@ -157,12 +157,12 @@ export function FurnitureCatalog() {
                     <div className="text-lg text-[#2C2419]">{item.buyPrice}</div>
                   </div>
                 </div>
-                <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full py-3 bg-[#6B5D4F] text-[#FAF7F2] text-sm tracking-wide hover:bg-[#5A4D3F] transition-colors"
+                <a
+                  href="#contact"
+                  className="w-full py-3 bg-[#6B5D4F] text-[#FAF7F2] text-sm tracking-wide hover:bg-[#5A4D3F] transition-colors inline-flex items-center justify-center"
                 >
                   View Details
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -172,12 +172,12 @@ export function FurnitureCatalog() {
           <p className="text-[#6B5D4F] mb-6">
             Don't see what you need? We also create custom furniture.
           </p>
-          <button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 border-2 border-[#6B5D4F] text-[#6B5D4F] hover:bg-[#6B5D4F] hover:text-[#FAF7F2] transition-all"
+          <a
+            href="#contact"
+            className="px-8 py-3 border-2 border-[#6B5D4F] text-[#6B5D4F] hover:bg-[#6B5D4F] hover:text-[#FAF7F2] transition-all inline-flex items-center justify-center"
           >
             Request Custom Design
-          </button>
+          </a>
         </div>
       </div>
     </section>
