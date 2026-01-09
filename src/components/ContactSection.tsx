@@ -160,7 +160,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Email</div>
-                    <div className="text-[#2C2419]">info@altercraft.in</div>
+                    <div className="text-[#2C2419]">ranjeet@altercraft.in</div>
                   </div>
                 </div>
 
@@ -170,7 +170,7 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Phone</div>
-                    <div className="text-[#2C2419]">+91 XXXXX XXXXX</div>
+                    <div className="text-[#2C2419]">6206108923</div>
                   </div>
                 </div>
 
