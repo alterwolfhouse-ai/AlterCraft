@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { siteDetails } from '../data/siteDetails';
+import { trackEvent } from '../utils/analytics';
 
 const products = [
   {
@@ -81,6 +82,12 @@ export function ProductHighlights() {
                   href={siteDetails.whatsappHref}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() =>
+                    trackEvent('whatsapp_click', {
+                      location: 'product_card',
+                      item_name: product.name,
+                    })
+                  }
                   className="mt-6 inline-flex items-center justify-center px-4 py-3 bg-[#6B5D4F] text-[#FAF7F2] text-sm tracking-wide hover:bg-[#5A4D3F] transition-colors"
                 >
                   Get Quote on WhatsApp

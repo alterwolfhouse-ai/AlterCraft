@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { siteDetails } from '../data/siteDetails';
+import { trackEvent } from '../utils/analytics';
 
 export function LandingHero() {
   return (
@@ -36,12 +37,14 @@ export function LandingHero() {
             href={siteDetails.whatsappHref}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackEvent('whatsapp_click', { location: 'hero' })}
             className="px-10 py-5 bg-[#6B5D4F] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#5A4D3F] hover:shadow-2xl"
           >
             Get Quote on WhatsApp
           </a>
           <a
             href={siteDetails.phoneHref}
+            onClick={() => trackEvent('phone_click', { location: 'hero' })}
             className="px-10 py-5 bg-transparent border-2 border-[#D4C5B0] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#D4C5B0]/10 hover:shadow-2xl"
           >
             Call Now

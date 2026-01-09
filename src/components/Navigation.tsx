@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { siteDetails } from '../data/siteDetails';
+import { trackEvent } from '../utils/analytics';
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,6 +37,7 @@ export function Navigation() {
           <div className="flex flex-wrap items-center gap-4">
             <a
               href={siteDetails.phoneHref}
+              onClick={() => trackEvent('phone_click', { location: 'nav_top' })}
               className="transition-colors hover:text-[#FAF7F2]"
             >
               Phone: {siteDetails.phone}
@@ -44,6 +46,7 @@ export function Navigation() {
               href={siteDetails.whatsappHref}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent('whatsapp_click', { location: 'nav_top' })}
               className="transition-colors hover:text-[#FAF7F2]"
             >
               WhatsApp: {siteDetails.phone}

@@ -9,6 +9,28 @@
         name="description"
         content="Budget-friendly modular furniture made to your size. Pre-laminated & particle board options. Doorstep delivery + on-site assembly within 150 km. Get a WhatsApp quote in 2 minutes."
       />
+      <meta name="google-site-verification" content="GOOGLE_SEARCH_CONSOLE_TOKEN" />
+      <meta name="ga-measurement-id" content="G-XXXXXXXXXX" />
+      <script>
+        (function () {
+          var meta = document.querySelector('meta[name="ga-measurement-id"]');
+          var id = meta ? meta.getAttribute('content') : '';
+          if (!id || id === 'G-XXXXXXXXXX') {
+            return;
+          }
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            window.dataLayer.push(arguments);
+          }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', id);
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+          document.head.appendChild(script);
+        })();
+      </script>
     </head>
 
     <body>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { siteDetails } from '../data/siteDetails';
+import { trackEvent } from '../utils/analytics';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // In a real implementation, this would send data to a backend
+    trackEvent('contact_form_submit', { location: 'contact_section' });
     alert('Thank you for your inquiry. We will contact you within 24 hours.');
     setFormData({
       name: '',
@@ -161,7 +163,12 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Email</div>
-                    <div className="text-[#2C2419]">{siteDetails.email}</div>
+                    <a
+                      href={siteDetails.emailHref}
+                      className="text-[#2C2419] hover:text-[#6B5D4F] transition-colors"
+                    >
+                      {siteDetails.email}
+                    </a>
                   </div>
                 </div>
 
@@ -171,7 +178,13 @@ export function ContactSection() {
                   </div>
                   <div>
                     <div className="text-sm text-[#6B5D4F] mb-1">Phone</div>
-                    <div className="text-[#2C2419]">{siteDetails.phone}</div>
+                    <a
+                      href={siteDetails.phoneHref}
+                      onClick={() => trackEvent('phone_click', { location: 'contact_card' })}
+                      className="text-[#2C2419] hover:text-[#6B5D4F] transition-colors"
+                    >
+                      {siteDetails.phone}
+                    </a>
                   </div>
                 </div>
 

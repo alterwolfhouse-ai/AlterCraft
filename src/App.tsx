@@ -9,6 +9,7 @@ import { AboutUs } from './components/AboutUs';
 import { ContactSection } from './components/ContactSection';
 import { ChatWidget } from './components/ChatWidget';
 import { siteDetails } from './data/siteDetails';
+import { trackEvent } from './utils/analytics';
 
 export default function App() {
   return (
@@ -32,24 +33,29 @@ export default function App() {
             <p className="text-[#9A8A77]">Rent premium furniture or buy with a 3-year guarantee.</p>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-[#9A8A77]">
-            <a href={siteDetails.phoneHref} className="hover:text-[#FAF7F2] transition-colors">
+            <a
+              href={siteDetails.phoneHref}
+              onClick={() => trackEvent('phone_click', { location: 'footer' })}
+              className="hover:text-[#FAF7F2] transition-colors"
+            >
               Phone: {siteDetails.phone}
             </a>
             <a
               href={siteDetails.whatsappHref}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackEvent('whatsapp_click', { location: 'footer' })}
               className="hover:text-[#FAF7F2] transition-colors"
             >
               WhatsApp: {siteDetails.phone}
             </a>
             <span>
-              {siteDetails.cityBase} · {siteDetails.serviceRadius} radius
+              {siteDetails.cityBase} - {siteDetails.serviceRadius} radius
             </span>
             <span>{siteDetails.workingHours}</span>
           </div>
           <div className="text-sm text-[#9A8A77] mt-6">
-            © {new Date().getFullYear()} AlterCraft. All rights reserved.
+            (c) {new Date().getFullYear()} AlterCraft. All rights reserved.
           </div>
         </div>
       </footer>
