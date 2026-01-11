@@ -64,9 +64,16 @@ export function Navigation() {
           <div className="flex items-center justify-between">
             <a
               href="#home"
-              className="text-[#FAF7F2] tracking-wider transition-opacity hover:opacity-70"
+              aria-label="AlterCraft"
+              className="transition-opacity hover:opacity-80"
             >
-              ALTERCRAFT
+              <img
+                src="/altercraft-logo.png"
+                alt="AlterCraft logo"
+                className="nav-logo"
+                loading="eager"
+                decoding="async"
+              />
             </a>
 
             <div className="hidden md:flex items-center gap-8">
