@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Shield, Wrench, Repeat, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function RentSection() {
   const benefits = [
@@ -12,7 +13,7 @@ export function RentSection() {
     {
       icon: Wrench,
       title: "24/7 Support Service",
-      description: "Installation issues, repair needs, or questions—our team is available whenever you need us."
+      description: "Installation issues, repair needs, or questions - our team is available whenever you need us."
     },
     {
       icon: Repeat,
@@ -32,7 +33,7 @@ export function RentSection() {
     {
       icon: Clock,
       title: "No Long-Term Lock-In",
-      description: "Monthly or annual plans. Pause, extend, or end your rental based on your changing needs."
+      description: "3, 6, 12, or 24 month plans. Pause, extend, or end your rental based on your changing needs."
     }
   ];
 
@@ -42,7 +43,7 @@ export function RentSection() {
     "Regular maintenance visits",
     "Damage protection at no extra charge",
     "Easy return process when you're done",
-    "Transparent pricing—no hidden fees"
+    "Transparent pricing - no hidden fees"
   ];
 
   return (
@@ -58,7 +59,7 @@ export function RentSection() {
           </h2>
           <p className="text-[#5A4D3F] text-lg leading-relaxed">
             Get fully furnished in days, not weeks. Quality furniture on flexible terms 
-            with complete peace of mind throughout your rental period.
+            with complete peace of mind throughout your rental period. {siteDetails.pricingPromise}.
           </p>
         </div>
 
@@ -78,7 +79,7 @@ export function RentSection() {
             </h3>
             <p className="text-[#5A4D3F] mb-8 leading-relaxed">
               Renting furniture shouldn't come with anxiety. That's why we provide 
-              comprehensive support from delivery to the day you return it—and every 
+              comprehensive support from delivery to the day you return it - and every 
               moment in between.
             </p>
             

@@ -24,11 +24,11 @@ export function LandingHero() {
         </div>
         
         <h1 className="mb-8 text-[#FAF7F2] leading-tight max-w-4xl mx-auto">
-          AlterCraft Furniture: Custom Wall Almirah & Modular Units
+          AlterCraft Furniture: Custom Wall Almirah and Modular Units
         </h1>
         
         <p className="text-2xl text-[#D4C5B0] max-w-3xl mx-auto mb-12 leading-relaxed">
-          Budget-friendly modular furniture made to your size. Doorstep delivery and on-site assembly
+          {siteDetails.pricingPromise} for Ghaziabad and NCR. Doorstep delivery and on-site assembly
           within {siteDetails.serviceRadius}.
         </p>
 

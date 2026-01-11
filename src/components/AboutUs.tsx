@@ -181,8 +181,8 @@ export function AboutUs() {
           <div className="grid md:grid-cols-2 gap-12 items-center bg-[#FAF7F2] p-12 rounded-sm">
             <div className="relative h-96 rounded-sm overflow-hidden">
               <ImageWithFallback 
-                src="https://images.unsplash.com/photo-1682718619781-252f23e21132?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBtYWtlciUyMGhhbmRzfGVufDF8fHx8MTc2NzA5MzU4NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Craftsman at work"
+                src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Carpenter_at_work.JPG"
+                alt="Indian carpenter at work"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -380,8 +380,8 @@ export function AboutUs() {
             </h3>
             <div className="space-y-4 text-[#5A4D3F] leading-relaxed">
               <p>
-                AlterCraft is designed as a vertical brand. We're not staying small by choice — 
-                we're building foundations for scale without compromising on what we've learned.
+                AlterCraft is designed as a vertical brand. We are not staying small by choice -
+                we are building foundations for scale without compromising on what we have learned.
               </p>
               <p>
                 The next phase involves CNC precision, engineered components, and controlled 

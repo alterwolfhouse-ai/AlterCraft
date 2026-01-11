@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Award, ShieldCheck, RefreshCw, Hammer } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function BuySection() {
   const guaranteeFeatures = [
@@ -12,7 +13,7 @@ export function BuySection() {
     {
       icon: RefreshCw,
       title: "Free Repairs & Replacements",
-      description: "If anything fails within 3 years due to manufacturing defects, we repair or replace it—no questions asked."
+      description: "If anything fails within 3 years due to manufacturing defects, we repair or replace it - no questions asked."
     },
     {
       icon: Hammer,
@@ -38,8 +39,8 @@ export function BuySection() {
             Buy with Confidence. Guaranteed for 3 Years.
           </h2>
           <p className="text-[#5A4D3F] text-lg leading-relaxed">
-            When you purchase from AlterCraft, you're not just buying furniture—you're 
-            investing in craftsmanship backed by an industry-leading 3-year guarantee.
+            When you purchase from AlterCraft, you're not just buying furniture - you're
+            investing in craftsmanship backed by {siteDetails.warranty}.
           </p>
         </div>
 
@@ -57,7 +58,7 @@ export function BuySection() {
             
             <p className="text-[#5A4D3F] mb-6 leading-relaxed">
               We stand behind every piece of furniture we build and sell. Our 3-year 
-              guarantee isn't marketing—it's a reflection of our material knowledge 
+              guarantee isn't marketing - it's a reflection of our material knowledge 
               and construction standards.
             </p>
             
@@ -116,15 +117,15 @@ export function BuySection() {
         <div className="grid md:grid-cols-3 gap-8 mb-20">
           <div className="bg-white p-8 rounded-sm border border-[#E5DDD1]">
             <h4 className="text-lg mb-4 text-[#2C2419]">
-              ✓ Covered
+               Covered
             </h4>
             <ul className="space-y-2 text-[#5A4D3F] text-sm">
-              <li>• Plywood delamination</li>
-              <li>• Joint failures</li>
-              <li>• Hardware malfunctions</li>
-              <li>• Finish degradation</li>
-              <li>• Structural warping</li>
-              <li>• Manufacturing defects</li>
+              <li>-  Plywood delamination</li>
+              <li>-  Joint failures</li>
+              <li>-  Hardware malfunctions</li>
+              <li>-  Finish degradation</li>
+              <li>-  Structural warping</li>
+              <li>-  Manufacturing defects</li>
             </ul>
           </div>
 
@@ -133,12 +134,12 @@ export function BuySection() {
               What We Do
             </h4>
             <ul className="space-y-2 text-[#5A4D3F] text-sm">
-              <li>• Free on-site inspection</li>
-              <li>• Immediate repair scheduling</li>
-              <li>• Component replacement</li>
-              <li>• Full unit replacement if needed</li>
-              <li>• No-cost service visits</li>
-              <li>• Priority support line</li>
+              <li>-  Free on-site inspection</li>
+              <li>-  Immediate repair scheduling</li>
+              <li>-  Component replacement</li>
+              <li>-  Full unit replacement if needed</li>
+              <li>-  No-cost service visits</li>
+              <li>-  Priority support line</li>
             </ul>
           </div>
 
@@ -147,12 +148,12 @@ export function BuySection() {
               Beyond Guarantee
             </h4>
             <ul className="space-y-2 text-sm">
-              <li>• Lifetime repair services</li>
-              <li>• Spare parts availability</li>
-              <li>• Refinishing options</li>
-              <li>• Upgrade consultations</li>
-              <li>• Material documentation</li>
-              <li>• Care & maintenance guide</li>
+              <li>-  Lifetime repair services</li>
+              <li>-  Spare parts availability</li>
+              <li>-  Refinishing options</li>
+              <li>-  Upgrade consultations</li>
+              <li>-  Material documentation</li>
+              <li>-  Care & maintenance guide</li>
             </ul>
           </div>
         </div>

@@ -14,10 +14,14 @@ export function Navigation() {
   }, []);
 
   const navItems = [
+    { label: 'Catalog', href: '#catalog' },
     { label: 'Rent', href: '#rent' },
     { label: 'Buy', href: '#buy' },
-    { label: 'Products', href: '#products' },
+    { label: 'Trade-In', href: '#trade-in' },
+    { label: 'Service Areas', href: '#service-areas' },
     { label: 'About Us', href: '#about-us' },
+    { label: 'Policies', href: '#policies' },
+    { label: 'FAQ', href: '#faq' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -30,6 +34,7 @@ export function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 py-2 text-xs text-[#D4C5B0] flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-4">
+            <span>{siteDetails.addressLine}</span>
             <span>{siteDetails.cityBase}</span>
             <span>{siteDetails.serviceRadius} radius</span>
             <span>{siteDetails.workingHours}</span>

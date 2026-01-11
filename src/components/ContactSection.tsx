@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { siteDetails } from '../data/siteDetails';
+import { catalogCategories, rentalTerms } from '../data/catalog';
 import { trackEvent } from '../utils/analytics';
 
 export function ContactSection() {
@@ -9,6 +10,10 @@ export function ContactSection() {
     email: '',
     phone: '',
     projectType: '',
+    serviceType: '',
+    category: '',
+    preferredItem: '',
+    rentalTerm: '',
     message: ''
   });
 
@@ -22,6 +27,10 @@ export function ContactSection() {
       email: '',
       phone: '',
       projectType: '',
+      serviceType: '',
+      category: '',
+      preferredItem: '',
+      rentalTerm: '',
       message: ''
     });
   };
@@ -101,6 +110,82 @@ export function ContactSection() {
                   placeholder="+91 XXXXX XXXXX"
                 />
               </div>
+
+              <div>
+                <label htmlFor="serviceType" className="block text-sm mb-2 text-[#2C2419]">
+                  Service Type
+                </label>
+                <select
+                  id="serviceType"
+                  name="serviceType"
+                  value={formData.serviceType}
+                  onChange={handleChange}
+                  required
+                  className="w-full px-4 py-3 bg-white border border-[#E5DDD1] rounded-sm focus:outline-none focus:border-[#6B5D4F] transition-colors"
+                >
+                  <option value="">Select a service type</option>
+                  <option value="rent">Rent Furniture</option>
+                  <option value="buy">Buy Furniture</option>
+                  <option value="trade-in">Trade-In Program</option>
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="category" className="block text-sm mb-2 text-[#2C2419]">
+                  Category
+                </label>
+                <select
+                  id="category"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white border border-[#E5DDD1] rounded-sm focus:outline-none focus:border-[#6B5D4F] transition-colors"
+                >
+                  <option value="">Select a category</option>
+                  {catalogCategories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label htmlFor="preferredItem" className="block text-sm mb-2 text-[#2C2419]">
+                  Preferred Item
+                </label>
+                <input
+                  type="text"
+                  id="preferredItem"
+                  name="preferredItem"
+                  value={formData.preferredItem}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 bg-white border border-[#E5DDD1] rounded-sm focus:outline-none focus:border-[#6B5D4F] transition-colors"
+                  placeholder="Example: Three Seater Sofa"
+                />
+              </div>
+
+              {formData.serviceType === 'rent' && (
+                <div>
+                  <label htmlFor="rentalTerm" className="block text-sm mb-2 text-[#2C2419]">
+                    Rental Term
+                  </label>
+                  <select
+                    id="rentalTerm"
+                    name="rentalTerm"
+                    value={formData.rentalTerm}
+                    onChange={handleChange}
+                    className="w-full px-4 py-3 bg-white border border-[#E5DDD1] rounded-sm focus:outline-none focus:border-[#6B5D4F] transition-colors"
+                  >
+                    <option value="">Select a rental term</option>
+                    {rentalTerms.map((term) => (
+                      <option key={term.label} value={term.label}>
+                        {term.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
 
               <div>
                 <label htmlFor="projectType" className="block text-sm mb-2 text-[#2C2419]">
@@ -196,7 +281,8 @@ export function ContactSection() {
                     <div className="text-sm text-[#6B5D4F] mb-1">Location</div>
                     <div className="text-[#2C2419]">
                       Workshop & Studio<br />
-                      {siteDetails.cityBase}
+                      {siteDetails.addressLine}<br />
+                      {siteDetails.cityBase} {siteDetails.postalCode}
                     </div>
                   </div>
                 </div>
@@ -209,19 +295,19 @@ export function ContactSection() {
               </h4>
               <ul className="space-y-3 text-[#D4C5B0] text-sm">
                 <li className="flex items-start gap-3">
-                  <span className="text-[#6B5D4F] mt-1">•</span>
+                  <span className="text-[#6B5D4F] mt-1">-</span>
                   <span>Response within 24 hours</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#6B5D4F] mt-1">•</span>
+                  <span className="text-[#6B5D4F] mt-1">-</span>
                   <span>No-pressure consultation call</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#6B5D4F] mt-1">•</span>
+                  <span className="text-[#6B5D4F] mt-1">-</span>
                   <span>Honest assessment of project feasibility</span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-[#6B5D4F] mt-1">•</span>
+                  <span className="text-[#6B5D4F] mt-1">-</span>
                   <span>Clear timeline and material recommendations</span>
                 </li>
               </ul>
