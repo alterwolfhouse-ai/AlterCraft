@@ -1,10 +1,28 @@
 
-  import { defineConfig } from 'vite';
-  import react from '@vitejs/plugin-react-swc';
-  import path from 'path';
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import vitePrerender from 'vite-plugin-prerender';
+import path from 'path';
 
-  export default defineConfig({
-    plugins: [react()],
+  const PuppeteerRenderer = vitePrerender.PuppeteerRenderer;
+
+  export default defineConfig(({ command }) => ({
+    plugins: [
+      react(),
+      ...(command === 'build'
+        ? [
+            vitePrerender({
+              staticDir: path.join(__dirname, 'build'),
+              routes: ['/'],
+              renderer: new PuppeteerRenderer({
+                renderAfterTime: 2000,
+                navigationOptions: { waitUntil: 'domcontentloaded' },
+                skipThirdPartyRequests: true,
+              }),
+            }),
+          ]
+        : []),
+    ],
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       alias: {
@@ -57,4 +75,4 @@
       port: 3000,
       open: true,
     },
-  });
+  }));

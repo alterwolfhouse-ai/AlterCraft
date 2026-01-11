@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.altercraft.in/sitemap.xml
