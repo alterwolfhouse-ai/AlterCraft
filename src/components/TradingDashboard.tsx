@@ -205,7 +205,7 @@ export function TradingDashboard() {
                 </div>
                 <div>
                   <h2 className="text-2xl">TradePro Signal</h2>
-                  <p className="text-muted-foreground">Ultimate Trading Dashboard</p>
+                  <p className="text-muted-foreground">Your Online firniture wala</p>
                 </div>
               </div>
               

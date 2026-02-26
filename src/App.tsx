@@ -5,8 +5,16 @@ import { RentalPoster } from './components/RentalPoster';
 import { MaterialsPoster } from './components/MaterialsPoster';
 import { TrustPoster } from './components/TrustPoster';
 import { FooterPoster } from './components/FooterPoster';
+import { ProductGalleryPage } from './components/ProductGalleryPage';
 
 export default function App() {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, '') || '/';
+  const isProductGalleryRoute = normalizedPath === '/products';
+
+  if (isProductGalleryRoute) {
+    return <ProductGalleryPage />;
+  }
+
   return (
     <div className="min-h-screen bg-[#0A0A0A] font-sans text-white antialiased relative">
       {/* Global Texture Overlay */}

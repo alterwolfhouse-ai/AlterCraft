@@ -65,6 +65,37 @@ export function HeroPoster() {
               ))}
             </ul>
 
+            <a
+              href="/products"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.75rem 1rem',
+                marginBottom: '2.5rem',
+                border: '1px solid rgba(255, 184, 0, 0.55)',
+                color: '#FFB800',
+                textTransform: 'uppercase',
+                letterSpacing: '0.22em',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                transition: 'all 200ms ease',
+              }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.backgroundColor = '#FFB800';
+                event.currentTarget.style.color = '#111111';
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.backgroundColor = 'transparent';
+                event.currentTarget.style.color = '#FFB800';
+              }}
+            >
+              Product Gallery
+              <span aria-hidden="true">/</span>
+              <span aria-hidden="true">&gt;</span>
+            </a>
+
             <div className="flex flex-col items-end gap-2">
               <span className="text-[#52525B] text-xs uppercase tracking-widest font-bold">Call / WhatsApp</span>
               <a 
