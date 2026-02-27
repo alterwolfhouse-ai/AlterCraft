@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Link } from 'react-router';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import bannerImg from 'figma:asset/cb3a90f4c2d2593fecf98a112c856f7f01af70fd.png';
 
@@ -38,29 +37,13 @@ export function HeroPoster() {
               ALTER<br />CRAFT
             </h1>
             
-            <div className="max-w-md mb-12">
+            <div className="max-w-md">
               <p className="text-2xl md:text-3xl font-light text-[#A1A1AA] mb-4">
                 Handcrafted <span className="text-white">+</span> CNC Precision
               </p>
               <p className="text-lg text-[#52525B] italic">
                 Your Online Furniture Wala — Now Offline
               </p>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="https://wa.me/918826436093"
-                className="inline-flex items-center justify-center bg-[#FFB800] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
-              >
-                Enquire on WhatsApp
-              </a>
-              <Link
-                to="/gallery"
-                className="inline-flex items-center justify-center bg-transparent border-2 border-[#FFB800] text-[#FFB800] px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-[#FFB800] hover:text-black transition-all"
-              >
-                Product Gallery
-              </Link>
             </div>
           </motion.div>
         </div>
@@ -81,6 +64,37 @@ export function HeroPoster() {
                 </li>
               ))}
             </ul>
+
+            <a
+              href="/products"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                padding: '0.75rem 1rem',
+                marginBottom: '2.5rem',
+                border: '1px solid rgba(255, 184, 0, 0.55)',
+                color: '#FFB800',
+                textTransform: 'uppercase',
+                letterSpacing: '0.22em',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                textDecoration: 'none',
+                transition: 'all 200ms ease',
+              }}
+              onMouseEnter={(event) => {
+                event.currentTarget.style.backgroundColor = '#FFB800';
+                event.currentTarget.style.color = '#111111';
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.backgroundColor = 'transparent';
+                event.currentTarget.style.color = '#FFB800';
+              }}
+            >
+              Product Gallery
+              <span aria-hidden="true">/</span>
+              <span aria-hidden="true">&gt;</span>
+            </a>
 
             <div className="flex flex-col items-end gap-2">
               <span className="text-[#52525B] text-xs uppercase tracking-widest font-bold">Call / WhatsApp</span>
