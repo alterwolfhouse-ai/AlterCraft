@@ -1766,6 +1766,34 @@ img {
   margin-bottom: 0.3rem;
 }
 
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.9rem;
+}
+
+.legal-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 184, 0, 0.16);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--gold-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.legal-links a:hover,
+.legal-links a:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 184, 0, 0.28);
+  color: var(--gold);
+}
+
 .site-footer div:last-child {
   display: grid;
   justify-items: end;
@@ -1960,6 +1988,10 @@ img {
     text-align: left;
   }
 
+  .legal-links {
+    justify-content: flex-start;
+  }
+
   .dock-nav {
     width: min(calc(100% - 1.5rem), 34rem);
     justify-content: space-between;
@@ -2065,3 +2097,4 @@ img {
     padding: 0.5rem;
   }
 }
+
