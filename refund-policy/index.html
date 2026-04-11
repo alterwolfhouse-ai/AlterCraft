@@ -148,6 +148,22 @@
         background: rgba(255, 255, 255, 0.03);
       }
 
+      .mini-footer {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .mini-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+
+      .mini-links a {
+        color: var(--gold-soft);
+      }
+
       @media (max-width: 640px) {
         .card { padding: 1.1rem; border-radius: 22px; }
       }
@@ -186,6 +202,16 @@
           <a class="button button--solid" href="../legal/refund-policy.pdf" target="_blank" rel="noreferrer">Download PDF</a>
           <a class="button button--ghost" href="https://www.altercraft.in/">Back to Website</a>
         </div>
+
+        <footer class="mini-footer">
+          <div class="mini-links">
+            <a href="../terms-and-conditions/">Terms &amp; Conditions</a>
+            <a href="../privacy-policy/">Privacy Policy</a>
+            <a href="../disclaimer/">Disclaimer</a>
+            <a href="../cancellation-policy/">Cancellation Policy</a>
+            <a href="../refund-policy/">Refund Policy</a>
+          </div>
+        </footer>
       </section>
     </main>
   </body>

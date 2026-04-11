@@ -218,7 +218,9 @@ const productCatalog = [
     category: "Beds",
     label: "Listed bedroom product",
     title: "Frosty White Bed",
-    price: "Starting from Rs. 24,500",
+    priceValue: 18900,
+    mrpValue: 22900,
+    bookingAdvance: 3900,
     summary:
       "A clean, low-height engineered wood bed in frosty white, positioned for modern bedrooms that need a simple product-led buying path.",
     image: "/assets/products/frosty-white-bed.png",
@@ -239,6 +241,8 @@ const productCatalog = [
       "Final pricing can change if the buyer needs a different size, finish, or storage format.",
       "Advance payments, when applicable, are used for order confirmation and production booking.",
     ],
+    checkoutNote: "Booking amount secures order confirmation. Balance is settled before dispatch or as agreed for custom changes.",
+    deliveryNote: "Delivery timeline is shared after stock or production confirmation.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20Frosty%20White%20Bed%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this bed",
     secondaryHref: whatsappLinks.bed,
@@ -249,7 +253,9 @@ const productCatalog = [
     category: "Study tables",
     label: "Listed workspace product",
     title: "AC Study Table",
-    price: "Starting from Rs. 7,900",
+    priceValue: 7490,
+    mrpValue: 8990,
+    bookingAdvance: 1500,
     summary:
       "A clean study table with lower shelf support, suitable for work corners, student rooms, and compact home-office setups.",
     image: "/assets/products/ac-study-table.png",
@@ -270,6 +276,8 @@ const productCatalog = [
       "This page helps show smaller-ticket products clearly to buyers and payment reviewers.",
       "Online payments are accepted for order confirmation and production release.",
     ],
+    checkoutNote: "Booking amount confirms the product order. Any custom size or finish change is quoted before final billing.",
+    deliveryNote: "Dispatch timing is confirmed after order review and stock check.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20AC%20Study%20Table%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this desk",
     secondaryHref: whatsappLinks.study,
@@ -280,7 +288,9 @@ const productCatalog = [
     category: "Centre tables",
     label: "Listed living-room product",
     title: "Centre Table",
-    price: "Starting from Rs. 5,900",
+    priceValue: 5490,
+    mrpValue: 6990,
+    bookingAdvance: 1200,
     summary:
       "A clean centre table with a white top and wood-tone support, suitable for living rooms, lounges, and compact seating areas.",
     image: "/assets/products/centre-table.png",
@@ -297,10 +307,12 @@ const productCatalog = [
       { label: "Order mode", value: "Direct enquiry and confirmation" },
     ],
     buildNotes: [
-      "The starting price covers the standard product direction shown here.",
+      "The fixed website price covers the listed product variant shown here.",
       "This product page makes living-room furniture visible as an actual purchasable category on the site.",
       "Payments are accepted for booking and confirmed orders where applicable.",
     ],
+    checkoutNote: "Booking amount confirms the selected product. Final invoice stays aligned to the confirmed product configuration.",
+    deliveryNote: "Dispatch timing is shared after order confirmation.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20centre%20table%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this table",
     secondaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20the%20living-room%20table%20catalog%20with%20size%20options.",
@@ -311,7 +323,9 @@ const productCatalog = [
     category: "Wardrobes",
     label: "Listed storage product",
     title: "1 Door Wooden Wardrobe",
-    price: "Starting from Rs. 10,900",
+    priceValue: 8990,
+    mrpValue: 10990,
+    bookingAdvance: 2000,
     summary:
       "A compact single-door wardrobe product for bedrooms, PG setups, and smaller spaces where vertical storage matters.",
     image: "/assets/products/one-door-wardrobe-frosty-white.png",
@@ -332,6 +346,8 @@ const productCatalog = [
       "Final pricing can vary if a different color, hardware, or internal change is required.",
       "Payments are collected for confirmed order booking and release into production where applicable.",
     ],
+    checkoutNote: "Booking advance confirms the product slot. Custom finish or storage adjustments are quoted before final balance.",
+    deliveryNote: "Delivery or dispatch is confirmed after product review and availability check.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%201%20door%20wooden%20wardrobe%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this wardrobe",
     secondaryHref: whatsappLinks.wardrobe,
@@ -342,7 +358,9 @@ const productCatalog = [
     category: "Wardrobes",
     label: "Listed storage product",
     title: "3 Door Wooden Wardrobe",
-    price: "Starting from Rs. 19,500",
+    priceValue: 17900,
+    mrpValue: 21490,
+    bookingAdvance: 3900,
     summary:
       "A three-door engineered wood wardrobe for bedrooms that need more storage volume, hanging space, and daily organization.",
     image: "/assets/products/three-door-wardrobe-frosty-white.png",
@@ -363,6 +381,8 @@ const productCatalog = [
       "Wardrobe pricing changes if hardware, finish, or dimensions change from the shown product line.",
       "Online payments are used for booking and confirmed order progress where applicable.",
     ],
+    checkoutNote: "Booking amount confirms the wardrobe order. Final billing reflects the confirmed finish, delivery location, and any approved upgrades.",
+    deliveryNote: "Delivery timing is shared after order confirmation and stock or production validation.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%203%20door%20wardrobe%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this wardrobe",
     secondaryHref: whatsappLinks.wardrobe,
@@ -373,7 +393,9 @@ const productCatalog = [
     category: "Wardrobes",
     label: "Large storage product",
     title: "4 Door Wardrobe American Teak",
-    price: "Starting from Rs. 29,500",
+    priceValue: 28900,
+    mrpValue: 33990,
+    bookingAdvance: 5900,
     summary:
       "A larger wardrobe format with four doors and drawer storage, positioned for master bedrooms and bigger storage requirements.",
     image: "/assets/products/four-door-wardrobe-american-teak.png",
@@ -394,6 +416,8 @@ const productCatalog = [
       "Final price changes with internal layout, lock set, handle style, and any finish variation.",
       "Advance payments support booking confirmation and production planning.",
     ],
+    checkoutNote: "Booking amount secures the order and material planning. Balance follows the confirmed delivery or production schedule.",
+    deliveryNote: "Dispatch or delivery window is confirmed after review of order details and service area.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%204%20door%20American%20Teak%20wardrobe%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this 4 door wardrobe",
     secondaryHref: whatsappLinks.wardrobe,
@@ -404,7 +428,9 @@ const productCatalog = [
     category: "Shoe racks",
     label: "Compact utility product",
     title: "Shoe Rack Natural White",
-    price: "Starting from Rs. 6,400",
+    priceValue: 5490,
+    mrpValue: 6790,
+    bookingAdvance: 1200,
     summary:
       "A compact natural white shoe rack for entry corners, utility zones, and homes that need quick everyday shoe organization.",
     image: "/assets/products/shoe-rack-natural-white.png",
@@ -425,6 +451,8 @@ const productCatalog = [
       "Final pricing can change if size, drawer format, or dual-tone finish changes.",
       "Payments are accepted for order confirmation where applicable.",
     ],
+    checkoutNote: "Booking amount confirms the shoe rack order. Final invoice follows the approved product configuration.",
+    deliveryNote: "Dispatch timing is shared once the order is reviewed and confirmed.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20Natural%20White%20Shoe%20Rack%20shown%20on%20your%20website.",
     primaryLabel: "Enquire this shoe rack",
     secondaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20please%20share%20your%20shoe%20rack%20catalog%20with%20pricing.",
@@ -435,7 +463,9 @@ const productCatalog = [
     category: "Wardrobes",
     label: "Alternate wardrobe finish",
     title: "3 Door Wardrobe Legno Oak",
-    price: "Starting from Rs. 21,500",
+    priceValue: 19900,
+    mrpValue: 23990,
+    bookingAdvance: 4200,
     summary:
       "A three-door wardrobe in a warmer oak finish for bedrooms that need a richer wood-tone look with practical internal storage.",
     image: "/assets/products/legno-oak-three-door-wardrobe.png",
@@ -456,6 +486,8 @@ const productCatalog = [
       "Final pricing can change with hardware or internal modifications.",
       "Payments are accepted for confirmed order booking and release.",
     ],
+    checkoutNote: "Booking amount confirms the selected finish and product slot. Any approved changes are reflected before balance payment.",
+    deliveryNote: "Delivery timing is confirmed after product review and availability planning.",
     primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%203%20door%20Legno%20Oak%20wardrobe%20shown%20on%20your%20website.",
     primaryLabel: "Enquire oak wardrobe",
     secondaryHref: whatsappLinks.wardrobe,
@@ -463,12 +495,116 @@ const productCatalog = [
   },
 ];
 
+const CART_KEY = "altercraft-cart-v1";
+const CHECKOUT_PATH = "/checkout/";
+const CART_PATH = "/cart/";
+const WEBSITE_DISCOUNT_PERCENT = 10;
+
+function formatInr(value) {
+  return `Rs. ${new Intl.NumberFormat("en-IN").format(value)}`;
+}
+
+function getOfferPrice(product) {
+  return Math.round((product.priceValue * (100 - WEBSITE_DISCOUNT_PERCENT)) / 100 / 10) * 10;
+}
+
+function getSavings(product) {
+  return product.priceValue - getOfferPrice(product);
+}
+
+function getCartCount(cart) {
+  return cart.reduce((total, item) => total + item.quantity, 0);
+}
+
+function getCartSubtotal(cart) {
+  return cart.reduce((total, item) => {
+    const product = productCatalog.find((entry) => entry.slug === item.slug);
+    if (!product) return total;
+    return total + getOfferPrice(product) * item.quantity;
+  }, 0);
+}
+
+function getCartStorage() {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const stored = window.localStorage.getItem(CART_KEY);
+    const parsed = stored ? JSON.parse(stored) : [];
+    return Array.isArray(parsed) ? parsed.filter((item) => item?.slug && item?.quantity) : [];
+  } catch (_error) {
+    return [];
+  }
+}
+
+function setCartStorage(cart) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+function upsertCartItem(slug, quantity = 1) {
+  const cart = getCartStorage();
+  const existing = cart.find((item) => item.slug === slug);
+
+  if (existing) {
+    existing.quantity += quantity;
+  } else {
+    cart.push({ slug, quantity });
+  }
+
+  setCartStorage(cart);
+  updateCartIndicators();
+}
+
+function updateCartItemQuantity(slug, quantity) {
+  const nextCart = getCartStorage()
+    .map((item) => (item.slug === slug ? { ...item, quantity } : item))
+    .filter((item) => item.quantity > 0);
+
+  setCartStorage(nextCart);
+  updateCartIndicators();
+}
+
+function removeCartItem(slug) {
+  const nextCart = getCartStorage().filter((item) => item.slug !== slug);
+  setCartStorage(nextCart);
+  updateCartIndicators();
+}
+
+function buildCheckoutMessage(cart, customer = {}) {
+  const lines = [
+    "Hi Altercraft, I want to place an order from the website.",
+    "",
+    "Product summary:",
+  ];
+
+  cart.forEach((item) => {
+    const product = productCatalog.find((entry) => entry.slug === item.slug);
+    if (!product) return;
+    lines.push(`- ${product.title} x ${item.quantity} = ${formatInr(getOfferPrice(product) * item.quantity)}`);
+  });
+
+  lines.push("");
+  lines.push(`Subtotal: ${formatInr(getCartSubtotal(cart))}`);
+
+  if (customer.name) lines.push(`Name: ${customer.name}`);
+  if (customer.phone) lines.push(`Phone: ${customer.phone}`);
+  if (customer.email) lines.push(`Email: ${customer.email}`);
+  if (customer.address) lines.push(`Address: ${customer.address}`);
+  if (customer.city) lines.push(`City: ${customer.city}`);
+  if (customer.pincode) lines.push(`Pincode: ${customer.pincode}`);
+
+  lines.push("");
+  lines.push("Please share the final payment link or order confirmation.");
+
+  return encodeURIComponent(lines.join("\n"));
+}
+
 const shopHighlights = [
   {
     label: "Product page ready",
     brand: "AlterCraft",
     title: "Frosty White Bed",
-    price: "Starting from Rs. 24,500",
+    price: "Fixed price: Rs. 17,010",
     summary:
       "The first product signal now opens a proper priced product page built around your actual Flipkart-style bedroom asset.",
     image: "/assets/products/frosty-white-bed.png",
@@ -482,7 +618,7 @@ const shopHighlights = [
   {
     label: "Work-ready",
     title: "AC Study Table",
-    price: "Starting from Rs. 7,900",
+    price: "Fixed price: Rs. 6,740",
     summary: "A real listed desk product with clean visuals, clear pricing, and a direct enquiry route.",
     image: "/assets/products/ac-study-table.png",
     href: productPages.studyTable,
@@ -492,7 +628,7 @@ const shopHighlights = [
   {
     label: "Living room",
     title: "Centre Table",
-    price: "Starting from Rs. 5,900",
+    price: "Fixed price: Rs. 4,940",
     summary: "A clean living-room table product that helps the site show smaller furniture SKUs with pricing too.",
     image: "/assets/products/centre-table.png",
     href: productPages.centreTable,
@@ -502,7 +638,7 @@ const shopHighlights = [
   {
     label: "Compact storage",
     title: "1 Door Wooden Wardrobe",
-    price: "Starting from Rs. 10,900",
+    price: "Fixed price: Rs. 8,090",
     summary: "A compact bedroom wardrobe product with drawer and shelf support for smaller storage requirements.",
     image: "/assets/products/one-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe1,
@@ -512,7 +648,7 @@ const shopHighlights = [
   {
     label: "Space-led",
     title: "3 Door Wooden Wardrobe",
-    price: "Starting from Rs. 19,500",
+    price: "Fixed price: Rs. 16,110",
     summary: "A larger wardrobe product with hanging and shelf storage for mainstream bedroom buyers.",
     image: "/assets/products/three-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe3,
@@ -522,7 +658,7 @@ const shopHighlights = [
   {
     label: "Large storage",
     title: "4 Door Wardrobe American Teak",
-    price: "Starting from Rs. 29,500",
+    price: "Fixed price: Rs. 26,010",
     summary: "A higher-capacity wardrobe page with warmer finish direction for premium bedroom storage.",
     image: "/assets/products/four-door-wardrobe-american-teak.png",
     href: productPages.wardrobe4,
@@ -532,7 +668,7 @@ const shopHighlights = [
   {
     label: "Utility product",
     title: "Shoe Rack Natural White",
-    price: "Starting from Rs. 6,400",
+    price: "Fixed price: Rs. 4,940",
     summary: "A compact shoe rack product that gives the website another practical, lower-ticket furniture option with pricing.",
     image: "/assets/products/shoe-rack-natural-white.png",
     href: productPages.shoeRack,
@@ -545,7 +681,7 @@ const furnitureCategories = [
   {
     title: "Frosty White Bed",
     label: "Bedroom bestseller",
-    price: "Starting from Rs. 24,500",
+    price: "Fixed price: Rs. 17,010",
     summary: "A clean frosty-white bed page for buyers who want a simple, modern bedroom product.",
     image: "/assets/products/frosty-white-bed.png",
     href: productPages.bed,
@@ -554,7 +690,7 @@ const furnitureCategories = [
   {
     title: "AC Study Table",
     label: "Work-from-home",
-    price: "Starting from Rs. 7,900",
+    price: "Fixed price: Rs. 6,740",
     summary: "A compact study table with a real product page and a simple enquiry route.",
     image: "/assets/products/ac-study-table.png",
     href: productPages.studyTable,
@@ -563,7 +699,7 @@ const furnitureCategories = [
   {
     title: "Centre Table",
     label: "Living-room essential",
-    price: "Starting from Rs. 5,900",
+    price: "Fixed price: Rs. 4,940",
     summary: "A simple living-room table product that adds an easy furniture-buy path to the website.",
     image: "/assets/products/centre-table.png",
     href: productPages.centreTable,
@@ -572,7 +708,7 @@ const furnitureCategories = [
   {
     title: "1 Door Wooden Wardrobe",
     label: "Compact storage",
-    price: "Starting from Rs. 10,900",
+    price: "Fixed price: Rs. 8,090",
     summary: "A compact wardrobe product for smaller bedrooms and tighter storage needs.",
     image: "/assets/products/one-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe1,
@@ -581,7 +717,7 @@ const furnitureCategories = [
   {
     title: "3 Door Wooden Wardrobe",
     label: "Bedroom storage",
-    price: "Starting from Rs. 19,500",
+    price: "Fixed price: Rs. 16,110",
     summary: "A mainstream 3-door wardrobe page with visible pricing and practical storage scope.",
     image: "/assets/products/three-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe3,
@@ -590,7 +726,7 @@ const furnitureCategories = [
   {
     title: "4 Door Wardrobe American Teak",
     label: "Large storage",
-    price: "Starting from Rs. 29,500",
+    price: "Fixed price: Rs. 26,010",
     summary: "A warmer, larger wardrobe option for bigger bedroom storage plans.",
     image: "/assets/products/four-door-wardrobe-american-teak.png",
     href: productPages.wardrobe4,
@@ -599,7 +735,7 @@ const furnitureCategories = [
   {
     title: "Shoe Rack Natural White",
     label: "Utility product",
-    price: "Starting from Rs. 6,400",
+    price: "Fixed price: Rs. 4,940",
     summary: "A practical utility-storage page that makes the website product catalog feel broader and more real.",
     image: "/assets/products/shoe-rack-natural-white.png",
     href: productPages.shoeRack,
@@ -1202,16 +1338,20 @@ function renderProductCatalog() {
           <div class="catalog-card-copy">
             <div class="catalog-card-topline">
               <span>${product.label}</span>
-              <strong>${product.price}</strong>
+              <div class="catalog-price-stack">
+                <strong>${formatInr(getOfferPrice(product))}</strong>
+                <small>Was ${formatInr(product.priceValue)}</small>
+              </div>
             </div>
             <h3>${product.title}</h3>
             <p>${product.summary}</p>
             <ul class="catalog-mini-list">
               ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
             </ul>
+            <div class="catalog-discount">Fixed website price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
             <div class="catalog-actions">
               <a class="button" href="./${product.slug}/">View product page</a>
-              <a class="button button--ghost" href="${product.secondaryHref}" target="_blank" rel="noreferrer">${product.secondaryLabel}</a>
+              <button class="button button--ghost" type="button" data-add-to-cart="${product.slug}">Add to Cart</button>
             </div>
           </div>
         </article>
@@ -1266,24 +1406,54 @@ function renderProductDetail() {
         <div class="product-hero-copy">
           <span class="product-label">${product.label}</span>
           <h1>${product.title}</h1>
-          <div class="product-price-badge">${product.price}</div>
+          <div class="product-price-panel">
+            <div class="product-price-badge">${formatInr(getOfferPrice(product))}</div>
+            <div class="product-price-meta">
+              <span>Was ${formatInr(product.priceValue)}</span>
+              <strong>${WEBSITE_DISCOUNT_PERCENT}% off</strong>
+            </div>
+          </div>
           <p>${product.summary}</p>
 
           <div class="product-actions">
-            <a class="button" href="${product.primaryHref}" target="_blank" rel="noreferrer">${product.primaryLabel}</a>
+            <button class="button" type="button" data-buy-now="${product.slug}">Buy Now</button>
+            <button class="button button--ghost" type="button" data-add-to-cart="${product.slug}">Add to Cart</button>
             <a class="button button--ghost" href="${product.secondaryHref}" target="_blank" rel="noreferrer">${product.secondaryLabel}</a>
           </div>
 
           <div class="product-note-box">
-            <strong>Pricing note</strong>
+            <strong>Fixed Price</strong>
             <p>
-              Prices shown are starting estimates for website review and customer guidance. Final pricing depends on size, finish, hardware, storage mix, and site conditions.
+              This product page shows a fixed website price for the listed furniture item. Any change in size, finish, or product variant is quoted separately before billing.
             </p>
           </div>
         </div>
       </div>
 
       <div class="product-detail-grid">
+        <article class="product-card-block reveal">
+          <span class="panel-kicker">Price and Checkout</span>
+          <h2>Order summary</h2>
+          <div class="product-spec-grid">
+            <div class="product-spec">
+              <span>Fixed Price</span>
+              <strong>${formatInr(getOfferPrice(product))}</strong>
+            </div>
+            <div class="product-spec">
+              <span>Previous Price</span>
+              <strong>${formatInr(product.priceValue)}</strong>
+            </div>
+            <div class="product-spec">
+              <span>You Save</span>
+              <strong>${formatInr(getSavings(product))}</strong>
+            </div>
+            <div class="product-spec">
+              <span>Booking Amount</span>
+              <strong>${formatInr(product.bookingAdvance)}</strong>
+            </div>
+          </div>
+        </article>
+
         <article class="product-card-block reveal">
           <span class="panel-kicker">What You Get</span>
           <h2>Core product highlights</h2>
@@ -1314,7 +1484,8 @@ function renderProductDetail() {
           <h2>How this product flows on Altercraft</h2>
           <ul class="product-list">
             ${product.buildNotes.map((item) => `<li>${item}</li>`).join("")}
-            <li>Customers can enquire on WhatsApp, confirm scope, and make booking or milestone payments online where applicable.</li>
+            <li>${product.checkoutNote}</li>
+            <li>${product.deliveryNote}</li>
           </ul>
         </article>
       </div>
@@ -1322,29 +1493,29 @@ function renderProductDetail() {
       <section class="product-flow reveal">
         <div class="section-heading">
           <p class="eyebrow">Buyer Journey</p>
-          <h2>Simple product flow for customers and payment review.</h2>
-          <p>This page makes the buying journey easy to understand: product, price, enquiry, confirmation, and booking payment.</p>
+          <h2>Simple checkout flow for customers and payment review.</h2>
+          <p>This page makes the buying journey easy to understand: product, fixed price, cart, checkout, and payment confirmation.</p>
         </div>
         <div class="product-flow-grid">
           <article class="product-flow-step">
             <span>01</span>
             <h3>Browse product and price</h3>
-            <p>The customer first sees the product category, starting price, and practical scope.</p>
+            <p>The customer first sees the listed product, fixed website price, and the exact furniture category.</p>
           </article>
           <article class="product-flow-step">
             <span>02</span>
-            <h3>Confirm size or variant</h3>
-            <p>Buyers confirm whether they need the standard direction or a custom size, finish, or storage change.</p>
+            <h3>Add to cart or buy now</h3>
+            <p>The buyer can add the item to cart or move straight to checkout from the product page.</p>
           </article>
           <article class="product-flow-step">
             <span>03</span>
-            <h3>Share details on WhatsApp</h3>
-            <p>Room size, requirement, or exact product preference is shared with the Altercraft team.</p>
+            <h3>Review order and address</h3>
+            <p>The customer reviews the order summary, quantity, address, and contact details on the checkout page.</p>
           </article>
           <article class="product-flow-step">
             <span>04</span>
-            <h3>Pay booking advance</h3>
-            <p>Online payment is taken for booking confirmation, order processing, or agreed milestone release.</p>
+            <h3>Receive payment link and confirm order</h3>
+            <p>Altercraft shares the payment link or confirms the booking amount, then the order moves into confirmation.</p>
           </article>
         </div>
       </section>
@@ -1353,7 +1524,7 @@ function renderProductDetail() {
         <div class="section-heading">
           <p class="eyebrow">Also Browse</p>
           <h2>Other Altercraft product pages</h2>
-          <p>These pages help buyers and reviewers see that the website carries multiple product categories with visible pricing.</p>
+          <p>These pages help buyers and reviewers see that the website carries multiple furniture categories with visible fixed pricing.</p>
         </div>
         <div class="catalog-grid product-related-grid">
           ${related
@@ -1366,11 +1537,18 @@ function renderProductDetail() {
                   <div class="catalog-card-copy">
                     <div class="catalog-card-topline">
                       <span>${item.category}</span>
-                      <strong>${item.price}</strong>
+                      <div class="catalog-price-stack">
+                        <strong>${formatInr(getOfferPrice(item))}</strong>
+                        <small>Was ${formatInr(item.priceValue)}</small>
+                      </div>
                     </div>
                     <h3>${item.title}</h3>
                     <p>${item.summary}</p>
-                    <a class="button" href="../${item.slug}/">View product page</a>
+                    <div class="catalog-discount">Fixed website price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
+                    <div class="catalog-actions">
+                      <a class="button" href="../${item.slug}/">View product page</a>
+                      <button class="button button--ghost" type="button" data-add-to-cart="${item.slug}">Add to Cart</button>
+                    </div>
                   </div>
                 </article>
               `,
@@ -1380,6 +1558,272 @@ function renderProductDetail() {
       </section>
     </section>
   `;
+}
+
+function updateCartIndicators() {
+  const cart = getCartStorage();
+  const count = getCartCount(cart);
+
+  document.querySelectorAll("[data-cart-count]").forEach((node) => {
+    node.textContent = String(count);
+    node.hidden = count === 0;
+  });
+}
+
+function setupProductActions() {
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+
+    const addSlug = target.closest("[data-add-to-cart]")?.getAttribute("data-add-to-cart");
+    if (addSlug) {
+      upsertCartItem(addSlug, 1);
+      target.textContent = "Added";
+      window.setTimeout(() => {
+        target.textContent = target.classList.contains("button--ghost") ? "Add to Cart" : "View product page";
+      }, 1200);
+      return;
+    }
+
+    const buyNowSlug = target.closest("[data-buy-now]")?.getAttribute("data-buy-now");
+    if (buyNowSlug) {
+      setCartStorage([{ slug: buyNowSlug, quantity: 1 }]);
+      updateCartIndicators();
+      window.location.href = CHECKOUT_PATH;
+      return;
+    }
+
+    const increaseSlug = target.closest("[data-cart-increase]")?.getAttribute("data-cart-increase");
+    if (increaseSlug) {
+      const cart = getCartStorage();
+      const item = cart.find((entry) => entry.slug === increaseSlug);
+      updateCartItemQuantity(increaseSlug, (item?.quantity || 0) + 1);
+      renderCartPage();
+      return;
+    }
+
+    const decreaseSlug = target.closest("[data-cart-decrease]")?.getAttribute("data-cart-decrease");
+    if (decreaseSlug) {
+      const cart = getCartStorage();
+      const item = cart.find((entry) => entry.slug === decreaseSlug);
+      updateCartItemQuantity(decreaseSlug, Math.max((item?.quantity || 1) - 1, 0));
+      renderCartPage();
+      return;
+    }
+
+    const removeSlug = target.closest("[data-cart-remove]")?.getAttribute("data-cart-remove");
+    if (removeSlug) {
+      removeCartItem(removeSlug);
+      renderCartPage();
+    }
+  });
+}
+
+function renderCartPage() {
+  const container = document.querySelector("#cart-page");
+  if (!container) return;
+
+  const cart = getCartStorage();
+  const items = cart
+    .map((item) => {
+      const product = productCatalog.find((entry) => entry.slug === item.slug);
+      if (!product) return "";
+
+      return `
+        <article class="cart-item">
+          <div class="cart-item-media">
+            <img src="${product.image}" alt="${product.alt}" loading="lazy" />
+          </div>
+          <div class="cart-item-copy">
+            <div class="cart-item-topline">
+              <span>${product.category}</span>
+              <strong>${formatInr(getOfferPrice(product))}</strong>
+            </div>
+            <h3>${product.title}</h3>
+            <p>${product.summary}</p>
+            <div class="cart-controls">
+              <button class="cart-qty" type="button" data-cart-decrease="${product.slug}">-</button>
+              <span class="cart-qty-readout">${item.quantity}</span>
+              <button class="cart-qty" type="button" data-cart-increase="${product.slug}">+</button>
+              <button class="cart-remove" type="button" data-cart-remove="${product.slug}">Remove</button>
+            </div>
+          </div>
+          <div class="cart-line-total">${formatInr(getOfferPrice(product) * item.quantity)}</div>
+        </article>
+      `;
+    })
+    .join("");
+
+  if (!cart.length) {
+    container.innerHTML = `
+      <section class="section">
+        <div class="page-banner reveal is-visible">
+          <p class="eyebrow">Your Cart</p>
+          <h1>Your cart is empty.</h1>
+          <p>Add products from the catalog to continue toward checkout.</p>
+          <div class="section-actions">
+            <a class="button" href="/products/">Browse Products</a>
+            <a class="button button--ghost" href="/">Back to Home</a>
+          </div>
+        </div>
+      </section>
+    `;
+    updateCartIndicators();
+    return;
+  }
+
+  container.innerHTML = `
+    <section class="section">
+      <div class="section-heading reveal is-visible">
+        <p class="eyebrow">Your Cart</p>
+        <h1>Review products before checkout.</h1>
+        <p>Update quantity, check totals, and move to checkout when ready.</p>
+      </div>
+      <div class="cart-layout">
+        <div class="cart-list">${items}</div>
+        <aside class="cart-summary">
+          <span class="panel-kicker">Order Summary</span>
+          <h2>${getCartCount(cart)} item${getCartCount(cart) === 1 ? "" : "s"} in cart</h2>
+          <div class="cart-summary-line">
+            <span>Subtotal</span>
+            <strong>${formatInr(getCartSubtotal(cart))}</strong>
+          </div>
+          <div class="cart-summary-line">
+            <span>Checkout mode</span>
+            <strong>Website order request</strong>
+          </div>
+          <div class="cart-summary-line">
+            <span>Next step</span>
+            <strong>Address and contact review</strong>
+          </div>
+          <a class="button" href="${CHECKOUT_PATH}">Proceed to Checkout</a>
+          <a class="button button--ghost" href="/products/">Continue Shopping</a>
+          <p class="pricing-note">Final delivery timing and payment link are shared after order review.</p>
+        </aside>
+      </div>
+    </section>
+  `;
+
+  updateCartIndicators();
+}
+
+function renderCheckoutPage() {
+  const container = document.querySelector("#checkout-page");
+  if (!container) return;
+
+  const cart = getCartStorage();
+
+  if (!cart.length) {
+    container.innerHTML = `
+      <section class="section">
+        <div class="page-banner reveal is-visible">
+          <p class="eyebrow">Checkout</p>
+          <h1>No product selected yet.</h1>
+          <p>Add a product to cart or use Buy Now from any product page to continue.</p>
+          <div class="section-actions">
+            <a class="button" href="/products/">Browse Products</a>
+            <a class="button button--ghost" href="${CART_PATH}">Open Cart</a>
+          </div>
+        </div>
+      </section>
+    `;
+    return;
+  }
+
+  const lines = cart
+    .map((item) => {
+      const product = productCatalog.find((entry) => entry.slug === item.slug);
+      if (!product) return "";
+
+      return `
+        <div class="checkout-line">
+          <span>${product.title} x ${item.quantity}</span>
+          <strong>${formatInr(getOfferPrice(product) * item.quantity)}</strong>
+        </div>
+      `;
+    })
+    .join("");
+
+  container.innerHTML = `
+    <section class="section">
+      <div class="section-heading reveal is-visible">
+        <p class="eyebrow">Checkout</p>
+        <h1>Review order, enter details, and request payment confirmation.</h1>
+        <p>This is the order confirmation step before the payment link is shared to the customer.</p>
+      </div>
+
+      <div class="checkout-layout">
+        <div class="checkout-summary-card">
+          <span class="panel-kicker">Order Summary</span>
+          <h2>Selected furniture items</h2>
+          ${lines}
+          <div class="checkout-line checkout-line--total">
+            <span>Total</span>
+            <strong>${formatInr(getCartSubtotal(cart))}</strong>
+          </div>
+          <p class="pricing-note">Fixed website prices are shown above. Any approved change in quantity, finish, or variant is reconfirmed before payment.</p>
+        </div>
+
+        <form class="checkout-form" id="checkout-form">
+          <div class="planner-grid">
+            <label class="planner-field">
+              <span>Full Name</span>
+              <input type="text" name="name" required />
+            </label>
+            <label class="planner-field">
+              <span>Phone</span>
+              <input type="tel" name="phone" required />
+            </label>
+            <label class="planner-field">
+              <span>Email</span>
+              <input type="email" name="email" />
+            </label>
+            <label class="planner-field">
+              <span>City</span>
+              <input type="text" name="city" required />
+            </label>
+            <label class="planner-field checkout-field-wide">
+              <span>Address</span>
+              <textarea name="address" rows="4" required></textarea>
+            </label>
+            <label class="planner-field">
+              <span>Pincode</span>
+              <input type="text" name="pincode" required />
+            </label>
+          </div>
+
+          <div class="checkout-actions">
+            <a class="button" id="checkout-whatsapp" href="https://wa.me/918826436093" target="_blank" rel="noreferrer">Request Payment Link</a>
+            <a class="button button--ghost" href="${CART_PATH}">Back to Cart</a>
+          </div>
+          <p class="pricing-note">By continuing, the customer moves from product selection to order confirmation and payment-link sharing.</p>
+        </form>
+      </div>
+    </section>
+  `;
+
+  const form = container.querySelector("#checkout-form");
+  const link = container.querySelector("#checkout-whatsapp");
+
+  if (form && link) {
+    const updateLink = () => {
+      const formData = new FormData(form);
+      const customer = {
+        name: String(formData.get("name") || ""),
+        phone: String(formData.get("phone") || ""),
+        email: String(formData.get("email") || ""),
+        address: String(formData.get("address") || ""),
+        city: String(formData.get("city") || ""),
+        pincode: String(formData.get("pincode") || ""),
+      };
+
+      link.href = `https://wa.me/918826436093?text=${buildCheckoutMessage(cart, customer)}`;
+    };
+
+    form.addEventListener("input", updateLink);
+    form.addEventListener("change", updateLink);
+    updateLink();
+  }
 }
 
 function renderFitForProjects() {
@@ -1638,13 +2082,17 @@ renderShopHighlights();
 renderCategories();
 renderProductCatalog();
 renderProductDetail();
+renderCartPage();
+renderCheckoutPage();
 renderFitForProjects();
 renderFaqs();
 setupPlanner();
 setupNav();
+setupProductActions();
 setupHeroFocus();
 setupReveal();
 setupScrollUI();
 setupInteractiveGlow();
 setYear();
+updateCartIndicators();
 
