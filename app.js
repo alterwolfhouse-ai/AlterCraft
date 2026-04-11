@@ -202,147 +202,408 @@ const whatsappLinks = {
     "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20mandir%20unit%20similar%20to%20the%20website%20shop%20card.",
 };
 
+const productPages = {
+  bed: "/products/frosty-white-bed/",
+  studyTable: "/products/ac-study-table/",
+  centreTable: "/products/centre-table/",
+  wardrobe1: "/products/one-door-wardrobe-frosty-white/",
+  wardrobe3: "/products/three-door-wardrobe-frosty-white/",
+  wardrobe4: "/products/four-door-wardrobe-american-teak/",
+  shoeRack: "/products/shoe-rack-natural-white/",
+};
+
+const productCatalog = [
+  {
+    slug: "frosty-white-bed",
+    category: "Beds",
+    label: "Listed bedroom product",
+    title: "Frosty White Bed",
+    price: "Starting from Rs. 24,500",
+    summary:
+      "A clean, low-height engineered wood bed in frosty white, positioned for modern bedrooms that need a simple product-led buying path.",
+    image: "/assets/products/frosty-white-bed.png",
+    alt: "Frosty white bed product image",
+    highlights: [
+      "Minimal white bedroom look with easy styling appeal",
+      "Good for compact and mid-size bedrooms",
+      "Clear product page for website browsing and order discussion",
+    ],
+    specs: [
+      { label: "Best for", value: "Modern bedrooms and furnished homes" },
+      { label: "Material", value: "Engineered wood" },
+      { label: "Finish", value: "Frosty white" },
+      { label: "Order mode", value: "Direct enquiry with booking support" },
+    ],
+    buildNotes: [
+      "This page is meant to show a real product with visible pricing and a direct enquiry path.",
+      "Final pricing can change if the buyer needs a different size, finish, or storage format.",
+      "Advance payments, when applicable, are used for order confirmation and production booking.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20Frosty%20White%20Bed%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this bed",
+    secondaryHref: whatsappLinks.bed,
+    secondaryLabel: "Ask for bedroom support",
+  },
+  {
+    slug: "ac-study-table",
+    category: "Study tables",
+    label: "Listed workspace product",
+    title: "AC Study Table",
+    price: "Starting from Rs. 7,900",
+    summary:
+      "A clean study table with lower shelf support, suitable for work corners, student rooms, and compact home-office setups.",
+    image: "/assets/products/ac-study-table.png",
+    alt: "AC study table product image",
+    highlights: [
+      "Straight desk format with open shelf storage",
+      "Useful for study corners, bedrooms, and office nooks",
+      "Simple product flow for small-ticket website buyers",
+    ],
+    specs: [
+      { label: "Best for", value: "Study corners and work-from-home use" },
+      { label: "Material", value: "Engineered wood build direction" },
+      { label: "Storage", value: "Lower open shelf support" },
+      { label: "Order mode", value: "Direct enquiry and booking support" },
+    ],
+    buildNotes: [
+      "The price shown is for the base direction and can change with size or storage changes.",
+      "This page helps show smaller-ticket products clearly to buyers and payment reviewers.",
+      "Online payments are accepted for order confirmation and production release.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20AC%20Study%20Table%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this desk",
+    secondaryHref: whatsappLinks.study,
+    secondaryLabel: "Share desk size requirement",
+  },
+  {
+    slug: "centre-table",
+    category: "Centre tables",
+    label: "Listed living-room product",
+    title: "Centre Table",
+    price: "Starting from Rs. 5,900",
+    summary:
+      "A clean centre table with a white top and wood-tone support, suitable for living rooms, lounges, and compact seating areas.",
+    image: "/assets/products/centre-table.png",
+    alt: "Centre table with white top and brown base",
+    highlights: [
+      "Compact table footprint for everyday living rooms",
+      "Simple two-tone finish that fits modern interiors",
+      "Useful add-on product for furnished home buyers",
+    ],
+    specs: [
+      { label: "Best for", value: "Living rooms and lounge spaces" },
+      { label: "Material", value: "Engineered wood or laminated board direction" },
+      { label: "Finish", value: "White top with wood-tone support" },
+      { label: "Order mode", value: "Direct enquiry and confirmation" },
+    ],
+    buildNotes: [
+      "The starting price covers the standard product direction shown here.",
+      "This product page makes living-room furniture visible as an actual purchasable category on the site.",
+      "Payments are accepted for booking and confirmed orders where applicable.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20centre%20table%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this table",
+    secondaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20the%20living-room%20table%20catalog%20with%20size%20options.",
+    secondaryLabel: "Ask for size options",
+  },
+  {
+    slug: "one-door-wardrobe-frosty-white",
+    category: "Wardrobes",
+    label: "Listed storage product",
+    title: "1 Door Wooden Wardrobe",
+    price: "Starting from Rs. 10,900",
+    summary:
+      "A compact single-door wardrobe product for bedrooms, PG setups, and smaller spaces where vertical storage matters.",
+    image: "/assets/products/one-door-wardrobe-frosty-white.png",
+    alt: "One door frosty white wardrobe",
+    highlights: [
+      "1 drawer and multi-shelf compact storage format",
+      "Easy bedroom storage solution for smaller rooms",
+      "Real listed product page with clear pricing",
+    ],
+    specs: [
+      { label: "Best for", value: "Compact bedrooms and rental use" },
+      { label: "Material", value: "Engineered wood" },
+      { label: "Storage", value: "4 shelves and 1 drawer" },
+      { label: "Finish", value: "Frosty white / marble tone direction" },
+    ],
+    buildNotes: [
+      "This product comes from your actual Flipkart asset set and helps the website show compact storage products clearly.",
+      "Final pricing can vary if a different color, hardware, or internal change is required.",
+      "Payments are collected for confirmed order booking and release into production where applicable.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%201%20door%20wooden%20wardrobe%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this wardrobe",
+    secondaryHref: whatsappLinks.wardrobe,
+    secondaryLabel: "Share wardrobe requirement",
+  },
+  {
+    slug: "three-door-wardrobe-frosty-white",
+    category: "Wardrobes",
+    label: "Listed storage product",
+    title: "3 Door Wooden Wardrobe",
+    price: "Starting from Rs. 19,500",
+    summary:
+      "A three-door engineered wood wardrobe for bedrooms that need more storage volume, hanging space, and daily organization.",
+    image: "/assets/products/three-door-wardrobe-frosty-white.png",
+    alt: "Three door frosty white wardrobe",
+    highlights: [
+      "8 shelves and 1 hanging rod configuration",
+      "Lockable wardrobe format for family bedroom use",
+      "Real listed storage page with visible price guidance",
+    ],
+    specs: [
+      { label: "Best for", value: "Bedroom clothing and utility storage" },
+      { label: "Material", value: "Engineered wood" },
+      { label: "Dimensions", value: "45D x 109W x 181H cm" },
+      { label: "Finish", value: "Frosty white" },
+    ],
+    buildNotes: [
+      "This page uses the actual product description structure you stored in the Flipkart folder.",
+      "Wardrobe pricing changes if hardware, finish, or dimensions change from the shown product line.",
+      "Online payments are used for booking and confirmed order progress where applicable.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%203%20door%20wardrobe%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this wardrobe",
+    secondaryHref: whatsappLinks.wardrobe,
+    secondaryLabel: "Ask for room-fit wardrobe",
+  },
+  {
+    slug: "four-door-wardrobe-american-teak",
+    category: "Wardrobes",
+    label: "Large storage product",
+    title: "4 Door Wardrobe American Teak",
+    price: "Starting from Rs. 29,500",
+    summary:
+      "A larger wardrobe format with four doors and drawer storage, positioned for master bedrooms and bigger storage requirements.",
+    image: "/assets/products/four-door-wardrobe-american-teak.png",
+    alt: "Four door wardrobe American teak finish",
+    highlights: [
+      "4-door format for larger bedroom storage needs",
+      "Drawer support for easier organization",
+      "Warm American teak finish for premium-looking rooms",
+    ],
+    specs: [
+      { label: "Best for", value: "Master bedrooms and larger storage loads" },
+      { label: "Material", value: "Engineered wood wardrobe system" },
+      { label: "Format", value: "4 doors with drawer storage" },
+      { label: "Finish", value: "American teak" },
+    ],
+    buildNotes: [
+      "This page gives your website a clearer large-ticket wardrobe product flow instead of only service-led browsing.",
+      "Final price changes with internal layout, lock set, handle style, and any finish variation.",
+      "Advance payments support booking confirmation and production planning.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%204%20door%20American%20Teak%20wardrobe%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this 4 door wardrobe",
+    secondaryHref: whatsappLinks.wardrobe,
+    secondaryLabel: "Ask for wardrobe options",
+  },
+  {
+    slug: "shoe-rack-natural-white",
+    category: "Shoe racks",
+    label: "Compact utility product",
+    title: "Shoe Rack Natural White",
+    price: "Starting from Rs. 6,400",
+    summary:
+      "A compact natural white shoe rack for entry corners, utility zones, and homes that need quick everyday shoe organization.",
+    image: "/assets/products/shoe-rack-natural-white.png",
+    alt: "Natural white shoe rack product image",
+    highlights: [
+      "Drawer plus cabinet storage in a compact format",
+      "Useful for entry spaces and everyday utility zones",
+      "Clear smaller-ticket product page for the website",
+    ],
+    specs: [
+      { label: "Best for", value: "Entry spaces and compact homes" },
+      { label: "Material", value: "Engineered wood or laminated board direction" },
+      { label: "Storage", value: "Drawer and cabinet combination" },
+      { label: "Finish", value: "Natural white" },
+    ],
+    buildNotes: [
+      "This page helps show that the website also carries compact utility products with pricing.",
+      "Final pricing can change if size, drawer format, or dual-tone finish changes.",
+      "Payments are accepted for order confirmation where applicable.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%20Natural%20White%20Shoe%20Rack%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire this shoe rack",
+    secondaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20please%20share%20your%20shoe%20rack%20catalog%20with%20pricing.",
+    secondaryLabel: "Ask for more utility units",
+  },
+  {
+    slug: "legno-oak-three-door-wardrobe",
+    category: "Wardrobes",
+    label: "Alternate wardrobe finish",
+    title: "3 Door Wardrobe Legno Oak",
+    price: "Starting from Rs. 21,500",
+    summary:
+      "A three-door wardrobe in a warmer oak finish for bedrooms that need a richer wood-tone look with practical internal storage.",
+    image: "/assets/products/legno-oak-three-door-wardrobe.png",
+    alt: "Three door wardrobe in Legno Oak finish",
+    highlights: [
+      "Warm oak look for more premium bedroom styling",
+      "8 shelves and 1 rod storage direction",
+      "Useful for customers comparing white and wood-tone options",
+    ],
+    specs: [
+      { label: "Best for", value: "Bedrooms needing warmer finish direction" },
+      { label: "Material", value: "Engineered wood" },
+      { label: "Dimensions", value: "45D x 112.4W x 180.5H cm" },
+      { label: "Finish", value: "Legno Oak" },
+    ],
+    buildNotes: [
+      "This alternate wardrobe page strengthens the website product flow by showing real finish variation.",
+      "Final pricing can change with hardware or internal modifications.",
+      "Payments are accepted for confirmed order booking and release.",
+    ],
+    primaryHref: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20enquire%20about%20the%203%20door%20Legno%20Oak%20wardrobe%20shown%20on%20your%20website.",
+    primaryLabel: "Enquire oak wardrobe",
+    secondaryHref: whatsappLinks.wardrobe,
+    secondaryLabel: "Compare wardrobe options",
+  },
+];
+
 const shopHighlights = [
   {
-    label: "Trending on Flipkart",
+    label: "Product page ready",
     brand: "AlterCraft",
-    title: "Frosty Series King Bed",
-    price: "Live Flipkart product listing",
+    title: "Frosty White Bed",
+    price: "Starting from Rs. 24,500",
     summary:
-      "The first product signal now points directly to your live Flipkart presence, so furniture buyers can move from discovery to marketplace trust in one click.",
-    image: "https://images.unsplash.com/photo-1578898886655-c70a4aa75f5d?w=1200",
-    href: flipkartLinks.frosty,
+      "The first product signal now opens a proper priced product page built around your actual Flipkart-style bedroom asset.",
+    image: "/assets/products/frosty-white-bed.png",
+    href: productPages.bed,
     brandHref: flipkartLinks.brand,
-    cta: "Open on Flipkart",
-    secondaryCta: "View brand page",
-    secondaryHref: flipkartLinks.brand,
-    tags: ["Live listing", "King bed", "Trending now"],
-  },
-  {
-    label: "Brand page",
-    title: "More AlterCraft Beds",
-    price: "Browse the Altercraft brand grid on Flipkart",
-    summary: "Use this as the marketplace bridge for visitors who want a quick online shopping path.",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
-    href: flipkartLinks.brand,
-    cta: "Browse Flipkart",
-    tags: ["Online shop", "Beds", "Marketplace trust"],
-  },
-  {
-    label: "Living comfort",
-    title: "Custom Sofa and Lounge Seating",
-    price: "Starting from Rs. 32,000",
-    summary: "Sofas, lounge seating, and room-sized upholstery pieces designed around comfort, proportion, and the way the living room actually gets used.",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800",
-    href: whatsappLinks.sofa,
-    cta: "Discuss sofa design",
-    tags: ["Sofas", "Lounge seating", "Living room"],
-  },
-  {
-    label: "Made to order",
-    title: "Storage Bed Collection",
-    price: "Starting from Rs. 28,500",
-    summary: "Hydraulic storage beds and room-matched bed sets built around finish, sizing, and utility.",
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-    href: whatsappLinks.bed,
-    cta: "Customize this",
-    tags: ["Hydraulic storage", "Bedroom", "Custom sizing"],
-  },
-  {
-    label: "Space-led",
-    title: "Sliding Wardrobe",
-    price: "Starting from Rs. 48,000",
-    summary: "Clean shutters, organized internals, and wardrobe elevations that fit the room properly.",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800",
-    href: whatsappLinks.wardrobe,
-    cta: "Plan wardrobe",
-    tags: ["Wardrobes", "Bedroom storage", "Custom internals"],
+    cta: "View product page",
+    secondaryCta: "View Flipkart bed page",
+    secondaryHref: flipkartLinks.frosty,
+    tags: ["Product page", "Bedroom", "Bed listing"],
   },
   {
     label: "Work-ready",
-    title: "Study Desk",
-    price: "Starting from Rs. 13,500",
-    summary: "Compact and executive desk options that keep work corners useful without looking temporary.",
-    image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800",
-    href: whatsappLinks.study,
-    cta: "Build my desk",
-    tags: ["Study table", "Office corner", "Storage"],
+    title: "AC Study Table",
+    price: "Starting from Rs. 7,900",
+    summary: "A real listed desk product with clean visuals, clear pricing, and a direct enquiry route.",
+    image: "/assets/products/ac-study-table.png",
+    href: productPages.studyTable,
+    cta: "View product page",
+    tags: ["Study table", "Workspace", "Compact product"],
   },
   {
-    label: "Feature finish",
-    title: "Panel and TV Wall",
-    price: "Starting from Rs. 11,500",
-    summary: "Statement surfaces for TV units, bedroom backdrops, and feature walls that finish the room faster.",
-    image: "https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?w=800",
-    href: whatsappLinks.panel,
-    cta: "Enquire now",
-    tags: ["Panels", "TV walls", "Feature surface"],
+    label: "Living room",
+    title: "Centre Table",
+    price: "Starting from Rs. 5,900",
+    summary: "A clean living-room table product that helps the site show smaller furniture SKUs with pricing too.",
+    image: "/assets/products/centre-table.png",
+    href: productPages.centreTable,
+    cta: "View product page",
+    tags: ["Centre table", "Living room", "Compact furniture"],
+  },
+  {
+    label: "Compact storage",
+    title: "1 Door Wooden Wardrobe",
+    price: "Starting from Rs. 10,900",
+    summary: "A compact bedroom wardrobe product with drawer and shelf support for smaller storage requirements.",
+    image: "/assets/products/one-door-wardrobe-frosty-white.png",
+    href: productPages.wardrobe1,
+    cta: "View product page",
+    tags: ["1 door wardrobe", "Compact storage", "Bedroom"],
+  },
+  {
+    label: "Space-led",
+    title: "3 Door Wooden Wardrobe",
+    price: "Starting from Rs. 19,500",
+    summary: "A larger wardrobe product with hanging and shelf storage for mainstream bedroom buyers.",
+    image: "/assets/products/three-door-wardrobe-frosty-white.png",
+    href: productPages.wardrobe3,
+    cta: "View product page",
+    tags: ["3 door wardrobe", "Bedroom storage", "Frosty white"],
+  },
+  {
+    label: "Large storage",
+    title: "4 Door Wardrobe American Teak",
+    price: "Starting from Rs. 29,500",
+    summary: "A higher-capacity wardrobe page with warmer finish direction for premium bedroom storage.",
+    image: "/assets/products/four-door-wardrobe-american-teak.png",
+    href: productPages.wardrobe4,
+    cta: "View product page",
+    tags: ["4 door wardrobe", "American teak", "Large storage"],
+  },
+  {
+    label: "Utility product",
+    title: "Shoe Rack Natural White",
+    price: "Starting from Rs. 6,400",
+    summary: "A compact shoe rack product that gives the website another practical, lower-ticket furniture option with pricing.",
+    image: "/assets/products/shoe-rack-natural-white.png",
+    href: productPages.shoeRack,
+    cta: "View product page",
+    tags: ["Shoe rack", "Utility", "Entry storage"],
   },
 ];
 
 const furnitureCategories = [
   {
-    title: "Beds and Headboards",
-    label: "Bedroom bestsellers",
-    price: "Live bed traffic via Flipkart",
-    summary: "Custom bed sets, upholstered headboards, and side tables built around room size and finish direction.",
-    image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
-    href: flipkartLinks.brand,
-    cta: "Shop bed styles",
+    title: "Frosty White Bed",
+    label: "Bedroom bestseller",
+    price: "Starting from Rs. 24,500",
+    summary: "A clean frosty-white bed page for buyers who want a simple, modern bedroom product.",
+    image: "/assets/products/frosty-white-bed.png",
+    href: productPages.bed,
+    cta: "View bed page",
   },
   {
-    title: "Storage Beds",
-    label: "Room-fit custom",
-    price: "Starting from Rs. 28,500",
-    summary: "Hydraulic storage beds, platform beds, and finish-led bedroom sets sized for the room properly.",
-    image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800",
-    href: whatsappLinks.bed,
-    cta: "Request custom bed",
-  },
-  {
-    title: "Modular Wardrobes",
-    label: "Storage-led",
-    price: "Starting from Rs. 48,000",
-    summary: "Sliding and swing wardrobes with better internals, cleaner lines, and a room-matched finish story.",
-    image: "https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800",
-    href: whatsappLinks.wardrobe,
-    cta: "Plan wardrobe",
-  },
-  {
-    title: "Sofas and Lounge Seating",
-    label: "Living-room comfort",
-    price: "Starting from Rs. 32,000",
-    summary: "Custom sofas, sectionals, and lounge seating planned around room size, fabric direction, and the overall living-room composition.",
-    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800",
-    href: whatsappLinks.sofa,
-    cta: "Plan sofa seating",
-  },
-  {
-    title: "Study Tables and Desks",
+    title: "AC Study Table",
     label: "Work-from-home",
-    price: "Starting from Rs. 9,500",
-    summary: "Study desks and compact workstations that keep corners productive while still looking premium.",
-    image: "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800",
-    href: whatsappLinks.study,
-    cta: "Customize desk",
+    price: "Starting from Rs. 7,900",
+    summary: "A compact study table with a real product page and a simple enquiry route.",
+    image: "/assets/products/ac-study-table.png",
+    href: productPages.studyTable,
+    cta: "View desk page",
   },
   {
-    title: "Statement Panels and TV Walls",
-    label: "Feature surfaces",
-    price: "Starting from Rs. 11,500",
-    summary: "Panel systems, TV walls, and decorative surfaces that create instant visual anchor points.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800",
-    href: whatsappLinks.panel,
-    cta: "Enquire panel work",
+    title: "Centre Table",
+    label: "Living-room essential",
+    price: "Starting from Rs. 5,900",
+    summary: "A simple living-room table product that adds an easy furniture-buy path to the website.",
+    image: "/assets/products/centre-table.png",
+    href: productPages.centreTable,
+    cta: "View centre table",
   },
   {
-    title: "Mandirs and Sacred Units",
-    label: "Special custom builds",
-    price: "Starting from Rs. 21,500",
-    summary: "Sacred units that feel detailed, intentional, and scaled correctly for the home they sit in.",
-    image: "https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?w=800",
-    href: whatsappLinks.mandir,
-    cta: "Discuss design",
+    title: "1 Door Wooden Wardrobe",
+    label: "Compact storage",
+    price: "Starting from Rs. 10,900",
+    summary: "A compact wardrobe product for smaller bedrooms and tighter storage needs.",
+    image: "/assets/products/one-door-wardrobe-frosty-white.png",
+    href: productPages.wardrobe1,
+    cta: "View 1 door wardrobe",
+  },
+  {
+    title: "3 Door Wooden Wardrobe",
+    label: "Bedroom storage",
+    price: "Starting from Rs. 19,500",
+    summary: "A mainstream 3-door wardrobe page with visible pricing and practical storage scope.",
+    image: "/assets/products/three-door-wardrobe-frosty-white.png",
+    href: productPages.wardrobe3,
+    cta: "View 3 door wardrobe",
+  },
+  {
+    title: "4 Door Wardrobe American Teak",
+    label: "Large storage",
+    price: "Starting from Rs. 29,500",
+    summary: "A warmer, larger wardrobe option for bigger bedroom storage plans.",
+    image: "/assets/products/four-door-wardrobe-american-teak.png",
+    href: productPages.wardrobe4,
+    cta: "View 4 door wardrobe",
+  },
+  {
+    title: "Shoe Rack Natural White",
+    label: "Utility product",
+    price: "Starting from Rs. 6,400",
+    summary: "A practical utility-storage page that makes the website product catalog feel broader and more real.",
+    image: "/assets/products/shoe-rack-natural-white.png",
+    href: productPages.shoeRack,
+    cta: "View shoe rack",
   },
 ];
 
@@ -927,6 +1188,200 @@ function renderCategories() {
     .join("");
 }
 
+function renderProductCatalog() {
+  const container = document.querySelector("#product-catalog-grid");
+  if (!container) return;
+
+  container.innerHTML = productCatalog
+    .map(
+      (product) => `
+        <article class="catalog-card reveal">
+          <div class="catalog-card-media">
+            <img src="${product.image}" alt="${product.alt}" loading="lazy" />
+          </div>
+          <div class="catalog-card-copy">
+            <div class="catalog-card-topline">
+              <span>${product.label}</span>
+              <strong>${product.price}</strong>
+            </div>
+            <h3>${product.title}</h3>
+            <p>${product.summary}</p>
+            <ul class="catalog-mini-list">
+              ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
+            </ul>
+            <div class="catalog-actions">
+              <a class="button" href="./${product.slug}/">View product page</a>
+              <a class="button button--ghost" href="${product.secondaryHref}" target="_blank" rel="noreferrer">${product.secondaryLabel}</a>
+            </div>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderProductDetail() {
+  const container = document.querySelector("#product-detail");
+  if (!container) return;
+
+  const slug =
+    container.getAttribute("data-product-slug") ||
+    (typeof window !== "undefined" ? window.ALTERCRAFT_PRODUCT_SLUG : "");
+
+  const product = productCatalog.find((item) => item.slug === slug);
+
+  if (!product) {
+    container.innerHTML = `
+      <section class="section">
+        <div class="page-banner reveal">
+          <span class="eyebrow">Product Not Found</span>
+          <h1>We could not find that product page.</h1>
+          <p>Please return to the product catalog and choose another item.</p>
+          <div class="section-actions">
+            <a class="button" href="../">Back to Products</a>
+            <a class="button button--ghost" href="../..">Back to Home</a>
+          </div>
+        </div>
+      </section>
+    `;
+    return;
+  }
+
+  const related = productCatalog.filter((item) => item.slug !== product.slug).slice(0, 3);
+
+  container.innerHTML = `
+    <section class="section product-page">
+      <div class="product-breadcrumbs reveal">
+        <a href="../..">Home</a>
+        <span>/</span>
+        <a href="../">Products</a>
+        <span>/</span>
+        <strong>${product.title}</strong>
+      </div>
+
+      <div class="product-hero reveal">
+        <div class="product-hero-media">
+          <img src="${product.image}" alt="${product.alt}" loading="eager" />
+        </div>
+        <div class="product-hero-copy">
+          <span class="product-label">${product.label}</span>
+          <h1>${product.title}</h1>
+          <div class="product-price-badge">${product.price}</div>
+          <p>${product.summary}</p>
+
+          <div class="product-actions">
+            <a class="button" href="${product.primaryHref}" target="_blank" rel="noreferrer">${product.primaryLabel}</a>
+            <a class="button button--ghost" href="${product.secondaryHref}" target="_blank" rel="noreferrer">${product.secondaryLabel}</a>
+          </div>
+
+          <div class="product-note-box">
+            <strong>Pricing note</strong>
+            <p>
+              Prices shown are starting estimates for website review and customer guidance. Final pricing depends on size, finish, hardware, storage mix, and site conditions.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-detail-grid">
+        <article class="product-card-block reveal">
+          <span class="panel-kicker">What You Get</span>
+          <h2>Core product highlights</h2>
+          <ul class="product-list">
+            ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
+          </ul>
+        </article>
+
+        <article class="product-card-block reveal">
+          <span class="panel-kicker">Key Details</span>
+          <h2>Specifications and scope</h2>
+          <div class="product-spec-grid">
+            ${product.specs
+              .map(
+                (item) => `
+                  <div class="product-spec">
+                    <span>${item.label}</span>
+                    <strong>${item.value}</strong>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
+        </article>
+
+        <article class="product-card-block reveal product-card-block--wide">
+          <span class="panel-kicker">Ordering and Payment</span>
+          <h2>How this product flows on Altercraft</h2>
+          <ul class="product-list">
+            ${product.buildNotes.map((item) => `<li>${item}</li>`).join("")}
+            <li>Customers can enquire on WhatsApp, confirm scope, and make booking or milestone payments online where applicable.</li>
+          </ul>
+        </article>
+      </div>
+
+      <section class="product-flow reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Buyer Journey</p>
+          <h2>Simple product flow for customers and payment review.</h2>
+          <p>This page makes the buying journey easy to understand: product, price, enquiry, confirmation, and booking payment.</p>
+        </div>
+        <div class="product-flow-grid">
+          <article class="product-flow-step">
+            <span>01</span>
+            <h3>Browse product and price</h3>
+            <p>The customer first sees the product category, starting price, and practical scope.</p>
+          </article>
+          <article class="product-flow-step">
+            <span>02</span>
+            <h3>Confirm size or variant</h3>
+            <p>Buyers confirm whether they need the standard direction or a custom size, finish, or storage change.</p>
+          </article>
+          <article class="product-flow-step">
+            <span>03</span>
+            <h3>Share details on WhatsApp</h3>
+            <p>Room size, requirement, or exact product preference is shared with the Altercraft team.</p>
+          </article>
+          <article class="product-flow-step">
+            <span>04</span>
+            <h3>Pay booking advance</h3>
+            <p>Online payment is taken for booking confirmation, order processing, or agreed milestone release.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="related-products reveal">
+        <div class="section-heading">
+          <p class="eyebrow">Also Browse</p>
+          <h2>Other Altercraft product pages</h2>
+          <p>These pages help buyers and reviewers see that the website carries multiple product categories with visible pricing.</p>
+        </div>
+        <div class="catalog-grid product-related-grid">
+          ${related
+            .map(
+              (item) => `
+                <article class="catalog-card">
+                  <div class="catalog-card-media">
+                    <img src="${item.image}" alt="${item.alt}" loading="lazy" />
+                  </div>
+                  <div class="catalog-card-copy">
+                    <div class="catalog-card-topline">
+                      <span>${item.category}</span>
+                      <strong>${item.price}</strong>
+                    </div>
+                    <h3>${item.title}</h3>
+                    <p>${item.summary}</p>
+                    <a class="button" href="../${item.slug}/">View product page</a>
+                  </div>
+                </article>
+              `,
+            )
+            .join("")}
+        </div>
+      </section>
+    </section>
+  `;
+}
+
 function renderFitForProjects() {
   const container = document.querySelector("#fit-grid");
   if (!container) return;
@@ -1181,6 +1636,8 @@ renderWhyAltercraft();
 setupPortfolio();
 renderShopHighlights();
 renderCategories();
+renderProductCatalog();
+renderProductDetail();
 renderFitForProjects();
 renderFaqs();
 setupPlanner();
@@ -1190,3 +1647,4 @@ setupReveal();
 setupScrollUI();
 setupInteractiveGlow();
 setYear();
+
