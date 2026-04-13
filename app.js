@@ -503,6 +503,9 @@ const WEBSITE_PAYMENT_OPTIONS =
   "Online payment, UPI / bank transfer, and Cash on Delivery on eligible listed furniture products in serviceable pin codes.";
 const CUSTOM_PAYMENT_RULE =
   "Custom furniture changes, made-to-order scope, wardrobes, kitchens, and interior execution work are confirmed on advance or milestone payment.";
+const SUPPORT_EMAIL = "support@altercraft.in";
+const ORDER_AUTOMATION_ENDPOINT = "https://formsubmit.co/ajax/support@altercraft.in";
+const ORDER_AUTOMATION_LABEL = "support@altercraft.in order desk";
 
 function formatInr(value) {
   return `Rs. ${new Intl.NumberFormat("en-IN").format(value)}`;
@@ -602,6 +605,182 @@ function buildCheckoutMessage(cart, customer = {}) {
   lines.push("Please confirm the selected payment method, delivery availability, and order details.");
 
   return encodeURIComponent(lines.join("\n"));
+}
+
+function buildOrderReference() {
+  const now = new Date();
+  const stamp = [
+    now.getFullYear(),
+    String(now.getMonth() + 1).padStart(2, "0"),
+    String(now.getDate()).padStart(2, "0"),
+    String(now.getHours()).padStart(2, "0"),
+    String(now.getMinutes()).padStart(2, "0"),
+    String(now.getSeconds()).padStart(2, "0"),
+  ].join("");
+
+  return `AC-${stamp}`;
+}
+
+function buildCheckoutOrder(cart, customer = {}) {
+  const items = cart
+    .map((item) => {
+      const product = productCatalog.find((entry) => entry.slug === item.slug);
+      if (!product) return null;
+
+      const unitPriceValue = getOfferPrice(product);
+      const lineTotalValue = unitPriceValue * item.quantity;
+
+      return {
+        slug: product.slug,
+        title: product.title,
+        quantity: item.quantity,
+        unitPriceValue,
+        unitPriceLabel: formatInr(unitPriceValue),
+        lineTotalValue,
+        lineTotalLabel: formatInr(lineTotalValue),
+      };
+    })
+    .filter(Boolean);
+
+  const subtotalValue = items.reduce((total, item) => total + item.lineTotalValue, 0);
+
+  return {
+    reference: buildOrderReference(),
+    createdAt: new Date().toISOString(),
+    source: "altercraft.in checkout",
+    paymentMethod: customer.paymentMethod || "Online Payment / UPI / Bank Transfer",
+    subtotalValue,
+    subtotalLabel: formatInr(subtotalValue),
+    customer: {
+      name: customer.name || "",
+      phone: customer.phone || "",
+      email: customer.email || "",
+      address: customer.address || "",
+      city: customer.city || "",
+      pincode: customer.pincode || "",
+    },
+    items,
+  };
+}
+
+function buildOrderEmailBody(order) {
+  const lines = [
+    `Altercraft website order reference: ${order.reference}`,
+    "",
+    "Product summary:",
+  ];
+
+  order.items.forEach((item) => {
+    lines.push(`- ${item.title} x ${item.quantity} = ${item.lineTotalLabel}`);
+  });
+
+  lines.push("");
+  lines.push(`Subtotal: ${order.subtotalLabel}`);
+  lines.push(`Payment method: ${order.paymentMethod}`);
+
+  if (order.customer.name) lines.push(`Name: ${order.customer.name}`);
+  if (order.customer.phone) lines.push(`Phone: ${order.customer.phone}`);
+  if (order.customer.email) lines.push(`Email: ${order.customer.email}`);
+  if (order.customer.address) lines.push(`Address: ${order.customer.address}`);
+  if (order.customer.city) lines.push(`City: ${order.customer.city}`);
+  if (order.customer.pincode) lines.push(`Pincode: ${order.customer.pincode}`);
+
+  lines.push("");
+  lines.push(`Support desk: ${ORDER_AUTOMATION_LABEL}`);
+  lines.push("Please review product availability, serviceability, and the selected payment method.");
+
+  return lines.join("\n");
+}
+
+function buildOrderSubject(order) {
+  const subjectPrefix =
+    order.paymentMethod === "Cash on Delivery" ? "COD order request" : "Payment link request";
+  return `Altercraft ${subjectPrefix} ${order.reference}`;
+}
+
+function buildOrderMailtoLink(order) {
+  return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(buildOrderSubject(order))}&body=${encodeURIComponent(buildOrderEmailBody(order))}`;
+}
+
+function buildAutomationPayload(order) {
+  const payload = {
+    _subject: buildOrderSubject(order),
+    _template: "table",
+    _captcha: "false",
+    order_reference: order.reference,
+    order_source: order.source,
+    order_created_at: order.createdAt,
+    payment_method: order.paymentMethod,
+    customer_name: order.customer.name || "Website customer",
+    customer_phone: order.customer.phone || "Not shared",
+    customer_email: order.customer.email || "Not shared",
+    customer_city: order.customer.city || "Not shared",
+    customer_address: order.customer.address || "Not shared",
+    customer_pincode: order.customer.pincode || "Not shared",
+    order_total: order.subtotalLabel,
+    order_items: order.items.map((item) => `${item.title} x ${item.quantity} = ${item.lineTotalLabel}`).join(" | "),
+    message: buildOrderEmailBody(order),
+  };
+
+  if (order.customer.email) {
+    payload._replyto = order.customer.email;
+  }
+
+  return payload;
+}
+
+function getCheckoutPrimaryLabel(paymentMethod) {
+  return paymentMethod === "Cash on Delivery"
+    ? "Place COD Order"
+    : "Place Order & Get Payment Link";
+}
+
+function getCheckoutSuccessMessage(paymentMethod) {
+  return paymentMethod === "Cash on Delivery"
+    ? "Your COD order has been submitted. Altercraft will review pincode eligibility and confirm the order by phone or email."
+    : "Your order has been submitted. Altercraft will review it and share the payment link or bank details by phone or email.";
+}
+
+async function submitCheckoutOrder(order) {
+  try {
+    const response = await fetch(ORDER_AUTOMATION_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(buildAutomationPayload(order)),
+    });
+
+    let data = null;
+
+    try {
+      data = await response.json();
+    } catch (_error) {
+      data = null;
+    }
+
+    if (!response.ok || String(data?.success || "").toLowerCase() === "false") {
+      throw new Error(
+        data?.message ||
+          `Order automation returned ${response.status}. Please use the support email fallback.`,
+      );
+    }
+
+    return {
+      ok: true,
+      message: data?.message || getCheckoutSuccessMessage(order.paymentMethod),
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message:
+        error instanceof Error
+          ? error.message
+          : "Unable to submit the order automatically right now.",
+      supportHref: buildOrderMailtoLink(order),
+    };
+  }
 }
 
 const shopHighlights = [
@@ -1774,8 +1953,8 @@ function renderCheckoutPage() {
     <section class="section">
       <div class="section-heading reveal is-visible">
         <p class="eyebrow">Checkout</p>
-        <h1>Review order, choose payment method, and request confirmation.</h1>
-        <p>This is the order confirmation step before online payment or Cash on Delivery approval is shared to the customer.</p>
+        <h1>Review order, choose payment method, and place the order.</h1>
+        <p>This checkout submits the order to Altercraft. Online payment customers receive payment instructions after review, and COD orders are confirmed after eligibility checks.</p>
       </div>
 
       <div class="checkout-layout">
@@ -1836,38 +2015,107 @@ function renderCheckoutPage() {
             </label>
           </div>
 
+          <div class="checkout-routing-note">
+            <strong>Order routing</strong>
+            <p>
+              Orders from this checkout go to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.
+              Online payment customers receive a payment link or bank details after review. COD
+              orders are checked for product and pincode eligibility before confirmation.
+            </p>
+          </div>
+
           <div class="checkout-actions">
-            <a class="button" id="checkout-whatsapp" href="https://wa.me/918826436093" target="_blank" rel="noreferrer">Request Payment / COD Confirmation</a>
+            <button class="button" id="checkout-submit" type="submit">Place Order & Get Payment Link</button>
             <a class="button button--ghost" href="${CART_PATH}">Back to Cart</a>
           </div>
-          <p class="pricing-note">By continuing, the customer moves from product selection to address verification, payment method confirmation, and final order approval.</p>
+          <div class="checkout-status" id="checkout-status" hidden></div>
+          <p class="pricing-note">By continuing, the customer moves from product selection to address verification, payment method confirmation, order submission, and final approval.</p>
         </form>
       </div>
     </section>
   `;
 
   const form = container.querySelector("#checkout-form");
-  const link = container.querySelector("#checkout-whatsapp");
+  const submitButton = container.querySelector("#checkout-submit");
+  const status = container.querySelector("#checkout-status");
 
-  if (form && link) {
-    const updateLink = () => {
-      const formData = new FormData(form);
-      const customer = {
-        name: String(formData.get("name") || ""),
-        phone: String(formData.get("phone") || ""),
-        email: String(formData.get("email") || ""),
-        address: String(formData.get("address") || ""),
-        city: String(formData.get("city") || ""),
-        pincode: String(formData.get("pincode") || ""),
-        paymentMethod: String(formData.get("paymentMethod") || "Online Payment / UPI / Bank Transfer"),
-      };
-
-      link.href = `https://wa.me/918826436093?text=${buildCheckoutMessage(cart, customer)}`;
+  if (form && submitButton && status) {
+    const setStatus = (variant, message, extraHref = "") => {
+      status.hidden = false;
+      status.className = `checkout-status checkout-status--${variant}`;
+      status.innerHTML = extraHref
+        ? `<strong>${message}</strong><a href="${extraHref}">Email order details to ${SUPPORT_EMAIL}</a>`
+        : `<strong>${message}</strong>`;
     };
 
-    form.addEventListener("input", updateLink);
-    form.addEventListener("change", updateLink);
-    updateLink();
+    const clearStatus = () => {
+      status.hidden = true;
+      status.className = "checkout-status";
+      status.innerHTML = "";
+    };
+
+    const updateButtonCopy = () => {
+      const formData = new FormData(form);
+      submitButton.textContent = getCheckoutPrimaryLabel(
+        String(formData.get("paymentMethod") || "Online Payment / UPI / Bank Transfer"),
+      );
+    };
+
+    form.addEventListener("input", () => {
+      clearStatus();
+      updateButtonCopy();
+    });
+
+    form.addEventListener("change", () => {
+      clearStatus();
+      updateButtonCopy();
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const customer = {
+        name: String(formData.get("name") || "").trim(),
+        phone: String(formData.get("phone") || "").trim(),
+        email: String(formData.get("email") || "").trim(),
+        address: String(formData.get("address") || "").trim(),
+        city: String(formData.get("city") || "").trim(),
+        pincode: String(formData.get("pincode") || "").trim(),
+        paymentMethod: String(
+          formData.get("paymentMethod") || "Online Payment / UPI / Bank Transfer",
+        ),
+      };
+
+      const order = buildCheckoutOrder(cart, customer);
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting Order...";
+      setStatus("pending", "Submitting your order to Altercraft order desk.");
+
+      const result = await submitCheckoutOrder(order);
+
+      if (result.ok) {
+        setCartStorage([]);
+        updateCartIndicators();
+        form.reset();
+        setStatus("success", `${getCheckoutSuccessMessage(order.paymentMethod)} Reference: ${order.reference}.`);
+        container.querySelector(".checkout-summary-card")?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      } else {
+        setStatus(
+          "error",
+          `Automatic order submission is unavailable at the moment. Reference: ${order.reference}.`,
+          result.supportHref,
+        );
+      }
+
+      submitButton.disabled = false;
+      updateButtonCopy();
+    });
+
+    updateButtonCopy();
   }
 }
 
