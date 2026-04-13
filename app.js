@@ -239,7 +239,7 @@ const productCatalog = [
     buildNotes: [
       "This page is meant to show a real product with visible pricing and a direct enquiry path.",
       "Final pricing can change if the buyer needs a different size, finish, or storage format.",
-      "Advance payments, when applicable, are used for order confirmation and production booking.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount secures order confirmation. Balance is settled before dispatch or as agreed for custom changes.",
     deliveryNote: "Delivery timeline is shared after stock or production confirmation.",
@@ -274,7 +274,7 @@ const productCatalog = [
     buildNotes: [
       "The price shown is for the base direction and can change with size or storage changes.",
       "This page helps show smaller-ticket products clearly to buyers and payment reviewers.",
-      "Online payments are accepted for order confirmation and production release.",
+      "Online payment, UPI, and bank transfer are available for order confirmation, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the product order. Any custom size or finish change is quoted before final billing.",
     deliveryNote: "Dispatch timing is confirmed after order review and stock check.",
@@ -309,7 +309,7 @@ const productCatalog = [
     buildNotes: [
       "The fixed website price covers the listed product variant shown here.",
       "This product page makes living-room furniture visible as an actual purchasable category on the site.",
-      "Payments are accepted for booking and confirmed orders where applicable.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the selected product. Final invoice stays aligned to the confirmed product configuration.",
     deliveryNote: "Dispatch timing is shared after order confirmation.",
@@ -344,7 +344,7 @@ const productCatalog = [
     buildNotes: [
       "This product comes from your actual Flipkart asset set and helps the website show compact storage products clearly.",
       "Final pricing can vary if a different color, hardware, or internal change is required.",
-      "Payments are collected for confirmed order booking and release into production where applicable.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking advance confirms the product slot. Custom finish or storage adjustments are quoted before final balance.",
     deliveryNote: "Delivery or dispatch is confirmed after product review and availability check.",
@@ -379,7 +379,7 @@ const productCatalog = [
     buildNotes: [
       "This page uses the actual product description structure you stored in the Flipkart folder.",
       "Wardrobe pricing changes if hardware, finish, or dimensions change from the shown product line.",
-      "Online payments are used for booking and confirmed order progress where applicable.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the wardrobe order. Final billing reflects the confirmed finish, delivery location, and any approved upgrades.",
     deliveryNote: "Delivery timing is shared after order confirmation and stock or production validation.",
@@ -414,7 +414,7 @@ const productCatalog = [
     buildNotes: [
       "This page gives your website a clearer large-ticket wardrobe product flow instead of only service-led browsing.",
       "Final price changes with internal layout, lock set, handle style, and any finish variation.",
-      "Advance payments support booking confirmation and production planning.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount secures the order and material planning. Balance follows the confirmed delivery or production schedule.",
     deliveryNote: "Dispatch or delivery window is confirmed after review of order details and service area.",
@@ -449,7 +449,7 @@ const productCatalog = [
     buildNotes: [
       "This page helps show that the website also carries compact utility products with pricing.",
       "Final pricing can change if size, drawer format, or dual-tone finish changes.",
-      "Payments are accepted for order confirmation where applicable.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the shoe rack order. Final invoice follows the approved product configuration.",
     deliveryNote: "Dispatch timing is shared once the order is reviewed and confirmed.",
@@ -484,7 +484,7 @@ const productCatalog = [
     buildNotes: [
       "This alternate wardrobe page strengthens the website product flow by showing real finish variation.",
       "Final pricing can change with hardware or internal modifications.",
-      "Payments are accepted for confirmed order booking and release.",
+      "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the selected finish and product slot. Any approved changes are reflected before balance payment.",
     deliveryNote: "Delivery timing is confirmed after product review and availability planning.",
@@ -499,6 +499,10 @@ const CART_KEY = "altercraft-cart-v1";
 const CHECKOUT_PATH = "/checkout/";
 const CART_PATH = "/cart/";
 const WEBSITE_DISCOUNT_PERCENT = 10;
+const WEBSITE_PAYMENT_OPTIONS =
+  "Online payment, UPI / bank transfer, and Cash on Delivery on eligible listed furniture products in serviceable pin codes.";
+const CUSTOM_PAYMENT_RULE =
+  "Custom furniture changes, made-to-order scope, wardrobes, kitchens, and interior execution work are confirmed on advance or milestone payment.";
 
 function formatInr(value) {
   return `Rs. ${new Intl.NumberFormat("en-IN").format(value)}`;
@@ -592,9 +596,10 @@ function buildCheckoutMessage(cart, customer = {}) {
   if (customer.address) lines.push(`Address: ${customer.address}`);
   if (customer.city) lines.push(`City: ${customer.city}`);
   if (customer.pincode) lines.push(`Pincode: ${customer.pincode}`);
+  if (customer.paymentMethod) lines.push(`Preferred payment method: ${customer.paymentMethod}`);
 
   lines.push("");
-  lines.push("Please share the final payment link or order confirmation.");
+  lines.push("Please confirm the selected payment method, delivery availability, and order details.");
 
   return encodeURIComponent(lines.join("\n"));
 }
@@ -791,6 +796,11 @@ const faqItems = [
     question: "What changes the final price most?",
     answer:
       "The biggest factors are size, material selection, finish type, hardware quality, internal layout complexity, execution scope, and site-specific conditions.",
+  },
+  {
+    question: "Do you offer Cash on Delivery?",
+    answer:
+      "Yes, Cash on Delivery is available on eligible listed furniture products in serviceable pin codes. Custom furniture, modular work, and interior execution bookings are confirmed on advance or milestone payment.",
   },
   {
     question: "What should a client send before asking for a quote?",
@@ -1427,6 +1437,12 @@ function renderProductDetail() {
               This product page shows a fixed website price for the listed furniture item. Any change in size, finish, or product variant is quoted separately before billing.
             </p>
           </div>
+          <div class="product-note-box">
+            <strong>Payment Options</strong>
+            <p>
+              ${WEBSITE_PAYMENT_OPTIONS} ${CUSTOM_PAYMENT_RULE}
+            </p>
+          </div>
         </div>
       </div>
 
@@ -1450,6 +1466,14 @@ function renderProductDetail() {
             <div class="product-spec">
               <span>Booking Amount</span>
               <strong>${formatInr(product.bookingAdvance)}</strong>
+            </div>
+            <div class="product-spec">
+              <span>Payment Options</span>
+              <strong>Online or COD</strong>
+            </div>
+            <div class="product-spec">
+              <span>COD Availability</span>
+              <strong>Eligible pincodes only</strong>
             </div>
           </div>
         </article>
@@ -1484,6 +1508,8 @@ function renderProductDetail() {
           <h2>How this product flows on Altercraft</h2>
           <ul class="product-list">
             ${product.buildNotes.map((item) => `<li>${item}</li>`).join("")}
+            <li>${WEBSITE_PAYMENT_OPTIONS}</li>
+            <li>${CUSTOM_PAYMENT_RULE}</li>
             <li>${product.checkoutNote}</li>
             <li>${product.deliveryNote}</li>
           </ul>
@@ -1514,8 +1540,8 @@ function renderProductDetail() {
           </article>
           <article class="product-flow-step">
             <span>04</span>
-            <h3>Receive payment link and confirm order</h3>
-            <p>Altercraft shares the payment link or confirms the booking amount, then the order moves into confirmation.</p>
+            <h3>Pay online or choose Cash on Delivery</h3>
+            <p>Altercraft confirms online payment for bookings or verifies Cash on Delivery eligibility for listed furniture products before final order confirmation.</p>
           </article>
         </div>
       </section>
@@ -1689,16 +1715,16 @@ function renderCartPage() {
             <strong>${formatInr(getCartSubtotal(cart))}</strong>
           </div>
           <div class="cart-summary-line">
-            <span>Checkout mode</span>
-            <strong>Website order request</strong>
+            <span>Payment options</span>
+            <strong>Online or Cash on Delivery</strong>
           </div>
           <div class="cart-summary-line">
             <span>Next step</span>
-            <strong>Address and contact review</strong>
+            <strong>Choose payment method and confirm address</strong>
           </div>
           <a class="button" href="${CHECKOUT_PATH}">Proceed to Checkout</a>
           <a class="button button--ghost" href="/products/">Continue Shopping</a>
-          <p class="pricing-note">Final delivery timing and payment link are shared after order review.</p>
+          <p class="pricing-note">${WEBSITE_PAYMENT_OPTIONS} ${CUSTOM_PAYMENT_RULE}</p>
         </aside>
       </div>
     </section>
@@ -1748,8 +1774,8 @@ function renderCheckoutPage() {
     <section class="section">
       <div class="section-heading reveal is-visible">
         <p class="eyebrow">Checkout</p>
-        <h1>Review order, enter details, and request payment confirmation.</h1>
-        <p>This is the order confirmation step before the payment link is shared to the customer.</p>
+        <h1>Review order, choose payment method, and request confirmation.</h1>
+        <p>This is the order confirmation step before online payment or Cash on Delivery approval is shared to the customer.</p>
       </div>
 
       <div class="checkout-layout">
@@ -1761,7 +1787,7 @@ function renderCheckoutPage() {
             <span>Total</span>
             <strong>${formatInr(getCartSubtotal(cart))}</strong>
           </div>
-          <p class="pricing-note">Fixed website prices are shown above. Any approved change in quantity, finish, or variant is reconfirmed before payment.</p>
+          <p class="pricing-note">Fixed website prices are shown above. ${WEBSITE_PAYMENT_OPTIONS} ${CUSTOM_PAYMENT_RULE}</p>
         </div>
 
         <form class="checkout-form" id="checkout-form">
@@ -1792,11 +1818,29 @@ function renderCheckoutPage() {
             </label>
           </div>
 
+          <div class="payment-methods">
+            <span class="planner-field-label">Payment Method</span>
+            <label class="payment-method-card">
+              <input type="radio" name="paymentMethod" value="Online Payment / UPI / Bank Transfer" checked />
+              <div class="payment-method-copy">
+                <strong>Online Payment / UPI / Bank Transfer</strong>
+                <span>Recommended for bookings, custom approvals, and milestone payments.</span>
+              </div>
+            </label>
+            <label class="payment-method-card">
+              <input type="radio" name="paymentMethod" value="Cash on Delivery" />
+              <div class="payment-method-copy">
+                <strong>Cash on Delivery</strong>
+                <span>Available on eligible listed furniture products in serviceable pin codes after order confirmation.</span>
+              </div>
+            </label>
+          </div>
+
           <div class="checkout-actions">
-            <a class="button" id="checkout-whatsapp" href="https://wa.me/918826436093" target="_blank" rel="noreferrer">Request Payment Link</a>
+            <a class="button" id="checkout-whatsapp" href="https://wa.me/918826436093" target="_blank" rel="noreferrer">Request Payment / COD Confirmation</a>
             <a class="button button--ghost" href="${CART_PATH}">Back to Cart</a>
           </div>
-          <p class="pricing-note">By continuing, the customer moves from product selection to order confirmation and payment-link sharing.</p>
+          <p class="pricing-note">By continuing, the customer moves from product selection to address verification, payment method confirmation, and final order approval.</p>
         </form>
       </div>
     </section>
@@ -1815,6 +1859,7 @@ function renderCheckoutPage() {
         address: String(formData.get("address") || ""),
         city: String(formData.get("city") || ""),
         pincode: String(formData.get("pincode") || ""),
+        paymentMethod: String(formData.get("paymentMethod") || "Online Payment / UPI / Bank Transfer"),
       };
 
       link.href = `https://wa.me/918826436093?text=${buildCheckoutMessage(cart, customer)}`;
