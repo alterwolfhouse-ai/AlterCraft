@@ -117,9 +117,9 @@ const projectSlots = [
     title: "Panel Work",
     pricing: "Starting from Rs. 180 / sq.ft.",
     hint: "Wood grid ceilings, sculpted relief panels, and vertical framing details that make an entry or lounge feel intentionally designed the moment someone walks in.",
-    note: "This visual works because the feature wall is not overloaded. The sculpted central panel, warm timber framing, and clean symmetry create a premium first impression without making the space feel busy.",
+    note: "A calm feature wall with sculpted panels, warm timber framing, and clean symmetry can lift an entry or lounge without making it feel busy.",
     tags: ["Feature panel", "Entrance wall", "Premium focal surface"],
-    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20website%20shop%20card.",
+    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20portfolio%20photo.",
     cta: "Enquire for similar work",
     image: "./assets/portfolio/panel-work-feature.jpeg",
   },
@@ -128,7 +128,7 @@ const projectSlots = [
     title: "Ceiling Work",
     pricing: "Starting from Rs. 120 / sq.ft.",
     hint: "Layered false ceiling lines, indirect lighting, and chandelier positioning that give the space stronger scale, rhythm, and hospitality-grade polish.",
-    note: "This ceiling-led space shows how lighting bands, recessed layers, and a central chandelier axis can lift the entire room. It is a strong example of ceiling work becoming the architecture of the space.",
+    note: "Lighting bands, recessed layers, and a central chandelier axis can lift the entire room and make the ceiling part of the architecture.",
     tags: ["False ceiling", "Indirect lighting", "Luxury ceiling detail"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20discuss%20ceiling%20work%20similar%20to%20the%20portfolio.",
     cta: "Discuss ceiling work",
@@ -139,9 +139,9 @@ const projectSlots = [
     title: "Modular Wardrobe",
     pricing: "Projects usually start from Rs. 85,000",
     hint: "Walk-in wardrobe planning with glass shutters, open display, island storage, and a ceiling design that makes the dressing zone feel high-end and organized.",
-    note: "This image is a strong wardrobe USP because it combines storage, visibility, lighting, and movement. The result feels like a premium dressing room rather than just a row of cabinets.",
+    note: "Glass shutters, open display, island storage, lighting, and easy movement make the wardrobe feel like a premium dressing zone.",
     tags: ["Walk-in wardrobe", "Glass shutters", "Island storage"],
-    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20modular%20wardrobe%20similar%20to%20the%20website%20shop%20card.",
+    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20modular%20wardrobe%20similar%20to%20the%20portfolio%20photo.",
     cta: "Plan this wardrobe",
     image: "./assets/portfolio/modular-wardrobe-walkin.jpeg",
   },
@@ -150,7 +150,7 @@ const projectSlots = [
     title: "Modular Kitchen",
     pricing: "Projects usually start from Rs. 150,000",
     hint: "Island kitchens with layered lighting, clean base-and-wall storage, premium stone look surfaces, and enough movement space for family use.",
-    note: "This kitchen image sells a complete package: strong island presence, practical storage lines, under-cabinet lighting, and a finish palette that looks premium without losing usability.",
+    note: "A strong island, practical storage lines, under-cabinet lighting, and a premium finish palette keep the kitchen useful and refined.",
     tags: ["Island kitchen", "Modular storage", "Premium finish"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20discuss%20a%20modular%20kitchen%20similar%20to%20the%20portfolio.",
     cta: "Discuss kitchen scope",
@@ -161,9 +161,9 @@ const projectSlots = [
     title: "Custom Bedroom Furniture",
     pricing: "Custom quote by layout and finish",
     hint: "Master bedroom suites where the bed, upholstered headboard, floating side tables, wall finish, and ceiling lighting need to feel calm and connected.",
-    note: "This bedroom visual is strong because it feels composed from every angle. The bed, wall treatment, side tables, lighting, and study corner all speak the same quiet luxury language.",
+    note: "The bed, wall treatment, side tables, lighting, and study corner can be planned together so the bedroom feels calm from every angle.",
     tags: ["Bedroom suite", "Headboard wall", "Floating side tables"],
-    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20bed%20similar%20to%20the%20website%20shop%20card.",
+    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20bed%20similar%20to%20the%20portfolio%20photo.",
     cta: "Build this bedroom set",
     image: "./assets/portfolio/custom-bedroom-suite.jpeg",
   },
@@ -172,9 +172,9 @@ const projectSlots = [
     title: "Living Room and TV Unit",
     pricing: "Custom quote by scope and finish",
     hint: "Open-plan living and dining layouts with ceiling design, TV focal walls, dining placement, and circulation all working together in one balanced composition.",
-    note: "This is a strong living-room image because it shows more than a TV wall. It shows how ceiling design, dining flow, sofa placement, and the main visual anchor can all work together in one refined space.",
+    note: "Ceiling design, dining flow, sofa placement, and the main visual anchor can work together so the living room feels refined, not pieced together.",
     tags: ["TV focal wall", "Living-dining layout", "Integrated interiors"],
-    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20website%20shop%20card.",
+    href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20portfolio%20photo.",
     cta: "Discuss living-room work",
     image: "./assets/portfolio/living-room-tv-unit.jpeg",
   },
@@ -189,17 +189,17 @@ const flipkartLinks = {
 
 const whatsappLinks = {
   bed:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20bed%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20bed%20similar%20to%20the%20portfolio%20photo.",
   sofa:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20sofa%20or%20lounge%20seating%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20sofa%20or%20lounge%20seating%20similar%20to%20the%20portfolio%20photo.",
   wardrobe:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20modular%20wardrobe%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20modular%20wardrobe%20similar%20to%20the%20portfolio%20photo.",
   study:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20study%20table%20or%20desk%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20study%20table%20or%20desk%20similar%20to%20the%20portfolio%20photo.",
   panel:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20portfolio%20photo.",
   mandir:
-    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20mandir%20unit%20similar%20to%20the%20website%20shop%20card.",
+    "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20mandir%20unit%20similar%20to%20the%20portfolio%20photo.",
 };
 
 const productPages = {
@@ -222,13 +222,13 @@ const productCatalog = [
     mrpValue: 22900,
     bookingAdvance: 3900,
     summary:
-      "A clean, low-height engineered wood bed in frosty white, positioned for modern bedrooms that need a simple product-led buying path.",
+      "A clean, low-height engineered wood bed in frosty white for simple modern bedrooms.",
     image: "/assets/products/frosty-white-bed.png",
     alt: "Frosty white bed product image",
     highlights: [
       "Minimal white bedroom look with easy styling appeal",
       "Good for compact and mid-size bedrooms",
-      "Clear product page for website browsing and order discussion",
+      "Clear photos, pricing and enquiry options",
     ],
     specs: [
       { label: "Best for", value: "Modern bedrooms and furnished homes" },
@@ -237,8 +237,8 @@ const productCatalog = [
       { label: "Order mode", value: "Direct enquiry with booking support" },
     ],
     buildNotes: [
-      "This page is meant to show a real product with visible pricing and a direct enquiry path.",
-      "Final pricing can change if the buyer needs a different size, finish, or storage format.",
+      "Listed with visible pricing and a direct enquiry path.",
+      "Final pricing can change if you choose a different size, finish, or storage format.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount secures order confirmation. Balance is settled before dispatch or as agreed for custom changes.",
@@ -263,7 +263,7 @@ const productCatalog = [
     highlights: [
       "Straight desk format with open shelf storage",
       "Useful for study corners, bedrooms, and office nooks",
-      "Simple product flow for small-ticket website buyers",
+      "Compact product for study and work corners",
     ],
     specs: [
       { label: "Best for", value: "Study corners and work-from-home use" },
@@ -273,7 +273,7 @@ const productCatalog = [
     ],
     buildNotes: [
       "The price shown is for the base direction and can change with size or storage changes.",
-      "This page helps show smaller-ticket products clearly to buyers and payment reviewers.",
+      "A practical listed product with clear photos, price and enquiry options for compact rooms.",
       "Online payment, UPI, and bank transfer are available for order confirmation, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the product order. Any custom size or finish change is quoted before final billing.",
@@ -298,7 +298,7 @@ const productCatalog = [
     highlights: [
       "Compact table footprint for everyday living rooms",
       "Simple two-tone finish that fits modern interiors",
-      "Useful add-on product for furnished home buyers",
+      "Useful add-on for furnished homes",
     ],
     specs: [
       { label: "Best for", value: "Living rooms and lounge spaces" },
@@ -307,8 +307,8 @@ const productCatalog = [
       { label: "Order mode", value: "Direct enquiry and confirmation" },
     ],
     buildNotes: [
-      "The fixed website price covers the listed product variant shown here.",
-      "This product page makes living-room furniture visible as an actual purchasable category on the site.",
+      "The listed price covers the standard product variant shown here.",
+      "A practical living-room piece for lounges, seating corners and compact homes.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
     checkoutNote: "Booking amount confirms the selected product. Final invoice stays aligned to the confirmed product configuration.",
@@ -333,7 +333,7 @@ const productCatalog = [
     highlights: [
       "1 drawer and multi-shelf compact storage format",
       "Easy bedroom storage solution for smaller rooms",
-      "Real listed product page with clear pricing",
+      "Compact storage with clear pricing",
     ],
     specs: [
       { label: "Best for", value: "Compact bedrooms and rental use" },
@@ -342,7 +342,7 @@ const productCatalog = [
       { label: "Finish", value: "Frosty white / marble tone direction" },
     ],
     buildNotes: [
-      "This product comes from your actual Flipkart asset set and helps the website show compact storage products clearly.",
+      "A compact storage option with visible pricing and direct enquiry support.",
       "Final pricing can vary if a different color, hardware, or internal change is required.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
@@ -368,7 +368,7 @@ const productCatalog = [
     highlights: [
       "8 shelves and 1 hanging rod configuration",
       "Lockable wardrobe format for family bedroom use",
-      "Real listed storage page with visible price guidance",
+      "Visible pricing with practical storage guidance",
     ],
     specs: [
       { label: "Best for", value: "Bedroom clothing and utility storage" },
@@ -377,7 +377,7 @@ const productCatalog = [
       { label: "Finish", value: "Frosty white" },
     ],
     buildNotes: [
-      "This page uses the actual product description structure you stored in the Flipkart folder.",
+      "A three-door wardrobe option with visible pricing and practical storage details.",
       "Wardrobe pricing changes if hardware, finish, or dimensions change from the shown product line.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
@@ -412,7 +412,7 @@ const productCatalog = [
       { label: "Finish", value: "American teak" },
     ],
     buildNotes: [
-      "This page gives your website a clearer large-ticket wardrobe product flow instead of only service-led browsing.",
+      "A larger wardrobe option for bedrooms that need more storage and a warmer finish.",
       "Final price changes with internal layout, lock set, handle style, and any finish variation.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
@@ -438,7 +438,7 @@ const productCatalog = [
     highlights: [
       "Drawer plus cabinet storage in a compact format",
       "Useful for entry spaces and everyday utility zones",
-      "Clear smaller-ticket product page for the website",
+      "Compact storage with visible pricing",
     ],
     specs: [
       { label: "Best for", value: "Entry spaces and compact homes" },
@@ -447,7 +447,7 @@ const productCatalog = [
       { label: "Finish", value: "Natural white" },
     ],
     buildNotes: [
-      "This page helps show that the website also carries compact utility products with pricing.",
+      "A compact utility piece for entry corners and everyday shoe organization.",
       "Final pricing can change if size, drawer format, or dual-tone finish changes.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
@@ -482,7 +482,7 @@ const productCatalog = [
       { label: "Finish", value: "Legno Oak" },
     ],
     buildNotes: [
-      "This alternate wardrobe page strengthens the website product flow by showing real finish variation.",
+      "A warmer wardrobe finish for customers comparing white and wood-tone storage options.",
       "Final pricing can change with hardware or internal modifications.",
       "Online payment is available for booking, and Cash on Delivery is available on eligible ready-made furniture orders in serviceable pin codes.",
     ],
@@ -785,12 +785,12 @@ async function submitCheckoutOrder(order) {
 
 const shopHighlights = [
   {
-    label: "Product page ready",
+    label: "Ready to order",
     brand: "AlterCraft",
     title: "Frosty White Bed",
     price: "Fixed price: Rs. 17,010",
     summary:
-      "The first product signal now opens a proper priced product page built around your actual Flipkart-style bedroom asset.",
+      "A clean frosty-white bed with visible pricing and direct enquiry support.",
     image: "/assets/products/frosty-white-bed.png",
     href: productPages.bed,
     brandHref: flipkartLinks.brand,
@@ -803,7 +803,7 @@ const shopHighlights = [
     label: "Work-ready",
     title: "AC Study Table",
     price: "Fixed price: Rs. 6,740",
-    summary: "A real listed desk product with clean visuals, clear pricing, and a direct enquiry route.",
+    summary: "A listed desk with clean visuals, clear pricing, and direct enquiry support.",
     image: "/assets/products/ac-study-table.png",
     href: productPages.studyTable,
     cta: "View product page",
@@ -813,7 +813,7 @@ const shopHighlights = [
     label: "Living room",
     title: "Centre Table",
     price: "Fixed price: Rs. 4,940",
-    summary: "A clean living-room table product that helps the site show smaller furniture SKUs with pricing too.",
+    summary: "A clean living-room table for compact seating areas and everyday use.",
     image: "/assets/products/centre-table.png",
     href: productPages.centreTable,
     cta: "View product page",
@@ -833,7 +833,7 @@ const shopHighlights = [
     label: "Space-led",
     title: "3 Door Wooden Wardrobe",
     price: "Fixed price: Rs. 16,110",
-    summary: "A larger wardrobe product with hanging and shelf storage for mainstream bedroom buyers.",
+    summary: "A larger wardrobe product with hanging and shelf storage for everyday bedroom use.",
     image: "/assets/products/three-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe3,
     cta: "View product page",
@@ -843,7 +843,7 @@ const shopHighlights = [
     label: "Large storage",
     title: "4 Door Wardrobe American Teak",
     price: "Fixed price: Rs. 26,010",
-    summary: "A higher-capacity wardrobe page with warmer finish direction for premium bedroom storage.",
+    summary: "A higher-capacity wardrobe with a warmer finish direction for premium bedroom storage.",
     image: "/assets/products/four-door-wardrobe-american-teak.png",
     href: productPages.wardrobe4,
     cta: "View product page",
@@ -853,7 +853,7 @@ const shopHighlights = [
     label: "Utility product",
     title: "Shoe Rack Natural White",
     price: "Fixed price: Rs. 4,940",
-    summary: "A compact shoe rack product that gives the website another practical, lower-ticket furniture option with pricing.",
+    summary: "A compact shoe rack with visible pricing for practical entry storage.",
     image: "/assets/products/shoe-rack-natural-white.png",
     href: productPages.shoeRack,
     cta: "View product page",
@@ -866,7 +866,7 @@ const furnitureCategories = [
     title: "Frosty White Bed",
     label: "Bedroom bestseller",
     price: "Fixed price: Rs. 17,010",
-    summary: "A clean frosty-white bed page for buyers who want a simple, modern bedroom product.",
+    summary: "A clean frosty-white bed for simple, modern bedrooms.",
     image: "/assets/products/frosty-white-bed.png",
     href: productPages.bed,
     cta: "View bed page",
@@ -875,7 +875,7 @@ const furnitureCategories = [
     title: "AC Study Table",
     label: "Work-from-home",
     price: "Fixed price: Rs. 6,740",
-    summary: "A compact study table with a real product page and a simple enquiry route.",
+    summary: "A compact study table with simple pricing and enquiry support.",
     image: "/assets/products/ac-study-table.png",
     href: productPages.studyTable,
     cta: "View desk page",
@@ -884,7 +884,7 @@ const furnitureCategories = [
     title: "Centre Table",
     label: "Living-room essential",
     price: "Fixed price: Rs. 4,940",
-    summary: "A simple living-room table product that adds an easy furniture-buy path to the website.",
+    summary: "A simple living-room table for compact seating areas and everyday use.",
     image: "/assets/products/centre-table.png",
     href: productPages.centreTable,
     cta: "View centre table",
@@ -902,7 +902,7 @@ const furnitureCategories = [
     title: "3 Door Wooden Wardrobe",
     label: "Bedroom storage",
     price: "Fixed price: Rs. 16,110",
-    summary: "A mainstream 3-door wardrobe page with visible pricing and practical storage scope.",
+    summary: "A practical three-door wardrobe with visible pricing and useful storage scope.",
     image: "/assets/products/three-door-wardrobe-frosty-white.png",
     href: productPages.wardrobe3,
     cta: "View 3 door wardrobe",
@@ -920,7 +920,7 @@ const furnitureCategories = [
     title: "Shoe Rack Natural White",
     label: "Utility product",
     price: "Fixed price: Rs. 4,940",
-    summary: "A practical utility-storage page that makes the website product catalog feel broader and more real.",
+    summary: "A practical shoe rack for entry storage, utility zones, and everyday organization.",
     image: "/assets/products/shoe-rack-natural-white.png",
     href: productPages.shoeRack,
     cta: "View shoe rack",
@@ -1537,7 +1537,7 @@ function renderProductCatalog() {
             <ul class="catalog-mini-list">
               ${product.highlights.map((item) => `<li>${item}</li>`).join("")}
             </ul>
-            <div class="catalog-discount">Fixed website price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
+            <div class="catalog-discount">Listed price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
             <div class="catalog-actions">
               <a class="button" href="./${product.slug}/">View product page</a>
               <button class="button button--ghost" type="button" data-add-to-cart="${product.slug}">Add to Cart</button>
@@ -1613,7 +1613,7 @@ function renderProductDetail() {
           <div class="product-note-box">
             <strong>Fixed Price</strong>
             <p>
-              This product page shows a fixed website price for the listed furniture item. Any change in size, finish, or product variant is quoted separately before billing.
+              This listed item has a visible standard price. Any change in size, finish, or product variant is quoted separately before billing.
             </p>
           </div>
           <div class="product-note-box">
@@ -1684,7 +1684,7 @@ function renderProductDetail() {
 
         <article class="product-card-block reveal product-card-block--wide">
           <span class="panel-kicker">Ordering and Payment</span>
-          <h2>How this product flows on Altercraft</h2>
+          <h2>How to order this product</h2>
           <ul class="product-list">
             ${product.buildNotes.map((item) => `<li>${item}</li>`).join("")}
             <li>${WEBSITE_PAYMENT_OPTIONS}</li>
@@ -1697,20 +1697,20 @@ function renderProductDetail() {
 
       <section class="product-flow reveal">
         <div class="section-heading">
-          <p class="eyebrow">Buyer Journey</p>
-          <h2>Simple checkout flow for customers and payment review.</h2>
-          <p>This page makes the buying journey easy to understand: product, fixed price, cart, checkout, and payment confirmation.</p>
+          <p class="eyebrow">Ordering Steps</p>
+          <h2>Simple ordering, clear next steps.</h2>
+          <p>Check the product, listed price, cart details and payment option before you confirm.</p>
         </div>
         <div class="product-flow-grid">
           <article class="product-flow-step">
             <span>01</span>
             <h3>Browse product and price</h3>
-            <p>The customer first sees the listed product, fixed website price, and the exact furniture category.</p>
+            <p>Review the product, listed price, category and key details before you decide.</p>
           </article>
           <article class="product-flow-step">
             <span>02</span>
             <h3>Add to cart or buy now</h3>
-            <p>The buyer can add the item to cart or move straight to checkout from the product page.</p>
+            <p>Add the item to cart or move straight to checkout from the product page.</p>
           </article>
           <article class="product-flow-step">
             <span>03</span>
@@ -1729,7 +1729,7 @@ function renderProductDetail() {
         <div class="section-heading">
           <p class="eyebrow">Also Browse</p>
           <h2>Other Altercraft product pages</h2>
-          <p>These pages help buyers and reviewers see that the website carries multiple furniture categories with visible fixed pricing.</p>
+          <p>Explore similar listed products, compare prices and choose the piece that fits your room.</p>
         </div>
         <div class="catalog-grid product-related-grid">
           ${related
@@ -1749,7 +1749,7 @@ function renderProductDetail() {
                     </div>
                     <h3>${item.title}</h3>
                     <p>${item.summary}</p>
-                    <div class="catalog-discount">Fixed website price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
+                    <div class="catalog-discount">Listed price with ${WEBSITE_DISCOUNT_PERCENT}% off</div>
                     <div class="catalog-actions">
                       <a class="button" href="../${item.slug}/">View product page</a>
                       <button class="button button--ghost" type="button" data-add-to-cart="${item.slug}">Add to Cart</button>
@@ -1966,7 +1966,7 @@ function renderCheckoutPage() {
             <span>Total</span>
             <strong>${formatInr(getCartSubtotal(cart))}</strong>
           </div>
-          <p class="pricing-note">Fixed website prices are shown above. ${WEBSITE_PAYMENT_OPTIONS} ${CUSTOM_PAYMENT_RULE}</p>
+          <p class="pricing-note">Listed prices are shown above. ${WEBSITE_PAYMENT_OPTIONS} ${CUSTOM_PAYMENT_RULE}</p>
         </div>
 
         <form class="checkout-form" id="checkout-form">
@@ -2016,7 +2016,7 @@ function renderCheckoutPage() {
           </div>
 
           <div class="checkout-routing-note">
-            <strong>Order routing</strong>
+            <strong>Order confirmation</strong>
             <p>
               Orders from this checkout go to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.
               Online payment customers receive a payment link or bank details after review. COD
