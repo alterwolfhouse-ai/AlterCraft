@@ -121,6 +121,7 @@ img {
   text-align: center;
   font-size: 0.78rem;
   letter-spacing: 0.18em;
+  line-height: 1.5;
   text-transform: uppercase;
   color: var(--gold-soft);
   border-bottom: 0.2px solid rgba(255, 255, 255, 0.12);
@@ -128,6 +129,7 @@ img {
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
     rgba(6, 6, 6, 0.74);
   backdrop-filter: blur(18px) saturate(150%);
+  overflow-wrap: anywhere;
 }
 
 .site-header,
@@ -3451,6 +3453,8 @@ main {
   background: var(--ac-ink);
   border-bottom: 0;
   letter-spacing: 0.14em;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .site-header {
@@ -4032,6 +4036,13 @@ main {
 }
 
 @media (max-width: 640px) {
+  .topbar {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.05em;
+    word-break: break-word;
+  }
+
   .section,
   .site-footer {
     width: min(calc(100% - 1.5rem), var(--max-width));
