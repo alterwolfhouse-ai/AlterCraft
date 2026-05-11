@@ -150,6 +150,7 @@
       <nav class="site-nav" id="site-nav">
         <a href="#projects">Portfolio</a>
         <a href="./products/">Products</a>
+        <a href="./about/">About</a>
         <a href="./cart/">Cart <span class="cart-count" data-cart-count hidden>0</span></a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
@@ -293,21 +294,11 @@
             We keep the first step simple, then guide measurements, materials and
             installation from there.
           </p>
-          <a class="button" href="./products/">Browse Product Catalog</a>
+          <div class="section-actions">
+            <a class="button" href="./products/">Browse Product Catalog</a>
+            <a class="button button--ghost" href="./about/">About The Build Process</a>
+          </div>
         </div>
-      </section>
-
-      <section class="section section--technology" id="technology">
-        <div class="section-heading reveal">
-          <p class="eyebrow">How We Build</p>
-          <h2>How AlterCraft plans, builds and installs with care.</h2>
-          <p>
-            We measure the space, plan the layout, fabricate with material discipline,
-            finish the details and install with one coordinated team.
-          </p>
-        </div>
-
-        <div class="technology-grid" id="technology-grid"></div>
       </section>
 
       <section class="section section--dark" id="projects">
@@ -358,115 +349,6 @@
         </div>
       </section>
 
-      <section class="section section--planner" id="planner">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Project Planner</p>
-          <h2>Send a clearer first brief in a few quick steps.</h2>
-          <p>
-            Choose the project type, style direction, timeline and budget comfort first,
-            then share the brief with us on WhatsApp.
-          </p>
-        </div>
-
-        <div class="planner-layout">
-          <form class="planner-form reveal" id="planner-form">
-            <div class="planner-grid">
-              <label class="planner-field">
-                <span>Project Type</span>
-                <select id="planner-project" name="project">
-                  <option value="wardrobe">Modular Wardrobe</option>
-                  <option value="kitchen">Modular Kitchen</option>
-                  <option value="panel">Panel Work</option>
-                  <option value="ceiling">Ceiling Work</option>
-                  <option value="bedroom">Custom Bedroom Furniture</option>
-                  <option value="living">Living Room and TV Unit</option>
-                  <option value="office">Office or Studio Setup</option>
-                  <option value="full-home">Full Home Combination</option>
-                </select>
-              </label>
-
-              <label class="planner-field">
-                <span>Property Type</span>
-                <select id="planner-property" name="property">
-                  <option value="apartment">Apartment</option>
-                  <option value="villa">Villa or Independent Floor</option>
-                  <option value="office">Office or Studio</option>
-                  <option value="retail">Retail or Commercial Space</option>
-                </select>
-              </label>
-
-              <label class="planner-field">
-                <span>Style Direction</span>
-                <select id="planner-style" name="style">
-                  <option value="warm-modern">Warm Modern</option>
-                  <option value="luxury-minimal">Luxury Minimal</option>
-                  <option value="soft-neutral">Soft Neutral</option>
-                  <option value="dark-premium">Dark Premium</option>
-                  <option value="modern-indian">Modern Indian</option>
-                </select>
-              </label>
-
-              <label class="planner-field">
-                <span>Decision Timeline</span>
-                <select id="planner-timeline" name="timeline">
-                  <option value="urgent">Need to start soon</option>
-                  <option value="month">Within 30 days</option>
-                  <option value="quarter">Within 2 to 3 months</option>
-                  <option value="research">Still researching</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="planner-priority">
-              <span class="planner-field-label">Primary Priority</span>
-              <div class="priority-pills">
-                <label><input type="radio" name="priority" value="storage" checked /> <span>Storage first</span></label>
-                <label><input type="radio" name="priority" value="balanced" /> <span>Balanced result</span></label>
-                <label><input type="radio" name="priority" value="impact" /> <span>Visual impact</span></label>
-              </div>
-            </div>
-
-            <label class="planner-budget">
-              <div class="planner-budget-top">
-                <span>Budget Attitude</span>
-                <strong id="budget-readout">Balanced premium</strong>
-              </div>
-              <input id="planner-budget" name="budget" type="range" min="1" max="4" step="1" value="2" />
-              <div class="planner-budget-scale">
-                <span>Smart essential</span>
-                <span>Balanced premium</span>
-                <span>Design-forward</span>
-                <span>Statement finish</span>
-              </div>
-            </label>
-          </form>
-
-          <aside class="planner-result reveal" id="planner-result">
-            <div class="planner-result-top">
-              <span class="panel-kicker">Altercraft Project Match</span>
-              <h3 id="planner-title">Wardrobe-first project strategy</h3>
-              <p id="planner-summary">
-                A smarter starting mix for clients who want custom fit, cleaner elevations, and storage that does not fight the room.
-              </p>
-            </div>
-
-            <div class="planner-meta" id="planner-meta"></div>
-            <ul class="planner-list" id="planner-recommendations"></ul>
-            <div class="planner-tags" id="planner-tags"></div>
-
-            <a
-              class="button planner-cta"
-              id="planner-whatsapp"
-              href="https://wa.me/918826436093"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Send This Brief on WhatsApp
-            </a>
-          </aside>
-        </div>
-      </section>
-
       <section class="section" id="services">
         <div class="section-heading reveal">
           <p class="eyebrow">What Altercraft Does</p>
@@ -481,20 +363,6 @@
         <div class="service-grid" id="service-grid"></div>
       </section>
 
-      <section class="section" id="why-altercraft">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Why Altercraft</p>
-          <h2>Why clients choose Altercraft when they want the space to feel finished.</h2>
-          <p>
-            Most people come to us when they are tired of scattered coordination. One vendor for
-            the wardrobe, another for the bed, another for the panel wall, and no one thinking
-            about the full visual result. Altercraft solves that gap.
-          </p>
-        </div>
-
-        <div class="why-grid" id="why-grid"></div>
-      </section>
-
       <section class="section" id="furniture">
         <div class="section-heading reveal">
           <p class="eyebrow">Furniture Categories</p>
@@ -506,66 +374,6 @@
         </div>
 
         <div class="category-grid" id="category-grid"></div>
-      </section>
-
-      <section class="section section--dark" id="fit">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Built For</p>
-          <h2>The kind of projects where Altercraft creates the most value.</h2>
-          <p>
-            Whether you are moving into a new home, upgrading one room or planning
-            a coordinated renovation, we help the furniture feel made for the space.
-          </p>
-        </div>
-
-        <div class="fit-grid" id="fit-grid"></div>
-      </section>
-
-      <section class="section section--process" id="process">
-        <div class="section-heading reveal">
-          <p class="eyebrow">How We Work</p>
-          <h2>How an Altercraft project moves from idea to handover.</h2>
-          <p>
-            The smoother the process, the stronger the final result. We align layout, storage,
-            material, production, and site execution before the space gets crowded with decisions.
-          </p>
-        </div>
-
-        <div class="process-grid">
-          <article class="process-card reveal">
-            <span>01</span>
-            <h3>Consultation and site understanding</h3>
-            <p>We start with your space, layout, utility requirements, style preferences, and budget zone.</p>
-          </article>
-          <article class="process-card reveal">
-            <span>02</span>
-            <h3>Design direction and scope freeze</h3>
-            <p>Furniture layouts, wardrobe planning, kitchen flow, finishes, and execution scope are aligned.</p>
-          </article>
-          <article class="process-card reveal">
-            <span>03</span>
-            <h3>Production and execution</h3>
-            <p>Furniture manufacturing, panel work, modular production, site coordination, and finish detailing move together.</p>
-          </article>
-          <article class="process-card reveal">
-            <span>04</span>
-            <h3>Installation and handover</h3>
-            <p>Final fitting, polish checks, alignment, utility review, and finish corrections happen before closure.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="faq">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Questions Clients Usually Ask</p>
-          <h2>Practical answers that remove hesitation before someone enquires.</h2>
-          <p>
-            Clear answers on scope, customization and pricing help you decide the
-            right next step before you call or message us.
-          </p>
-        </div>
-
-        <div class="faq-list" id="faq-list"></div>
       </section>
 
       <section class="section" id="contact">
@@ -603,56 +411,6 @@
         </div>
       </section>
 
-      <section class="section section--legal-summary" id="business-details">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Business Details</p>
-          <h2>Business, contact, and payment information for a transparent purchase.</h2>
-          <p>
-            ALTERCRAFT accepts online payments for custom furniture orders, design bookings,
-            advance confirmations, and milestone payments for modular and interior execution work.
-            Cash on Delivery is also available on eligible listed furniture products in serviceable
-            pin codes.
-          </p>
-        </div>
-
-        <div class="compliance-grid">
-          <article class="compliance-card reveal">
-            <span>Legal Name</span>
-            <strong>ALTERCRAFT</strong>
-            <p>Custom furniture, modular interiors, and interior execution services.</p>
-          </article>
-          <article class="compliance-card reveal">
-            <span>Support Email</span>
-            <strong>support@altercraft.in</strong>
-            <p>For orders, payment support, quotations, and customer communication.</p>
-          </article>
-          <article class="compliance-card reveal">
-            <span>Call / WhatsApp</span>
-            <strong>+91 88264 36093</strong>
-            <p>Main customer contact number for enquiries, site visits, and order coordination.</p>
-          </article>
-          <article class="compliance-card reveal">
-            <span>GSTIN</span>
-            <strong>09DPRPR7653F1Z2</strong>
-            <p>GST-registered business details used for invoicing and billing support.</p>
-          </article>
-          <article class="compliance-card reveal compliance-card--wide">
-            <span>GST / Business Address</span>
-            <strong>Shop No. 7, J.S. Plaza, Near Zero Gravity Sports Complex, Chipiyana Road, Chipyana Buzurg, Ghaziabad, Uttar Pradesh 201009</strong>
-            <p>This address is used as the business contact and billing location for compliance communication.</p>
-          </article>
-          <article class="compliance-card reveal compliance-card--wide">
-            <span>Payment Gateway Use Case</span>
-            <strong>Advance booking, custom furniture orders, wardrobes, kitchens, sofas, beds, panel work, ceiling work, and milestone payments.</strong>
-            <p>Online payments are collected for project confirmation, order booking, and staged execution payments. Cash on Delivery is available on eligible listed furniture products in serviceable pin codes.</p>
-          </article>
-          <article class="compliance-card reveal compliance-card--wide">
-            <span>Payment Options on Website</span>
-            <strong>Online Payment, UPI / Bank Transfer, and Cash on Delivery for eligible listed furniture products.</strong>
-            <p>Custom furniture, made-to-order changes, wardrobes, kitchens, and interior execution work are confirmed on advance or milestone payment after scope review.</p>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="site-footer">
@@ -660,6 +418,7 @@
         <strong>ALTERCRAFT</strong>
         <p>Custom furniture makers, interior designers, and execution partners for spaces that need more than standard solutions.</p>
         <div class="legal-links">
+          <a href="./about/">About</a>
           <a href="./business-details/" target="_blank" rel="noreferrer">Business Details</a>
           <a href="./terms-and-conditions/" target="_blank" rel="noreferrer">Terms &amp; Conditions</a>
           <a href="./privacy-policy/" target="_blank" rel="noreferrer">Privacy Policy</a>
@@ -680,8 +439,8 @@
       <a href="#top">
         <span>Home</span>
       </a>
-      <a href="#technology">
-        <span>Build</span>
+      <a href="./about/">
+        <span>About</span>
       </a>
       <a href="#projects">
         <span>Portfolio</span>
