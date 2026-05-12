@@ -4058,17 +4058,77 @@ main {
   max-width: none;
   padding-left: clamp(1.35rem, 5vw, 4rem);
   padding-right: clamp(1.35rem, 5vw, 4rem);
-  background: var(--ac-paper-soft);
+  grid-template-columns: minmax(260px, 0.75fr) minmax(320px, 0.95fr) minmax(280px, 0.72fr);
+  align-items: center;
+  background:
+    linear-gradient(110deg, rgba(255, 250, 242, 0.86), rgba(235, 227, 211, 0.96) 48%, rgba(222, 211, 193, 0.92)),
+    var(--ac-paper-soft);
   border-top: 1px solid var(--ac-line);
   border-bottom: 1px solid var(--ac-line);
 }
 
-.live-theme-note > div:last-child {
+.live-theme-note > div:nth-child(2) {
   max-width: 620px;
 }
 
 .live-theme-note .button {
   margin-top: 1.5rem;
+}
+
+.live-theme-note__visual {
+  position: relative;
+  min-height: 24rem;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(121, 83, 43, 0.18);
+  border-radius: 8px;
+  background: var(--ac-ink);
+}
+
+.live-theme-note__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(29, 27, 24, 0.78), rgba(29, 27, 24, 0.08) 62%);
+}
+
+.live-theme-note__visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 24rem;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(0.98);
+}
+
+.live-theme-note__visual figcaption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+  border: 1px solid rgba(243, 238, 229, 0.22);
+  background: rgba(29, 27, 24, 0.7);
+  color: var(--ac-paper);
+  backdrop-filter: blur(16px);
+}
+
+.live-theme-note__visual span {
+  color: #d2a66e;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.live-theme-note__visual strong {
+  max-width: 24ch;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 2.4vw, 2.45rem);
+  font-weight: 600;
+  line-height: 0.98;
 }
 
 .dock-nav,
@@ -4077,6 +4137,32 @@ main {
   background: var(--ac-ink);
   color: var(--ac-paper);
   box-shadow: none;
+}
+
+.floating-whatsapp {
+  display: none !important;
+}
+
+.product-price-badge {
+  background: rgba(181, 122, 50, 0.14);
+  border-color: rgba(181, 122, 50, 0.28);
+  color: #765028;
+}
+
+.product-price-meta strong {
+  color: #765028;
+}
+
+.section--dark .portfolio-pricing,
+.section--dark .project-price,
+.portfolio-card-top .project-price {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.48rem 0.82rem;
+  border-radius: 999px;
+  border-color: rgba(176, 138, 88, 0.42);
+  background: rgba(176, 138, 88, 0.14);
+  color: #d6b174;
 }
 
 .reveal {
