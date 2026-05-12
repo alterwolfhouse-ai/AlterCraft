@@ -1428,6 +1428,7 @@ img {
   display: grid;
   align-content: start;
   gap: 1rem;
+  min-width: 0;
   padding: 1.8rem;
   border-radius: var(--radius-xl);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -1455,6 +1456,8 @@ img {
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2.9rem, 5vw, 4.8rem);
   line-height: 0.95;
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .product-hero-copy p,
@@ -1468,6 +1471,9 @@ img {
 
 .product-price-badge {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
   width: fit-content;
   padding: 0.7rem 1rem;
   border-radius: 999px;
@@ -1485,11 +1491,15 @@ img {
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+  width: fit-content;
+  max-width: 100%;
 }
 
 .product-price-meta {
   display: grid;
   gap: 0.2rem;
+  min-width: 0;
+  line-height: 1.25;
 }
 
 .product-price-meta span {
@@ -2954,6 +2964,40 @@ img {
     align-items: stretch;
   }
 
+  .product-hero-copy {
+    padding: 1.35rem;
+  }
+
+  .product-hero-copy h1 {
+    font-size: clamp(2.35rem, 13vw, 3.2rem);
+    line-height: 0.98;
+  }
+
+  .product-price-panel {
+    width: 100%;
+    gap: 0.6rem;
+  }
+
+  .product-price-badge {
+    min-height: 2.5rem;
+    padding: 0.62rem 0.85rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+  }
+
+  .product-price-meta {
+    font-size: 0.9rem;
+  }
+
+  .product-actions .button {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0.85rem;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+  }
+
   .cart-item {
     grid-template-columns: 1fr;
   }
@@ -3226,7 +3270,6 @@ body::before {
 .product-card-block,
 .product-note-box,
 .product-flow-step,
-.product-price-panel,
 .cart-list,
 .checkout-form,
 .checkout-summary-card,
