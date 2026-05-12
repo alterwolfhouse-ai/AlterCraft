@@ -121,7 +121,7 @@ const projectSlots = [
     tags: ["Feature panel", "Entrance wall", "Premium focal surface"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20portfolio%20photo.",
     cta: "Enquire for similar work",
-    image: "./assets/portfolio/panel-work-feature.jpeg",
+    image: "./assets/portfolio/living-room-panel-lounge.jpeg",
   },
   {
     kicker: "Lighting and room framing",
@@ -132,7 +132,7 @@ const projectSlots = [
     tags: ["False ceiling", "Indirect lighting", "Luxury ceiling detail"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20discuss%20ceiling%20work%20similar%20to%20the%20portfolio.",
     cta: "Discuss ceiling work",
-    image: "./assets/portfolio/ceiling-work-lobby.jpeg",
+    image: "./assets/portfolio/living-room-arched-lounge.jpeg",
   },
   {
     kicker: "Storage-led interiors",
@@ -154,7 +154,7 @@ const projectSlots = [
     tags: ["Island kitchen", "Modular storage", "Premium finish"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20to%20discuss%20a%20modular%20kitchen%20similar%20to%20the%20portfolio.",
     cta: "Discuss kitchen scope",
-    image: "./assets/portfolio/modular-kitchen-island.jpeg",
+    image: "./assets/portfolio/modular-kitchen-l-shape.jpeg",
   },
   {
     kicker: "Bedroom composition",
@@ -165,7 +165,7 @@ const projectSlots = [
     tags: ["Bedroom suite", "Headboard wall", "Floating side tables"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20a%20custom%20bed%20similar%20to%20the%20portfolio%20photo.",
     cta: "Build this bedroom set",
-    image: "./assets/portfolio/custom-bedroom-suite.jpeg",
+    image: "./assets/portfolio/bedroom-soft-panel-suite.jpeg",
   },
   {
     kicker: "Living-room statement",
@@ -176,7 +176,7 @@ const projectSlots = [
     tags: ["TV focal wall", "Living-dining layout", "Integrated interiors"],
     href: "https://wa.me/918826436093?text=Hi%20Altercraft%2C%20I%20want%20panel%20work%20or%20a%20TV%20wall%20similar%20to%20the%20portfolio%20photo.",
     cta: "Discuss living-room work",
-    image: "./assets/portfolio/living-room-tv-unit.jpeg",
+    image: "./assets/portfolio/living-room-chandelier-lounge.jpeg",
   },
 ];
 
