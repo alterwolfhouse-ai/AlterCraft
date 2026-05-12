@@ -3762,6 +3762,7 @@ main {
 
 .live-home-metrics span,
 .live-category-card span,
+.live-service-area-grid span,
 .live-step-grid span {
   color: var(--ac-tan);
   font-size: 0.68rem;
@@ -3872,6 +3873,44 @@ main {
   margin: 0.55rem 0 0;
   color: rgba(243, 238, 229, 0.78);
   line-height: 1.5;
+}
+
+.live-service-area-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 2.2rem;
+  border-top: 1px solid var(--ac-line);
+  border-bottom: 1px solid var(--ac-line);
+}
+
+.live-service-area-grid article {
+  min-height: 230px;
+  padding: 1.45rem;
+  border-right: 1px solid var(--ac-line);
+  background: rgba(255, 255, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.live-service-area-grid article:last-child {
+  border-right: 0;
+}
+
+.live-service-area-grid h3 {
+  margin: 1.2rem 0 0.55rem;
+  color: var(--ac-ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  font-weight: 600;
+  line-height: 0.98;
+}
+
+.live-service-area-grid p {
+  margin: 0;
+  color: var(--ac-muted);
+  line-height: 1.55;
 }
 
 .live-step-grid {
@@ -3993,21 +4032,25 @@ main {
 
   .live-home-metrics,
   .live-category-grid,
+  .live-service-area-grid,
   .live-step-grid {
     grid-template-columns: 1fr;
   }
 
   .live-home-metrics > div,
+  .live-service-area-grid article,
   .live-step-grid article {
     border-right: 0;
     border-bottom: 1px solid rgba(243, 238, 229, 0.14);
   }
 
+  .live-service-area-grid article,
   .live-step-grid article {
     border-bottom-color: var(--ac-line);
   }
 
   .live-home-metrics > div:last-child,
+  .live-service-area-grid article:last-child,
   .live-step-grid article:last-child {
     border-bottom: 0;
   }
