@@ -483,7 +483,12 @@ img {
 
 .panel-kicker {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: start;
+  align-self: start;
   width: fit-content;
+  max-width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem 0.9rem;
   border-radius: 999px;
@@ -491,6 +496,8 @@ img {
   background: rgba(255, 184, 0, 0.08);
   color: var(--gold-soft);
   font-size: 0.78rem;
+  line-height: 1.2;
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.18em;
 }
@@ -1521,15 +1528,18 @@ img {
 .product-card-block {
   display: grid;
   gap: 1rem;
+  min-width: 0;
   padding: 1.5rem;
   border-radius: var(--radius-lg);
+  overflow-wrap: break-word;
 }
 
 .product-card-block h2 {
   margin: 0;
   font-family: "Cormorant Garamond", serif;
-  font-size: 2.2rem;
+  font-size: clamp(1.9rem, 7vw, 2.2rem);
   line-height: 0.98;
+  max-width: 100%;
 }
 
 .product-card-block--wide {
