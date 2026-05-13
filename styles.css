@@ -4354,12 +4354,13 @@ main {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
   gap: clamp(1.25rem, 4vw, 3rem);
   align-items: stretch;
-  padding-top: clamp(3.25rem, 6vw, 5rem);
+  padding-top: clamp(2rem, 3.5vw, 3rem);
+  padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
 }
 
 .about-hero__copy,
 .about-hero__visual {
-  min-height: 620px;
+  min-height: clamp(500px, calc(100svh - 18rem), 590px);
   border: 1px solid var(--ac-line);
   background: rgba(255, 250, 242, 0.56);
 }
@@ -4368,24 +4369,24 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(1.75rem, 3vw, 3rem);
 }
 
 .about-hero h1 {
-  max-width: 12ch;
+  max-width: 16ch;
   margin: 0;
   color: var(--ac-ink);
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(4rem, 8.5vw, 7.8rem);
-  line-height: 0.9;
+  font-size: clamp(3.35rem, 5vw, 5.2rem);
+  line-height: 0.92;
 }
 
 .about-hero .hero-text {
   max-width: 620px;
-  margin: 1.5rem 0 0;
+  margin: 1.1rem 0 0;
   color: var(--ac-muted);
-  font-size: 1.05rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .about-hero__visual {
@@ -4411,6 +4412,7 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 62%;
 }
 
 .about-hero__visual > div {
@@ -4499,6 +4501,7 @@ main {
 @media (max-width: 960px) {
   .about-hero {
     grid-template-columns: 1fr;
+    padding-top: clamp(1.5rem, 4vw, 2.5rem);
   }
 
   .about-hero__copy,
@@ -4517,15 +4520,17 @@ main {
 
 @media (max-width: 640px) {
   .about-hero h1 {
-    font-size: clamp(3.4rem, 16vw, 5.2rem);
+    max-width: none;
+    font-size: clamp(2.85rem, 12vw, 4.1rem);
+    line-height: 0.95;
   }
 
   .about-hero__copy {
-    padding: 3rem 1.2rem;
+    padding: 2.25rem 1.2rem;
   }
 
   .about-hero__visual {
-    min-height: 390px;
+    min-height: 330px;
   }
 
   .about-visual-grid {
