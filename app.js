@@ -506,6 +506,16 @@ const CUSTOM_PAYMENT_RULE =
 const SUPPORT_EMAIL = "support@altercraft.in";
 const ORDER_AUTOMATION_ENDPOINT = "https://formsubmit.co/ajax/support@altercraft.in";
 const ORDER_AUTOMATION_LABEL = "support@altercraft.in order desk";
+const PAYMENT_CONFIG = window.ALTERCRAFT_PAYMENT_CONFIG || {};
+const PAYU_PAYMENT_METHOD = "PayU Online Payment";
+const PAYU_CHECKOUT_ENDPOINT =
+  typeof PAYMENT_CONFIG.payuCheckoutEndpoint === "string"
+    ? PAYMENT_CONFIG.payuCheckoutEndpoint.trim()
+    : "";
+
+function isPayuCheckoutConfigured() {
+  return PAYMENT_CONFIG.payuEnabled === true && PAYU_CHECKOUT_ENDPOINT.length > 0;
+}
 
 function formatInr(value) {
   return `Rs. ${new Intl.NumberFormat("en-IN").format(value)}`;
@@ -730,12 +740,20 @@ function buildAutomationPayload(order) {
 }
 
 function getCheckoutPrimaryLabel(paymentMethod) {
+  if (paymentMethod === PAYU_PAYMENT_METHOD) {
+    return "Pay Securely with PayU";
+  }
+
   return paymentMethod === "Cash on Delivery"
     ? "Place COD Order"
     : "Place Order & Get Payment Link";
 }
 
 function getCheckoutSuccessMessage(paymentMethod) {
+  if (paymentMethod === PAYU_PAYMENT_METHOD) {
+    return "PayU checkout has started. Complete the payment on the secure PayU page.";
+  }
+
   return paymentMethod === "Cash on Delivery"
     ? "Your COD order has been submitted. Altercraft will review pincode eligibility and confirm the order by phone or email."
     : "Your order has been submitted. Altercraft will review it and share the payment link or bank details by phone or email.";
@@ -781,6 +799,55 @@ async function submitCheckoutOrder(order) {
       supportHref: buildOrderMailtoLink(order),
     };
   }
+}
+
+function submitPayuForm(action, fields) {
+  const paymentForm = document.createElement("form");
+  paymentForm.method = "POST";
+  paymentForm.action = action;
+  paymentForm.hidden = true;
+
+  Object.entries(fields).forEach(([key, value]) => {
+    const input = document.createElement("input");
+    input.type = "hidden";
+    input.name = key;
+    input.value = String(value ?? "");
+    paymentForm.appendChild(input);
+  });
+
+  document.body.appendChild(paymentForm);
+  paymentForm.submit();
+}
+
+async function startPayuCheckout(order) {
+  if (!isPayuCheckoutConfigured()) {
+    throw new Error("PayU checkout is not configured yet.");
+  }
+
+  const response = await fetch(PAYU_CHECKOUT_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({ order }),
+  });
+
+  let data = null;
+
+  try {
+    data = await response.json();
+  } catch (_error) {
+    data = null;
+  }
+
+  if (!response.ok || !data?.ok || !data?.action || !data?.fields) {
+    throw new Error(data?.message || `PayU gateway returned ${response.status}.`);
+  }
+
+  submitPayuForm(data.action, data.fields);
+
+  return { ok: true };
 }
 
 const shopHighlights = [
@@ -1917,6 +1984,37 @@ function renderCheckoutPage() {
   if (!container) return;
 
   const cart = getCartStorage();
+  const paymentParams = new URLSearchParams(window.location.search);
+  const paymentStatus = paymentParams.get("payment");
+
+  if (paymentStatus) {
+    const isSuccess = paymentStatus === "success";
+    const txnid = paymentParams.get("txnid") || "";
+    if (isSuccess) {
+      setCartStorage([]);
+      updateCartIndicators();
+    }
+
+    container.innerHTML = `
+      <section class="section">
+        <div class="page-banner reveal is-visible">
+          <p class="eyebrow">PayU Payment</p>
+          <h1>${isSuccess ? "Payment received." : "Payment could not be completed."}</h1>
+          <p>${
+            isSuccess
+              ? "Thank you. AlterCraft will match the PayU transaction with your order and contact you for fulfilment confirmation."
+              : "No problem. Your cart is still available if you want to retry or place the order for manual payment review."
+          }</p>
+          ${txnid ? `<p class="pricing-note">Transaction reference: ${txnid}</p>` : ""}
+          <div class="section-actions">
+            <a class="button" href="/products/">Browse Products</a>
+            <a class="button button--ghost" href="${CART_PATH}">Open Cart</a>
+          </div>
+        </div>
+      </section>
+    `;
+    return;
+  }
 
   if (!cart.length) {
     container.innerHTML = `
@@ -1948,6 +2046,20 @@ function renderCheckoutPage() {
       `;
     })
     .join("");
+  const payuConfigured = isPayuCheckoutConfigured();
+  const onlinePaymentValue = payuConfigured
+    ? PAYU_PAYMENT_METHOD
+    : "Online Payment / UPI / Bank Transfer";
+  const onlinePaymentTitle = payuConfigured
+    ? "Pay securely with PayU"
+    : "Online Payment / UPI / Bank Transfer";
+  const onlinePaymentNote = payuConfigured
+    ? "Cards, UPI, net banking and supported PayU methods open on the secure PayU checkout page."
+    : "Recommended for bookings, custom approvals, and milestone payments.";
+  const routingTitle = payuConfigured ? "PayU gateway" : "Order confirmation";
+  const routingCopy = payuConfigured
+    ? "Online payments are redirected to PayU after order review details are captured. COD orders still go to AlterCraft for product and pincode eligibility checks."
+    : `Orders from this checkout go to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>. Online payment customers receive a payment link or bank details after review. COD orders are checked for product and pincode eligibility before confirmation.`;
 
   container.innerHTML = `
     <section class="section">
@@ -2000,10 +2112,10 @@ function renderCheckoutPage() {
           <div class="payment-methods">
             <span class="planner-field-label">Payment Method</span>
             <label class="payment-method-card">
-              <input type="radio" name="paymentMethod" value="Online Payment / UPI / Bank Transfer" checked />
+              <input type="radio" name="paymentMethod" value="${onlinePaymentValue}" checked />
               <div class="payment-method-copy">
-                <strong>Online Payment / UPI / Bank Transfer</strong>
-                <span>Recommended for bookings, custom approvals, and milestone payments.</span>
+                <strong>${onlinePaymentTitle}</strong>
+                <span>${onlinePaymentNote}</span>
               </div>
             </label>
             <label class="payment-method-card">
@@ -2016,12 +2128,8 @@ function renderCheckoutPage() {
           </div>
 
           <div class="checkout-routing-note">
-            <strong>Order confirmation</strong>
-            <p>
-              Orders from this checkout go to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.
-              Online payment customers receive a payment link or bank details after review. COD
-              orders are checked for product and pincode eligibility before confirmation.
-            </p>
+            <strong>${routingTitle}</strong>
+            <p>${routingCopy}</p>
           </div>
 
           <div class="checkout-actions">
@@ -2088,6 +2196,29 @@ function renderCheckoutPage() {
       };
 
       const order = buildCheckoutOrder(cart, customer);
+
+      if (order.paymentMethod === PAYU_PAYMENT_METHOD) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Opening PayU...";
+        setStatus("pending", "Opening secure PayU checkout. Please do not refresh this page.");
+
+        try {
+          await startPayuCheckout(order);
+          return;
+        } catch (error) {
+          setStatus(
+            "error",
+            error instanceof Error
+              ? `PayU checkout could not start: ${error.message}`
+              : "PayU checkout could not start right now.",
+            buildOrderMailtoLink(order),
+          );
+          submitButton.disabled = false;
+          updateButtonCopy();
+          return;
+        }
+      }
+
       submitButton.disabled = true;
       submitButton.textContent = "Submitting Order...";
       setStatus("pending", "Submitting your order to Altercraft order desk.");
