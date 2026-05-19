@@ -5216,7 +5216,15 @@ main {
 
 .site-footer > div:last-child {
   align-self: start;
-  justify-items: end;
+  justify-items: start;
+  text-align: left;
+  gap: 0.42rem;
+}
+
+.site-footer > div:last-child span {
+  display: block;
+  width: 100%;
+  max-width: 620px;
 }
 
 @media (max-width: 760px) {
