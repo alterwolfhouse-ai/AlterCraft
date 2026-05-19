@@ -14,6 +14,13 @@ const serviceLines = [
     tags: ["Office workstations", "Cabins and meeting rooms", "Reception and storage", "Wire management"],
   },
   {
+    title: "Office Automation and Climate Control",
+    price: "Quote by system scope and site readiness",
+    summary:
+      "Automation-ready lighting, climate control zoning, sensor planning, meeting-room scenes and AI-assisted workspace tools powered by AlterLabs.in for offices that want comfort, energy discipline and smarter facility workflows.",
+    tags: ["Smart lighting", "Climate control", "Occupancy sensors", "AI dashboards"],
+  },
+  {
     title: "Panel Work",
     price: "Starting range: Rs. 180 - 650 / sq.ft.",
     summary:
@@ -1016,6 +1023,11 @@ const fitForProjects = [
     title: "Office and Studio Setups",
     summary:
       "For Noida, Gurgaon and Meerut workspaces that need practical storage, modular workstations, cabins, paneling, ceiling detailing and a sharper design identity.",
+  },
+  {
+    title: "Smart Office and Climate Control",
+    summary:
+      "For commercial spaces that want lighting scenes, AC zoning, occupancy sensing, meeting-room comfort and AI-assisted control tools powered by AlterLabs.in.",
   },
   {
     title: "Premium Renovation Work",
