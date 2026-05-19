@@ -7,6 +7,13 @@ const serviceLines = [
     tags: ["Beds and headboards", "Sofas and seating", "TV units and storage", "Dining and seating"],
   },
   {
+    title: "Modular Office and Workstations",
+    price: "Quote by layout, seating count and finish",
+    summary:
+      "Office workstations, manager cabins, meeting tables, reception counters, file storage, pantry storage and commercial furniture planned for Noida, Gurgaon, Meerut and branch-supported workspace projects.",
+    tags: ["Office workstations", "Cabins and meeting rooms", "Reception and storage", "Wire management"],
+  },
+  {
     title: "Panel Work",
     price: "Starting range: Rs. 180 - 650 / sq.ft.",
     summary:
@@ -1008,7 +1015,7 @@ const fitForProjects = [
   {
     title: "Office and Studio Setups",
     summary:
-      "For workspaces that need practical storage, workstations, paneling, ceiling detailing, and a sharper design identity.",
+      "For Noida, Gurgaon and Meerut workspaces that need practical storage, modular workstations, cabins, paneling, ceiling detailing and a sharper design identity.",
   },
   {
     title: "Premium Renovation Work",
@@ -1129,12 +1136,12 @@ const plannerProfiles = {
   office: {
     title: "Workspace fit-out strategy",
     summary:
-      "Best for offices and studios that need practical productivity, cleaner brand presence, and sharper furniture planning together.",
+      "Best for offices and studios in Noida, Gurgaon, Meerut and branch-supported locations that need practical productivity, cleaner brand presence, and sharper furniture planning together.",
     recommendations: [
-      "Prioritize ergonomic work zones and storage flow before layering visual finish enhancements.",
-      "Use paneling and workstation geometry to reinforce a professional identity without clutter.",
+      "Prioritize ergonomic work zones, wire routes, staff movement and storage flow before layering visual finish enhancements.",
+      "Use paneling, workstation geometry, cabin storage and conference-room furniture to reinforce a professional identity without clutter.",
     ],
-    tags: ["Workstations", "Professional finish", "Studio planning"],
+    tags: ["Modular workstations", "Office storage", "Cabin furniture"],
   },
   "full-home": {
     title: "Full-home coordination strategy",

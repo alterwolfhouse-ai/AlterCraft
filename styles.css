@@ -3847,7 +3847,7 @@ main {
 
 .live-home-metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   background: var(--ac-ink);
   color: var(--ac-paper);
 }
@@ -3919,7 +3919,7 @@ main {
 
 .live-category-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1rem;
   margin-top: 2.2rem;
 }
@@ -3983,7 +3983,7 @@ main {
 
 .live-service-area-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   margin-top: 2.2rem;
   border-top: 1px solid var(--ac-line);
   border-bottom: 1px solid var(--ac-line);
