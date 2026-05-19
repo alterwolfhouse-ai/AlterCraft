@@ -4761,6 +4761,19 @@ main {
   max-width: 900px;
 }
 
+.article-hero--local {
+  grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.55fr);
+  align-items: stretch;
+  max-width: none;
+  gap: clamp(1.4rem, 4vw, 4rem);
+}
+
+.article-hero__copy {
+  display: grid;
+  align-content: center;
+  gap: 1.2rem;
+}
+
 .article-hero h1 {
   max-width: 12ch;
   font-size: clamp(3.2rem, 5vw, 5.6rem);
@@ -4785,6 +4798,60 @@ main {
   border: 1px solid var(--ac-line);
   color: var(--ac-ink);
   background: rgba(248, 242, 232, 0.7);
+}
+
+.local-seo-panel {
+  display: grid;
+  align-content: center;
+  gap: 1.1rem;
+  border: 1px solid var(--ac-line);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(236, 225, 209, 0.42)),
+    var(--ac-paper);
+  padding: clamp(1.3rem, 3vw, 2.2rem);
+}
+
+.local-seo-panel h2 {
+  margin: 0;
+  max-width: 13ch;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.35rem, 4vw, 4.1rem);
+  line-height: 0.95;
+  color: var(--ac-ink);
+}
+
+.local-seo-panel p {
+  margin: 0;
+  color: var(--ac-muted);
+  line-height: 1.75;
+}
+
+.local-seo-facts {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.local-seo-facts div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.45fr) 1fr;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--ac-line);
+}
+
+.local-seo-facts dt {
+  color: var(--ac-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.local-seo-facts dd {
+  margin: 0;
+  color: var(--ac-ink);
+  line-height: 1.45;
 }
 
 .article-author,
@@ -5082,6 +5149,25 @@ main {
   margin: 0.6rem 0 0;
 }
 
+.article-body details {
+  margin: 0.85rem 0;
+  border: 1px solid var(--ac-line);
+  background: rgba(248, 242, 232, 0.78);
+}
+
+.article-body summary {
+  cursor: pointer;
+  padding: 1rem;
+  color: var(--ac-ink);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.article-body details p {
+  margin: 0;
+  padding: 0 1rem 1rem;
+}
+
 .article-next {
   display: flex;
   flex-wrap: wrap;
@@ -5092,6 +5178,10 @@ main {
 @media (max-width: 1100px) {
   .blog-hero,
   .blog-channel {
+    grid-template-columns: 1fr;
+  }
+
+  .article-hero--local {
     grid-template-columns: 1fr;
   }
 
@@ -5118,6 +5208,20 @@ main {
   .blog-hero h1,
   .article-hero h1 {
     font-size: clamp(3rem, 12.5vw, 4.35rem);
+  }
+
+  .article-hero--local {
+    gap: 1rem;
+  }
+
+  .local-seo-panel h2 {
+    max-width: 14ch;
+    font-size: clamp(2.3rem, 11vw, 3.25rem);
+  }
+
+  .local-seo-facts div {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 
   .blog-hero__copy {
