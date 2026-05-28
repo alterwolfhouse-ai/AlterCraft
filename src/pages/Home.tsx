@@ -25,13 +25,14 @@ import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
 import { createWhatsappLink } from '../utils/contact';
 
-const NAV_LINKS = [
+const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
   { to: '/modular-kitchen', label: 'Kitchen' },
   { to: '/designer-beds', label: 'Beds' },
   { to: '/flush-doors', label: 'Doors' },
   { to: '/wardrobes', label: 'Wardrobes' },
   { to: '/gallery', label: 'Gallery' },
+  { to: '#blog', label: 'Blog', anchor: true },
   { to: '/warranty-quality', label: 'Warranty' },
   { to: '/contact', label: 'Contact' },
 ];
@@ -72,11 +73,17 @@ function HomeHeader() {
         </Link>
 
         <nav className="home-nav" aria-label="Main navigation">
-          {NAV_LINKS.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.to === '/'}>
-              {item.label}
-            </NavLink>
-          ))}
+          {NAV_LINKS.map((item) =>
+            item.anchor ? (
+              <a key={item.to} href={item.to}>
+                {item.label}
+              </a>
+            ) : (
+              <NavLink key={item.to} to={item.to} end={item.to === '/'}>
+                {item.label}
+              </NavLink>
+            )
+          )}
         </nav>
 
         <div className="home-header-actions">
@@ -108,11 +115,17 @@ function HomeHeader() {
 
       <div className={`home-mobile-panel ${menuOpen ? 'open' : ''}`}>
         <div className="home-container">
-          {NAV_LINKS.map((item) => (
-            <Link key={item.to} to={item.to} onClick={() => setMenuOpen(false)}>
-              {item.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((item) =>
+            item.anchor ? (
+              <a key={item.to} href={item.to} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.to} to={item.to} onClick={() => setMenuOpen(false)}>
+                {item.label}
+              </Link>
+            )
+          )}
           <a
             href={createWhatsappLink('Hi AlterCraft, I would like a furniture quote.')}
             target="_blank"
@@ -287,6 +300,63 @@ export default function Home() {
     {
       name: 'Office Interior Client',
       text: 'AlterCraft understood the office workflow first, then planned workstations, storage and cable movement very practically.',
+    },
+  ];
+
+  const blogPosts = [
+    {
+      category: 'Kitchen Cost Guide',
+      title: 'What changes modular kitchen cost in Delhi NCR?',
+      summary:
+        'Understand how layout, cabinet material, shutter finish, hardware, countertop and site work shape a practical kitchen quotation.',
+      href: '/blog/modular-kitchen-cost-delhi-ncr/',
+      image: '/images/blog/wardrobe-storage-cover.png',
+      readTime: '6 min read',
+    },
+    {
+      category: 'Wardrobe Planning',
+      title: 'Sliding vs swing wardrobe for a small bedroom',
+      summary:
+        'A clear guide to shutter clearance, access, maintenance and storage planning before ordering a custom wardrobe.',
+      href: '/blog/sliding-vs-swing-wardrobe-small-bedroom/',
+      image: '/images/blog/wardrobe-storage-cover.png',
+      readTime: '5 min read',
+    },
+    {
+      category: 'Finish Guide',
+      title: 'Laminate, acrylic or veneer: which finish should you choose?',
+      summary:
+        'Compare finishes by daily use, cleaning, durability, budget and the premium look you want for your interiors.',
+      href: '/blog/laminate-vs-acrylic-vs-veneer-finish/',
+      image: '/images/blog/wardrobe-storage-cover.png',
+      readTime: '5 min read',
+    },
+    {
+      category: 'Interior Coordination',
+      title: 'Coordinate false ceiling, wall panels and furniture before work starts',
+      summary:
+        'Plan lighting, TV units, ceiling drops, wall panels and furniture together so the room feels intentional.',
+      href: '/blog/false-ceiling-and-wall-panel-coordination/',
+      image: '/images/blog/cnc-interiors-cover.png',
+      readTime: '4 min read',
+    },
+    {
+      category: 'Measurement Guide',
+      title: 'How to measure a room for custom furniture',
+      summary:
+        'Know what wall sizes, switchboards, windows, doors and clearance details help create a more accurate first quote.',
+      href: '/blog/how-to-measure-room-for-custom-furniture/',
+      image: '/images/blog/wardrobe-storage-cover.png',
+      readTime: '4 min read',
+    },
+    {
+      category: 'CNC Panels',
+      title: 'CNC wall panels for TV units and feature walls',
+      summary:
+        'Choose pattern, depth, lighting and wiring access carefully before adding CNC wall panels to a TV wall.',
+      href: '/blog/cnc-wall-panels-for-tv-unit/',
+      image: '/images/blog/cnc-interiors-cover.png',
+      readTime: '4 min read',
     },
   ];
 
@@ -541,6 +611,51 @@ export default function Home() {
                   <p>"{item.text}"</p>
                   <strong>{item.name}</strong>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-blog-section" id="blog">
+          <div className="home-container">
+            <div className="home-split-head">
+              <div>
+                <p className="home-kicker">Design Journal</p>
+                <h2>Planning guides from the AlterCraft blog</h2>
+                <p>
+                  Existing guides are restored here for now. Once you share the document, this
+                  section can expand into the full SEO content pipeline with stronger article depth.
+                </p>
+              </div>
+              <a href="/blog/modular-kitchen-cost-delhi-ncr/" className="home-inline-link">
+                Start reading
+                <ArrowRight size={16} />
+              </a>
+            </div>
+
+            <div className="home-blog-grid">
+              {blogPosts.map((post, index) => (
+                <a
+                  key={post.href}
+                  href={post.href}
+                  className={`home-blog-card ${index === 0 ? 'featured' : ''}`}
+                >
+                  <span className="home-blog-image">
+                    <img src={post.image} alt={post.title} />
+                  </span>
+                  <span className="home-blog-body">
+                    <span className="home-blog-meta">
+                      {post.category}
+                      <span>{post.readTime}</span>
+                    </span>
+                    <strong>{post.title}</strong>
+                    <span>{post.summary}</span>
+                    <span className="home-blog-link">
+                      Read guide
+                      <ArrowRight size={15} />
+                    </span>
+                  </span>
+                </a>
               ))}
             </div>
           </div>
