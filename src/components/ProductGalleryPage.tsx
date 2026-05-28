@@ -1,7 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ElegantLayout } from './elegant/ElegantLayout';
 import { galleryCategories, galleryProducts } from '../data/productGallery';
+import { siteDetails } from '../data/siteDetails';
+import { createWhatsappLink } from '../utils/contact';
 import './product-gallery.css';
 
 type CategoryFilter = 'all' | (typeof galleryCategories)[number]['id'];
@@ -96,6 +99,7 @@ export function ProductGalleryPage() {
   };
 
   return (
+    <ElegantLayout>
     <div className="product-gallery-page">
       <div className="product-gallery-topline" />
       <main className="product-gallery-shell">
@@ -103,7 +107,7 @@ export function ProductGalleryPage() {
           <a href="/" className="product-gallery-back-link">
             Back to Home
           </a>
-          <a href="https://wa.me/918826436093" className="product-gallery-whatsapp">
+          <a href={siteDetails.whatsappHref} className="product-gallery-whatsapp">
             Enquire on WhatsApp
           </a>
         </div>
@@ -248,9 +252,7 @@ export function ProductGalleryPage() {
               </div>
 
               <a
-                href={`https://wa.me/918826436093?text=${encodeURIComponent(
-                  `Hi Alter Craft, I want details for ${activeProduct.name}.`
-                )}`}
+                href={createWhatsappLink(`Hi AlterCraft, I want details for ${activeProduct.name}.`)}
                 className="product-gallery-modal-whatsapp"
               >
                 Enquire This Product
@@ -260,5 +262,6 @@ export function ProductGalleryPage() {
         </div>
       )}
     </div>
+    </ElegantLayout>
   );
 }

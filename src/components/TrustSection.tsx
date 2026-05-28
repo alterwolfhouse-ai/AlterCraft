@@ -3,8 +3,8 @@ import { siteDetails } from '../data/siteDetails';
 
 const trustItems = [
   {
-    title: '20% Lower Market Rates',
-    description: 'Transparent pricing that stays below typical market rentals.',
+    title: 'Transparent Pricing',
+    description: 'Itemized estimates based on size, material, finish and installation scope.',
   },
   {
     title: 'Delivery and Assembly',
@@ -15,8 +15,8 @@ const trustItems = [
     description: 'Every item is inspected, cleaned, and serviced before delivery.',
   },
   {
-    title: '3-Year Warranty on Buys',
-    description: 'Full coverage on structural integrity and workmanship.',
+    title: 'Category-Based Warranty',
+    description: siteDetails.warranty,
   },
 ];
 

@@ -67,7 +67,7 @@ export default function Gallery() {
       <Header variant="minimal" />
 
       {/* Hero Section */}
-      <section className="relative border-b border-[#FFB800]/10 bg-gradient-to-b from-[#0A0A0A] to-[#1A1A1A]">
+      <section className="relative border-b border-[#B8891A]/10 bg-gradient-to-b from-[#0A0A0A] to-[#1A1A1A]">
         <div className="container mx-auto px-8 py-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,10 +75,10 @@ export default function Gallery() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-1 bg-[#FFB800]" />
+              <div className="w-12 h-1 bg-[#B8891A]" />
               <Link
                 to="/"
-                className="text-[#FFB800] uppercase tracking-[0.3em] text-xs font-bold hover:text-white transition-colors"
+                className="text-[#B8891A] uppercase tracking-[0.3em] text-xs font-bold hover:text-white transition-colors"
               >
                 Home
               </Link>
@@ -96,21 +96,21 @@ export default function Gallery() {
       </section>
 
       {/* Filters Section */}
-      <section className="sticky top-[73px] z-40 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
+      <section className="sticky top-[73px] z-40 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#B8891A]/10">
         <div className="container mx-auto px-8 py-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Category Dropdown */}
             <div className="md:col-span-3">
               <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="bg-[#1A1A1A] border-[#FFB800]/20 text-white hover:border-[#FFB800]/50 transition-colors">
+                <SelectTrigger className="bg-[#1A1A1A] border-[#B8891A]/20 text-white hover:border-[#B8891A]/50 transition-colors">
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
-                <SelectContent className="bg-[#1A1A1A] border-[#FFB800]/20 text-white">
+                <SelectContent className="bg-[#1A1A1A] border-[#B8891A]/20 text-white">
                   {categories.map((cat) => (
                     <SelectItem
                       key={cat}
                       value={cat}
-                      className="hover:bg-[#FFB800]/10 focus:bg-[#FFB800]/10"
+                      className="hover:bg-[#B8891A]/10 focus:bg-[#B8891A]/10"
                     >
                       {cat === 'all' ? 'All Categories' : cat}
                     </SelectItem>
@@ -132,8 +132,8 @@ export default function Gallery() {
                   onClick={() => setAvailabilityFilter(value as AvailabilityFilter)}
                   className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
                     availabilityFilter === value
-                      ? 'bg-[#FFB800] text-black'
-                      : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
+                      ? 'bg-[#B8891A] text-black'
+                      : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#B8891A]/20 hover:border-[#B8891A]/50'
                   }`}
                 >
                   {label}
@@ -149,14 +149,14 @@ export default function Gallery() {
                 placeholder="Search wardrobe, mandir, rent..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-[#1A1A1A] border-[#FFB800]/20 text-white placeholder:text-[#52525B] hover:border-[#FFB800]/50 focus:border-[#FFB800] transition-colors"
+                className="pl-10 bg-[#1A1A1A] border-[#B8891A]/20 text-white placeholder:text-[#52525B] hover:border-[#B8891A]/50 focus:border-[#B8891A] transition-colors"
               />
             </div>
           </div>
 
           {/* Results Count */}
           <div className="mt-4 text-sm text-[#A1A1AA]">
-            Showing <span className="text-[#FFB800] font-bold">{filteredProducts.length}</span> product
+            Showing <span className="text-[#B8891A] font-bold">{filteredProducts.length}</span> product
             {filteredProducts.length !== 1 ? 's' : ''}
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function Gallery() {
                 setAvailabilityFilter('all');
                 setSearchQuery('');
               }}
-              className="bg-[#FFB800] text-black px-8 py-3 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
+              className="bg-[#B8891A] text-black px-8 py-3 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
             >
               Reset Filters
             </button>
@@ -191,7 +191,7 @@ export default function Gallery() {
       </section>
 
       {/* Footer CTA */}
-      <section className="border-t border-[#FFB800]/10 bg-gradient-to-b from-[#0A0A0A] to-[#1A1A1A]">
+      <section className="border-t border-[#B8891A]/10 bg-gradient-to-b from-[#0A0A0A] to-[#1A1A1A]">
         <div className="container mx-auto px-8 py-16 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
             Need a Custom Size or Finish?
@@ -200,8 +200,8 @@ export default function Gallery() {
             Share room dimensions, reference photos and your budget. We can suggest practical options for modular wardrobes, storage beds, mandirs, CNC wall panels, nameplates and rental setups.
           </p>
           <a
-            href="https://wa.me/918826436093"
-            className="inline-block bg-[#FFB800] text-black px-10 py-4 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
+            href="https://wa.me/918817503658"
+            className="inline-block bg-[#B8891A] text-black px-10 py-4 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
           >
             Ask on WhatsApp
           </a>

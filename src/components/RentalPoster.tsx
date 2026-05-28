@@ -20,7 +20,7 @@ export function RentalPoster() {
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
-          <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block text-center">
+          <span className="text-[#B8891A] text-sm uppercase tracking-[0.5em] font-bold mb-4 block text-center">
             Flexible Furniture Rental
           </span>
           <h2 className="text-5xl md:text-8xl font-black text-white leading-none text-center mb-6">
@@ -39,11 +39,11 @@ export function RentalPoster() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-[#111111] border border-white/5 p-8 flex flex-col items-center text-center group hover:border-[#FFB800]/50 transition-colors rounded-none"
+              className="bg-[#2C2419] border border-white/5 p-8 flex flex-col items-center text-center group hover:border-[#B8891A]/50 transition-colors rounded-none"
             >
               <h3 className="text-white text-xl font-bold mb-2 uppercase tracking-widest">{tier.title}</h3>
               <div className="flex items-baseline gap-1 mb-4">
-                <span className="text-[#FFB800] text-sm font-bold">Rs</span>
+                <span className="text-[#B8891A] text-sm font-bold">Rs</span>
                 <span className="text-4xl font-black text-white">{tier.price}</span>
                 <span className="text-[#52525B] text-xs">/month</span>
               </div>
@@ -51,8 +51,8 @@ export function RentalPoster() {
                 {tier.desc}
               </p>
               <a
-                href="https://wa.me/918826436093"
-                className="mt-auto flex items-center gap-2 text-[#FFB800] text-xs uppercase tracking-widest font-black border-b border-[#FFB800] pb-1 hover:gap-4 transition-all"
+                href="https://wa.me/918817503658"
+                className="mt-auto flex items-center gap-2 text-[#B8891A] text-xs uppercase tracking-widest font-black border-b border-[#B8891A] pb-1 hover:gap-4 transition-all"
               >
                 ENQUIRE NOW <MessageSquare size={14} />
               </a>

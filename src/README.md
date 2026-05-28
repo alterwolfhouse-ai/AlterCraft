@@ -104,7 +104,7 @@ Edit `/data/products.ts` and add a new product object following the existing pat
   },
   deliveryDays: 7,
   materials: 'Material description',
-  dimensions: 'L × W × H',
+  dimensions: 'L x W x H',
   images: [
     'image-url-1',
     'image-url-2',
@@ -124,7 +124,7 @@ Edit `/data/products.ts` and add a new product object following the existing pat
 The site uses a consistent color palette defined in Tailwind classes:
 
 - **Background**: `#0A0A0A` (deep black)
-- **Gold Accent**: `#FFB800`
+- **Gold Accent**: `#B8891A`
 - **Text Gray**: `#A1A1AA`, `#52525B`
 
 ### Typography
@@ -141,7 +141,7 @@ The site includes WhatsApp CTAs with pre-filled messages. Update the phone numbe
 - `/pages/ProductDetail.tsx`
 - `/pages/Home.tsx`
 
-Replace `918826436093` with your WhatsApp business number.
+Replace `918817503658` with your WhatsApp business number.
 
 ## Deployment Notes
 
@@ -168,10 +168,10 @@ npm run build
 
 ## License
 
-© 2026 AlterCraft Woods & Furniture. All rights reserved.
+(c) 2026 AlterCraft Woods & Furniture. All rights reserved.
 
 ## Contact
 
 For support or questions:
-- WhatsApp: +91 8826436093
+- WhatsApp: +91 8817503658
 - Website: [Your website URL]

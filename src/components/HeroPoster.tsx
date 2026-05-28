@@ -15,12 +15,12 @@ export function HeroPoster() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-[#0A0A0A] flex flex-col overflow-hidden selection:bg-[#FFB800] selection:text-black">
+    <section className="relative min-h-screen bg-[#0A0A0A] flex flex-col overflow-hidden selection:bg-[#B8891A] selection:text-black">
       {/* Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
       {/* Top Banner Asset Visual */}
-      <div className="w-full h-1 bg-[#FFB800]" />
+      <div className="w-full h-1 bg-[#B8891A]" />
 
       <div className="flex-1 flex flex-col md:flex-row px-8 md:px-16 pt-24 pb-16">
         {/* Left: Brand Identity */}
@@ -31,8 +31,8 @@ export function HeroPoster() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-1 bg-[#FFB800]" />
-              <span className="text-[#FFB800] uppercase tracking-[0.4em] text-xs font-bold">
+              <div className="w-12 h-1 bg-[#B8891A]" />
+              <span className="text-[#B8891A] uppercase tracking-[0.4em] text-xs font-bold">
                 Ghaziabad Furniture Studio
               </span>
             </div>
@@ -53,14 +53,14 @@ export function HeroPoster() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/918826436093"
-                className="inline-flex items-center justify-center bg-[#FFB800] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
+                href="https://wa.me/918817503658"
+                className="inline-flex items-center justify-center bg-[#B8891A] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
               >
                 Get Furniture Estimate
               </a>
               <Link
                 to="/gallery"
-                className="inline-flex items-center justify-center bg-transparent border-2 border-[#FFB800] text-[#FFB800] px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-[#FFB800] hover:text-black transition-all"
+                className="inline-flex items-center justify-center bg-transparent border-2 border-[#B8891A] text-[#B8891A] px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-[#B8891A] hover:text-black transition-all"
               >
                 View Designs & Prices
               </Link>
@@ -76,12 +76,12 @@ export function HeroPoster() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-right"
           >
-            <h2 className="text-[#FFB800] text-sm uppercase tracking-[0.3em] font-bold mb-8 border-b border-[#FFB800]/20 pb-2">
+            <h2 className="text-[#B8891A] text-sm uppercase tracking-[0.3em] font-bold mb-8 border-b border-[#B8891A]/20 pb-2">
               What We Build
             </h2>
             <ul className="space-y-4 mb-16">
               {services.map((service) => (
-                <li key={service} className="text-white text-xl md:text-3xl font-medium tracking-tight hover:text-[#FFB800] transition-colors cursor-default">
+                <li key={service} className="text-white text-xl md:text-3xl font-medium tracking-tight hover:text-[#B8891A] transition-colors cursor-default">
                   {service}
                 </li>
               ))}
@@ -90,10 +90,10 @@ export function HeroPoster() {
             <div className="flex flex-col items-end gap-2">
               <span className="text-[#52525B] text-xs uppercase tracking-widest font-bold">Call / WhatsApp</span>
               <a
-                href="https://wa.me/918826436093"
-                className="text-3xl md:text-5xl font-black text-[#FFB800] hover:scale-105 transition-transform"
+                href="https://wa.me/918817503658"
+                className="text-3xl md:text-5xl font-black text-[#B8891A] hover:scale-105 transition-transform"
               >
-                8826436093
+                8817503658
               </a>
             </div>
           </motion.div>

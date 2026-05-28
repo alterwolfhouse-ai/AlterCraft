@@ -67,7 +67,7 @@ Edit `/data/products.ts` and add new product objects:
   rent: { monthly: 3000, deposit: 12000 },
   deliveryDays: 7,
   materials: 'Material info',
-  dimensions: 'L × W × H',
+  dimensions: 'L x W x H',
   images: ['url1', 'url2', 'url3'],
   features: ['Feature 1', 'Feature 2'],
   availability: ['rent', 'buy'], // or just ['buy'] or ['rent']
@@ -93,7 +93,7 @@ images: [
 
 ### Change WhatsApp Number
 
-Find and replace `918826436093` with your number in:
+Find and replace `918817503658` with your number in:
 - `/components/HeroPoster.tsx`
 - `/pages/Gallery.tsx`
 - `/pages/ProductDetail.tsx`

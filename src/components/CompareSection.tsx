@@ -14,7 +14,7 @@ const comparison = [
     title: 'Buy',
     points: [
       'One-time payment and long-term ownership',
-      '3-year warranty on workmanship',
+      'Warranty support across eligible products and workmanship',
       'Best for permanent homes and custom builds',
       'Upgrade options with trade-in credit',
     ],

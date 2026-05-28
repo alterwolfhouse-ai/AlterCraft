@@ -3,6 +3,7 @@ import { ImageWithFallback } from './figma/ImageWithFallback';
 import { catalogCategories, catalogProducts, rentalTerms } from '../data/catalog';
 import { siteDetails } from '../data/siteDetails';
 import { applyDiscount, formatInr } from '../utils/pricing';
+import { createWhatsappLink } from '../utils/contact';
 import { trackEvent } from '../utils/analytics';
 
 export function CatalogSection() {
@@ -28,10 +29,10 @@ export function CatalogSection() {
           <div className="inline-block px-3 py-1 border border-[#6B5D4F]/30 rounded-full mb-4">
             <span className="text-xs tracking-widest text-[#6B5D4F]">RENT OR BUY CATALOG</span>
           </div>
-          <h2 className="text-[#2C2419] mb-4">Full Rental Catalog with 20% Lower Rates</h2>
+          <h2 className="text-[#2C2419] mb-4">Full Furniture Catalog with Current Pricing</h2>
           <p className="text-[#5A4D3F] text-lg max-w-2xl mx-auto">
-            Browse furniture and appliances with transparent pricing. Rent or buy with delivery and
-            assembly within {siteDetails.serviceRadius}.
+            Browse furniture and appliances with transparent product data. Rent or buy with
+            delivery and assembly within {siteDetails.serviceRadius}.
           </p>
         </div>
 
@@ -84,14 +85,12 @@ export function CatalogSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProducts.map((product) => {
-            const ourRent = applyDiscount(product.marketRent, 0.2);
-            const ourBuy = applyDiscount(product.marketBuy, 0.2);
+            const ourRent = product.marketRent;
+            const ourBuy = product.marketBuy;
             const deposit = ourRent * product.depositMonths;
             const isExpanded = expandedId === product.id;
             const whatsappMessage = `Hi AlterCraft, I want ${product.name}. Please share rental and buy details.`;
-            const whatsappLink = `https://wa.me/916206108923?text=${encodeURIComponent(
-              whatsappMessage
-            )}`;
+            const whatsappLink = createWhatsappLink(whatsappMessage);
 
             return (
               <div
@@ -106,7 +105,7 @@ export function CatalogSection() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute top-4 right-4 bg-[#6B5D4F] text-[#FAF7F2] px-3 py-1 rounded-full text-xs tracking-wide">
-                    20% LOWER
+                    CURRENT DATA
                   </div>
                 </div>
                 <div className="p-6 flex flex-col h-full">
@@ -117,17 +116,13 @@ export function CatalogSection() {
                   <div className="bg-white p-4 rounded-sm border border-[#E5DDD1] mb-4">
                     <div className="text-xs text-[#6B5D4F] mb-1">Rental price (per month)</div>
                     <div className="text-[#2C2419] text-lg">{formatInr(ourRent)}</div>
-                    <div className="text-xs text-[#9A8A77]">
-                      Market price {formatInr(product.marketRent)}
-                    </div>
+                    <div className="text-xs text-[#9A8A77]">Current catalog rental price</div>
                   </div>
 
                   <div className="bg-white p-4 rounded-sm border border-[#E5DDD1] mb-4">
                     <div className="text-xs text-[#6B5D4F] mb-1">Buy price (one-time)</div>
                     <div className="text-[#2C2419] text-lg">{formatInr(ourBuy)}</div>
-                    <div className="text-xs text-[#9A8A77]">
-                      Market price {formatInr(product.marketBuy)}
-                    </div>
+                    <div className="text-xs text-[#9A8A77]">Current catalog buy price</div>
                   </div>
 
                   <div className="text-sm text-[#5A4D3F] mb-4">

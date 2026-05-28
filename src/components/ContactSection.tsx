@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { siteDetails } from '../data/siteDetails';
 import { catalogCategories, rentalTerms } from '../data/catalog';
+import { createWhatsappLink } from '../utils/contact';
 import { trackEvent } from '../utils/analytics';
 
 export function ContactSection() {
@@ -19,9 +20,22 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send data to a backend
     trackEvent('contact_form_submit', { location: 'contact_section' });
-    alert('Thank you for your inquiry. We will contact you within 24 hours.');
+    const message = [
+      'Hi AlterCraft, I want a quote.',
+      `Name: ${formData.name}`,
+      `Phone: ${formData.phone}`,
+      formData.email ? `Email: ${formData.email}` : '',
+      formData.serviceType ? `Service type: ${formData.serviceType}` : '',
+      formData.category ? `Category: ${formData.category}` : '',
+      formData.preferredItem ? `Preferred item: ${formData.preferredItem}` : '',
+      formData.projectType ? `Project type: ${formData.projectType}` : '',
+      formData.rentalTerm ? `Rental term: ${formData.rentalTerm}` : '',
+      `Details: ${formData.message}`,
+    ]
+      .filter(Boolean)
+      .join('\n');
+    window.open(createWhatsappLink(message), '_blank', 'noopener,noreferrer');
     setFormData({
       name: '',
       email: '',
@@ -126,7 +140,8 @@ export function ContactSection() {
                   <option value="">Select a service type</option>
                   <option value="rent">Rent Furniture</option>
                   <option value="buy">Buy Furniture</option>
-                  <option value="trade-in">Trade-In Program</option>
+                  <option value="trade-in">Trade-In / Upgrade</option>
+                  <option value="interiors">Interior / Fitout</option>
                 </select>
               </div>
 
@@ -200,8 +215,11 @@ export function ContactSection() {
                   className="w-full px-4 py-3 bg-white border border-[#E5DDD1] rounded-sm focus:outline-none focus:border-[#6B5D4F] transition-colors"
                 >
                   <option value="">Select a project type</option>
-                  <option value="wardrobe">Custom Wardrobe</option>
-                  <option value="kitchen">Kitchen Cabinetry</option>
+                  <option value="wardrobe">Wardrobes / Storage</option>
+                  <option value="kitchen">Modular Kitchen</option>
+                  <option value="beds">Designer Beds</option>
+                  <option value="doors">Flush Doors</option>
+                  <option value="office">Office & Commercial Interiors</option>
                   <option value="storage">Storage Solutions</option>
                   <option value="full-home">Full Home Furniture</option>
                   <option value="materials">Material Inquiry</option>
@@ -230,7 +248,7 @@ export function ContactSection() {
                 className="w-full px-8 py-4 bg-[#6B5D4F] text-[#FAF7F2] tracking-wide transition-all hover:bg-[#5A4D3F] hover:shadow-lg flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
-                Send Inquiry
+                Send on WhatsApp
               </button>
             </form>
           </div>
@@ -268,7 +286,7 @@ export function ContactSection() {
                       onClick={() => trackEvent('phone_click', { location: 'contact_card' })}
                       className="text-[#2C2419] hover:text-[#6B5D4F] transition-colors"
                     >
-                      {siteDetails.phone}
+                      {siteDetails.phoneDisplay}
                     </a>
                   </div>
                 </div>

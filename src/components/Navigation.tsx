@@ -14,14 +14,13 @@ export function Navigation() {
   }, []);
 
   const navItems = [
-    { label: 'Catalog', href: '#catalog' },
-    { label: 'Rent', href: '#rent' },
-    { label: 'Buy', href: '#buy' },
-    { label: 'Trade-In', href: '#trade-in' },
-    { label: 'Service Areas', href: '#service-areas' },
-    { label: 'About Us', href: '#about-us' },
-    { label: 'Policies', href: '#policies' },
-    { label: 'FAQ', href: '#faq' },
+    { label: 'Kitchen', href: '/modular-kitchen' },
+    { label: 'Beds', href: '/designer-beds' },
+    { label: 'Doors', href: '/flush-doors' },
+    { label: 'Wardrobes', href: '/wardrobes' },
+    { label: 'Office', href: '/office-commercial' },
+    { label: 'Gallery', href: '/gallery' },
+    { label: 'Warranty', href: '/warranty-quality' },
     { label: 'Contact', href: '#contact' },
   ];
 
@@ -45,7 +44,7 @@ export function Navigation() {
               onClick={() => trackEvent('phone_click', { location: 'nav_top' })}
               className="transition-colors hover:text-[#FAF7F2]"
             >
-              Phone: {siteDetails.phone}
+              Phone: {siteDetails.phoneDisplay}
             </a>
             <a
               href={siteDetails.whatsappHref}
@@ -54,7 +53,7 @@ export function Navigation() {
               onClick={() => trackEvent('whatsapp_click', { location: 'nav_top' })}
               className="transition-colors hover:text-[#FAF7F2]"
             >
-              WhatsApp: {siteDetails.phone}
+              WhatsApp: {siteDetails.phoneDisplay}
             </a>
           </div>
         </div>
@@ -72,13 +71,7 @@ export function Navigation() {
               aria-label="AlterCraft"
               className="transition-opacity hover:opacity-80"
             >
-              <img
-                src="/altercraft-logo.png"
-                alt="AlterCraft logo"
-                className="nav-logo"
-                loading="eager"
-                decoding="async"
-              />
+              <span className="nav-logo-mark">AC</span>
             </a>
 
             <div className="hidden md:flex items-center gap-8">

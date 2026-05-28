@@ -39,7 +39,7 @@ export const products: Product[] = [
     },
     deliveryDays: 7,
     materials: 'Engineered Wood with Walnut Veneer',
-    dimensions: '210cm × 200cm × 120cm (L × W × H)',
+    dimensions: '210cm x 200cm x 120cm (L x W x H)',
     images: [
       'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800',
       'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=800',
@@ -72,7 +72,7 @@ export const products: Product[] = [
     },
     deliveryDays: 10,
     materials: 'Engineered Wood with Melamine Finish',
-    dimensions: '190cm × 150cm × 110cm (L × W × H)',
+    dimensions: '190cm x 150cm x 110cm (L x W x H)',
     images: [
       'https://images.unsplash.com/photo-1578898886655-c70a4aa75f5d?w=800',
       'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800',
@@ -103,7 +103,7 @@ export const products: Product[] = [
     },
     deliveryDays: 14,
     materials: 'Engineered Wood + Bagasse Board Interior',
-    dimensions: '240cm × 60cm × 210cm (H × D × W)',
+    dimensions: '240cm x 60cm x 210cm (H x D x W)',
     images: [
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
       'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800',
@@ -136,7 +136,7 @@ export const products: Product[] = [
     },
     deliveryDays: 7,
     materials: 'Engineered Wood with Laminate Finish',
-    dimensions: '180cm × 50cm × 150cm (H × D × W)',
+    dimensions: '180cm x 50cm x 150cm (H x D x W)',
     images: [
       'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800',
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800',
@@ -166,7 +166,7 @@ export const products: Product[] = [
     },
     deliveryDays: 5,
     materials: 'Engineered Wood with Matt Finish',
-    dimensions: '120cm × 60cm × 75cm (L × W × H)',
+    dimensions: '120cm x 60cm x 75cm (L x W x H)',
     images: [
       'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800',
       'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800',
@@ -198,7 +198,7 @@ export const products: Product[] = [
     },
     deliveryDays: 3,
     materials: 'Engineered Wood with PU Polish',
-    dimensions: '100cm × 50cm × 10cm (folded)',
+    dimensions: '100cm x 50cm x 10cm (folded)',
     images: [
       'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=800',
       'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=800',
@@ -228,7 +228,7 @@ export const products: Product[] = [
     },
     deliveryDays: 21,
     materials: 'Premium Teak Wood with Natural Polish',
-    dimensions: '90cm × 45cm × 150cm (W × D × H)',
+    dimensions: '90cm x 45cm x 150cm (W x D x H)',
     images: [
       'https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?w=800',
       'https://images.unsplash.com/photo-1609743522653-52354461eb27?w=800',
@@ -260,7 +260,7 @@ export const products: Product[] = [
     },
     deliveryDays: 10,
     materials: 'Engineered Wood with Veneer Finish',
-    dimensions: '75cm × 35cm × 100cm (W × D × H)',
+    dimensions: '75cm x 35cm x 100cm (W x D x H)',
     images: [
       'https://images.unsplash.com/photo-1609743522653-52354461eb27?w=800',
       'https://images.unsplash.com/photo-1582719188393-bb71ca45dbb9?w=800',
@@ -290,7 +290,7 @@ export const products: Product[] = [
     },
     deliveryDays: 7,
     materials: 'MDF with Lacquer Finish',
-    dimensions: '60cm × 60cm × 2cm each (6 panels)',
+    dimensions: '60cm x 60cm x 2cm each (6 panels)',
     images: [
       'https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?w=800',
       'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800',
@@ -322,7 +322,7 @@ export const products: Product[] = [
     },
     deliveryDays: 5,
     materials: 'Plywood with UV Print + CNC Cut',
-    dimensions: '120cm × 90cm × 1.5cm',
+    dimensions: '120cm x 90cm x 1.5cm',
     images: [
       'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800',
       'https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?w=800',
@@ -352,7 +352,7 @@ export const products: Product[] = [
     },
     deliveryDays: 3,
     materials: 'Acrylic with LED Strip',
-    dimensions: '45cm × 30cm × 1.5cm (customizable)',
+    dimensions: '45cm x 30cm x 1.5cm (customizable)',
     images: [
       'https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=800',
       'https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800',

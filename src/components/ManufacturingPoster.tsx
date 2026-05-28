@@ -5,7 +5,7 @@ import craftImg from 'figma:asset/b675cbd1b84f7d4bb2ab7cf1bd053fa443e61370.png';
 
 export function ManufacturingPoster() {
   return (
-    <section className="relative min-h-screen bg-[#111111] grid grid-cols-1 md:grid-cols-2 border-y border-white/5">
+    <section className="relative min-h-screen bg-[#2C2419] grid grid-cols-1 md:grid-cols-2 border-y border-white/5">
       {/* Left: Content */}
       <div className="flex flex-col justify-center px-8 md:px-24 py-20 order-2 md:order-1">
         <motion.div
@@ -14,21 +14,21 @@ export function ManufacturingPoster() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Custom Furniture Manufacturing</span>
+          <span className="text-[#B8891A] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Custom Furniture Manufacturing</span>
           <h2 className="text-5xl md:text-8xl font-black text-white leading-none mb-10">
             MADE-TO-MEASURE<br />INTERIORS
           </h2>
           
           <div className="space-y-8 max-w-lg">
             <div>
-              <h3 className="text-[#FFB800] font-bold mb-2">SITE MEASUREMENT FIRST</h3>
+              <h3 className="text-[#B8891A] font-bold mb-2">SITE MEASUREMENT FIRST</h3>
               <p className="text-[#D4D4D8] text-lg leading-relaxed">
                 Wardrobes, beds, study tables and storage units are planned around wall dimensions, socket positions, door clearance and daily use.
               </p>
             </div>
             
             <div>
-              <h3 className="text-[#FFB800] font-bold mb-2">CNC FABRICATION</h3>
+              <h3 className="text-[#B8891A] font-bold mb-2">CNC FABRICATION</h3>
               <p className="text-[#D4D4D8] text-lg leading-relaxed">
                 CNC cutting helps us create accurate panels, carved mandirs, LED nameplates, partitions and repeatable furniture parts with cleaner edges.
               </p>
@@ -50,8 +50,8 @@ export function ManufacturingPoster() {
           alt="Master Craftsmanship"
           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-transparent to-transparent hidden md:block" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent md:hidden" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2C2419] via-transparent to-transparent hidden md:block" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2C2419] via-transparent to-transparent md:hidden" />
       </div>
     </section>
   );

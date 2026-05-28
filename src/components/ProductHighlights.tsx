@@ -1,48 +1,50 @@
 import React from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { siteDetails } from '../data/siteDetails';
+import { catalogProducts } from '../data/catalog';
+import { products } from '../data/products';
+import { formatInr } from '../utils/pricing';
+import { createWhatsappLink } from '../utils/contact';
 import { trackEvent } from '../utils/analytics';
 
-const products = [
+const productById = (id: string) => products.find((product) => product.id === id);
+const catalogById = (id: string) => catalogProducts.find((product) => product.id === id);
+
+const cards = [
   {
-    name: 'Wall-mounted Almirah',
-    lineOne: 'Custom-sized storage with clean lines.',
-    lineTwo: 'Wall-anchored for stability and space.',
-    price: 'Starting from \u20B9____',
-    image:
-      'https://images.unsplash.com/photo-1766245456954-4822cabf63ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3YXJkcm9iZSUyMGludGVyaW9yfGVufDF8fHx8MTc2NzA5MzU4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: 'Compact Swing Wardrobe',
+    lineOne: 'Measured storage for compact bedrooms and apartments.',
+    lineTwo: 'Swing doors, internal shelves and practical daily storage.',
+    price: productById('wardrobe-02')?.prices.offer,
+    image: productById('wardrobe-02')?.images[0],
   },
   {
-    name: 'TV Unit',
-    lineOne: 'Modular layout for screens and storage.',
-    lineTwo: 'Cable management with durable finishes.',
-    price: 'Starting from \u20B9____',
-    image:
-      'https://images.unsplash.com/photo-1766802981843-9da98dd1a414?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b20lMjBmdXJuaXR1cmUlMjBjcmFmdHNtYW5zaGlwfGVufDF8fHx8MTc2NzAyNzA0Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: 'Modern Storage Bed',
+    lineOne: 'A clean bed design with hydraulic storage.',
+    lineTwo: 'Suitable for bedding, luggage and seasonal items.',
+    price: productById('bed-02')?.prices.offer,
+    image: productById('bed-02')?.images[0],
   },
   {
-    name: 'Study Table',
-    lineOne: 'Built to fit your work corner.',
-    lineTwo: 'Smart storage for daily essentials.',
-    price: 'Starting from \u20B9____',
-    image:
-      'https://images.unsplash.com/photo-1611600700192-d87eaeed4f81?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b29kJTIwZ3JhaW4lMjB0ZXh0dXJlfGVufDF8fHx8MTc2NzA5MzU4Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: 'Study Table with Storage',
+    lineOne: 'Work-from-home desk with cable and drawer planning.',
+    lineTwo: 'Built for study corners, bedrooms and home offices.',
+    price: productById('study-01')?.prices.offer,
+    image: productById('study-01')?.images[0],
   },
   {
-    name: 'Shoe Rack',
-    lineOne: 'Compact storage for daily shoes.',
-    lineTwo: 'Ventilated shelves and easy access.',
-    price: 'Starting from \u20B9____',
-    image:
-      'https://images.unsplash.com/photo-1758432998179-018d76b185e0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmdXJuaXR1cmUlMjBkZWxpdmVyeSUyMHNlcnZpY2V8ZW58MXx8fHwxNzY3MDk0Mzk0fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: 'Kitchen Wall Unit',
+    lineOne: 'Modular wall storage for Indian kitchens.',
+    lineTwo: 'Current kitchen catalog pricing, refined after measurement.',
+    price: catalogById('kitchen-wall-unit')?.marketBuy,
+    image: catalogById('kitchen-wall-unit')?.image,
   },
   {
-    name: 'Kitchen Base Unit',
-    lineOne: 'Modular base cabinets for daily use.',
-    lineTwo: 'Moisture-resistant materials available.',
-    price: 'Starting from \u20B9____',
-    image:
-      'https://images.unsplash.com/photo-1598698628529-78863e5d4b2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraXRjaGVuJTIwY2FiaW5ldHMlMjB3b29kfGVufDF8fHx8MTc2NzA5MzU4M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    name: 'Custom LED Nameplate',
+    lineOne: 'Acrylic LED nameplates for homes and offices.',
+    lineTwo: 'Weather-aware design with clean typography.',
+    price: productById('nameplate-01')?.prices.offer,
+    image: productById('nameplate-01')?.images[0],
   },
 ];
 
@@ -52,23 +54,24 @@ export function ProductHighlights() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <div className="inline-block px-3 py-1 border border-[#6B5D4F]/30 rounded-full mb-4">
-            <span className="text-xs tracking-widest text-[#6B5D4F]">STARTER PRICING</span>
+            <span className="text-xs tracking-widest text-[#6B5D4F]">POPULAR UNITS</span>
           </div>
           <h2 className="text-[#2C2419] mb-4">Popular Modular Units</h2>
           <p className="text-[#5A4D3F] text-lg max-w-2xl mx-auto">
-            Choose a starting point and get a WhatsApp quote in minutes.
+            Pricing is displayed from the current product and catalog data. Final quotes depend on
+            measurements, material grade, finish and site scope.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
+          {cards.map((product) => (
             <div
               key={product.name}
               className="bg-white rounded-sm overflow-hidden shadow-md border border-[#E5DDD1] flex flex-col"
             >
               <div className="relative h-64 overflow-hidden">
                 <ImageWithFallback
-                  src={product.image}
+                  src={product.image ?? 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=900&q=80'}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -77,9 +80,11 @@ export function ProductHighlights() {
                 <h3 className="text-xl mb-3 text-[#2C2419]">{product.name}</h3>
                 <p className="text-sm text-[#5A4D3F] leading-relaxed">{product.lineOne}</p>
                 <p className="text-sm text-[#5A4D3F] leading-relaxed mb-4">{product.lineTwo}</p>
-                <div className="text-[#2C2419] mb-5">{product.price}</div>
+                <div className="text-[#2C2419] mb-5">
+                  {product.price ? `From ${formatInr(product.price)}` : 'Quote after measurement'}
+                </div>
                 <a
-                  href={siteDetails.whatsappHref}
+                  href={createWhatsappLink(`Hi AlterCraft, I want a quote for ${product.name}.`)}
                   target="_blank"
                   rel="noreferrer"
                   onClick={() =>
@@ -96,6 +101,10 @@ export function ProductHighlights() {
             </div>
           ))}
         </div>
+
+        <p className="text-center text-[#6B5D4F] text-sm mt-8">
+          Contact {siteDetails.phoneDisplay} for measured estimates and availability.
+        </p>
       </div>
     </section>
   );

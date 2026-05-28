@@ -115,7 +115,7 @@
 ### Color Palette
 ```css
 --background: #0A0A0A      /* Deep black */
---gold: #FFB800            /* Gold accent */
+--gold: #B8891A            /* Gold accent */
 --gray-light: #A1A1AA      /* Text gray */
 --gray-dark: #52525B       /* Muted gray */
 --charcoal: #1A1A1A        /* Card backgrounds */
@@ -198,7 +198,7 @@ App.tsx
       │   │   ├─ Availability Chips
       │   │   └─ Search Bar (Input)
       │   ├─ Products Grid
-      │   │   └─ ProductCard (×12)
+      │   │   └─ ProductCard (x12)
       │   └─ Footer CTA
       │
       └─ ProductDetail (/product/:id)
@@ -215,7 +215,7 @@ App.tsx
           │       ├─ Specifications
           │       └─ Features
           └─ Similar Products Section
-              └─ ProductCard (×3)
+              └─ ProductCard (x3)
 ```
 
 ## 🔧 State Management

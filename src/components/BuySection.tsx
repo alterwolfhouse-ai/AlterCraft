@@ -4,21 +4,21 @@ import { Award, ShieldCheck, RefreshCw, Hammer } from 'lucide-react';
 import { siteDetails } from '../data/siteDetails';
 
 export function BuySection() {
-  const guaranteeFeatures = [
+  const warrantyFeatures = [
     {
       icon: ShieldCheck,
-      title: "3-Year Full Guarantee",
-      description: "Complete coverage for structural integrity, material defects, and workmanship issues."
+      title: "Category-Based Warranty",
+      description: "Warranty support across eligible products, hardware, workmanship and installation."
     },
     {
       icon: RefreshCw,
-      title: "Free Repairs & Replacements",
-      description: "If anything fails within 3 years due to manufacturing defects, we repair or replace it - no questions asked."
+      title: "Repairs & Replacements",
+      description: "Confirmed warranty issues are handled through repair, adjustment or replacement as applicable."
     },
     {
       icon: Hammer,
       title: "Lifetime Support",
-      description: "Even after the guarantee period, we provide repair services and replacement parts at cost."
+      description: "Even after documented warranty coverage ends, repair services and replacement parts can be arranged where available."
     },
     {
       icon: Award,
@@ -36,7 +36,7 @@ export function BuySection() {
             <span className="text-xs tracking-widest text-[#6B5D4F]">FURNITURE SALES</span>
           </div>
           <h2 className="text-[#2C2419] mb-6">
-            Buy with Confidence. Guaranteed for 3 Years.
+            Buy with Confidence and Clear Warranty Support.
           </h2>
           <p className="text-[#5A4D3F] text-lg leading-relaxed">
             When you purchase from AlterCraft, you're not just buying furniture - you're
@@ -44,34 +44,33 @@ export function BuySection() {
           </p>
         </div>
 
-        {/* Main Guarantee Highlight */}
+        {/* Main warranty highlight */}
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
           <div>
             <div className="inline-flex items-center gap-3 bg-[#6B5D4F] text-[#FAF7F2] px-6 py-3 rounded-full mb-8">
               <Award className="w-6 h-6" />
-              <span className="tracking-wide">3-YEAR GUARANTEE</span>
+              <span className="tracking-wide">WARRANTY SUPPORT</span>
             </div>
             
             <h3 className="text-3xl mb-6 text-[#2C2419]">
-              Built to Last, Guaranteed to Perform
+              Built to Last, Supported After Installation
             </h3>
             
             <p className="text-[#5A4D3F] mb-6 leading-relaxed">
-              We stand behind every piece of furniture we build and sell. Our 3-year 
-              guarantee isn't marketing - it's a reflection of our material knowledge 
-              and construction standards.
+              We stand behind the furniture, kitchens, doors and interiors we build. Warranty
+              support is documented by category so the coverage is clear before work begins.
             </p>
             
             <p className="text-[#6B5D4F] leading-relaxed mb-8">
-              We've tested these materials under real stress. We've watched them perform 
-              in Indian climates. We know what lasts, and that's what we guarantee.
+              Materials are recommended according to room use, moisture exposure, hardware load
+              and installation conditions, so the result is practical as well as elegant.
             </p>
 
             <div className="bg-white p-6 rounded-sm border-l-4 border-[#6B5D4F]">
               <p className="text-[#2C2419] italic">
-                "If your furniture fails within 3 years due to material or construction 
-                defects, we repair or replace it completely free of charge. No fine print, 
-                no hassle."
+                "Warranty support is available across eligible products, services, hardware,
+                workmanship and installation, based on the selected specification and documented
+                scope."
               </p>
             </div>
           </div>
@@ -79,19 +78,19 @@ export function BuySection() {
           <div className="relative h-[550px] rounded-sm overflow-hidden shadow-2xl">
             <ImageWithFallback 
               src="https://images.unsplash.com/photo-1705028877368-43d73100c1fd?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxxdWFsaXR5JTIwZnVybml0dXJlJTIwZ3VhcmFudGVlfGVufDF8fHx8MTc2NzA5NDM5NHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-              alt="Quality furniture guarantee"
+              alt="Quality furniture warranty support"
               className="w-full h-full object-cover"
             />
           </div>
         </div>
 
-        {/* Guarantee Features Grid */}
+        {/* Warranty features grid */}
         <div className="mb-20">
           <h3 className="text-2xl text-center mb-12 text-[#2C2419]">
-            What Our 3-Year Guarantee Covers
+            What Warranty Support Can Cover
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {guaranteeFeatures.map((feature, index) => {
+            {warrantyFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
                 <div 
@@ -145,7 +144,7 @@ export function BuySection() {
 
           <div className="bg-[#2C2419] p-8 rounded-sm text-[#D4C5B0]">
             <h4 className="text-lg mb-4 text-[#FAF7F2]">
-              Beyond Guarantee
+              Beyond Warranty
             </h4>
             <ul className="space-y-2 text-sm">
               <li>-  Lifetime repair services</li>

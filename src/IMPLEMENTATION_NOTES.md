@@ -165,7 +165,7 @@ WhatsApp
 
 ### Color Consistency
 - Background: `#0A0A0A` (deep black)
-- Gold: `#FFB800` (brand accent)
+- Gold: `#B8891A` (brand accent)
 - All components use this exact palette
 
 ### Typography

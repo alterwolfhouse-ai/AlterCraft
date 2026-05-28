@@ -24,12 +24,12 @@ export function LandingHero() {
         </div>
         
         <h1 className="mb-8 text-[#FAF7F2] leading-tight max-w-4xl mx-auto">
-          AlterCraft Furniture: Custom Wall Almirah and Modular Units
+          AlterCraft Woods & Furniture for Premium Modular Interiors
         </h1>
         
         <p className="text-2xl text-[#D4C5B0] max-w-3xl mx-auto mb-12 leading-relaxed">
-          {siteDetails.pricingPromise} for Ghaziabad and NCR. Doorstep delivery and on-site assembly
-          within {siteDetails.serviceRadius}.
+          Modular kitchens, wardrobes, designer beds, flush doors and office interiors with
+          {` ${siteDetails.pricingPromise.toLowerCase()}`} across Ghaziabad and Delhi NCR.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -53,16 +53,16 @@ export function LandingHero() {
 
         <div className="mt-20 grid grid-cols-3 gap-12 max-w-3xl mx-auto pt-12 border-t border-[#D4C5B0]/20">
           <div>
-            <div className="text-4xl mb-2 text-[#D4C5B0]">3+</div>
-            <div className="text-sm text-[#9A8A77]">Year Guarantee</div>
+            <div className="text-4xl mb-2 text-[#D4C5B0]">All</div>
+            <div className="text-sm text-[#9A8A77]">Eligible Categories</div>
           </div>
           <div>
-            <div className="text-4xl mb-2 text-[#D4C5B0]">24/7</div>
-            <div className="text-sm text-[#9A8A77]">Rental Support</div>
+            <div className="text-4xl mb-2 text-[#D4C5B0]">150</div>
+            <div className="text-sm text-[#9A8A77]">km Service Radius</div>
           </div>
           <div>
             <div className="text-4xl mb-2 text-[#D4C5B0]">100%</div>
-            <div className="text-sm text-[#9A8A77]">Quality Promise</div>
+            <div className="text-sm text-[#9A8A77]">Measured Planning</div>
           </div>
         </div>
       </div>

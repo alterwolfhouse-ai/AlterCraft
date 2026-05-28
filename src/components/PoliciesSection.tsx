@@ -8,7 +8,7 @@ const policies = [
       'Rental tenure follows standard 3, 6, 12, or 24 month plans.',
       'Security deposits are refundable after inspection at return.',
       'Damage beyond normal wear may incur charges.',
-      'Payments accepted via UPI, cards, bank transfer, cash, or crypto on request.',
+      'Payments accepted via UPI, cards, bank transfer, or cash as per invoice terms.',
       'Trade-in offers are subject to inspection and approval.',
     ],
   },

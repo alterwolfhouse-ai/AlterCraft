@@ -1,110 +1,589 @@
-import React from 'react';
-import { Navigation } from '../components/Navigation';
-import { LandingHero } from '../components/LandingHero';
-import { CatalogSection } from '../components/CatalogSection';
-import { RentSection } from '../components/RentSection';
-import { BuySection } from '../components/BuySection';
-import { TradeInSection } from '../components/TradeInSection';
-import { ProductHighlights } from '../components/ProductHighlights';
-import { BuyFlowSection } from '../components/BuyFlowSection';
-import { RentalFlowSection } from '../components/RentalFlowSection';
-import { CompareSection } from '../components/CompareSection';
-import { FurnitureCatalog } from '../components/FurnitureCatalog';
-import { TradingDashboard } from '../components/TradingDashboard';
-import { AboutUs } from '../components/AboutUs';
-import { InsightsSection } from '../components/InsightsSection';
-import { PoliciesSection } from '../components/PoliciesSection';
-import { FaqSection } from '../components/FaqSection';
-import { ContactSection } from '../components/ContactSection';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, NavLink } from 'react-router';
+import {
+  ArrowRight,
+  Award,
+  CheckCircle,
+  Clock,
+  Hammer,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Phone,
+  Ruler,
+  Shield,
+  Star,
+  X,
+} from 'lucide-react';
 import { ChatWidget } from '../components/ChatWidget';
+import { ElegantFooter, FloatingWhatsApp } from '../components/elegant/ElegantLayout';
+import { QuoteForm } from '../components/elegant/QuoteForm';
+import { catalogProducts } from '../data/catalog';
+import { products } from '../data/products';
 import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
+import { createWhatsappLink } from '../utils/contact';
+
+const NAV_LINKS = [
+  { to: '/', label: 'Home' },
+  { to: '/modular-kitchen', label: 'Kitchen' },
+  { to: '/designer-beds', label: 'Beds' },
+  { to: '/flush-doors', label: 'Doors' },
+  { to: '/wardrobes', label: 'Wardrobes' },
+  { to: '/gallery', label: 'Gallery' },
+  { to: '/warranty-quality', label: 'Warranty' },
+  { to: '/contact', label: 'Contact' },
+];
+
+const HERO_IMAGE =
+  'https://images.unsplash.com/photo-1745301558339-44eb3217d5da?w=1920&h=1080&fit=crop&auto=format';
+
+const formatInr = (value: number) => `INR ${value.toLocaleString('en-IN')}`;
+
+const lowestProductPrice = (category: string) => {
+  const prices = products
+    .filter((product) => product.category === category)
+    .map((product) => product.prices.offer)
+    .filter(Boolean);
+  return prices.length ? Math.min(...prices) : 0;
+};
+
+function HomeHeader() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <header className={`home-header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="home-container home-header-inner">
+        <Link to="/" className="home-brand" aria-label="AlterCraft home">
+          <span className="home-brand-mark">AC</span>
+          <span>
+            <span className="home-brand-kicker">Premium Interiors</span>
+            <span className="home-brand-name">AlterCraft</span>
+          </span>
+        </Link>
+
+        <nav className="home-nav" aria-label="Main navigation">
+          {NAV_LINKS.map((item) => (
+            <NavLink key={item.to} to={item.to} end={item.to === '/'}>
+              {item.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="home-header-actions">
+          <a href={siteDetails.phoneHref} className="home-header-contact">
+            <Phone size={16} />
+            {siteDetails.phoneDisplay}
+          </a>
+          <a
+            href={createWhatsappLink('Hi AlterCraft, I would like a furniture quote.')}
+            className="home-button home-button-solid"
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent('whatsapp_click', { location: 'home_header' })}
+          >
+            Get Quote
+          </a>
+        </div>
+
+        <button
+          type="button"
+          className="home-menu-button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-expanded={menuOpen}
+          aria-label="Toggle navigation"
+        >
+          {menuOpen ? <X size={21} /> : <Menu size={21} />}
+        </button>
+      </div>
+
+      <div className={`home-mobile-panel ${menuOpen ? 'open' : ''}`}>
+        <div className="home-container">
+          {NAV_LINKS.map((item) => (
+            <Link key={item.to} to={item.to} onClick={() => setMenuOpen(false)}>
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href={createWhatsappLink('Hi AlterCraft, I would like a furniture quote.')}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackEvent('whatsapp_click', { location: 'home_mobile_menu' })}
+          >
+            WhatsApp {siteDetails.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </header>
+  );
+}
 
 export default function Home() {
+  const bedStartingPrice = useMemo(() => lowestProductPrice('Beds'), []);
+  const wardrobeStartingPrice = useMemo(() => lowestProductPrice('Wardrobes'), []);
+  const kitchenCatalogStarting = useMemo(() => {
+    const kitchenPrices = catalogProducts
+      .filter((product) => product.category === 'kitchen')
+      .map((product) => product.marketBuy)
+      .filter(Boolean);
+    return kitchenPrices.length ? Math.min(...kitchenPrices) : 0;
+  }, []);
+
+  const trustBadges = [
+    { icon: Award, label: 'Custom made furniture' },
+    { icon: Star, label: 'Premium finishing' },
+    { icon: Shield, label: 'Warranty support across eligible products' },
+    { icon: Hammer, label: 'Professional installation' },
+    { icon: Ruler, label: 'Site measurement support' },
+  ];
+
+  const offerCards = [
+    {
+      title: 'Modular Kitchen',
+      price: 'Starting from INR 460 / sq.ft.',
+      note: kitchenCatalogStarting
+        ? `Catalog kitchen units also listed from ${formatInr(kitchenCatalogStarting)}.`
+        : 'Final quote depends on site size, hardware and finish.',
+      image:
+        'https://images.unsplash.com/photo-1682662045846-77f6e1ce55b4?w=900&h=650&fit=crop&auto=format',
+      to: '/modular-kitchen',
+      cta: 'Explore Kitchens',
+    },
+    {
+      title: 'Designer Beds',
+      price: `Starting from ${formatInr(bedStartingPrice)}`,
+      note: 'Hydraulic storage, platform and made-to-size bedroom furniture.',
+      image:
+        'https://images.unsplash.com/photo-1696762932825-2737db830bbe?w=900&h=650&fit=crop&auto=format',
+      to: '/designer-beds',
+      cta: 'View Bed Designs',
+    },
+    {
+      title: 'Flush Doors',
+      price: 'Starting from INR 7,600 / door',
+      note: 'Door-specific warranty available for eligible specifications.',
+      image:
+        'https://images.unsplash.com/photo-1603673298820-40d77252226d?w=900&h=650&fit=crop&auto=format',
+      to: '/flush-doors',
+      cta: 'Check Door Options',
+    },
+  ];
+
+  const whyUs = [
+    {
+      icon: Award,
+      title: 'Premium Quality Materials',
+      desc: 'Thoughtful board selection, refined laminates, reliable hardware and finishes chosen for everyday Indian homes.',
+    },
+    {
+      icon: Ruler,
+      title: 'Custom-Made to Fit',
+      desc: 'Every cabinet, bed, wardrobe and office unit is planned around your measurements, storage needs and usage.',
+    },
+    {
+      icon: Hammer,
+      title: 'Expert Installation',
+      desc: 'Installation is handled with careful alignment, clean finishing and practical handover guidance.',
+    },
+    {
+      icon: Shield,
+      title: 'Warranty Across Categories',
+      desc: 'Warranty support is available across eligible products, hardware, workmanship and installation scope.',
+    },
+    {
+      icon: Star,
+      title: 'Transparent Pricing',
+      desc: 'Quotes are itemized by size, material, finish and site work so decisions stay clear from the beginning.',
+    },
+    {
+      icon: CheckCircle,
+      title: 'After-Sales Support',
+      desc: 'The relationship continues after handover with service, warranty guidance and support where applicable.',
+    },
+  ];
+
+  const processSteps = [
+    ['01', 'Site Measurement', 'Room measurements, product requirements and site constraints are documented clearly.'],
+    ['02', 'Design & Estimate', 'Material, finish, storage and pricing options are planned before production starts.'],
+    ['03', 'Manufacturing', 'Furniture is fabricated with the agreed specifications, hardware and finishing details.'],
+    ['04', 'Installation', 'The team installs, checks alignment and completes final touch-ups at site.'],
+    ['05', 'Support', 'Care guidance, warranty support and service coordination remain available after handover.'],
+  ];
+
+  const categories = [
+    {
+      title: 'Modular Kitchen',
+      to: '/modular-kitchen',
+      image:
+        'https://images.unsplash.com/photo-1683629357935-f3f4777ddf41?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Designer Beds',
+      to: '/designer-beds',
+      image:
+        'https://images.unsplash.com/photo-1644057501622-dfa7dd26dbfb?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Flush Doors',
+      to: '/flush-doors',
+      image:
+        'https://images.unsplash.com/photo-1634822930432-0594057fdff2?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Wardrobes & Storage',
+      to: '/wardrobes',
+      image:
+        'https://images.unsplash.com/photo-1672137233327-37b0c1049e77?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Office Interiors',
+      to: '/office-commercial',
+      image:
+        'https://images.unsplash.com/photo-1715593949273-09009558300a?w=900&h=650&fit=crop&auto=format',
+    },
+  ];
+
+  const portfolio = [
+    {
+      label: 'Warm Modular Kitchen',
+      image:
+        'https://images.unsplash.com/photo-1559554704-0f74b35a8718?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      label: 'Premium Living Storage',
+      image:
+        'https://images.unsplash.com/photo-1704040686413-2c607dbd2f06?w=900&h=900&fit=crop&auto=format',
+    },
+    {
+      label: 'Wardrobe Planning',
+      image:
+        'https://images.unsplash.com/photo-1649361811423-a55616f7ab11?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      label: 'Designer Bedroom',
+      image:
+        'https://images.unsplash.com/photo-1644057501622-dfa7dd26dbfb?w=900&h=900&fit=crop&auto=format',
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: 'Homeowner, Ghaziabad',
+      text: 'The quotation was clear, the finishes were explained properly and the installation team kept the work neat.',
+    },
+    {
+      name: 'Bedroom Furniture Client',
+      text: 'The bed and wardrobe were planned around our exact room size. Storage became much easier without making the room heavy.',
+    },
+    {
+      name: 'Office Interior Client',
+      text: 'AlterCraft understood the office workflow first, then planned workstations, storage and cable movement very practically.',
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#FAF7F2]">
-      <Navigation />
+    <div className="home-site">
+      <HomeHeader />
 
       <main>
-        <LandingHero />
-        <CatalogSection />
-        <RentSection />
-        <BuySection />
-        <TradeInSection />
-        <ProductHighlights />
-        <BuyFlowSection />
-        <RentalFlowSection />
-        <CompareSection />
-        <FurnitureCatalog />
-        <TradingDashboard />
-        <div id="about-us">
-          <AboutUs />
-        </div>
-        <InsightsSection />
-        <PoliciesSection />
-        <FaqSection />
-        <ContactSection />
+        <section className="home-hero">
+          <img src={HERO_IMAGE} alt="Premium warm living room interior" />
+          <div className="home-hero-overlay" />
+          <div className="home-container home-hero-content">
+            <p className="home-kicker">Custom + Modular Furniture</p>
+            <h1>Premium Interiors & Custom Furniture Crafted for Modern Spaces</h1>
+            <p className="home-hero-copy">
+              Elegant kitchens, designer beds, wardrobes, flush doors and office interiors
+              built with transparent pricing, refined finishing and dependable support.
+            </p>
+            <div className="home-hero-actions">
+              <a
+                href={createWhatsappLink('Hi AlterCraft, I want a free furniture consultation.')}
+                className="home-button home-button-solid"
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackEvent('whatsapp_click', { location: 'home_hero' })}
+              >
+                <MessageCircle size={18} />
+                Get Free Quote
+              </a>
+              <Link to="/gallery" className="home-button home-button-ghost">
+                View Portfolio
+              </Link>
+            </div>
+            <div className="home-hero-meta">
+              <span>
+                <MapPin size={15} />
+                {siteDetails.cityBase}
+              </span>
+              <span>
+                <Clock size={15} />
+                {siteDetails.workingHours}
+              </span>
+              <a href={siteDetails.emailHref}>
+                <Mail size={15} />
+                {siteDetails.email}
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="home-trust-strip">
+          <div className="home-container home-trust-grid">
+            {trustBadges.map(({ icon: Icon, label }) => (
+              <div key={label} className="home-trust-item">
+                <Icon size={19} />
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="home-section">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Best Value Projects</p>
+              <h2>Premium furniture planned with clear starting references</h2>
+              <p>
+                Pricing shown here follows the current repo/design data. Final quotations are
+                itemized after measurement, material choice and scope confirmation.
+              </p>
+            </div>
+
+            <div className="home-offer-grid">
+              {offerCards.map((card) => (
+                <article key={card.title} className="home-offer-card">
+                  <div className="home-offer-image">
+                    <img src={card.image} alt={card.title} />
+                  </div>
+                  <div className="home-offer-body">
+                    <h3>{card.title}</h3>
+                    <strong>{card.price}</strong>
+                    <p>{card.note}</p>
+                    <Link to={card.to} className="home-card-link">
+                      {card.cta}
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-muted">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Our Promise</p>
+              <h2>Why choose AlterCraft?</h2>
+            </div>
+
+            <div className="home-feature-grid">
+              {whyUs.map(({ icon: Icon, title, desc }) => (
+                <article key={title} className="home-feature-card">
+                  <span>
+                    <Icon size={26} />
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-material-band">
+          <img
+            src="https://images.unsplash.com/photo-1682662044733-9120471befc7?w=1920&h=760&fit=crop&auto=format"
+            alt="Premium modular kitchen material finish"
+          />
+          <div className="home-material-overlay" />
+          <div className="home-container home-material-content">
+            <div>
+              <p className="home-kicker">Materials We Use</p>
+              <h2>Crafted with materials selected for daily use</h2>
+              <p>
+                Kitchen moisture, bedroom storage load, shutter size, hardware movement and
+                finish maintenance are considered before we recommend materials.
+              </p>
+              <Link to="/warranty-quality" className="home-inline-link">
+                Learn about quality standards
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div className="home-material-list">
+              {[
+                ['Moisture-aware boards', 'Chosen according to site exposure and product category.'],
+                ['Premium laminates', 'Warm, easy-to-maintain finishes for homes and offices.'],
+                ['Reliable hardware', 'Soft-close hinges, channels and storage fittings where applicable.'],
+                ['Clean detailing', 'Edge bands, alignment and handover checks before completion.'],
+              ].map(([title, desc]) => (
+                <article key={title}>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">How It Works</p>
+              <h2>Our design and delivery process</h2>
+            </div>
+            <div className="home-process-grid">
+              {processSteps.map(([num, title, desc]) => (
+                <article key={num} className="home-process-step">
+                  <span>{num}</span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-muted">
+          <div className="home-container">
+            <div className="home-split-head">
+              <div>
+                <p className="home-kicker">Portfolio</p>
+                <h2>Featured project directions</h2>
+              </div>
+              <Link to="/gallery" className="home-inline-link">
+                View all
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div className="home-portfolio-grid">
+              {portfolio.map((item) => (
+                <article key={item.label}>
+                  <img src={item.image} alt={item.label} />
+                  <span>{item.label}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Explore</p>
+              <h2>Product categories</h2>
+              <p>
+                Wardrobes currently start from {formatInr(wardrobeStartingPrice)} in the
+                product data, with final size and finish adjusted to your site.
+              </p>
+            </div>
+            <div className="home-category-grid">
+              {categories.map((category) => (
+                <Link key={category.title} to={category.to} className="home-category-card">
+                  <img src={category.image} alt={category.title} />
+                  <span>{category.title}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-warranty-band">
+          <div className="home-container home-warranty-inner">
+            <div>
+              <p className="home-kicker">Our Commitment</p>
+              <h2>Warranty & after-sales support across eligible work</h2>
+              <p>
+                Warranty is not limited to doors. AlterCraft provides warranty support across
+                eligible products, services, hardware, workmanship and installation scope.
+              </p>
+            </div>
+            <div className="home-warranty-grid">
+              {[
+                ['Products', 'Eligible furniture and interior categories'],
+                ['Hardware', 'Brand and specification based coverage'],
+                ['Doors', 'Door-specific warranty where applicable'],
+                ['Service', 'Repair and support coordination after handover'],
+              ].map(([title, desc]) => (
+                <article key={title}>
+                  <strong>{title}</strong>
+                  <span>{desc}</span>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-card">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Client Notes</p>
+              <h2>What customers value</h2>
+            </div>
+            <div className="home-testimonial-grid">
+              {testimonials.map((item) => (
+                <article key={item.name}>
+                  <div>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <Star key={index} size={16} />
+                    ))}
+                  </div>
+                  <p>"{item.text}"</p>
+                  <strong>{item.name}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-contact-section">
+          <div className="home-container home-contact-grid">
+            <div>
+              <p className="home-kicker">Get Started</p>
+              <h2>Request a free consultation</h2>
+              <p>
+                Share room size, product type, preferred finish and timeline. The lead will open
+                directly on WhatsApp so the discussion can continue quickly.
+              </p>
+              <div className="home-contact-list">
+                <a href={siteDetails.phoneHref}>
+                  <Phone size={17} />
+                  {siteDetails.phoneDisplay}
+                </a>
+                <a href={siteDetails.emailHref}>
+                  <Mail size={17} />
+                  {siteDetails.email}
+                </a>
+                <span>
+                  <MapPin size={17} />
+                  {siteDetails.fullAddress}
+                </span>
+                <span>
+                  <Shield size={17} />
+                  {siteDetails.warranty}
+                </span>
+              </div>
+            </div>
+            <div className="home-quote-card">
+              <h3>Request Free Quote</h3>
+              <QuoteForm defaultService="Full Home Furniture" />
+            </div>
+          </div>
+        </section>
       </main>
 
-      <footer className="bg-[#2C2419] text-[#D4C5B0] py-12">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="mb-6">
-            <h3 className="text-xl mb-2">AlterCraft Woods & Furniture</h3>
-            <p className="text-[#9A8A77]">
-              Rent or buy at 20% lower market rates with a 3-year warranty.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-[#9A8A77] mb-6">
-            <a href="#catalog" className="hover:text-[#FAF7F2] transition-colors">
-              Catalog
-            </a>
-            <a href="#rent" className="hover:text-[#FAF7F2] transition-colors">
-              Rent Furniture
-            </a>
-            <a href="#buy" className="hover:text-[#FAF7F2] transition-colors">
-              Buy Furniture
-            </a>
-            <a href="#trade-in" className="hover:text-[#FAF7F2] transition-colors">
-              Trade-In
-            </a>
-            <a href="#policies" className="hover:text-[#FAF7F2] transition-colors">
-              Policies
-            </a>
-            <a href="#faq" className="hover:text-[#FAF7F2] transition-colors">
-              FAQ
-            </a>
-          </div>
-
-          <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-sm text-[#9A8A77]">
-            <a
-              href={siteDetails.phoneHref}
-              onClick={() => trackEvent('phone_click', { location: 'footer' })}
-              className="hover:text-[#FAF7F2] transition-colors"
-            >
-              Phone: {siteDetails.phone}
-            </a>
-            <a
-              href={siteDetails.whatsappHref}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => trackEvent('whatsapp_click', { location: 'footer' })}
-              className="hover:text-[#FAF7F2] transition-colors"
-            >
-              WhatsApp: {siteDetails.phone}
-            </a>
-            <span>
-              {siteDetails.addressLine}, {siteDetails.cityBase} - {siteDetails.serviceRadius} radius
-            </span>
-            <span>{siteDetails.workingHours}</span>
-          </div>
-
-          <div className="text-sm text-[#9A8A77] mt-6">
-            (c) {new Date().getFullYear()} AlterCraft. All rights reserved.
-          </div>
-        </div>
-      </footer>
-
+      <ElegantFooter />
+      <FloatingWhatsApp />
       <ChatWidget />
     </div>
   );

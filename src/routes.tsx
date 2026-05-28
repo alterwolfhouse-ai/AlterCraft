@@ -2,6 +2,14 @@ import { createBrowserRouter } from "react-router";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import { ProductGalleryPage } from "./components/ProductGalleryPage";
+import {
+  DesignerBeds,
+  FlushDoors,
+  ModularKitchen,
+  OfficeCommercial,
+  Wardrobes,
+} from "./pages/servicePages";
+import { About, Contact, NotFound, WarrantyQuality } from "./pages/InfoPages";
 
 export const router = createBrowserRouter([
   {
@@ -13,8 +21,72 @@ export const router = createBrowserRouter([
     Component: ProductGalleryPage,
   },
   {
+    path: "/portfolio",
+    Component: ProductGalleryPage,
+  },
+  {
     path: "/products",
     Component: ProductGalleryPage,
+  },
+  {
+    path: "/modular-kitchen",
+    Component: ModularKitchen,
+  },
+  {
+    path: "/kitchen",
+    Component: ModularKitchen,
+  },
+  {
+    path: "/designer-beds",
+    Component: DesignerBeds,
+  },
+  {
+    path: "/beds",
+    Component: DesignerBeds,
+  },
+  {
+    path: "/flush-doors",
+    Component: FlushDoors,
+  },
+  {
+    path: "/doors",
+    Component: FlushDoors,
+  },
+  {
+    path: "/wardrobes",
+    Component: Wardrobes,
+  },
+  {
+    path: "/storage",
+    Component: Wardrobes,
+  },
+  {
+    path: "/office-commercial",
+    Component: OfficeCommercial,
+  },
+  {
+    path: "/office",
+    Component: OfficeCommercial,
+  },
+  {
+    path: "/warranty-quality",
+    Component: WarrantyQuality,
+  },
+  {
+    path: "/warranty",
+    Component: WarrantyQuality,
+  },
+  {
+    path: "/about",
+    Component: About,
+  },
+  {
+    path: "/contact",
+    Component: Contact,
+  },
+  {
+    path: "/get-quote",
+    Component: Contact,
   },
   {
     path: "/product/:id",
@@ -26,21 +98,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    Component: () => {
-      return (
-        <div className="min-h-screen bg-[#FAF7F2] text-[#2C2419] flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-6xl mb-4">404</h1>
-            <p className="text-xl text-[#5A4D3F] mb-8">Page not found</p>
-            <a
-              href="/"
-              className="inline-block bg-[#6B5D4F] text-[#FAF7F2] px-8 py-3 tracking-wide text-sm hover:bg-[#5A4D3F] transition-colors"
-            >
-              Go Home
-            </a>
-          </div>
-        </div>
-      );
-    },
+    Component: NotFound,
   },
 ]);

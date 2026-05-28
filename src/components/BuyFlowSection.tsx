@@ -30,7 +30,8 @@ export function BuyFlowSection() {
           </div>
           <h2 className="text-[#2C2419] mb-4">How Buying Works</h2>
           <p className="text-[#5A4D3F] text-lg max-w-2xl mx-auto">
-            Premium craftsmanship, transparent pricing, and a 3-year warranty.
+            Premium craftsmanship, transparent pricing, and warranty support across eligible
+            categories.
           </p>
         </div>
 
@@ -48,11 +49,11 @@ export function BuyFlowSection() {
           <div className="grid md:grid-cols-3 gap-6">
             <div>
               <span className="text-[#2C2419]">Warranty:</span> {siteDetails.warranty} on all
-              purchases.
+              eligible purchases and services.
             </div>
             <div>
               <span className="text-[#2C2419]">Payment:</span> UPI, cards, bank transfer, or
-              cash, or crypto (USDT) supported.
+              cash supported.
             </div>
             <div>
               <span className="text-[#2C2419]">Assembly:</span> Included within service radius.

@@ -43,7 +43,7 @@ export function SearchIntentSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-16">
           <div>
-            <span className="text-[#FFB800] text-sm uppercase tracking-[0.4em] font-bold mb-4 block">
+            <span className="text-[#B8891A] text-sm uppercase tracking-[0.4em] font-bold mb-4 block">
               Delhi NCR Furniture Studio
             </span>
             <h2 className="text-4xl md:text-6xl font-black text-white leading-tight mb-6">
@@ -56,7 +56,7 @@ export function SearchIntentSection() {
               {serviceAreas.map((area) => (
                 <span
                   key={area}
-                  className="border border-[#FFB800]/25 bg-[#FFB800]/5 px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#FFB800]"
+                  className="border border-[#B8891A]/25 bg-[#B8891A]/5 px-3 py-2 text-xs font-bold uppercase tracking-wider text-[#B8891A]"
                 >
                   {area}
                 </span>
@@ -64,7 +64,7 @@ export function SearchIntentSection() {
             </div>
             <Link
               to="/gallery"
-              className="inline-flex bg-[#FFB800] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
+              className="inline-flex bg-[#B8891A] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
             >
               Explore furniture designs
             </Link>
@@ -72,7 +72,7 @@ export function SearchIntentSection() {
 
           <div className="space-y-6">
             {contentBlocks.map((block) => (
-              <article key={block.title} className="border-l border-[#FFB800]/40 pl-6">
+              <article key={block.title} className="border-l border-[#B8891A]/40 pl-6">
                 <h3 className="text-white text-xl font-black mb-2">{block.title}</h3>
                 <p className="text-[#A1A1AA] leading-relaxed">{block.body}</p>
               </article>
@@ -86,8 +86,8 @@ export function SearchIntentSection() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {faqs.map((faq) => (
-              <article key={faq.question} className="bg-[#111111] border border-white/5 p-6">
-                <h3 className="text-[#FFB800] font-black mb-3">{faq.question}</h3>
+              <article key={faq.question} className="bg-[#2C2419] border border-white/5 p-6">
+                <h3 className="text-[#B8891A] font-black mb-3">{faq.question}</h3>
                 <p className="text-[#A1A1AA] text-sm leading-relaxed">{faq.answer}</p>
               </article>
             ))}

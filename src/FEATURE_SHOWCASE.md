@@ -158,7 +158,7 @@ Real-time filtering as you type
 │                   │ Deposit: ₹10,000          ││
 │                   │                            ││
 │                   │ ▶ Delivery: 7 Days        ││
-│                   │ ▶ Dimensions: 210×200×120 ││
+│                   │ ▶ Dimensions: 210x200x120 ││
 │                   │ ▶ Materials: Eng. Wood    ││
 │                   │                            ││
 │                   │ ✓ CNC-carved headboard    ││
@@ -205,7 +205,7 @@ Active  Inactive
 Click zoom button or main image
          ↓
 ┌────────────────────────────────┐
-│ [×]                            │
+│ [x]                            │
 │                                │
 │                                │
 │                                │
@@ -344,7 +344,7 @@ Background:     #0A0A0A (Deep Black)
                 ├─ All page backgrounds
                 └─ Card backgrounds
 
-Gold:           #FFB800
+Gold:           #B8891A
                 ├─ Primary CTAs
                 ├─ Active states
                 ├─ Badges

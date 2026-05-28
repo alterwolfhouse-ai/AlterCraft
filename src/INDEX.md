@@ -108,7 +108,7 @@ Welcome to the ALTER CRAFT product gallery extension documentation. This index h
 
 #### Update the WhatsApp number
 → `README.md` → "WhatsApp Integration"  
-→ Search for `918826436093` in all files
+→ Search for `918817503658` in all files
 
 #### Deploy to production
 → `README.md` → "Deployment Notes"  
@@ -184,7 +184,7 @@ Welcome to the ALTER CRAFT product gallery extension documentation. This index h
 
 1. Open `/styles/globals.css` → Update CSS variables
 2. Search/replace hex colors in components:
-   - `#FFB800` (gold)
+   - `#B8891A` (gold)
    - `#0A0A0A` (black)
    - `#A1A1AA` (gray)
 3. Test all pages

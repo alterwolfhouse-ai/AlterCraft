@@ -19,11 +19,11 @@ const faqs = [
   },
   {
     question: 'What warranty comes with purchases?',
-    answer: 'All purchases come with a 3 year warranty on structure and workmanship.',
+    answer: 'Warranty support is available across eligible products, services, hardware, workmanship and installation. Coverage depends on the product category and documented specification.',
   },
   {
-    question: 'Can I pay monthly or use crypto?',
-    answer: 'Yes. We accept UPI, cards, bank transfer, cash, and crypto (USDT).',
+    question: 'What payment methods do you accept?',
+    answer: 'We accept UPI, cards, bank transfer and cash, depending on the project stage and invoice terms.',
   },
 ];
 

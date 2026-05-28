@@ -14,12 +14,12 @@ const initialMessages: ChatMessage[] = [
   {
     id: 'welcome',
     role: 'bot',
-    text: 'Hi, I am the AlterCraft concierge. This is a template assistant for now.',
+    text: 'Hi, I am the AlterCraft concierge. I can help you frame a quote request.',
   },
   {
     id: 'prompt',
     role: 'bot',
-    text: 'Ask about rentals, custom builds, pricing, or timelines.',
+    text: 'Ask about modular kitchens, wardrobes, beds, doors, pricing or timelines.',
   },
 ];
 
@@ -51,7 +51,7 @@ const templates: Array<{ match: RegExp; reply: string }> = [
 ];
 
 const fallbackReply =
-  'Thanks for reaching out. This is a template assistant for now. Share details and we will follow up.';
+  'Thanks for reaching out. For a faster quote, send room photos, measurements and your requirement on WhatsApp.';
 
 const quickPrompts = [
   'Need a quote for a custom wardrobe',
@@ -104,7 +104,7 @@ export function ChatWidget() {
               <Sparkles className="chat-panel-icon" />
               <div>
                 <div className="chat-panel-heading">AlterCraft Concierge</div>
-                <div className="chat-panel-subtitle">Template chat bot</div>
+                <div className="chat-panel-subtitle">Quote guidance</div>
               </div>
             </div>
             <button
@@ -157,7 +157,11 @@ export function ChatWidget() {
               </button>
             </form>
             <div className="chat-disclaimer">
-              Template assistant for now. Call {siteDetails.phone} or email {siteDetails.email}.
+              For a measured quote, call {siteDetails.phoneDisplay} or use WhatsApp.
+              {' '}
+              <a href={siteDetails.whatsappHref} target="_blank" rel="noreferrer">
+                Open WhatsApp
+              </a>
             </div>
           </div>
         </div>
