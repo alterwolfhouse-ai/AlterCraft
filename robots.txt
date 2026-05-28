@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
+Disallow: /cart/
 Sitemap: https://www.altercraft.in/sitemap.xml
-Sitemap: https://www.altercraft.in/feed.xml
