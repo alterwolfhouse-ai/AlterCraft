@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Home from "./pages/Home";
-import Gallery from "./pages/Gallery";
 import ProductDetail from "./pages/ProductDetail";
+import { ProductGalleryPage } from "./components/ProductGalleryPage";
 
 export const router = createBrowserRouter([
   {
@@ -10,11 +10,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/gallery",
-    Component: Gallery,
+    Component: ProductGalleryPage,
   },
   {
     path: "/products",
-    Component: Gallery,
+    Component: ProductGalleryPage,
   },
   {
     path: "/product/:id",
@@ -28,13 +28,13 @@ export const router = createBrowserRouter([
     path: "*",
     Component: () => {
       return (
-        <div className="min-h-screen bg-[#0A0A0A] text-white flex items-center justify-center">
+        <div className="min-h-screen bg-[#FAF7F2] text-[#2C2419] flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-6xl font-black mb-4 text-[#FFB800]">404</h1>
-            <p className="text-xl text-[#A1A1AA] mb-8">Page not found</p>
+            <h1 className="text-6xl mb-4">404</h1>
+            <p className="text-xl text-[#5A4D3F] mb-8">Page not found</p>
             <a
               href="/"
-              className="inline-block bg-[#FFB800] text-black px-8 py-3 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
+              className="inline-block bg-[#6B5D4F] text-[#FAF7F2] px-8 py-3 tracking-wide text-sm hover:bg-[#5A4D3F] transition-colors"
             >
               Go Home
             </a>
