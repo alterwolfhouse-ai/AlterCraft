@@ -53,10 +53,10 @@ export function HeroPoster() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4">
               <a
-                href="https://wa.me/918826436093"
+                href="/lead/"
                 className="inline-flex items-center justify-center bg-[#FFB800] text-black px-8 py-4 font-black text-sm uppercase tracking-widest hover:bg-white transition-colors"
               >
-                Get Furniture Estimate
+                Send Project Brief
               </a>
               <Link
                 to="/gallery"

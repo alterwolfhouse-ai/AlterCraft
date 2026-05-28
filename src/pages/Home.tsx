@@ -31,10 +31,10 @@ export default function Home() {
 
       {/* Floating CTA */}
       <a
-        href="https://wa.me/918826436093"
+        href="/lead/"
         className="fixed bottom-8 right-8 z-[100] bg-[#FFB800] text-black px-6 py-3 rounded-none font-black text-xs tracking-widest uppercase hover:bg-white transition-colors flex items-center gap-3 shadow-2xl"
       >
-        Enquire on WhatsApp
+        Send Project Brief
       </a>
 
       {/* Script for subtle scroll tracking */}
