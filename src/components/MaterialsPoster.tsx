@@ -22,7 +22,7 @@ export function MaterialsPoster() {
           className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
         >
           <div>
-            <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Sustainable Innovation</span>
+            <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Sustainable Interior Materials</span>
             <h2 className="text-4xl md:text-7xl font-black text-white leading-tight mb-8">
               ENGINEERED<br />CAPABILITY
             </h2>
@@ -33,19 +33,19 @@ export function MaterialsPoster() {
             <div className="flex gap-6">
               <span className="text-4xl font-black text-[#FFB800]/20 leading-none">01</span>
               <div>
-                <h4 className="text-white font-bold text-xl mb-3 uppercase tracking-wider">BAGASSE-BASED BOARDS</h4>
-                <p className="text-[#A1A1AA] leading-relaxed">
-                  We prioritize sustainability by using high-quality bagasse-based engineered wood, offering superior durability and moisture resistance compared to standard boards.
-                </p>
+              <h3 className="text-white font-bold text-xl mb-3 uppercase tracking-wider">BAGASSE-BASED BOARDS</h3>
+              <p className="text-[#A1A1AA] leading-relaxed">
+                  Bagasse-based boards and engineered wood options help customers choose durable, lower-waste materials for wardrobes, desks, mandirs and storage units.
+              </p>
               </div>
             </div>
 
             <div className="flex gap-6">
               <span className="text-4xl font-black text-[#FFB800]/20 leading-none">02</span>
               <div>
-                <h4 className="text-white font-bold text-xl mb-3 uppercase tracking-wider">CNC PRECISION EDGES</h4>
+                <h3 className="text-white font-bold text-xl mb-3 uppercase tracking-wider">CNC PRECISION EDGES</h3>
                 <p className="text-[#A1A1AA] leading-relaxed">
-                  Every edge is machined to 0.1mm accuracy. Our CNC technology ensures perfect joining, premium lamination, and structural integrity that lasts for decades.
+                  Clean machine-cut edges support better fitting, premium lamination and reliable assembly for modular wardrobes, panels and made-to-measure furniture.
                 </p>
               </div>
             </div>

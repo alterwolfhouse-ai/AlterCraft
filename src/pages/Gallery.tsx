@@ -1,10 +1,10 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { motion } from 'motion/react';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Header } from '../components/Header';
 import { ProductCard } from '../components/ProductCard';
-import { products, type Product } from '../data/products';
+import { products } from '../data/products';
 import {
   Select,
   SelectContent,
@@ -25,12 +25,10 @@ export default function Gallery() {
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      // Category filter
       if (selectedCategory !== 'all' && product.category !== selectedCategory) {
         return false;
       }
 
-      // Availability filter
       if (availabilityFilter === 'rent-buy') {
         if (!product.availability.includes('rent') || !product.availability.includes('buy')) {
           return false;
@@ -45,14 +43,15 @@ export default function Gallery() {
         }
       }
 
-      // Search filter
       if (searchQuery) {
         const query = searchQuery.toLowerCase();
         return (
           product.name.toLowerCase().includes(query) ||
           product.code.toLowerCase().includes(query) ||
           product.shortDescription.toLowerCase().includes(query) ||
-          product.category.toLowerCase().includes(query)
+          product.category.toLowerCase().includes(query) ||
+          product.materials.toLowerCase().includes(query) ||
+          product.features.some((feature) => feature.toLowerCase().includes(query))
         );
       }
 
@@ -62,11 +61,6 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white">
-      {/* Local Preview Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[200] bg-[#FFB800] text-black px-4 py-2 text-center text-xs font-black uppercase tracking-widest">
-        🔧 Local Preview Mode - Not Deployed
-      </div>
-
       {/* Texture Overlay */}
       <div className="fixed inset-0 opacity-[0.02] pointer-events-none z-[99] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
 
@@ -86,24 +80,23 @@ export default function Gallery() {
                 to="/"
                 className="text-[#FFB800] uppercase tracking-[0.3em] text-xs font-bold hover:text-white transition-colors"
               >
-                ← Home
+                Home
               </Link>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6">
-              PRODUCT<br />GALLERY
+            <h1 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6">
+              FURNITURE<br />DESIGNS
             </h1>
 
-            <p className="text-xl text-[#A1A1AA] max-w-2xl">
-              Explore our curated collection of handcrafted furniture and CNC-precision designs.
-              <span className="text-white"> Available for rent or purchase.</span>
+            <p className="text-xl text-[#A1A1AA] max-w-3xl">
+              Browse custom furniture, modular wardrobes, study tables, pooja mandirs, CNC wall panels, LED nameplates and rental furniture for Delhi NCR homes, offices and events.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Filters Section */}
-      <section className="sticky top-[109px] z-40 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
+      <section className="sticky top-[73px] z-40 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
         <div className="container mx-auto px-8 py-6">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
             {/* Category Dropdown */}
@@ -128,46 +121,24 @@ export default function Gallery() {
 
             {/* Availability Filter Chips */}
             <div className="md:col-span-5 flex flex-wrap gap-2">
-              <button
-                onClick={() => setAvailabilityFilter('all')}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
-                  availabilityFilter === 'all'
-                    ? 'bg-[#FFB800] text-black'
-                    : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
-                }`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('rent-buy')}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
-                  availabilityFilter === 'rent-buy'
-                    ? 'bg-[#FFB800] text-black'
-                    : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
-                }`}
-              >
-                Rent + Buy
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('buy-only')}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
-                  availabilityFilter === 'buy-only'
-                    ? 'bg-[#FFB800] text-black'
-                    : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
-                }`}
-              >
-                Buy Only
-              </button>
-              <button
-                onClick={() => setAvailabilityFilter('rent-only')}
-                className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
-                  availabilityFilter === 'rent-only'
-                    ? 'bg-[#FFB800] text-black'
-                    : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
-                }`}
-              >
-                Rent Only
-              </button>
+              {[
+                ['all', 'All'],
+                ['rent-buy', 'Rent + Buy'],
+                ['buy-only', 'Buy Only'],
+                ['rent-only', 'Rent Only'],
+              ].map(([value, label]) => (
+                <button
+                  key={value}
+                  onClick={() => setAvailabilityFilter(value as AvailabilityFilter)}
+                  className={`px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
+                    availabilityFilter === value
+                      ? 'bg-[#FFB800] text-black'
+                      : 'bg-[#1A1A1A] text-[#A1A1AA] border border-[#FFB800]/20 hover:border-[#FFB800]/50'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
 
             {/* Search Bar */}
@@ -175,7 +146,7 @@ export default function Gallery() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A1A1AA] w-4 h-4" />
               <Input
                 type="text"
-                placeholder="Search products..."
+                placeholder="Search wardrobe, mandir, rent..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 bg-[#1A1A1A] border-[#FFB800]/20 text-white placeholder:text-[#52525B] hover:border-[#FFB800]/50 focus:border-[#FFB800] transition-colors"
@@ -201,10 +172,9 @@ export default function Gallery() {
           </div>
         ) : (
           <div className="text-center py-20">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-black text-white mb-2">No Products Found</h3>
+            <h2 className="text-2xl font-black text-white mb-2">No Products Found</h2>
             <p className="text-[#A1A1AA] mb-6">
-              Try adjusting your filters or search query
+              Try searching for wardrobe, mandir, study table, rent, panel or nameplate.
             </p>
             <button
               onClick={() => {
@@ -224,16 +194,16 @@ export default function Gallery() {
       <section className="border-t border-[#FFB800]/10 bg-gradient-to-b from-[#0A0A0A] to-[#1A1A1A]">
         <div className="container mx-auto px-8 py-16 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">
-            Can't Find What You Need?
+            Need a Custom Size or Finish?
           </h2>
-          <p className="text-xl text-[#A1A1AA] mb-8 max-w-2xl mx-auto">
-            We specialize in custom furniture. Share your vision, and we'll bring it to life with handcrafted quality and CNC precision.
+          <p className="text-xl text-[#A1A1AA] mb-8 max-w-3xl mx-auto">
+            Share room dimensions, reference photos and your budget. We can suggest practical options for modular wardrobes, storage beds, mandirs, CNC wall panels, nameplates and rental setups.
           </p>
           <a
             href="https://wa.me/918826436093"
             className="inline-block bg-[#FFB800] text-black px-10 py-4 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors"
           >
-            WhatsApp Us Now
+            Ask on WhatsApp
           </a>
         </div>
       </section>

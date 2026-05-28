@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { motion } from 'motion/react';
-import { ArrowLeft, Check, Package, Ruler, Layers, ZoomIn } from 'lucide-react';
+import { Check, Package, Ruler, Layers, ZoomIn } from 'lucide-react';
 import { Header } from '../components/Header';
 import { ProductCard } from '../components/ProductCard';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
@@ -14,7 +14,6 @@ import {
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
   const product = products.find((p) => p.id === id);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -44,11 +43,6 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0A] text-white">
-      {/* Local Preview Banner */}
-      <div className="fixed top-0 left-0 right-0 z-[200] bg-[#FFB800] text-black px-4 py-2 text-center text-xs font-black uppercase tracking-widest">
-        🔧 Local Preview Mode - Not Deployed
-      </div>
-
       {/* Texture Overlay */}
       <div className="fixed inset-0 opacity-[0.02] pointer-events-none z-[99] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]" />
 
@@ -156,16 +150,16 @@ export default function ProductDetail() {
               <div className="bg-[#1A1A1A] border border-[#FFB800]/20 p-6">
                 <div className="flex items-end gap-4 mb-2">
                   <div className="text-5xl font-black text-[#FFB800]">
-                    ₹{product.prices.offer.toLocaleString('en-IN')}
+                    Rs {product.prices.offer.toLocaleString('en-IN')}
                   </div>
                   <div className="pb-2">
                     <div className="text-lg text-[#52525B] line-through">
-                      ₹{product.prices.mrp.toLocaleString('en-IN')}
+                      Rs {product.prices.mrp.toLocaleString('en-IN')}
                     </div>
                   </div>
                 </div>
                 <div className="text-sm text-green-500 font-bold">
-                  You Save ₹{product.prices.save.toLocaleString('en-IN')} ({Math.round((product.prices.save / product.prices.mrp) * 100)}% OFF)
+                  You Save Rs {product.prices.save.toLocaleString('en-IN')} ({Math.round((product.prices.save / product.prices.mrp) * 100)}% OFF)
                 </div>
               </div>
             )}
@@ -178,12 +172,12 @@ export default function ProductDetail() {
                 </h3>
                 <div className="flex items-baseline gap-2 mb-2">
                   <span className="text-3xl font-black text-white">
-                    ₹{product.rent.monthly.toLocaleString('en-IN')}
+                    Rs {product.rent.monthly.toLocaleString('en-IN')}
                   </span>
                   <span className="text-[#A1A1AA]">per month</span>
                 </div>
                 <div className="text-sm text-[#A1A1AA]">
-                  Refundable Deposit: <span className="text-white font-bold">₹{product.rent.deposit.toLocaleString('en-IN')}</span>
+                  Refundable Deposit: <span className="text-white font-bold">Rs {product.rent.deposit.toLocaleString('en-IN')}</span>
                 </div>
               </div>
             )}

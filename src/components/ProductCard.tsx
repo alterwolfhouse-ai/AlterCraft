@@ -23,13 +23,13 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="relative aspect-[4/3] overflow-hidden bg-[#0A0A0A]">
         <ImageWithFallback
           src={product.images[0]}
-          alt={product.name}
+          alt={`${product.name} by AlterCraft`}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        
+
         {/* Hover Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
+
         {/* Product Code Badge */}
         <div className="absolute top-4 left-4 bg-[#FFB800] text-black px-3 py-1 text-xs font-black uppercase tracking-wider">
           {product.code}
@@ -39,9 +39,9 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Content */}
       <div className="p-6 space-y-4">
         {/* Title */}
-        <h3 className="text-xl font-black text-white tracking-tight line-clamp-2 min-h-[3.5rem]">
+        <h2 className="text-xl font-black text-white tracking-tight line-clamp-2 min-h-[3.5rem]">
           {product.name}
-        </h3>
+        </h2>
 
         {/* Description */}
         <p className="text-sm text-[#A1A1AA] line-clamp-2 min-h-[2.5rem]">
@@ -52,25 +52,25 @@ export function ProductCard({ product }: ProductCardProps) {
         {hasBuy && (
           <div className="flex items-end gap-3">
             <div className="text-3xl font-black text-[#FFB800]">
-              ₹{product.prices.offer.toLocaleString('en-IN')}
+              Rs {product.prices.offer.toLocaleString('en-IN')}
             </div>
             <div className="flex flex-col pb-1">
               <span className="text-xs text-[#52525B] line-through">
-                ₹{product.prices.mrp.toLocaleString('en-IN')}
+                Rs {product.prices.mrp.toLocaleString('en-IN')}
               </span>
               <span className="text-xs text-green-500 font-bold">
-                Save ₹{product.prices.save.toLocaleString('en-IN')}
+                Save Rs {product.prices.save.toLocaleString('en-IN')}
               </span>
             </div>
           </div>
         )}
 
-        {/* Rent Price (if applicable) */}
+        {/* Rent Price */}
         {hasRent && product.rent.monthly > 0 && (
           <div className="flex items-center gap-2 text-sm">
             <span className="text-[#A1A1AA]">or Rent at</span>
             <span className="text-[#FFB800] font-bold">
-              ₹{product.rent.monthly.toLocaleString('en-IN')}/mo
+              Rs {product.rent.monthly.toLocaleString('en-IN')}/mo
             </span>
           </div>
         )}

@@ -14,29 +14,29 @@ export function ManufacturingPoster() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Handcrafted Precision</span>
+          <span className="text-[#FFB800] text-sm uppercase tracking-[0.5em] font-bold mb-4 block">Custom Furniture Manufacturing</span>
           <h2 className="text-5xl md:text-8xl font-black text-white leading-none mb-10">
-            CUSTOM<br />MANUFACTURING
+            MADE-TO-MEASURE<br />INTERIORS
           </h2>
           
           <div className="space-y-8 max-w-lg">
             <div>
-              <h4 className="text-[#FFB800] font-bold mb-2">HUMAN-LED ARTISTRY</h4>
+              <h3 className="text-[#FFB800] font-bold mb-2">SITE MEASUREMENT FIRST</h3>
               <p className="text-[#D4D4D8] text-lg leading-relaxed">
-                Every piece begins with the master's touch. Careful measurement and material selection define our core craftsmanship.
+                Wardrobes, beds, study tables and storage units are planned around wall dimensions, socket positions, door clearance and daily use.
               </p>
             </div>
             
             <div>
-              <h4 className="text-[#FFB800] font-bold mb-2">CNC FABRICATION</h4>
+              <h3 className="text-[#FFB800] font-bold mb-2">CNC FABRICATION</h3>
               <p className="text-[#D4D4D8] text-lg leading-relaxed">
-                We bridge tradition with technology. AI-assisted design and CNC precision ensure every cut is flawless and every joint is perfect.
+                CNC cutting helps us create accurate panels, carved mandirs, LED nameplates, partitions and repeatable furniture parts with cleaner edges.
               </p>
             </div>
 
             <div className="pt-6 border-t border-white/10">
               <p className="text-sm text-[#71717A] italic">
-                Precision focus. Repeatability. Premium finishes.
+                Built for modular storage, compact bedrooms, home offices and premium wall features across Delhi NCR.
               </p>
             </div>
           </div>

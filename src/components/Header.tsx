@@ -8,7 +8,7 @@ interface HeaderProps {
 export function Header({ variant = 'default' }: HeaderProps) {
   if (variant === 'minimal') {
     return (
-      <header className="sticky top-[36px] z-50 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
+      <header className="sticky top-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
         <div className="container mx-auto px-8 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4 group">
             <span className="text-2xl font-black text-white tracking-tighter hover:text-[#FFB800] transition-colors">
@@ -17,7 +17,7 @@ export function Header({ variant = 'default' }: HeaderProps) {
           </Link>
           
           <div className="text-[#A1A1AA] text-xs uppercase tracking-widest">
-            Handcrafted + CNC Precision
+            Custom Furniture + CNC Interiors
           </div>
         </div>
       </header>
@@ -25,7 +25,7 @@ export function Header({ variant = 'default' }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-[36px] z-50 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
+    <header className="sticky top-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-[#FFB800]/10">
       <div className="container mx-auto px-8 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-4 group">
           <div className="w-8 h-1 bg-[#FFB800] group-hover:w-12 transition-all" />
@@ -45,13 +45,13 @@ export function Header({ variant = 'default' }: HeaderProps) {
             to="/gallery"
             className="text-sm text-[#A1A1AA] hover:text-[#FFB800] uppercase tracking-widest transition-colors"
           >
-            Gallery
+            Designs
           </Link>
           <a
             href="https://wa.me/918826436093"
             className="text-sm bg-[#FFB800] text-black px-6 py-2 font-black uppercase tracking-widest hover:bg-white transition-colors"
           >
-            Contact
+            WhatsApp
           </a>
         </nav>
 
@@ -60,7 +60,7 @@ export function Header({ variant = 'default' }: HeaderProps) {
             href="https://wa.me/918826436093"
             className="text-xs bg-[#FFB800] text-black px-4 py-2 font-black uppercase tracking-widest"
           >
-            Contact
+            WhatsApp
           </a>
         </div>
       </div>
