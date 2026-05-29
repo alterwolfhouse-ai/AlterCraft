@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ShieldCheck, MapPin, BadgeCheck, Zap } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function TrustPoster() {
   const certs = [
-    { icon: <BadgeCheck className="text-[#B8891A]" />, label: "MSME CERTIFIED", sub: "UDYAM-UP-29-0218457" },
-    { icon: <ShieldCheck className="text-[#B8891A]" />, label: "GST REGISTERED", sub: "09DPRPR7653F1Z2" },
+    { icon: <BadgeCheck className="text-[#B8891A]" />, label: "MSME CERTIFIED", sub: siteDetails.udyamRegistration },
+    { icon: <ShieldCheck className="text-[#B8891A]" />, label: "GST REGISTERED", sub: siteDetails.gstin },
     { icon: <Zap className="text-[#B8891A]" />, label: "MADE IN INDIA", sub: "Crafted with Pride" },
     { icon: <MapPin className="text-[#B8891A]" />, label: "BUILT IN GHAZIABAD", sub: "Local Production Studio" }
   ];

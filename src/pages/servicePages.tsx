@@ -22,7 +22,7 @@ export function ModularKitchen() {
       hero={{
         title: 'Modular Kitchen Solutions',
         subtitle:
-          'Measured kitchens with practical storage, moisture-aware materials, branded hardware and elegant finishes for Indian homes.',
+          'Measured modular kitchens for Delhi NCR, Noida, Ghaziabad and Greater Noida West with practical storage, moisture-aware materials, branded hardware and elegant finishes.',
         breadcrumb: 'Products / Modular Kitchen',
         image:
           'https://images.unsplash.com/photo-1559554704-0f74b35a8718?auto=format&fit=crop&w=1800&q=82',
@@ -38,14 +38,14 @@ export function ModularKitchen() {
         kicker: 'Kitchen Planning',
         title: 'A kitchen designed around how you cook every day',
         body:
-          'AlterCraft plans base units, wall cabinets, tall storage, sink zones, appliance clearances and shutters as one coordinated kitchen. The finish stays elegant while the inside is built for daily Indian cooking.',
+          'AlterCraft plans modular kitchen estimates around real site measurements, base units, wall cabinets, tall storage, sink zones, appliance clearances and shutters. The finish stays elegant while the inside is built for daily Indian cooking.',
         image:
           'https://images.unsplash.com/photo-1682662045846-77f6e1ce55b4?auto=format&fit=crop&w=1200&q=82',
         imageAlt: 'Premium white and wood modular kitchen',
         points: [
           'BWR or BWP plywood options for moisture-prone kitchen zones.',
           'Soft-close hinges, drawers, bottle pull-outs and pantry hardware where required.',
-          'Layout planning for straight, L-shape, U-shape, parallel and island kitchens.',
+          'Layout planning for straight, L-shaped, U-shaped, parallel and island kitchens.',
           'Warranty support across eligible materials, hardware, workmanship and installation.',
         ],
       }}

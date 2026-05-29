@@ -44,7 +44,7 @@ export function ElegantHeader() {
         <div className="elegant-container elegant-topbar-inner">
           <span>
             <MapPin size={14} />
-            {siteDetails.fullAddress}
+            {siteDetails.shortAddress}
           </span>
           <span>
             <Clock size={14} />
@@ -146,6 +146,9 @@ export function ElegantFooter() {
               <li><Link to="/warranty-quality">Warranty & Quality</Link></li>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/contact">Contact / Get Quote</Link></li>
+              <li><a href="/privacy-policy/">Privacy Policy</a></li>
+              <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
+              <li><a href="/return-refund-policy/">Return & Refund</a></li>
             </ul>
           </div>
           <div>
@@ -154,7 +157,9 @@ export function ElegantFooter() {
               <li><a href={siteDetails.phoneHref}>{siteDetails.phoneDisplay}</a></li>
               <li><a href={siteDetails.whatsappHref}>WhatsApp {siteDetails.phoneDisplay}</a></li>
               <li><a href={siteDetails.emailHref}>{siteDetails.email}</a></li>
-              <li>{siteDetails.addressLine}, {siteDetails.cityBase}</li>
+              <li>{siteDetails.fullAddress}</li>
+              <li>GSTIN: {siteDetails.gstin}</li>
+              <li>Udyam: {siteDetails.udyamRegistration}</li>
             </ul>
           </div>
         </div>

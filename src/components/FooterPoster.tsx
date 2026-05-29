@@ -1,5 +1,6 @@
 import React from 'react';
-import { Phone, Globe, MapPin } from 'lucide-react';
+import { Globe, MapPin, Phone } from 'lucide-react';
+import { siteDetails } from '../data/siteDetails';
 
 export function FooterPoster() {
   return (
@@ -12,7 +13,7 @@ export function FooterPoster() {
             </div>
             <div>
               <p className="text-[10px] uppercase font-black tracking-widest opacity-60">Call / WhatsApp</p>
-              <p className="text-xl font-black">8817503658</p>
+              <p className="text-xl font-black">{siteDetails.phone}</p>
             </div>
           </div>
 
@@ -31,15 +32,16 @@ export function FooterPoster() {
           <MapPin size={24} className="mt-1 shrink-0" />
           <div>
             <p className="text-[10px] uppercase font-black tracking-widest opacity-60 mb-1">Studio Address</p>
-            <p className="text-sm font-bold leading-tight">
-              Shop No. 7, J.S. Plaza, Near Zero Gravity Sports Complex, Chipiyana Road, Chipiyana Buzurg, Ghaziabad, UP
+            <p className="text-sm font-bold leading-tight">{siteDetails.fullAddress}</p>
+            <p className="mt-2 text-[10px] uppercase font-black tracking-widest opacity-60">
+              GSTIN {siteDetails.gstin} | Udyam {siteDetails.udyamRegistration}
             </p>
           </div>
         </div>
       </div>
-      
+
       <div className="mt-12 pt-8 border-t border-black/10 text-center text-[10px] font-black uppercase tracking-[0.3em] opacity-40">
-        ALTER CRAFT LUXURY STUDIO (c) {new Date().getFullYear()} — HANDCRAFTED + CNC PRECISION
+        ALTER CRAFT LUXURY STUDIO (c) {new Date().getFullYear()} - HANDCRAFTED + CNC PRECISION
       </div>
     </footer>
   );

@@ -24,6 +24,7 @@ import { products } from '../data/products';
 import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
 import { createWhatsappLink } from '../utils/contact';
+import { HeroPoster } from '../components/HeroPoster';
 
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
@@ -37,8 +38,6 @@ const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/contact', label: 'Contact' },
 ];
 
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1745301558339-44eb3217d5da?w=1920&h=1080&fit=crop&auto=format';
 
 const formatInr = (value: number) => `INR ${value.toLocaleString('en-IN')}`;
 
@@ -365,47 +364,7 @@ export default function Home() {
       <HomeHeader />
 
       <main>
-        <section className="home-hero">
-          <img src={HERO_IMAGE} alt="Premium warm living room interior" />
-          <div className="home-hero-overlay" />
-          <div className="home-container home-hero-content">
-            <p className="home-kicker">Custom + Modular Furniture</p>
-            <h1>Premium Interiors & Custom Furniture Crafted for Modern Spaces</h1>
-            <p className="home-hero-copy">
-              Elegant kitchens, designer beds, wardrobes, flush doors and office interiors
-              built with transparent pricing, refined finishing and dependable support.
-            </p>
-            <div className="home-hero-actions">
-              <a
-                href={createWhatsappLink('Hi AlterCraft, I want a free furniture consultation.')}
-                className="home-button home-button-solid"
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackEvent('whatsapp_click', { location: 'home_hero' })}
-              >
-                <MessageCircle size={18} />
-                Get Free Quote
-              </a>
-              <Link to="/gallery" className="home-button home-button-ghost">
-                View Portfolio
-              </Link>
-            </div>
-            <div className="home-hero-meta">
-              <span>
-                <MapPin size={15} />
-                {siteDetails.cityBase}
-              </span>
-              <span>
-                <Clock size={15} />
-                {siteDetails.workingHours}
-              </span>
-              <a href={siteDetails.emailHref}>
-                <Mail size={15} />
-                {siteDetails.email}
-              </a>
-            </div>
-          </div>
-        </section>
+        <HeroPoster />
 
         <section className="home-trust-strip">
           <div className="home-container home-trust-grid">
@@ -623,8 +582,8 @@ export default function Home() {
                 <p className="home-kicker">Design Journal</p>
                 <h2>Planning guides from the AlterCraft blog</h2>
                 <p>
-                  Existing guides are restored here for now. Once you share the document, this
-                  section can expand into the full SEO content pipeline with stronger article depth.
+                  Practical guides for modular kitchen cost in Delhi NCR, Noida and Ghaziabad,
+                  small kitchen storage, wardrobe planning, finishes and site-visit preparation.
                 </p>
               </div>
               <a href="/blog/modular-kitchen-cost-delhi-ncr/" className="home-inline-link">
@@ -682,6 +641,14 @@ export default function Home() {
                 <span>
                   <MapPin size={17} />
                   {siteDetails.fullAddress}
+                </span>
+                <span>
+                  <Shield size={17} />
+                  GSTIN: {siteDetails.gstin}
+                </span>
+                <span>
+                  <Shield size={17} />
+                  Udyam: {siteDetails.udyamRegistration}
                 </span>
                 <span>
                   <Shield size={17} />

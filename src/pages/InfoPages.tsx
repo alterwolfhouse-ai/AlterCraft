@@ -156,7 +156,8 @@ export function About() {
               ['Clean Finish', 'Edges, hardware, symmetry and installation details are treated as part of the design.'],
               ['Reliable Support', 'After handover, warranty and service support remain part of the relationship.'],
               ['Clear Scope', 'Professional quotations, realistic timelines and careful execution.'],
-              ['Regional Reach', `Projects are served across ${siteDetails.serviceRadius} from ${siteDetails.cityBase}.`],
+              ['Registered Business', `GSTIN ${siteDetails.gstin} and Udyam ${siteDetails.udyamRegistration}.`],
+              ['Regional Reach', `Projects are served across ${siteDetails.serviceRadius} from ${siteDetails.shortAddress}.`],
             ].map(([title, description]) => (
               <article className="elegant-card" key={title}>
                 <div className="elegant-card-body">
@@ -229,6 +230,16 @@ export function Contact() {
                 <span>Service Coverage</span>
                 <strong>{siteDetails.serviceRadius}</strong>
                 <p>Ghaziabad, Noida, Greater Noida, Delhi, Gurugram and nearby locations.</p>
+              </div>
+              <div className="elegant-price-card">
+                <span>GSTIN</span>
+                <strong>{siteDetails.gstin}</strong>
+                <p>Registered trade name: {siteDetails.tradeName}. Legal name: {siteDetails.legalName}.</p>
+              </div>
+              <div className="elegant-price-card">
+                <span>Udyam Registration</span>
+                <strong>{siteDetails.udyamRegistration}</strong>
+                <p>{siteDetails.unitName} is registered for {siteDetails.businessActivity.toLowerCase()}.</p>
               </div>
             </div>
           </div>
