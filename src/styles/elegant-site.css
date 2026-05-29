@@ -638,7 +638,8 @@ body.elegant-lock {
 
 .elegant-floating-whatsapp {
   position: fixed;
-  left: 20px;
+  right: 20px;
+  left: auto;
   bottom: 20px;
   z-index: 75;
   display: inline-flex;
@@ -2068,7 +2069,8 @@ body.elegant-lock {
   }
 
   .elegant-floating-whatsapp {
-    left: 12px;
+    right: 12px;
+    left: auto;
     bottom: 12px;
     min-height: 46px;
     padding: 0.7rem 0.85rem;

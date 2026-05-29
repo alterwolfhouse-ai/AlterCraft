@@ -16,7 +16,6 @@ import {
   Star,
   X,
 } from 'lucide-react';
-import { ChatWidget } from '../components/ChatWidget';
 import { ElegantFooter, FloatingWhatsApp } from '../components/elegant/ElegantLayout';
 import { QuoteForm } from '../components/elegant/QuoteForm';
 import { catalogProducts } from '../data/catalog';
@@ -666,7 +665,6 @@ export default function Home() {
 
       <ElegantFooter />
       <FloatingWhatsApp />
-      <ChatWidget />
     </div>
   );
 }
