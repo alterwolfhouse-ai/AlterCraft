@@ -105,15 +105,14 @@ export function HeroPoster() {
   const currentSlide = HERO_SLIDES[selectedIndex];
 
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen bg-[#030213] flex flex-col overflow-hidden selection:bg-[#B8891A] selection:text-black">
-      {/* Texture Overlay */}
-      <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-10" />
+    <section className="hero-poster">
+      <div className="hero-poster-texture" />
 
       {/* Embla Background Carousel */}
-      <div className="absolute inset-0 w-full h-full" ref={emblaRef}>
-        <div className="flex h-full">
+      <div className="hero-poster-carousel" ref={emblaRef}>
+        <div className="hero-poster-track">
           {HERO_SLIDES.map((slide, idx) => (
-            <div key={idx} className="relative min-w-0 shrink-0 grow-0 basis-full h-full overflow-hidden">
+            <div key={idx} className="hero-poster-slide">
               <AnimatePresence initial={false}>
                 {idx === selectedIndex && (
                   <motion.img
@@ -123,67 +122,66 @@ export function HeroPoster() {
                     animate={{ scale: 1.02, opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 1.6, ease: 'easeOut' }}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="hero-poster-image"
                   />
                 )}
               </AnimatePresence>
-              {/* Individual Slide Overlay for readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#030213]/95 via-[#030213]/85 to-[#030213]/40 md:bg-gradient-to-r md:from-[#030213]/95 md:via-[#030213]/80 md:to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#030213] via-transparent to-[#030213]/30" />
+              <div className="hero-poster-overlay-main" />
+              <div className="hero-poster-overlay-bottom" />
             </div>
           ))}
         </div>
       </div>
 
       {/* Main Content Layout */}
-      <div className="relative z-20 flex-1 flex flex-col justify-center container mx-auto px-6 md:px-12 pt-32 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="hero-poster-content">
+        <div className="hero-poster-grid">
 
           {/* Left Column: Typography & Info */}
-          <div className="lg:col-span-7 flex flex-col text-left">
+          <div className="hero-poster-copy">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               {/* Brand Tag */}
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-8 h-[1px] bg-[#B8891A]" />
-                <span className="text-[#B8891A] uppercase tracking-[0.3em] text-xs font-bold font-sans">
+              <div className="hero-poster-brand-tag">
+                <span />
+                <strong>
                   ALTERCRAFT WOODS & FURNITURE
-                </span>
+                </strong>
               </div>
 
               {/* Dynamic Content area */}
-              <AnimatePresence mode="wait">
+              <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                   key={selectedIndex}
-                  initial={{ opacity: 0, y: 15 }}
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -15 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <span className="text-[#fff8ec]/75 uppercase tracking-[0.2em] text-xs font-bold mb-2 block font-sans">
+                  <span className="hero-poster-category">
                     {currentSlide.category}
                   </span>
 
-                  <h1 className="text-4xl md:text-6xl lg:text-[4.2rem] font-bold text-[#fff8ec] leading-[1.05] tracking-tight mb-6 font-serif">
+                  <h1 className="hero-poster-title">
                     {currentSlide.title}
                   </h1>
 
-                  <p className="text-base md:text-lg text-[#fff8ec]/80 max-w-xl mb-8 leading-relaxed font-sans font-light">
+                  <p className="hero-poster-description">
                     {currentSlide.description}
                   </p>
                 </motion.div>
               </AnimatePresence>
 
               {/* Action CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+              <div className="hero-poster-actions">
                 <a
                   href={createWhatsappLink(`Hi AlterCraft, I am interested in your ${currentSlide.category} services.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 bg-[#B8891A] text-[#030213] px-8 py-3.5 font-bold text-xs uppercase tracking-widest hover:bg-[#fff8ec] hover:text-[#030213] transition-colors rounded-none shadow-lg shadow-black/20"
+                  className="hero-poster-primary"
                   onClick={() => trackEvent('whatsapp_click', { location: 'hero_carousel', category: currentSlide.category })}
                 >
                   <MessageCircle size={16} />
@@ -192,39 +190,38 @@ export function HeroPoster() {
 
                 <Link
                   to={currentSlide.link}
-                  className="inline-flex items-center justify-center gap-2 bg-transparent border border-[#fff8ec]/30 text-[#fff8ec] px-8 py-3.5 font-bold text-xs uppercase tracking-widest hover:border-[#B8891A] hover:text-[#B8891A] transition-colors rounded-none"
+                  className="hero-poster-secondary"
                 >
                   <span>{currentSlide.cta}</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </motion.div>
           </div>
 
           {/* Right Column: Interactive Glassmorphic Control Panel */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          <div className="hero-poster-panel-wrap">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="w-full max-w-sm rounded-[4px] border border-[#fff8ec]/10 bg-[#030213]/40 backdrop-blur-md p-6 md:p-8 shadow-2xl relative overflow-hidden"
+              className="hero-poster-panel"
             >
-              {/* Soft decorative background glow */}
-              <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#B8891A]/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="hero-poster-panel-glow" />
 
-              <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center gap-2">
-                  <Sparkles size={14} className="text-[#B8891A]" />
-                  <span className="text-[#fff8ec]/50 text-xs font-bold tracking-widest uppercase">Specifications</span>
+              <div className="hero-poster-panel-head">
+                <div className="hero-poster-panel-kicker">
+                  <Sparkles size={14} />
+                  <span>Specifications</span>
                 </div>
 
-                <div className="text-right font-mono text-[#fff8ec]/60 text-xs tracking-wider">
-                  <span className="text-[#B8891A] font-bold">0{selectedIndex + 1}</span> / 0{HERO_SLIDES.length}
+                <div className="hero-poster-counter">
+                  <span>0{selectedIndex + 1}</span> / 0{HERO_SLIDES.length}
                 </div>
               </div>
 
               {/* Specification Bullet points that update on slide change */}
-              <div className="min-h-[140px] mb-8">
+              <div className="hero-poster-feature-box">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={selectedIndex}
@@ -232,15 +229,15 @@ export function HeroPoster() {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="space-y-4"
+                    className="hero-poster-feature-motion"
                   >
-                    <h3 className="text-[#fff8ec] text-sm font-semibold tracking-wide border-b border-[#fff8ec]/10 pb-2 font-sans">
+                    <h3 className="hero-poster-feature-title">
                       Key Standards
                     </h3>
-                    <ul className="space-y-3 font-sans">
+                    <ul className="hero-poster-feature-list">
                       {currentSlide.features.map((feat) => (
-                        <li key={feat} className="flex items-start gap-2.5 text-xs text-[#fff8ec]/80 leading-normal">
-                          <span className="w-1.5 h-1.5 rounded-full bg-[#B8891A] mt-1.5 shrink-0" />
+                        <li key={feat} className="hero-poster-feature-item">
+                          <span />
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -250,33 +247,25 @@ export function HeroPoster() {
               </div>
 
               {/* Navigation Indicators & Buttons */}
-              <div className="flex items-center justify-between pt-6 border-t border-[#fff8ec]/10">
-                {/* Dots / Small bars */}
-                <div className="flex gap-2">
+              <div className="hero-poster-panel-nav">
+                <div className="hero-poster-dots">
                   {HERO_SLIDES.map((_, idx) => (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => scrollTo(idx)}
-                      className="group relative h-1.5 transition-all duration-300"
+                      className={`hero-poster-dot ${idx === selectedIndex ? 'active' : ''}`}
                       style={{ width: idx === selectedIndex ? '28px' : '10px' }}
                       aria-label={`Go to slide ${idx + 1}`}
-                    >
-                      <span
-                        className={`absolute inset-0 rounded-full transition-colors duration-300 ${
-                          idx === selectedIndex ? 'bg-[#B8891A]' : 'bg-[#fff8ec]/35 group-hover:bg-[#fff8ec]/60'
-                        }`}
-                      />
-                    </button>
+                    />
                   ))}
                 </div>
 
-                {/* Arrow buttons */}
-                <div className="flex gap-2">
+                <div className="hero-poster-arrows">
                   <button
                     type="button"
                     onClick={scrollPrev}
-                    className="w-9 h-9 rounded-full border border-[#fff8ec]/20 hover:border-[#B8891A] flex items-center justify-center text-[#fff8ec]/70 hover:text-[#B8891A] transition-colors"
+                    className="hero-poster-arrow"
                     aria-label="Previous slide"
                   >
                     <ChevronLeft size={16} />
@@ -284,7 +273,7 @@ export function HeroPoster() {
                   <button
                     type="button"
                     onClick={scrollNext}
-                    className="w-9 h-9 rounded-full border border-[#fff8ec]/20 hover:border-[#B8891A] flex items-center justify-center text-[#fff8ec]/70 hover:text-[#B8891A] transition-colors"
+                    className="hero-poster-arrow"
                     aria-label="Next slide"
                   >
                     <ChevronRight size={16} />
@@ -298,24 +287,24 @@ export function HeroPoster() {
       </div>
 
       {/* Bottom Floating Meta bar */}
-      <div className="relative z-20 border-t border-[#fff8ec]/10 bg-[#030213]/40 backdrop-blur-sm py-4 hidden md:block">
-        <div className="container mx-auto px-6 md:px-12 flex justify-between items-center text-xs text-[#fff8ec]/60 font-sans">
-          <div className="flex items-center gap-2">
-            <MapPin size={12} className="text-[#B8891A]" />
+      <div className="hero-poster-meta-bar">
+        <div className="hero-poster-meta-inner">
+          <div className="hero-poster-meta-item">
+            <MapPin size={12} />
             <span>Studio: {siteDetails.shortAddress}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Clock size={12} className="text-[#B8891A]" />
+          <div className="hero-poster-meta-item">
+            <Clock size={12} />
             <span>Open: {siteDetails.workingHours}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Mail size={12} className="text-[#B8891A]" />
-            <a href={siteDetails.emailHref} className="hover:text-[#B8891A] transition-colors">
+          <div className="hero-poster-meta-item">
+            <Mail size={12} />
+            <a href={siteDetails.emailHref}>
               {siteDetails.email}
             </a>
           </div>
-          <div className="flex items-center gap-2">
-            <Shield size={12} className="text-[#B8891A]" />
+          <div className="hero-poster-meta-item">
+            <Shield size={12} />
             <span>Reliable Warranty Support</span>
           </div>
         </div>
