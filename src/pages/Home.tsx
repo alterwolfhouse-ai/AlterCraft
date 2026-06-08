@@ -30,6 +30,7 @@ import { HeroPoster } from '../components/HeroPoster';
 import { SpatialStudio } from '../components/visual/SpatialStudio';
 import { CanvaVisualShowcase } from '../components/visual/CanvaVisualShowcase';
 import { canvaVisuals } from '../data/visualAssets';
+import { useAuth } from '../contexts/AuthContext';
 
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
@@ -58,6 +59,11 @@ const lowestProductPrice = (category: string) => {
 function HomeHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { isAdmin } = useAuth();
+  const navLinks = useMemo(
+    () => (isAdmin ? [...NAV_LINKS, { to: '/admin', label: 'ACOS' }] : NAV_LINKS),
+    [isAdmin]
+  );
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -78,7 +84,7 @@ function HomeHeader() {
         </Link>
 
         <nav className="home-nav" aria-label="Main navigation">
-          {NAV_LINKS.map((item) =>
+          {navLinks.map((item) =>
             item.anchor ? (
               <a key={item.to} href={item.to}>
                 {item.label}
@@ -120,7 +126,7 @@ function HomeHeader() {
 
       <div className={`home-mobile-panel ${menuOpen ? 'open' : ''}`}>
         <div className="home-container">
-          {NAV_LINKS.map((item) =>
+          {navLinks.map((item) =>
             item.anchor ? (
               <a key={item.to} href={item.to} onClick={() => setMenuOpen(false)}>
                 {item.label}

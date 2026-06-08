@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Clock, Mail, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react';
 import { siteDetails } from '../../data/siteDetails';
 import { createWhatsappLink } from '../../utils/contact';
+import { useAuth } from '../../contexts/AuthContext';
 
 const navItems = [
   { to: '/ai-planner', label: 'Design Preview' },
@@ -38,6 +39,8 @@ export function FloatingWhatsApp() {
 
 export function ElegantHeader() {
   const [isOpen, setIsOpen] = useState(false);
+  const { isAdmin } = useAuth();
+  const visibleNavItems = isAdmin ? [...navItems, { to: '/admin', label: 'ACOS' }] : navItems;
 
   return (
     <>
@@ -69,7 +72,7 @@ export function ElegantHeader() {
           </Link>
 
           <nav className="elegant-nav" aria-label="Main navigation">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <Link key={item.to} to={item.to}>
                 {item.label}
               </Link>
@@ -105,7 +108,7 @@ export function ElegantHeader() {
 
         <div className={`elegant-mobile-panel ${isOpen ? 'open' : ''}`}>
           <div className="elegant-container">
-            {navItems.map((item) => (
+            {visibleNavItems.map((item) => (
               <Link key={item.to} to={item.to} onClick={() => setIsOpen(false)}>
                 {item.label}
               </Link>

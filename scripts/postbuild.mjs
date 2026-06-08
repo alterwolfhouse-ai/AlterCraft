@@ -34,7 +34,20 @@ const spaRoutes = [
   '/ai-planner/submitted',
   '/my-projects',
   '/admin',
+  '/admin/login',
+  '/admin/signup',
+  '/admin/reset-password',
+  '/admin/forbidden',
   '/admin/leads',
+  '/admin/design-requests',
+  '/admin/production',
+  '/admin/finances',
+  '/admin/marketing',
+  '/admin/hr',
+  '/admin/marketplace',
+  '/admin/reports',
+  '/admin/users',
+  '/admin/backend-guide',
 ];
 
 if (!existsSync(indexPath)) {

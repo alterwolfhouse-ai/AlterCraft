@@ -505,7 +505,7 @@ export function AIPlannerSubmitted() {
           <PreviewDisclaimer compact />
           <div className="planner-form-actions centered">
             <CTAButton to={`/my-projects/${requestId}`}>Open Project Page</CTAButton>
-            <CTAButton to="/admin/leads" variant="secondary">View Admin Leads</CTAButton>
+            <CTAButton to="/admin/design-requests" variant="secondary">View Admin Leads</CTAButton>
           </div>
         </div>
       </section>
@@ -668,7 +668,7 @@ export function AdminDashboard() {
           </div>
           <AdminLeadTable projects={projects} />
           <div className="planner-form-actions">
-            <CTAButton to="/admin/leads">Open Leads</CTAButton>
+            <CTAButton to="/admin/design-requests">Open Leads</CTAButton>
             <CTAButton to="/ai-planner/start" variant="secondary">Create Test Request</CTAButton>
           </div>
         </div>
@@ -715,7 +715,7 @@ export function AdminProjectDetail() {
         <section className="planner-section planner-section-top">
           <div className="elegant-container planner-success-card">
             <h1>Admin project not found</h1>
-            <CTAButton to="/admin/leads">Back to Leads</CTAButton>
+            <CTAButton to="/admin/design-requests">Back to Leads</CTAButton>
           </div>
         </section>
       </PlannerPageShell>

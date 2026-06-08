@@ -1,0 +1,696 @@
+:root {
+  --acos-bg: #090806;
+  --acos-panel: #14100c;
+  --acos-panel-soft: #1d1710;
+  --acos-card: rgba(31, 24, 16, 0.86);
+  --acos-border: rgba(218, 176, 98, 0.18);
+  --acos-gold: #d7a84e;
+  --acos-gold-soft: rgba(215, 168, 78, 0.14);
+  --acos-text: #fff7e8;
+  --acos-muted: rgba(255, 247, 232, 0.64);
+  --acos-good: #61c584;
+  --acos-warn: #e1b85f;
+  --acos-alert: #db7565;
+}
+
+.acos-page {
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  background:
+    radial-gradient(circle at 0 0, rgba(215, 168, 78, 0.16), transparent 32rem),
+    radial-gradient(circle at 100% 8%, rgba(255, 247, 232, 0.08), transparent 28rem),
+    var(--acos-bg);
+  color: var(--acos-text);
+}
+
+.acos-sidebar {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  border-right: 1px solid var(--acos-border);
+  background:
+    linear-gradient(180deg, rgba(20, 16, 12, 0.96), rgba(10, 8, 6, 0.96));
+  padding: 1.2rem;
+}
+
+.acos-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.8rem;
+  border: 1px solid var(--acos-border);
+  border-radius: 18px;
+  background: rgba(255, 247, 232, 0.04);
+}
+
+.acos-brand > span {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #fff3d6, #b97c31);
+  color: #170f08;
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+.acos-brand strong,
+.acos-brand small {
+  display: block;
+}
+
+.acos-brand strong {
+  color: var(--acos-text);
+}
+
+.acos-brand small {
+  margin-top: 0.15rem;
+  color: var(--acos-muted);
+  font-size: 0.76rem;
+}
+
+.acos-sidebar nav {
+  display: grid;
+  gap: 0.28rem;
+}
+
+.acos-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: var(--acos-muted);
+  padding: 0.62rem 0.75rem;
+  font-size: 0.92rem;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+
+.acos-sidebar nav a:hover,
+.acos-sidebar nav a.active {
+  border-color: var(--acos-border);
+  background: var(--acos-gold-soft);
+  color: var(--acos-text);
+}
+
+.acos-sidebar-note {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: auto;
+  border: 1px solid var(--acos-border);
+  border-radius: 16px;
+  background: rgba(215, 168, 78, 0.08);
+  color: var(--acos-muted);
+  padding: 0.85rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.acos-sidebar-note svg,
+.acos-card-head svg,
+.acos-module-hero svg {
+  color: var(--acos-gold);
+  flex: 0 0 auto;
+}
+
+.acos-main {
+  min-width: 0;
+  padding: clamp(1rem, 2.5vw, 2rem);
+}
+
+.acos-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+.acos-topbar span,
+.acos-card-head span,
+.acos-auth-card span {
+  color: var(--acos-gold);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.acos-topbar h1,
+.acos-card-head h2,
+.acos-auth-card h1,
+.acos-form-card h2,
+.acos-security-panel h2,
+.acos-user-management h2 {
+  margin: 0.24rem 0 0;
+  color: var(--acos-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.02;
+}
+
+.acos-topbar h1 {
+  font-size: clamp(2.2rem, 4vw, 4rem);
+}
+
+.acos-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--acos-border);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.04);
+  padding: 0.45rem 0.45rem 0.45rem 0.9rem;
+}
+
+.acos-user-chip span,
+.acos-user-chip small {
+  display: block;
+}
+
+.acos-user-chip small {
+  color: var(--acos-muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+.acos-user-chip button,
+.acos-module-actions button,
+.acos-table-tools button,
+.acos-form-card button,
+.acos-user-management button,
+.acos-auth-form button,
+.acos-auth-button-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(215, 168, 78, 0.28);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d9ad63, #8f5527);
+  color: #fff8ec;
+  padding: 0.72rem 0.95rem;
+  font-weight: 800;
+}
+
+.acos-user-chip button {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+}
+
+.acos-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.acos-kpi-grid.compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.acos-kpi-grid article,
+.acos-chart-card,
+.acos-module-grid a,
+.acos-module-hero,
+.acos-table-card,
+.acos-form-card,
+.acos-security-panel,
+.acos-user-management {
+  border: 1px solid var(--acos-border);
+  border-radius: 22px;
+  background:
+    linear-gradient(145deg, rgba(255, 247, 232, 0.06), rgba(215, 168, 78, 0.035)),
+    var(--acos-card);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.acos-kpi-grid article {
+  display: grid;
+  gap: 0.55rem;
+  min-height: 132px;
+  padding: 1rem;
+}
+
+.acos-kpi-grid svg {
+  color: var(--acos-gold);
+}
+
+.acos-kpi-grid span {
+  color: var(--acos-muted);
+  font-size: 0.85rem;
+}
+
+.acos-kpi-grid strong {
+  color: var(--acos-text);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.tone-good strong,
+.tone-good svg {
+  color: var(--acos-good);
+}
+
+.tone-warn strong,
+.tone-warn svg {
+  color: var(--acos-warn);
+}
+
+.tone-alert strong,
+.tone-alert svg {
+  color: var(--acos-alert);
+}
+
+.acos-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.acos-chart-card,
+.acos-table-card,
+.acos-form-card,
+.acos-security-panel,
+.acos-user-management {
+  padding: 1rem;
+}
+
+.acos-card-head,
+.acos-security-panel > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.acos-bar-row {
+  display: grid;
+  grid-template-columns: 130px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.82rem;
+  color: var(--acos-muted);
+  font-size: 0.88rem;
+}
+
+.acos-bar-row div {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.08);
+}
+
+.acos-bar-row i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #8f5527, #d7a84e);
+}
+
+.acos-timeline {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.acos-timeline p,
+.acos-audit-log p {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  margin: 0;
+  color: var(--acos-muted);
+  line-height: 1.5;
+}
+
+.acos-timeline svg,
+.acos-audit-log svg {
+  color: var(--acos-gold);
+  margin-top: 0.15rem;
+  flex: 0 0 auto;
+}
+
+.acos-module-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.acos-module-grid a {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1rem;
+  color: var(--acos-muted);
+}
+
+.acos-module-grid a strong {
+  color: var(--acos-text);
+  font-size: 1.05rem;
+}
+
+.acos-module-grid a span {
+  line-height: 1.55;
+}
+
+.acos-module-grid a em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--acos-gold);
+  font-style: normal;
+  font-weight: 800;
+}
+
+.acos-security-panel ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--acos-muted);
+  line-height: 1.55;
+}
+
+.acos-module-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.acos-module-hero p {
+  max-width: 760px;
+  margin: 0.65rem 0 0;
+  color: var(--acos-muted);
+  line-height: 1.65;
+}
+
+.acos-module-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.55rem;
+}
+
+.acos-module-actions button,
+.acos-table-tools button {
+  background: rgba(255, 247, 232, 0.05);
+  color: var(--acos-text);
+}
+
+.acos-table-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.acos-table-tools label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--acos-border);
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.05);
+  padding: 0.7rem 0.9rem;
+  color: var(--acos-muted);
+}
+
+.acos-table-tools input {
+  width: 100%;
+  min-width: 0;
+  color: var(--acos-text);
+  outline: none;
+}
+
+.acos-table-wrap {
+  overflow-x: auto;
+}
+
+.acos-table-wrap table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+}
+
+.acos-table-wrap th,
+.acos-table-wrap td {
+  border-bottom: 1px solid rgba(215, 168, 78, 0.12);
+  padding: 0.85rem;
+  text-align: left;
+}
+
+.acos-table-wrap th {
+  color: var(--acos-gold);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.acos-table-wrap td {
+  color: var(--acos-muted);
+}
+
+.acos-form-card,
+.acos-user-management {
+  margin-top: 1rem;
+}
+
+.acos-form-card form,
+.acos-user-management form,
+.acos-auth-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.acos-form-card form {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.acos-form-card label,
+.acos-user-management label,
+.acos-auth-form label {
+  display: grid;
+  gap: 0.4rem;
+  color: var(--acos-muted);
+  font-size: 0.86rem;
+}
+
+.acos-form-card input,
+.acos-form-card select,
+.acos-form-card textarea,
+.acos-user-management input,
+.acos-user-management select,
+.acos-auth-form input {
+  width: 100%;
+  border: 1px solid var(--acos-border);
+  border-radius: 12px;
+  background: rgba(255, 247, 232, 0.06);
+  color: var(--acos-text);
+  padding: 0.82rem 0.9rem;
+  outline: none;
+}
+
+.acos-form-card textarea {
+  grid-column: 1 / -1;
+  resize: vertical;
+}
+
+.acos-form-card button {
+  width: max-content;
+}
+
+.acos-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.acos-toggle input {
+  width: auto;
+}
+
+.acos-audit-log {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.acos-audit-log h3 {
+  margin: 0;
+  color: var(--acos-text);
+}
+
+.acos-audit-log span {
+  display: block;
+  color: rgba(255, 247, 232, 0.42);
+  font-size: 0.78rem;
+}
+
+.acos-auth-page {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(215, 168, 78, 0.18), transparent 28rem),
+    radial-gradient(circle at 85% 16%, rgba(255, 247, 232, 0.09), transparent 22rem),
+    var(--acos-bg);
+  color: var(--acos-text);
+}
+
+.acos-auth-brand {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  color: var(--acos-gold);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+}
+
+.acos-auth-card {
+  width: min(460px, 100%);
+  border: 1px solid var(--acos-border);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgba(255, 247, 232, 0.08), rgba(215, 168, 78, 0.04)),
+    var(--acos-card);
+  padding: clamp(1.2rem, 4vw, 2rem);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+}
+
+.acos-auth-card p {
+  color: var(--acos-muted);
+  line-height: 1.62;
+}
+
+.acos-auth-form button,
+.acos-auth-button-link {
+  width: 100%;
+}
+
+.acos-form-error,
+.acos-form-success,
+.acos-auth-security-note {
+  border: 1px solid rgba(215, 168, 78, 0.18);
+  border-radius: 14px;
+  padding: 0.75rem;
+  color: var(--acos-muted);
+  background: rgba(255, 247, 232, 0.05);
+  line-height: 1.5;
+}
+
+.acos-form-error {
+  border-color: rgba(219, 117, 101, 0.34);
+  color: #ffc5ba;
+}
+
+.acos-form-success {
+  border-color: rgba(97, 197, 132, 0.34);
+  color: #bff2ce;
+}
+
+.acos-auth-links {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.acos-auth-links a {
+  color: var(--acos-gold);
+  font-weight: 700;
+}
+
+.acos-password-meter {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 247, 232, 0.09);
+}
+
+.acos-password-meter span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #8f5527, #d7a84e, #61c584);
+  transition: width 160ms ease;
+}
+
+@media (max-width: 1080px) {
+  .acos-page {
+    grid-template-columns: 1fr;
+  }
+
+  .acos-sidebar {
+    position: relative;
+    min-height: auto;
+  }
+
+  .acos-sidebar nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .acos-dashboard-grid,
+  .acos-module-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .acos-main,
+  .acos-sidebar {
+    padding: 0.85rem;
+  }
+
+  .acos-sidebar nav,
+  .acos-kpi-grid,
+  .acos-kpi-grid.compact,
+  .acos-form-card form {
+    grid-template-columns: 1fr;
+  }
+
+  .acos-topbar,
+  .acos-module-hero,
+  .acos-table-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .acos-user-chip {
+    border-radius: 18px;
+    justify-content: space-between;
+  }
+
+  .acos-module-actions {
+    justify-content: stretch;
+  }
+
+  .acos-module-actions button,
+  .acos-table-tools button,
+  .acos-form-card button {
+    width: 100%;
+  }
+
+  .acos-topbar h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
+  .acos-auth-links {
+    flex-direction: column;
+  }
+}

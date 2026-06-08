@@ -1,6 +1,7 @@
-import { lazy } from "react";
-import { Navigate, createBrowserRouter } from "react-router";
+import React, { lazy } from "react";
+import { Navigate, createBrowserRouter, useLocation } from "react-router";
 import Home from "./pages/Home";
+import { useAuth } from "./contexts/AuthContext";
 
 const ProductDetail = lazy(() => import("./pages/ProductDetail"));
 const ProductGalleryPage = lazy(() =>
@@ -63,15 +64,71 @@ const MyProjects = lazy(() =>
 const MyProjectDetail = lazy(() =>
   import("./pages/AIPlanner").then((module) => ({ default: module.MyProjectDetail }))
 );
-const AdminDashboard = lazy(() =>
-  import("./pages/AIPlanner").then((module) => ({ default: module.AdminDashboard }))
-);
 const AdminLeads = lazy(() =>
   import("./pages/AIPlanner").then((module) => ({ default: module.AdminLeads }))
 );
 const AdminProjectDetail = lazy(() =>
   import("./pages/AIPlanner").then((module) => ({ default: module.AdminProjectDetail }))
 );
+const ACOSDashboard = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSDashboard }))
+);
+const ACOSLogin = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSLogin }))
+);
+const ACOSSignUp = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSSignUp }))
+);
+const ACOSResetPassword = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSResetPassword }))
+);
+const ACOSForbidden = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSForbidden }))
+);
+const ACOSLeads = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSLeads }))
+);
+const ACOSProduction = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSProduction }))
+);
+const ACOSFinances = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSFinances }))
+);
+const ACOSMarketing = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSMarketing }))
+);
+const ACOSHR = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSHR }))
+);
+const ACOSMarketplace = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSMarketplace }))
+);
+const ACOSReports = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSReports }))
+);
+const ACOSUsers = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSUsers }))
+);
+const ACOSBackendGuide = lazy(() =>
+  import("./pages/ACOS").then((module) => ({ default: module.ACOSBackendGuide }))
+);
+
+function AdminOnly({ children }: { children: React.ReactNode }) {
+  const { user, isAdmin } = useAuth();
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/admin/login" replace state={{ from: location }} />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/admin/forbidden" replace />;
+  }
+
+  return <>{children}</>;
+}
+
+const adminOnly = (children: React.ReactNode) => <AdminOnly>{children}</AdminOnly>;
 
 export const router = createBrowserRouter([
   {
@@ -200,15 +257,67 @@ export const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    Component: AdminDashboard,
+    element: adminOnly(<ACOSDashboard />),
+  },
+  {
+    path: "/admin/login",
+    Component: ACOSLogin,
+  },
+  {
+    path: "/admin/signup",
+    Component: ACOSSignUp,
+  },
+  {
+    path: "/admin/reset-password",
+    Component: ACOSResetPassword,
+  },
+  {
+    path: "/admin/forbidden",
+    Component: ACOSForbidden,
   },
   {
     path: "/admin/leads",
-    Component: AdminLeads,
+    element: adminOnly(<ACOSLeads />),
+  },
+  {
+    path: "/admin/design-requests",
+    element: adminOnly(<AdminLeads />),
   },
   {
     path: "/admin/projects/:id",
-    Component: AdminProjectDetail,
+    element: adminOnly(<AdminProjectDetail />),
+  },
+  {
+    path: "/admin/production",
+    element: adminOnly(<ACOSProduction />),
+  },
+  {
+    path: "/admin/finances",
+    element: adminOnly(<ACOSFinances />),
+  },
+  {
+    path: "/admin/marketing",
+    element: adminOnly(<ACOSMarketing />),
+  },
+  {
+    path: "/admin/hr",
+    element: adminOnly(<ACOSHR />),
+  },
+  {
+    path: "/admin/marketplace",
+    element: adminOnly(<ACOSMarketplace />),
+  },
+  {
+    path: "/admin/reports",
+    element: adminOnly(<ACOSReports />),
+  },
+  {
+    path: "/admin/users",
+    element: adminOnly(<ACOSUsers />),
+  },
+  {
+    path: "/admin/backend-guide",
+    element: adminOnly(<ACOSBackendGuide />),
   },
   {
     path: "/product/:id",
