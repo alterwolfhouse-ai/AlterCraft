@@ -7759,3 +7759,166 @@ body,
     min-height: 380px;
   }
 }
+
+/* Layout containment pass for planner cards and narrow screens. */
+.planner-page {
+  overflow-x: hidden;
+}
+
+.planner-page :where(
+  .elegant-container,
+  .planner-hero-grid,
+  .planner-form-layout,
+  .planner-confirm-layout,
+  .planner-detail-grid,
+  .planner-upload-grid,
+  .planner-form-grid,
+  .planner-summary-grid,
+  .planner-step-grid,
+  .planner-type-grid,
+  .planner-service-grid,
+  .planner-concept-grid,
+  .planner-project-row,
+  .planner-card-actions,
+  .planner-form-actions
+) {
+  min-width: 0;
+}
+
+.planner-page :where(
+  h1,
+  h2,
+  h3,
+  p,
+  a,
+  button,
+  label,
+  small,
+  strong,
+  em,
+  span,
+  li,
+  dt,
+  dd
+) {
+  overflow-wrap: anywhere;
+}
+
+.planner-form-layout > *,
+.planner-confirm-layout > *,
+.planner-detail-grid > *,
+.planner-upload-grid > *,
+.planner-form-grid > *,
+.planner-summary-grid > *,
+.planner-concept-grid > *,
+.planner-service-grid > *,
+.planner-card-actions > *,
+.planner-form-actions > * {
+  min-width: 0;
+}
+
+.planner-upload-field {
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.planner-upload-field > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.planner-upload-field :where(strong, small, em) {
+  display: block;
+  width: 100%;
+}
+
+.planner-upload-field input[type="file"] {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: transparent;
+  cursor: pointer;
+}
+
+.planner-upload-field input[type="file"]::file-selector-button {
+  max-width: 100%;
+  margin-right: 0;
+  border: 1px solid rgba(184, 137, 26, 0.36);
+  border-radius: 999px;
+  background: rgba(255, 248, 236, 0.92);
+  color: var(--primary);
+  padding: 0.62rem 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.planner-side-card li span,
+.planner-summary-grid strong,
+.planner-missing-box p,
+.planner-concept-card dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.planner-card-actions a,
+.planner-card-actions button,
+.planner-form-actions .planner-cta {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+
+.elegant-floating-whatsapp {
+  box-sizing: border-box;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+}
+
+.elegant-floating-whatsapp svg {
+  flex: 0 0 auto;
+}
+
+@media (min-width: 1081px) {
+  .planner-form-layout {
+    grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+    gap: clamp(1.5rem, 3.5vw, 3.4rem);
+  }
+}
+
+@media (max-width: 820px) {
+  .planner-upload-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .planner-hero .elegant-container,
+  .planner-section .elegant-container {
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+  }
+
+  .planner-form-layout h1,
+  .planner-confirm-card h1,
+  .planner-success-card h1,
+  .planner-detail-head h1 {
+    font-size: clamp(2.35rem, 12vw, 3.35rem);
+    line-height: 0.98;
+  }
+}
+
+@media (max-width: 420px) {
+  .planner-hero .elegant-container,
+  .planner-section .elegant-container {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+  }
+
+  .planner-upload-field {
+    padding: 1rem;
+  }
+}
