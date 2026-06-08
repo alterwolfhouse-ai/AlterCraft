@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 import useEmblaCarousel from 'embla-carousel-react';
 import {
@@ -138,19 +137,15 @@ export function HeroPoster() {
         <div className="hero-poster-track">
           {HERO_SLIDES.map((slide, idx) => (
             <div key={idx} className="hero-poster-slide">
-              <AnimatePresence initial={false}>
-                {idx === selectedIndex && (
-                  <motion.img
-                    src={slide.image}
-                    alt={slide.title}
-                    initial={{ scale: 1.15, opacity: 0 }}
-                    animate={{ scale: 1.02, opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 1.6, ease: 'easeOut' }}
-                    className="hero-poster-image"
-                  />
-                )}
-              </AnimatePresence>
+              {idx === selectedIndex && (
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="hero-poster-image hero-poster-image-active"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              )}
               <div className="hero-poster-overlay-main" />
               <div className="hero-poster-overlay-bottom" />
             </div>
@@ -164,11 +159,7 @@ export function HeroPoster() {
 
           {/* Left Column: Typography & Info */}
           <div className="hero-poster-copy">
-            <motion.div
-              initial={false}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="hero-poster-copy-motion">
               {/* Brand Tag */}
               <div className="hero-poster-brand-tag">
                 <span />
@@ -178,14 +169,7 @@ export function HeroPoster() {
               </div>
 
               {/* Dynamic Content area */}
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={selectedIndex}
-                  initial={{ opacity: 1, y: 0 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.5 }}
-                >
+              <div key={selectedIndex} className="hero-poster-text-motion">
                   <span className="hero-poster-category">
                     {currentSlide.category}
                   </span>
@@ -207,8 +191,7 @@ export function HeroPoster() {
                     The first preview is only for imagination. Final sizes, materials, quotation
                     and work details are confirmed by the AlterCraft team before the project starts.
                   </p>
-                </motion.div>
-              </AnimatePresence>
+              </div>
 
               {/* Action CTAs */}
               <div className="hero-poster-actions">
@@ -229,7 +212,7 @@ export function HeroPoster() {
                   <ArrowRight size={14} />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Right Column: Interactive Glassmorphic Control Panel */}
@@ -266,12 +249,7 @@ export function HeroPoster() {
               </article>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hero-poster-panel"
-            >
+            <div className="hero-poster-panel hero-poster-panel-motion">
               <div className="hero-poster-panel-glow" />
 
               <div className="hero-poster-panel-head">
@@ -287,15 +265,7 @@ export function HeroPoster() {
 
               {/* Specification Bullet points that update on slide change */}
               <div className="hero-poster-feature-box">
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={selectedIndex}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className="hero-poster-feature-motion"
-                  >
+                <div key={selectedIndex} className="hero-poster-feature-motion">
                     <h3 className="hero-poster-feature-title">
                       What we check
                     </h3>
@@ -307,8 +277,7 @@ export function HeroPoster() {
                         </li>
                       ))}
                     </ul>
-                  </motion.div>
-                </AnimatePresence>
+                </div>
               </div>
 
               {/* Navigation Indicators & Buttons */}
@@ -345,7 +314,7 @@ export function HeroPoster() {
                   </button>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>

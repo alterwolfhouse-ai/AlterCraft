@@ -1,29 +1,77 @@
+import { lazy } from "react";
 import { Navigate, createBrowserRouter } from "react-router";
 import Home from "./pages/Home";
-import ProductDetail from "./pages/ProductDetail";
-import { ProductGalleryPage } from "./components/ProductGalleryPage";
-import {
-  DesignerBeds,
-  FlushDoors,
-  ModularKitchen,
-  OfficeCommercial,
-  Wardrobes,
-} from "./pages/servicePages";
-import { About, Contact, NotFound, WarrantyQuality } from "./pages/InfoPages";
-import {
-  AIPlannerConfirm,
-  AIPlannerDimensions,
-  AIPlannerLanding,
-  AIPlannerRequirements,
-  AIPlannerStart,
-  AIPlannerSubmitted,
-  AIPlannerUpload,
-  AdminDashboard,
-  AdminLeads,
-  AdminProjectDetail,
-  MyProjectDetail,
-  MyProjects,
-} from "./pages/AIPlanner";
+
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const ProductGalleryPage = lazy(() =>
+  import("./components/ProductGalleryPage").then((module) => ({ default: module.ProductGalleryPage }))
+);
+const ModularKitchenNearMe = lazy(() =>
+  import("./pages/ModularKitchenNearMe").then((module) => ({ default: module.ModularKitchenNearMe }))
+);
+const ModularKitchen = lazy(() =>
+  import("./pages/servicePages").then((module) => ({ default: module.ModularKitchen }))
+);
+const DesignerBeds = lazy(() =>
+  import("./pages/servicePages").then((module) => ({ default: module.DesignerBeds }))
+);
+const FlushDoors = lazy(() =>
+  import("./pages/servicePages").then((module) => ({ default: module.FlushDoors }))
+);
+const Wardrobes = lazy(() =>
+  import("./pages/servicePages").then((module) => ({ default: module.Wardrobes }))
+);
+const OfficeCommercial = lazy(() =>
+  import("./pages/servicePages").then((module) => ({ default: module.OfficeCommercial }))
+);
+const WarrantyQuality = lazy(() =>
+  import("./pages/InfoPages").then((module) => ({ default: module.WarrantyQuality }))
+);
+const About = lazy(() =>
+  import("./pages/InfoPages").then((module) => ({ default: module.About }))
+);
+const Contact = lazy(() =>
+  import("./pages/InfoPages").then((module) => ({ default: module.Contact }))
+);
+const NotFound = lazy(() =>
+  import("./pages/InfoPages").then((module) => ({ default: module.NotFound }))
+);
+const AIPlannerLanding = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerLanding }))
+);
+const AIPlannerStart = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerStart }))
+);
+const AIPlannerUpload = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerUpload }))
+);
+const AIPlannerDimensions = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerDimensions }))
+);
+const AIPlannerRequirements = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerRequirements }))
+);
+const AIPlannerConfirm = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerConfirm }))
+);
+const AIPlannerSubmitted = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AIPlannerSubmitted }))
+);
+const MyProjects = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.MyProjects }))
+);
+const MyProjectDetail = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.MyProjectDetail }))
+);
+const AdminDashboard = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AdminDashboard }))
+);
+const AdminLeads = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AdminLeads }))
+);
+const AdminProjectDetail = lazy(() =>
+  import("./pages/AIPlanner").then((module) => ({ default: module.AdminProjectDetail }))
+);
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +97,14 @@ export const router = createBrowserRouter([
   {
     path: "/modular-kitchen",
     Component: ModularKitchen,
+  },
+  {
+    path: "/modular-kitchen-near-me",
+    Component: ModularKitchenNearMe,
+  },
+  {
+    path: "/modular-kitchen-near-me/",
+    Component: ModularKitchenNearMe,
   },
   {
     path: "/kitchen",

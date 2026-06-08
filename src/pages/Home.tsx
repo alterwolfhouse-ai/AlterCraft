@@ -34,7 +34,7 @@ import { canvaVisuals } from '../data/visualAssets';
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
   { to: '/ai-planner', label: 'Design Preview' },
-  { to: '/modular-kitchen', label: 'Kitchen' },
+  { to: '/modular-kitchen-near-me', label: 'Kitchen' },
   { to: '/designer-beds', label: 'Beds' },
   { to: '/flush-doors', label: 'Doors' },
   { to: '/wardrobes', label: 'Wardrobes' },
@@ -172,8 +172,8 @@ export default function Home() {
         ? `Catalog kitchen units also listed from ${formatInr(kitchenCatalogStarting)}.`
         : 'Final quote depends on site size, hardware and finish.',
       image: canvaVisuals.kitchenVisual,
-      to: '/modular-kitchen',
-      cta: 'Explore Kitchens',
+      to: '/modular-kitchen-near-me',
+      cta: 'Kitchen Near Me',
     },
     {
       title: 'Designer Beds',

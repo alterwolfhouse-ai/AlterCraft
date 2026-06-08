@@ -51,9 +51,15 @@ export function CreativeMotion() {
   useEffect(() => {
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const finePointer = window.matchMedia('(pointer: fine)').matches;
+    const desktopViewport = window.matchMedia('(min-width: 1024px)').matches;
+    const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number };
+    const capableDevice =
+      (navigator.hardwareConcurrency ?? 4) >= 4 && (navigatorWithMemory.deviceMemory ?? 4) >= 4;
+    const enableCursor = finePointer && desktopViewport && capableDevice && !reduceMotion;
+    const enableMagnetic = enableCursor;
 
     document.body.classList.add('ac-motion-ready');
-    if (finePointer && !reduceMotion) {
+    if (enableCursor) {
       document.body.classList.add('ac-has-cursor');
     }
 
@@ -61,22 +67,22 @@ export function CreativeMotion() {
     const ring = ringRef.current;
     let pointerX = window.innerWidth / 2;
     let pointerY = window.innerHeight / 2;
-    let ringX = pointerX;
-    let ringY = pointerY;
-    let animationFrame = 0;
+    let cursorFrame = 0;
+    let scrollFrame = 0;
+    let scanFrame = 0;
 
-    const animateCursor = () => {
-      if (!dot || !ring || reduceMotion || !finePointer) return;
-      ringX += (pointerX - ringX) * 0.18;
-      ringY += (pointerY - ringY) * 0.18;
+    const updateCursor = () => {
+      if (!dot || !ring || !enableCursor) return;
       dot.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
-      ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
-      animationFrame = window.requestAnimationFrame(animateCursor);
+      ring.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
+      cursorFrame = 0;
     };
 
     const handlePointerMove = (event: PointerEvent) => {
       pointerX = event.clientX;
       pointerY = event.clientY;
+      if (cursorFrame || !enableCursor) return;
+      cursorFrame = window.requestAnimationFrame(updateCursor);
     };
 
     const handlePointerDown = () => document.body.classList.add('ac-cursor-pressed');
@@ -85,22 +91,25 @@ export function CreativeMotion() {
     const updateScrollState = () => {
       const scrollMax = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
       const ratio = Math.min(window.scrollY / scrollMax, 1);
-      document.documentElement.style.setProperty('--ac-scroll-ratio', ratio.toFixed(4));
-      document.documentElement.style.setProperty('--ac-scroll-shift', `${Math.min(window.scrollY * 0.075, 58)}px`);
       if (scrollRef.current) {
         scrollRef.current.style.transform = `scaleY(${ratio})`;
       }
+      scrollFrame = 0;
+    };
+    const requestScrollState = () => {
+      if (scrollFrame) return;
+      scrollFrame = window.requestAnimationFrame(updateScrollState);
     };
 
-    if (finePointer && !reduceMotion) {
+    if (enableCursor) {
       window.addEventListener('pointermove', handlePointerMove, { passive: true });
       window.addEventListener('pointerdown', handlePointerDown, { passive: true });
       window.addEventListener('pointerup', handlePointerUp, { passive: true });
     }
-    window.addEventListener('scroll', updateScrollState, { passive: true });
-    window.addEventListener('resize', updateScrollState, { passive: true });
+    window.addEventListener('scroll', requestScrollState, { passive: true });
+    window.addEventListener('resize', requestScrollState, { passive: true });
     updateScrollState();
-    animationFrame = window.requestAnimationFrame(animateCursor);
+    updateCursor();
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -119,11 +128,12 @@ export function CreativeMotion() {
 
     const attachMagnetic = (item: HTMLElement) => {
       if (magneticCleanups.has(item)) return;
+      if (!enableMagnetic) return;
       let magneticFrame = 0;
       let nextX = 0;
       let nextY = 0;
       const move = (event: PointerEvent) => {
-        if (reduceMotion || !finePointer) return;
+        if (!enableMagnetic) return;
         const rect = item.getBoundingClientRect();
         nextX = (event.clientX - rect.left - rect.width / 2) * 0.1;
         nextY = (event.clientY - rect.top - rect.height / 2) * 0.1;
@@ -159,13 +169,19 @@ export function CreativeMotion() {
         observer.observe(item);
       });
 
-      Array.from(document.querySelectorAll<HTMLElement>(MAGNETIC_SELECTOR)).forEach(attachMagnetic);
+      if (enableMagnetic) {
+        Array.from(document.querySelectorAll<HTMLElement>(MAGNETIC_SELECTOR)).forEach(attachMagnetic);
+      }
     };
 
     scanMotionTargets();
 
     const mutationObserver = new MutationObserver(() => {
-      window.requestAnimationFrame(scanMotionTargets);
+      if (scanFrame) return;
+      scanFrame = window.requestAnimationFrame(() => {
+        scanMotionTargets();
+        scanFrame = 0;
+      });
     });
 
     mutationObserver.observe(document.body, {
@@ -175,14 +191,16 @@ export function CreativeMotion() {
 
     return () => {
       document.body.classList.remove('ac-motion-ready', 'ac-has-cursor', 'ac-cursor-pressed');
-      window.cancelAnimationFrame(animationFrame);
-      if (finePointer && !reduceMotion) {
+      window.cancelAnimationFrame(cursorFrame);
+      window.cancelAnimationFrame(scrollFrame);
+      window.cancelAnimationFrame(scanFrame);
+      if (enableCursor) {
         window.removeEventListener('pointermove', handlePointerMove);
         window.removeEventListener('pointerdown', handlePointerDown);
         window.removeEventListener('pointerup', handlePointerUp);
       }
-      window.removeEventListener('scroll', updateScrollState);
-      window.removeEventListener('resize', updateScrollState);
+      window.removeEventListener('scroll', requestScrollState);
+      window.removeEventListener('resize', requestScrollState);
       observer.disconnect();
       mutationObserver.disconnect();
       magneticCleanups.forEach((cleanup) => cleanup());
