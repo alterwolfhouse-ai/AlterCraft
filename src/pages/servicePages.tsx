@@ -2,6 +2,7 @@ import React from 'react';
 import { ServicePage } from '../components/elegant/ServicePage';
 import { products } from '../data/products';
 import { catalogProducts } from '../data/catalog';
+import { canvaVisuals } from '../data/visualAssets';
 import { formatInr } from '../utils/pricing';
 
 const productPrice = (id: string) => {
@@ -39,9 +40,8 @@ export function ModularKitchen() {
         title: 'A kitchen designed around how you cook every day',
         body:
           'AlterCraft plans modular kitchen estimates around real site measurements, base units, wall cabinets, tall storage, sink zones, appliance clearances and shutters. The finish stays elegant while the inside is built for daily Indian cooking.',
-        image:
-          'https://images.unsplash.com/photo-1682662045846-77f6e1ce55b4?auto=format&fit=crop&w=1200&q=82',
-        imageAlt: 'Premium white and wood modular kitchen',
+        image: canvaVisuals.kitchenVisual,
+        imageAlt: 'AlterCraft Canva modular kitchen planning visual',
         points: [
           'BWR or BWP plywood options for moisture-prone kitchen zones.',
           'Soft-close hinges, drawers, bottle pull-outs and pantry hardware where required.',
@@ -100,14 +100,12 @@ export function ModularKitchen() {
         {
           title: 'Warm Laminate Kitchen',
           description: 'Balanced storage with premium shutters and easy-clean surfaces.',
-          image:
-            'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=80',
+          image: canvaVisuals.kitchenVisual,
         },
         {
           title: 'Modern White Kitchen',
           description: 'Light finishes with practical wall storage and appliance space.',
-          image:
-            'https://images.unsplash.com/photo-1682662044733-9120471befc7?auto=format&fit=crop&w=900&q=80',
+          image: canvaVisuals.kitchenVisual,
         },
         {
           title: 'Island Planning',
@@ -372,9 +370,8 @@ export function Wardrobes() {
         title: 'A wardrobe should make the room easier to live in',
         body:
           'We plan hanging space, drawers, shelves, loft storage, luggage zones, mirror shutters and lighting before fabrication. The outside stays elegant while the inside solves daily storage.',
-        image:
-          'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=82',
-        imageAlt: 'Premium wardrobe with mirror shutter',
+        image: canvaVisuals.wardrobeVisual,
+        imageAlt: 'AlterCraft Canva wardrobe and storage planning visual',
         points: [
           'Sliding, swing, mirror, loft and walk-in wardrobe options.',
           'Internal layouts for sarees, lehengas, luggage, daily wear and seasonal storage.',
@@ -433,14 +430,12 @@ export function Wardrobes() {
         {
           title: 'Sliding Wardrobe',
           description: 'Smooth tracks, mirror option and compact room clearance.',
-          image:
-            'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80',
+          image: canvaVisuals.wardrobeVisual,
         },
         {
           title: 'Walk-in Storage',
           description: 'Premium organisation for larger bedrooms and dressing zones.',
-          image:
-            'https://images.unsplash.com/photo-1672137233327-37b0c1049e77?auto=format&fit=crop&w=900&q=80',
+          image: canvaVisuals.wardrobeVisual,
         },
         {
           title: 'Warm Laminate Finish',
@@ -483,9 +478,8 @@ export function OfficeCommercial() {
         title: 'Quiet, efficient furniture for real workspaces',
         body:
           'Office furniture should be easy to maintain, comfortable to use and neat enough for clients. We plan workstations, cable routing, storage, reception counters and meeting furniture with durable finishes.',
-        image:
-          'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=82',
-        imageAlt: 'Custom office desk and storage',
+        image: canvaVisuals.office,
+        imageAlt: 'AlterCraft Canva office interior planning visual',
         points: [
           'Workstations, study desks, office chairs, storage and meeting furniture.',
           'Cable management, modesty panels and practical laminate surfaces.',
@@ -544,8 +538,7 @@ export function OfficeCommercial() {
         {
           title: 'Workstation Layout',
           description: 'Clean desks with cable planning and practical surfaces.',
-          image:
-            'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=900&q=80',
+          image: canvaVisuals.office,
         },
         {
           title: 'Office Storage',

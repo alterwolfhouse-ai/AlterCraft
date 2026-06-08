@@ -5,28 +5,35 @@ import {
   Award,
   CheckCircle,
   Clock,
+  Eye,
   Hammer,
   Mail,
   MapPin,
   Menu,
-  MessageCircle,
   Phone,
   Ruler,
   Shield,
+  Sparkles,
   Star,
+  Upload,
   X,
 } from 'lucide-react';
 import { ElegantFooter, FloatingWhatsApp } from '../components/elegant/ElegantLayout';
 import { QuoteForm } from '../components/elegant/QuoteForm';
+import { PreviewDisclaimer, ServiceCard } from '../components/aiPlanner/PlannerComponents';
 import { catalogProducts } from '../data/catalog';
 import { products } from '../data/products';
 import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
 import { createWhatsappLink } from '../utils/contact';
 import { HeroPoster } from '../components/HeroPoster';
+import { SpatialStudio } from '../components/visual/SpatialStudio';
+import { CanvaVisualShowcase } from '../components/visual/CanvaVisualShowcase';
+import { canvaVisuals } from '../data/visualAssets';
 
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
+  { to: '/ai-planner', label: 'Design Preview' },
   { to: '/modular-kitchen', label: 'Kitchen' },
   { to: '/designer-beds', label: 'Beds' },
   { to: '/flush-doors', label: 'Doors' },
@@ -90,13 +97,13 @@ function HomeHeader() {
             {siteDetails.phoneDisplay}
           </a>
           <a
-            href={createWhatsappLink('Hi AlterCraft, I would like a furniture quote.')}
+            href={createWhatsappLink('Hi AlterCraft, I would like to discuss my furniture or interior work.')}
             className="home-button home-button-solid"
             target="_blank"
             rel="noreferrer"
             onClick={() => trackEvent('whatsapp_click', { location: 'home_header' })}
           >
-            Get Quote
+            Talk to Us
           </a>
         </div>
 
@@ -130,7 +137,7 @@ function HomeHeader() {
             rel="noreferrer"
             onClick={() => trackEvent('whatsapp_click', { location: 'home_mobile_menu' })}
           >
-            WhatsApp {siteDetails.phoneDisplay}
+            Chat on WhatsApp
           </a>
         </div>
       </div>
@@ -164,8 +171,7 @@ export default function Home() {
       note: kitchenCatalogStarting
         ? `Catalog kitchen units also listed from ${formatInr(kitchenCatalogStarting)}.`
         : 'Final quote depends on site size, hardware and finish.',
-      image:
-        'https://images.unsplash.com/photo-1682662045846-77f6e1ce55b4?w=900&h=650&fit=crop&auto=format',
+      image: canvaVisuals.kitchenVisual,
       to: '/modular-kitchen',
       cta: 'Explore Kitchens',
     },
@@ -223,7 +229,7 @@ export default function Home() {
   ];
 
   const processSteps = [
-    ['01', 'Site Measurement', 'Room measurements, product requirements and site constraints are documented clearly.'],
+    ['01', 'Site Measurement', 'Room measurements, product requirements and site details are noted clearly.'],
     ['02', 'Design & Estimate', 'Material, finish, storage and pricing options are planned before production starts.'],
     ['03', 'Manufacturing', 'Furniture is fabricated with the agreed specifications, hardware and finishing details.'],
     ['04', 'Installation', 'The team installs, checks alignment and completes final touch-ups at site.'],
@@ -308,7 +314,7 @@ export default function Home() {
       summary:
         'Understand how layout, cabinet material, shutter finish, hardware, countertop and site work shape a practical kitchen quotation.',
       href: '/blog/modular-kitchen-cost-delhi-ncr/',
-      image: '/images/blog/wardrobe-storage-cover.png',
+      image: canvaVisuals.kitchenVisual,
       readTime: '6 min read',
     },
     {
@@ -317,7 +323,7 @@ export default function Home() {
       summary:
         'A clear guide to shutter clearance, access, maintenance and storage planning before ordering a custom wardrobe.',
       href: '/blog/sliding-vs-swing-wardrobe-small-bedroom/',
-      image: '/images/blog/wardrobe-storage-cover.png',
+      image: canvaVisuals.wardrobeVisual,
       readTime: '5 min read',
     },
     {
@@ -326,7 +332,7 @@ export default function Home() {
       summary:
         'Compare finishes by daily use, cleaning, durability, budget and the premium look you want for your interiors.',
       href: '/blog/laminate-vs-acrylic-vs-veneer-finish/',
-      image: '/images/blog/wardrobe-storage-cover.png',
+      image: canvaVisuals.aiJourney,
       readTime: '5 min read',
     },
     {
@@ -335,7 +341,7 @@ export default function Home() {
       summary:
         'Plan lighting, TV units, ceiling drops, wall panels and furniture together so the room feels intentional.',
       href: '/blog/false-ceiling-and-wall-panel-coordination/',
-      image: '/images/blog/cnc-interiors-cover.png',
+      image: canvaVisuals.office,
       readTime: '4 min read',
     },
     {
@@ -344,7 +350,7 @@ export default function Home() {
       summary:
         'Know what wall sizes, switchboards, windows, doors and clearance details help create a more accurate first quote.',
       href: '/blog/how-to-measure-room-for-custom-furniture/',
-      image: '/images/blog/wardrobe-storage-cover.png',
+      image: canvaVisuals.aiJourney,
       readTime: '4 min read',
     },
     {
@@ -353,8 +359,130 @@ export default function Home() {
       summary:
         'Choose pattern, depth, lighting and wiring access carefully before adding CNC wall panels to a TV wall.',
       href: '/blog/cnc-wall-panels-for-tv-unit/',
-      image: '/images/blog/cnc-interiors-cover.png',
+      image: canvaVisuals.office,
       readTime: '4 min read',
+    },
+  ];
+
+  const aiJourneySteps = [
+    {
+      icon: Upload,
+      title: 'Upload Site Photo',
+      desc: 'Share clear photos from multiple angles, plus a sketch or reference if available.',
+    },
+    {
+      icon: Ruler,
+      title: 'Add Exact Dimensions',
+      desc: 'Add length, width, height, doors, windows and other details as accurately as possible.',
+    },
+    {
+      icon: Sparkles,
+      title: 'Get a First Design Preview',
+      desc: 'AlterCraft prepares visual directions so you can compare possible looks before deciding.',
+    },
+    {
+      icon: CheckCircle,
+      title: 'Discuss the Final Plan',
+      desc: 'Our team checks materials, sizes, pricing and production details with you.',
+    },
+  ];
+
+  const aiTutorialTips = [
+    'Upload clear photos from multiple angles.',
+    'Add length, width and height.',
+    'Mention door and window position.',
+    'Add budget range.',
+    'Mention preferred style.',
+    'Upload reference image if available.',
+  ];
+
+  const realWorkCategories = [
+    'Office Interiors',
+    'Modular Kitchens',
+    'Wardrobes',
+    'Beds',
+    'Doors',
+    'TV Units',
+    'Custom Furniture',
+    'Commercial Spaces',
+  ];
+
+  const storyStages = [
+    {
+      title: 'Before Site Photo',
+      desc: 'Clear photos of the current room or furniture area.',
+      image:
+        'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=900&h=680&fit=crop&auto=format',
+    },
+    {
+      title: 'Design Preview',
+      desc: 'A first visual idea to help you choose the look and direction.',
+      image: canvaVisuals.aiJourney,
+    },
+    {
+      title: 'Human-Verified Execution Design',
+      desc: 'AlterCraft checks sizes, materials, scope and quotation with you.',
+      image: canvaVisuals.office,
+    },
+    {
+      title: 'Final Execution',
+      desc: 'Production, installation and handover after confirmation.',
+      image:
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=900&h=680&fit=crop&auto=format',
+    },
+  ];
+
+  const plannerServices = [
+    {
+      title: 'Modular Kitchen',
+      description: 'Layout, storage, appliance spaces and finish suggestions for your kitchen.',
+      image: canvaVisuals.kitchenVisual,
+    },
+    {
+      title: 'Office Interior',
+      description: 'Workstations, reception, storage and furniture planning for offices.',
+      image: canvaVisuals.office,
+    },
+    {
+      title: 'Wardrobe',
+      description: 'Sliding, swing, loft, drawer and internal storage suggestions.',
+      image: canvaVisuals.wardrobeVisual,
+    },
+    {
+      title: 'Bedroom Furniture',
+      description: 'Bed, headboard, side table and storage ideas based on your room.',
+      image:
+        'https://images.unsplash.com/photo-1644057501622-dfa7dd26dbfb?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Beds',
+      description: 'Hydraulic, drawer, platform and upholstered bed options.',
+      image:
+        'https://images.unsplash.com/photo-1696762932825-2737db830bbe?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Flush Doors',
+      description: 'Door finishes, hardware and room-wise matching guidance.',
+      image:
+        'https://images.unsplash.com/photo-1634822930432-0594057fdff2?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'TV Units',
+      description: 'Wall panel, console, storage, wiring and lighting ideas.',
+      image:
+        'https://images.unsplash.com/photo-1618220179428-22790b461013?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Custom Furniture',
+      description: 'Measured ideas for mandirs, study tables, storage, counters and special units.',
+      image:
+        'https://images.unsplash.com/photo-1611600700192-d87eaeed4f81?w=900&h=650&fit=crop&auto=format',
+    },
+    {
+      title: 'Full Interior Execution',
+      description: 'Room-by-room planning that can move into quotation and production.',
+      image:
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&h=650&fit=crop&auto=format',
     },
   ];
 
@@ -376,14 +504,149 @@ export default function Home() {
           </div>
         </section>
 
+        <SpatialStudio />
+
+        <CanvaVisualShowcase />
+
+        <section className="home-section home-ai-intro">
+          <div className="home-container home-ai-intro-grid">
+            <div>
+              <p className="home-kicker">Start With A Design Idea</p>
+              <h2>See the idea first. Decide after our team reviews it.</h2>
+              <p>
+                Share your room photos, sizes, budget and requirements. We prepare a first design
+                preview so you can understand the direction before discussing materials, quotation,
+                production and installation.
+              </p>
+              <PreviewDisclaimer compact />
+              <div className="home-ai-actions">
+                <Link to="/ai-planner/start" className="home-button home-button-solid">
+                  Start My Design Preview
+                  <ArrowRight size={16} />
+                </Link>
+                <Link to="/my-projects/AC-IMG-0001" className="home-button home-button-ghost">
+                  See Sample Preview
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+            <div className="home-ai-flow-card">
+              {['Design Preview', 'Designer Review', 'Final Details', 'Quotation', 'Production', 'Installation'].map((stage, index) => (
+                <article key={stage}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{stage}</strong>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-muted">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">How It Works</p>
+              <h2>Four simple steps before we begin the work</h2>
+            </div>
+            <div className="home-ai-step-grid">
+              {aiJourneySteps.map(({ icon: Icon, title, desc }) => (
+                <article key={title} className="home-ai-step-card">
+                  <span><Icon size={24} /></span>
+                  <h3>{title}</h3>
+                  <p>{desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section">
+          <div className="home-container home-ai-tutorial-grid">
+            <div>
+              <p className="home-kicker">How To Share Details</p>
+              <h2>Clear photos and sizes help us guide you better</h2>
+              <p>
+                Add the details you know. If something is missing, we will keep it marked as
+                "Not provided" and confirm it with you before moving ahead.
+              </p>
+            </div>
+            <div className="home-ai-tip-list">
+              {aiTutorialTips.map((tip) => (
+                <div key={tip}>
+                  <CheckCircle size={18} />
+                  <span>{tip}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-muted">
+          <div className="home-container">
+            <div className="home-split-head">
+              <div>
+                <p className="home-kicker">Portfolio / Real Work</p>
+                <h2>Choose the kind of space you want to improve</h2>
+              </div>
+              <Link to="/gallery" className="home-inline-link">
+                View Portfolio
+                <ArrowRight size={16} />
+              </Link>
+            </div>
+            <div className="home-ai-category-strip">
+              {realWorkCategories.map((category) => (
+                <Link key={category} to="/gallery">
+                  <Eye size={17} />
+                  {category}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-ai-story-section">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Before - Idea - Finished Work</p>
+              <h2>A simpler way to understand your project</h2>
+            </div>
+            <div className="home-ai-story-grid">
+              {storyStages.map((stage, index) => (
+                <article key={stage.title}>
+                  <img src={stage.image} alt={stage.title} />
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{stage.title}</h3>
+                  <p>{stage.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-section-muted">
+          <div className="home-container">
+            <div className="home-section-head">
+              <p className="home-kicker">Services</p>
+              <h2>Start with the room or furniture you need</h2>
+              <p>
+                Choose a category, share the room details and we will help you plan the next step.
+              </p>
+            </div>
+            <div className="planner-service-grid home-planner-service-grid">
+              {plannerServices.map((service) => (
+                <ServiceCard key={service.title} {...service} />
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="home-section">
           <div className="home-container">
             <div className="home-section-head">
-              <p className="home-kicker">Best Value Projects</p>
-              <h2>Premium furniture planned with clear starting references</h2>
+              <p className="home-kicker">Popular Starting Points</p>
+              <h2>Clear starting prices for common furniture work</h2>
               <p>
-                Pricing shown here follows the current repo/design data. Final quotations are
-                itemized after measurement, material choice and scope confirmation.
+                Prices shown here come from the current product data. Final quotations are shared
+                after measurement, material choice and scope confirmation.
               </p>
             </div>
 
@@ -487,7 +750,7 @@ export default function Home() {
             <div className="home-split-head">
               <div>
                 <p className="home-kicker">Portfolio</p>
-                <h2>Featured project directions</h2>
+              <h2>Featured project ideas</h2>
               </div>
               <Link to="/gallery" className="home-inline-link">
                 View all
@@ -512,7 +775,7 @@ export default function Home() {
               <h2>Product categories</h2>
               <p>
                 Wardrobes currently start from {formatInr(wardrobeStartingPrice)} in the
-                product data, with final size and finish adjusted to your site.
+                product data, with final size and finish adjusted to your room.
               </p>
             </div>
             <div className="home-category-grid">
@@ -619,14 +882,29 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="home-ai-final-cta">
+          <div className="home-container">
+            <p className="home-kicker">Start Planning</p>
+            <h2>Ready to see what your space can become?</h2>
+            <p>
+              Share your space, add the important sizes and start a design preview request with
+              AlterCraft.
+            </p>
+            <Link to="/ai-planner/start" className="home-button home-button-solid">
+              Share Your Space Now
+              <ArrowRight size={16} />
+            </Link>
+          </div>
+        </section>
+
         <section className="home-section home-contact-section">
           <div className="home-container home-contact-grid">
             <div>
               <p className="home-kicker">Get Started</p>
               <h2>Request a free consultation</h2>
               <p>
-                Share room size, product type, preferred finish and timeline. The lead will open
-                directly on WhatsApp so the discussion can continue quickly.
+                Share the room size, product type, preferred finish and timeline. Your message
+                opens on WhatsApp so we can continue the conversation quickly.
               </p>
               <div className="home-contact-list">
                 <a href={siteDetails.phoneHref}>

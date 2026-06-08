@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { Navigate, createBrowserRouter } from "react-router";
 import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import { ProductGalleryPage } from "./components/ProductGalleryPage";
@@ -10,11 +10,29 @@ import {
   Wardrobes,
 } from "./pages/servicePages";
 import { About, Contact, NotFound, WarrantyQuality } from "./pages/InfoPages";
+import {
+  AIPlannerConfirm,
+  AIPlannerDimensions,
+  AIPlannerLanding,
+  AIPlannerRequirements,
+  AIPlannerStart,
+  AIPlannerSubmitted,
+  AIPlannerUpload,
+  AdminDashboard,
+  AdminLeads,
+  AdminProjectDetail,
+  MyProjectDetail,
+  MyProjects,
+} from "./pages/AIPlanner";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: Home,
+  },
+  {
+    path: "/false",
+    element: <Navigate to="/" replace />,
   },
   {
     path: "/gallery",
@@ -87,6 +105,54 @@ export const router = createBrowserRouter([
   {
     path: "/get-quote",
     Component: Contact,
+  },
+  {
+    path: "/ai-planner",
+    Component: AIPlannerLanding,
+  },
+  {
+    path: "/ai-planner/start",
+    Component: AIPlannerStart,
+  },
+  {
+    path: "/ai-planner/upload",
+    Component: AIPlannerUpload,
+  },
+  {
+    path: "/ai-planner/dimensions",
+    Component: AIPlannerDimensions,
+  },
+  {
+    path: "/ai-planner/requirements",
+    Component: AIPlannerRequirements,
+  },
+  {
+    path: "/ai-planner/confirm",
+    Component: AIPlannerConfirm,
+  },
+  {
+    path: "/ai-planner/submitted",
+    Component: AIPlannerSubmitted,
+  },
+  {
+    path: "/my-projects",
+    Component: MyProjects,
+  },
+  {
+    path: "/my-projects/:id",
+    Component: MyProjectDetail,
+  },
+  {
+    path: "/admin",
+    Component: AdminDashboard,
+  },
+  {
+    path: "/admin/leads",
+    Component: AdminLeads,
+  },
+  {
+    path: "/admin/projects/:id",
+    Component: AdminProjectDetail,
   },
   {
     path: "/product/:id",
