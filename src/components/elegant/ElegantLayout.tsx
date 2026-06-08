@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router';
-import { Clock, Mail, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router';
+import {
+  ClipboardList,
+  Clock,
+  Home,
+  Images,
+  LayoutGrid,
+  Mail,
+  MapPin,
+  Menu,
+  MessageCircle,
+  Phone,
+  X,
+} from 'lucide-react';
 import { siteDetails } from '../../data/siteDetails';
 import { createWhatsappLink } from '../../utils/contact';
 import { useAuth } from '../../contexts/AuthContext';
@@ -21,6 +33,57 @@ const navItems = [
 type ElegantLayoutProps = {
   children: React.ReactNode;
 };
+
+const mobileNavItems = [
+  { to: '/', label: 'Home', icon: Home },
+  { to: '/modular-kitchen', label: 'Products', icon: LayoutGrid },
+  { to: '/gallery', label: 'Projects', icon: Images },
+  { to: '/ai-planner/start', label: 'Quote', icon: ClipboardList },
+  { to: '/contact', label: 'Contact', icon: Phone },
+];
+
+const productRoutePrefixes = [
+  '/modular-kitchen',
+  '/modular-kitchen-near-me',
+  '/designer-beds',
+  '/flush-doors',
+  '/doors',
+  '/wardrobes',
+  '/storage',
+  '/office-commercial',
+  '/office',
+];
+
+export function MobileBottomNav() {
+  const { pathname } = useLocation();
+
+  const isActive = (to: string) => {
+    if (to === '/') return pathname === '/';
+    if (to === '/modular-kitchen') {
+      return productRoutePrefixes.some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
+    }
+    if (to === '/ai-planner/start') {
+      return pathname.startsWith('/ai-planner') || pathname.startsWith('/my-projects');
+    }
+    return pathname === to || pathname.startsWith(`${to}/`);
+  };
+
+  return (
+    <nav className="ac-mobile-bottom-nav" aria-label="Mobile quick navigation">
+      {mobileNavItems.map(({ to, label, icon: Icon }) => (
+        <Link
+          key={to}
+          to={to}
+          className={`ac-mobile-bottom-link ${isActive(to) ? 'active' : ''}`}
+          aria-current={isActive(to) ? 'page' : undefined}
+        >
+          <Icon size={18} />
+          <span>{label}</span>
+        </Link>
+      ))}
+    </nav>
+  );
+}
 
 export function FloatingWhatsApp() {
   return (
@@ -201,6 +264,7 @@ export function ElegantLayout({ children }: ElegantLayoutProps) {
       {children}
       <ElegantFooter />
       <FloatingWhatsApp />
+      <MobileBottomNav />
     </div>
   );
 }

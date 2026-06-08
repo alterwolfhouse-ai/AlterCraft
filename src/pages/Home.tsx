@@ -18,7 +18,7 @@ import {
   Upload,
   X,
 } from 'lucide-react';
-import { ElegantFooter, FloatingWhatsApp } from '../components/elegant/ElegantLayout';
+import { ElegantFooter, FloatingWhatsApp, MobileBottomNav } from '../components/elegant/ElegantLayout';
 import { QuoteForm } from '../components/elegant/QuoteForm';
 import { PreviewDisclaimer, ServiceCard } from '../components/aiPlanner/PlannerComponents';
 import { catalogProducts } from '../data/catalog';
@@ -949,6 +949,7 @@ export default function Home() {
 
       <ElegantFooter />
       <FloatingWhatsApp />
+      <MobileBottomNav />
     </div>
   );
 }

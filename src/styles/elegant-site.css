@@ -7922,3 +7922,270 @@ body,
     padding: 1rem;
   }
 }
+
+/* UX/SEO density pass: visual summaries, glass CTAs and thumb-friendly mobile nav. */
+:where(
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta
+) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-color: rgba(188, 135, 54, 0.38);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease,
+    filter 180ms ease;
+}
+
+:where(
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta
+)::before {
+  content: "";
+  position: absolute;
+  inset: -45% -35%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.55;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(255, 255, 255, 0.86), transparent 20%),
+    radial-gradient(circle at 78% 62%, rgba(255, 232, 177, 0.58), transparent 22%),
+    linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.22), transparent 58%);
+  transform: translate3d(-10%, 0, 0) rotate(8deg);
+  transition: opacity 220ms ease, transform 420ms ease;
+}
+
+:where(
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta
+):hover::before {
+  opacity: 0.82;
+  transform: translate3d(10%, 0, 0) rotate(8deg);
+}
+
+:where(
+  .home-button-solid,
+  .elegant-button,
+  .hero-poster-primary,
+  .planner-cta-primary,
+  .elegant-footer-cta
+) {
+  background:
+    linear-gradient(135deg, rgba(220, 174, 94, 0.96), rgba(154, 96, 38, 0.94) 52%, rgba(218, 168, 83, 0.95)),
+    rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 16px 34px rgba(126, 76, 32, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.44);
+}
+
+:where(
+  .home-button-ghost,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-secondary,
+  .planner-cta-secondary,
+  .planner-cta-light
+) {
+  background:
+    linear-gradient(135deg, rgba(255, 253, 248, 0.74), rgba(239, 225, 203, 0.44)),
+    rgba(255, 255, 255, 0.34);
+  box-shadow:
+    0 12px 28px rgba(75, 45, 22, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+:where(
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta
+):hover {
+  filter: saturate(1.04) brightness(1.02);
+}
+
+.home-feature-card p,
+.home-ai-step-card p,
+.home-ai-story-grid p,
+.home-process-step p,
+.home-material-list p,
+.home-testimonial-grid article p,
+.planner-step-card p,
+.planner-service-card p,
+.planner-concept-card p,
+.elegant-card-body p,
+.elegant-price-card p,
+.seo-mini-card p,
+.seo-proof-card p {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.home-blog-body > span:not(.home-blog-meta):not(.home-blog-link) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.home-section-head p,
+.home-split-head p,
+.elegant-section-head p,
+.planner-section-head p {
+  max-width: 62ch;
+}
+
+.ac-mobile-bottom-nav {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .home-site,
+  .elegant-site {
+    padding-bottom: 5.8rem;
+  }
+
+  .ac-mobile-bottom-nav {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 95;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.22rem;
+    border: 1px solid rgba(184, 137, 26, 0.34);
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.82) 0 1px, transparent 1.2px),
+      linear-gradient(145deg, rgba(255, 252, 246, 0.86), rgba(239, 225, 203, 0.72));
+    background-size: 7px 7px, auto;
+    box-shadow:
+      0 18px 40px rgba(75, 45, 22, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    padding: 0.38rem;
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+  }
+
+  .ac-mobile-bottom-link {
+    position: relative;
+    display: grid;
+    min-width: 0;
+    min-height: 54px;
+    place-items: center;
+    align-content: center;
+    gap: 0.18rem;
+    border-radius: 18px;
+    color: rgba(92, 51, 23, 0.72);
+    font-size: 0.67rem;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .ac-mobile-bottom-link svg {
+    color: rgba(184, 137, 26, 0.94);
+  }
+
+  .ac-mobile-bottom-link::before {
+    content: "";
+    position: absolute;
+    inset: -32%;
+    z-index: -1;
+    opacity: 0;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.86), transparent 28%),
+      linear-gradient(135deg, rgba(255, 252, 246, 0.78), rgba(218, 170, 87, 0.26));
+    transform: scale(0.92);
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .ac-mobile-bottom-link.active {
+    color: var(--primary);
+  }
+
+  .ac-mobile-bottom-link.active::before {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .elegant-floating-whatsapp {
+    bottom: 86px;
+  }
+}
+
+@media (max-width: 420px) {
+  .ac-mobile-bottom-nav {
+    left: 7px;
+    right: 7px;
+    bottom: 7px;
+    border-radius: 22px;
+    padding: 0.3rem;
+  }
+
+  .ac-mobile-bottom-link {
+    min-height: 50px;
+    border-radius: 16px;
+    font-size: 0.62rem;
+  }
+
+  .elegant-floating-whatsapp {
+    bottom: 78px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(
+    .home-button,
+    .elegant-button,
+    .elegant-button-secondary,
+    .elegant-button-light,
+    .hero-poster-primary,
+    .hero-poster-secondary,
+    .planner-cta,
+    .elegant-footer-cta,
+    .ac-mobile-bottom-link
+  ),
+  :where(
+    .home-button,
+    .elegant-button,
+    .elegant-button-secondary,
+    .elegant-button-light,
+    .hero-poster-primary,
+    .hero-poster-secondary,
+    .planner-cta,
+    .elegant-footer-cta,
+    .ac-mobile-bottom-link
+  )::before {
+    transition: none;
+  }
+}
