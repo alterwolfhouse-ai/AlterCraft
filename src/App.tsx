@@ -1,10 +1,72 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useRef } from 'react';
 import { RouterProvider } from 'react-router';
 import { router } from './routes';
 import { CreativeMotion } from './components/visual/CreativeMotion';
 import { AuthProvider } from './contexts/AuthContext';
 
+const PAGE_TOP_RESET_MS = 1400;
+const PAGE_TOP_RESET_INTERVAL_MS = 50;
+
+const resetPageTop = () => {
+  const root = document.documentElement;
+  const body = document.body;
+  const rootScrollBehavior = root.style.scrollBehavior;
+  const bodyScrollBehavior = body.style.scrollBehavior;
+
+  root.style.scrollBehavior = 'auto';
+  body.style.scrollBehavior = 'auto';
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  root.scrollTop = 0;
+  body.scrollTop = 0;
+
+  root.style.scrollBehavior = rootScrollBehavior;
+  body.style.scrollBehavior = bodyScrollBehavior;
+};
+
+const schedulePageTopReset = () => {
+  document.documentElement.classList.add('route-scroll-resetting');
+  resetPageTop();
+
+  const frame = window.requestAnimationFrame(resetPageTop);
+  const interval = window.setInterval(resetPageTop, PAGE_TOP_RESET_INTERVAL_MS);
+  const settleTimer = window.setTimeout(() => {
+    window.clearInterval(interval);
+    resetPageTop();
+    document.documentElement.classList.remove('route-scroll-resetting');
+  }, PAGE_TOP_RESET_MS);
+
+  return () => {
+    window.cancelAnimationFrame(frame);
+    window.clearInterval(interval);
+    window.clearTimeout(settleTimer);
+    document.documentElement.classList.remove('route-scroll-resetting');
+  };
+};
+
 export default function App() {
+  const lastRouteKey = useRef(`${router.state.location.pathname}${router.state.location.search}`);
+  const cleanupScrollReset = useRef<null | (() => void)>(null);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
+    const unsubscribe = router.subscribe((state) => {
+      const nextRouteKey = `${state.location.pathname}${state.location.search}`;
+      if (nextRouteKey === lastRouteKey.current) return;
+
+      lastRouteKey.current = nextRouteKey;
+      cleanupScrollReset.current?.();
+      cleanupScrollReset.current = schedulePageTopReset();
+    });
+
+    return () => {
+      unsubscribe();
+      cleanupScrollReset.current?.();
+    };
+  }, []);
+
   return (
     <AuthProvider>
       <CreativeMotion />
