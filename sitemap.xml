@@ -16,6 +16,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.altercraft.in/ai-planner/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://www.altercraft.in/modular-kitchen-near-me/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
@@ -80,6 +85,11 @@
   <url><loc>https://www.altercraft.in/blog/wardrobe-lighting-ventilation-guide/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.altercraft.in/blog/sliding-vs-swing-wardrobe-small-bedroom/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.altercraft.in/blog/modular-kitchen-cost-delhi-ncr/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/office-interior-project-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/blue-carpet-office-waiting-area-design/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://www.altercraft.in/blog/modular-kitchen-warm-profile-lights/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/custom-wardrobe-saree-storage/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/garage-to-office-interior-transformation/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.altercraft.in/blog/laminate-vs-acrylic-vs-veneer-finish/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.altercraft.in/blog/furniture-on-rent-ghaziabad-noida/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.altercraft.in/blog/pooja-mandir-design-small-home/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
