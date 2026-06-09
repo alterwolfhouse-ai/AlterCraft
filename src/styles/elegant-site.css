@@ -8198,3 +8198,786 @@ body,
     transition: none;
   }
 }
+
+/* Mobile collision audit pass: keep every repeated surface inside the viewport. */
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+}
+
+body,
+.home-site,
+.elegant-site,
+.planner-page {
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+:where(
+  .home-site,
+  .elegant-site,
+  .planner-page,
+  .home-section,
+  .elegant-section,
+  .planner-section,
+  .hero-poster,
+  .elegant-hero,
+  .seo-cta-strip,
+  .elegant-footer
+) * {
+  box-sizing: border-box;
+}
+
+:where(
+  .home-site,
+  .elegant-site,
+  .planner-page
+) :where(
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  a,
+  button,
+  label,
+  input,
+  textarea,
+  select,
+  small,
+  strong,
+  em,
+  span,
+  li,
+  dt,
+  dd
+) {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+:where(
+  .home-container,
+  .elegant-container,
+  .hero-poster-content,
+  .hero-poster-meta-inner
+) {
+  max-width: calc(100% - 32px);
+}
+
+:where(
+  .home-header-inner,
+  .elegant-header-inner,
+  .home-brand,
+  .elegant-brand,
+  .home-brand > span:last-child,
+  .elegant-brand-text,
+  .home-mobile-panel > *,
+  .elegant-mobile-panel > *
+) {
+  min-width: 0;
+}
+
+:where(
+  .home-brand-name,
+  .elegant-brand-name,
+  .home-brand-kicker,
+  .elegant-brand-subtitle
+) {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:where(
+  .home-offer-grid,
+  .home-feature-grid,
+  .home-process-grid,
+  .home-category-grid,
+  .home-portfolio-grid,
+  .home-testimonial-grid,
+  .home-blog-grid,
+  .home-ai-step-grid,
+  .home-ai-story-grid,
+  .home-planner-service-grid,
+  .elegant-grid,
+  .elegant-grid.two,
+  .elegant-grid.four,
+  .elegant-pricing-grid,
+  .elegant-split,
+  .elegant-product-layout,
+  .elegant-footer-grid,
+  .planner-hero-grid,
+  .planner-form-layout,
+  .planner-confirm-layout,
+  .planner-detail-grid,
+  .planner-form-grid,
+  .planner-upload-grid,
+  .planner-summary-grid,
+  .planner-step-grid,
+  .planner-type-grid,
+  .planner-service-grid,
+  .planner-concept-grid,
+  .planner-admin-stats,
+  .seo-card-grid,
+  .seo-card-grid.compact,
+  .seo-proof-grid,
+  .seo-check-grid,
+  .canva-showcase-grid,
+  .spatial-studio-grid
+) > * {
+  min-width: 0;
+}
+
+:where(
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta
+) {
+  max-width: 100%;
+  white-space: normal;
+}
+
+:where(
+  .planner-form input,
+  .planner-form select,
+  .planner-form textarea,
+  .planner-side-card select,
+  .planner-upload-field input,
+  .home-contact-form input,
+  .home-contact-form textarea,
+  .quote-form input,
+  .quote-form textarea,
+  .quote-form select
+) {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .elegant-topbar {
+    display: none;
+  }
+
+  .home-header,
+  .elegant-header {
+    width: calc(100% - 24px);
+    max-width: calc(100% - 24px);
+  }
+
+  .home-header {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .elegant-header {
+    position: sticky;
+    top: 8px;
+    left: 12px;
+    right: 12px;
+    margin: 8px auto 0;
+  }
+
+  .home-header-inner,
+  .elegant-header-inner {
+    width: calc(100% - 20px);
+    max-width: calc(100% - 20px);
+    justify-content: space-between;
+  }
+
+  .home-nav,
+  .home-header-actions,
+  .elegant-nav,
+  .elegant-actions {
+    display: none !important;
+  }
+
+  .home-menu-button,
+  .elegant-mobile-toggle {
+    display: inline-flex !important;
+    flex: 0 0 auto;
+  }
+
+  .home-brand,
+  .elegant-brand {
+    flex: 1 1 auto;
+    max-width: calc(100% - 52px);
+  }
+
+  .home-brand-name,
+  .elegant-brand-name {
+    white-space: nowrap;
+  }
+
+  .home-mobile-panel,
+  .elegant-mobile-panel {
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    max-height: calc(100svh - 96px);
+    overflow-y: auto;
+  }
+
+  .home-mobile-panel a,
+  .elegant-mobile-panel a {
+    min-height: 42px;
+  }
+
+  .hero-poster-content {
+    align-items: flex-start;
+    width: min(100% - 28px, 1180px);
+    max-width: calc(100% - 28px);
+    padding-top: 6.4rem;
+  }
+
+  .hero-poster-title,
+  .elegant-hero h1,
+  .planner-hero h1,
+  .planner-form-layout h1,
+  .planner-confirm-card h1,
+  .planner-success-card h1,
+  .planner-detail-head h1,
+  .home-section-head h2,
+  .home-split-head h2,
+  .elegant-section-head h2,
+  .planner-section-head h2,
+  .elegant-footer-intro h2 {
+    max-width: 100%;
+    line-height: 1.02;
+  }
+
+  .hero-poster-title {
+    font-size: clamp(2.45rem, 11vw, 4rem);
+  }
+
+  .elegant-hero h1,
+  .planner-hero h1,
+  .planner-form-layout h1,
+  .planner-confirm-card h1,
+  .planner-success-card h1,
+  .planner-detail-head h1 {
+    font-size: clamp(2.35rem, 10.5vw, 3.75rem);
+  }
+
+  .home-section-head h2,
+  .home-split-head h2,
+  .elegant-section-head h2,
+  .planner-section-head h2,
+  .elegant-footer-intro h2 {
+    font-size: clamp(2rem, 9vw, 3.15rem);
+  }
+
+  .hero-poster-grid,
+  .home-contact-grid,
+  .home-ai-intro-grid,
+  .home-ai-tutorial-grid,
+  .home-warranty-inner,
+  .elegant-split,
+  .elegant-product-layout,
+  .planner-hero-grid,
+  .planner-form-layout,
+  .planner-confirm-layout,
+  .planner-detail-grid,
+  .canva-showcase-grid,
+  .spatial-studio-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-poster-actions,
+  .home-ai-actions,
+  .spatial-actions,
+  .canva-showcase-actions,
+  .planner-hero-actions,
+  .planner-form-actions,
+  .planner-card-actions,
+  .seo-cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-poster-actions > *,
+  .home-ai-actions > *,
+  .spatial-actions > *,
+  .canva-showcase-actions > *,
+  .planner-hero-actions > *,
+  .planner-form-actions > *,
+  .planner-card-actions > *,
+  .seo-cta-actions > *,
+  .seo-section-action > * {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .planner-hero-board {
+    order: -1;
+  }
+
+  .planner-project-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  .planner-detail-head,
+  .planner-summary-head,
+  .seo-cta-strip-inner,
+  .elegant-footer-intro {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-container,
+  .elegant-container,
+  .hero-poster-content,
+  .hero-poster-meta-inner {
+    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+  }
+
+  .home-site,
+  .elegant-site {
+    padding-bottom: calc(6.3rem + env(safe-area-inset-bottom));
+  }
+
+  .home-header,
+  .elegant-header {
+    top: 8px;
+    width: calc(100% - 18px);
+    max-width: calc(100% - 18px);
+    border-radius: 20px;
+  }
+
+  .home-header-inner,
+  .elegant-header-inner {
+    width: calc(100% - 18px);
+    min-height: 58px;
+    gap: 0.55rem;
+  }
+
+  .home-brand-mark,
+  .elegant-brand-mark,
+  .nav-logo-mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  .home-brand-kicker,
+  .elegant-brand-subtitle {
+    display: none !important;
+  }
+
+  .home-brand-name,
+  .elegant-brand-name {
+    font-size: 1.04rem;
+  }
+
+  .home-menu-button,
+  .elegant-mobile-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-poster {
+    min-height: auto;
+    height: auto;
+  }
+
+  .hero-poster::before,
+  .hero-poster::after,
+  .hero-poster-texture,
+  .hero-poster-panel-wrap,
+  .hero-poster-meta-bar {
+    display: none !important;
+  }
+
+  .hero-poster-content {
+    min-height: auto;
+    padding-top: 6.1rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .hero-poster-title {
+    font-size: clamp(2.25rem, 10.5vw, 3.1rem);
+  }
+
+  .hero-poster-brand-tag strong,
+  .hero-poster-category,
+  .planner-kicker {
+    letter-spacing: 0.14em;
+  }
+
+  .hero-poster-description,
+  .hero-poster-slide-summary,
+  .hero-poster-disclaimer,
+  .elegant-hero p,
+  .planner-section-head p,
+  .planner-form-layout p,
+  .planner-confirm-card p,
+  .planner-success-card p,
+  .planner-detail-head p {
+    font-size: 0.92rem;
+    line-height: 1.58;
+  }
+
+  .home-offer-grid,
+  .home-feature-grid,
+  .home-process-grid,
+  .home-category-grid,
+  .home-portfolio-grid,
+  .home-testimonial-grid,
+  .home-blog-grid,
+  .home-ai-step-grid,
+  .home-ai-story-grid,
+  .home-planner-service-grid,
+  .elegant-grid,
+  .elegant-grid.two,
+  .elegant-grid.four,
+  .elegant-pricing-grid,
+  .elegant-footer-grid,
+  .planner-form-grid,
+  .planner-upload-grid,
+  .planner-summary-grid,
+  .planner-step-grid,
+  .planner-type-grid,
+  .planner-service-grid,
+  .planner-concept-grid,
+  .planner-admin-stats,
+  .seo-card-grid,
+  .seo-card-grid.compact,
+  .seo-proof-grid,
+  .seo-check-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .home-blog-card.featured {
+    grid-column: auto !important;
+  }
+
+  .home-blog-card.featured .home-blog-image,
+  .home-blog-image {
+    aspect-ratio: 1.35 / 1;
+  }
+
+  .home-blog-meta,
+  .seo-area-grid {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .seo-area-pill {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .seo-proof-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  .seo-proof-card img {
+    min-height: 190px;
+    max-height: 260px;
+  }
+
+  .planner-section-top,
+  .planner-section,
+  .elegant-section,
+  .home-section {
+    padding-block: 3rem;
+  }
+
+  .planner-form label,
+  .planner-side-card label,
+  .planner-upload-field {
+    width: 100%;
+  }
+
+  .planner-upload-field {
+    overflow: hidden;
+  }
+
+  .planner-upload-field input[type="file"] {
+    font-size: 0.85rem;
+  }
+
+  .planner-disclaimer,
+  .planner-note-card,
+  .planner-selection-note,
+  .planner-missing-box {
+    align-items: flex-start;
+    padding: 0.85rem;
+  }
+
+  .elegant-footer-intro {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .elegant-footer-cta {
+    margin-top: 0;
+  }
+
+  .ac-mobile-bottom-nav {
+    left: 10px;
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    max-width: calc(100% - 20px);
+  }
+
+  .ac-mobile-bottom-link span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .elegant-floating-whatsapp {
+    right: 12px;
+    bottom: calc(88px + env(safe-area-inset-bottom));
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    max-width: calc(100% - 24px);
+    min-height: 50px;
+    justify-content: center;
+    gap: 0;
+    border-radius: 999px;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .elegant-floating-whatsapp svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .planner-page ~ .elegant-floating-whatsapp {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-container,
+  .elegant-container,
+  .hero-poster-content,
+  .hero-poster-meta-inner {
+    width: calc(100% - 22px);
+    max-width: calc(100% - 22px);
+  }
+
+  .hero-poster-title {
+    font-size: clamp(2.05rem, 10vw, 2.65rem);
+    line-height: 1.02;
+  }
+
+  .elegant-hero {
+    min-height: auto;
+  }
+
+  .elegant-hero-content {
+    padding-block: 3.5rem 3rem;
+  }
+
+  .elegant-hero h1,
+  .planner-hero h1,
+  .planner-form-layout h1,
+  .planner-confirm-card h1,
+  .planner-success-card h1,
+  .planner-detail-head h1 {
+    font-size: clamp(2.05rem, 10.2vw, 2.85rem);
+  }
+
+  .home-section-head h2,
+  .home-split-head h2,
+  .elegant-section-head h2,
+  .planner-section-head h2,
+  .elegant-footer-intro h2 {
+    font-size: clamp(1.85rem, 9.3vw, 2.45rem);
+  }
+
+  .home-offer-body,
+  .home-feature-card,
+  .home-testimonial-grid article,
+  .home-ai-step-card,
+  .home-ai-flow-card,
+  .home-blog-body,
+  .elegant-card-body,
+  .elegant-footer-card,
+  .seo-mini-card,
+  .seo-faq-item,
+  .seo-proof-card > div,
+  .planner-step-card,
+  .planner-type-card,
+  .planner-service-card,
+  .planner-side-card,
+  .planner-confirm-card {
+    padding: 1rem;
+  }
+
+  .home-button,
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-light,
+  .hero-poster-primary,
+  .hero-poster-secondary,
+  .planner-cta,
+  .elegant-footer-cta {
+    min-height: 44px;
+    padding-inline: 0.9rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+
+  .planner-upload-field input[type="file"]::file-selector-button {
+    display: block;
+    width: 100%;
+    margin: 0 0 0.45rem;
+  }
+
+  .hero-poster-carousel,
+  .canva-visual-stage,
+  .spatial-stage {
+    contain: layout paint;
+  }
+
+  .spatial-stage {
+    min-height: 430px;
+    perspective: none;
+  }
+
+  .spatial-room-model {
+    left: 50%;
+    top: 43%;
+    width: min(88%, 320px);
+    height: 260px;
+    transform: translate3d(-50%, -50%, 0) !important;
+    transform-style: flat;
+    transition: none;
+    will-change: auto;
+  }
+
+  .spatial-room-model :where(
+    .spatial-plane,
+    .spatial-object,
+    .spatial-light-beam,
+    .spatial-measure-line
+  ) {
+    transform: none !important;
+    animation: none;
+  }
+
+  .spatial-plane-back {
+    left: 8%;
+    top: 8%;
+    width: 84%;
+    height: 48%;
+  }
+
+  .spatial-plane-left,
+  .spatial-plane-right {
+    top: 18%;
+    width: 20%;
+    height: 46%;
+  }
+
+  .spatial-plane-left {
+    left: 7%;
+  }
+
+  .spatial-plane-right {
+    right: 7%;
+  }
+
+  .spatial-plane-floor {
+    left: 8%;
+    top: 55%;
+    width: 84%;
+    height: 30%;
+  }
+
+  .spatial-light-beam {
+    opacity: 0.48;
+  }
+
+  .spatial-hotspot-layer button {
+    max-width: 112px;
+  }
+
+  .spatial-measure-line {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 390px) {
+  .home-container,
+  .elegant-container,
+  .hero-poster-content {
+    width: calc(100% - 18px);
+    max-width: calc(100% - 18px);
+  }
+
+  .home-header,
+  .elegant-header {
+    width: calc(100% - 12px);
+    max-width: calc(100% - 12px);
+  }
+
+  .home-header-inner,
+  .elegant-header-inner {
+    width: calc(100% - 14px);
+  }
+
+  .home-brand-mark,
+  .elegant-brand-mark,
+  .nav-logo-mark,
+  .home-menu-button,
+  .elegant-mobile-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  .home-brand,
+  .elegant-brand {
+    max-width: calc(100% - 46px);
+    gap: 0.45rem;
+  }
+
+  .home-brand-name,
+  .elegant-brand-name {
+    font-size: 0.98rem;
+  }
+
+  .hero-poster-content {
+    padding-top: 5.8rem;
+  }
+
+  .hero-poster-title,
+  .elegant-hero h1,
+  .planner-hero h1,
+  .planner-form-layout h1,
+  .planner-confirm-card h1,
+  .planner-success-card h1,
+  .planner-detail-head h1 {
+    font-size: clamp(1.95rem, 10vw, 2.35rem);
+  }
+
+  .ac-mobile-bottom-link {
+    font-size: 0.58rem;
+  }
+}
