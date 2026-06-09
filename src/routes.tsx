@@ -10,6 +10,33 @@ const ProductGalleryPage = lazy(() =>
 const ModularKitchenNearMe = lazy(() =>
   import("./pages/ModularKitchenNearMe").then((module) => ({ default: module.ModularKitchenNearMe }))
 );
+const ModularKitchenGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.ModularKitchenGhaziabad }))
+);
+const CustomFurnitureGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureGhaziabad }))
+);
+const CustomFurnitureNoida = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureNoida }))
+);
+const CustomFurnitureGreaterNoida = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureGreaterNoida }))
+);
+const CustomFurnitureMakerNearMe = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureMakerNearMe }))
+);
+const OfficeInteriorGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.OfficeInteriorGhaziabad }))
+);
+const WardrobeDesignGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.WardrobeDesignGhaziabad }))
+);
+const BedManufacturerGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.BedManufacturerGhaziabad }))
+);
+const ShoeRackDesign = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.ShoeRackDesign }))
+);
 const ModularKitchen = lazy(() =>
   import("./pages/servicePages").then((module) => ({ default: module.ModularKitchen }))
 );
@@ -162,6 +189,42 @@ export const router = createBrowserRouter([
   {
     path: "/modular-kitchen-near-me/",
     Component: ModularKitchenNearMe,
+  },
+  {
+    path: "/modular-kitchen-ghaziabad",
+    Component: ModularKitchenGhaziabad,
+  },
+  {
+    path: "/custom-furniture-ghaziabad",
+    Component: CustomFurnitureGhaziabad,
+  },
+  {
+    path: "/custom-furniture-noida",
+    Component: CustomFurnitureNoida,
+  },
+  {
+    path: "/custom-furniture-greater-noida",
+    Component: CustomFurnitureGreaterNoida,
+  },
+  {
+    path: "/custom-furniture-maker-near-me",
+    Component: CustomFurnitureMakerNearMe,
+  },
+  {
+    path: "/office-interior-ghaziabad",
+    Component: OfficeInteriorGhaziabad,
+  },
+  {
+    path: "/wardrobe-design-ghaziabad",
+    Component: WardrobeDesignGhaziabad,
+  },
+  {
+    path: "/bed-manufacturer-ghaziabad",
+    Component: BedManufacturerGhaziabad,
+  },
+  {
+    path: "/shoe-rack-design",
+    Component: ShoeRackDesign,
   },
   {
     path: "/kitchen",

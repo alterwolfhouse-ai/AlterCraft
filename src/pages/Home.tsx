@@ -31,6 +31,7 @@ import { SpatialStudio } from '../components/visual/SpatialStudio';
 import { CanvaVisualShowcase } from '../components/visual/CanvaVisualShowcase';
 import { canvaVisuals } from '../data/visualAssets';
 import { useAuth } from '../contexts/AuthContext';
+import { SEOHead } from '../components/seo/SEOHead';
 
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
@@ -47,6 +48,32 @@ const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
 
 
 const formatInr = (value: number) => `INR ${value.toLocaleString('en-IN')}`;
+
+const homeLocalBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'AlterCraft',
+  legalName: siteDetails.legalName,
+  url: 'https://www.altercraft.in/',
+  telephone: '+918817503658',
+  email: siteDetails.email,
+  image: `https://www.altercraft.in${canvaVisuals.aiJourney}`,
+  description:
+    'Custom furniture, modular kitchens, wardrobes, beds, doors, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR.',
+  taxID: `GSTIN ${siteDetails.gstin}`,
+  identifier: siteDetails.udyamRegistration,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${siteDetails.addressLine}, ${siteDetails.landmarkLine}, ${siteDetails.locality}`,
+    addressLocality: 'Ghaziabad',
+    addressRegion: 'Uttar Pradesh',
+    postalCode: siteDetails.postalCode,
+    addressCountry: 'IN',
+  },
+  areaServed: siteDetails.serviceAreas,
+  openingHours: 'Mo-Sa 10:00-19:00',
+  priceRange: 'Measured quote',
+};
 
 const lowestProductPrice = (category: string) => {
   const prices = products
@@ -494,6 +521,12 @@ export default function Home() {
 
   return (
     <div className="home-site">
+      <SEOHead
+        title="Custom Furniture & Modular Kitchen in Ghaziabad | AlterCraft"
+        description="AlterCraft designs and executes custom furniture, modular kitchens, wardrobes, beds, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR."
+        canonical="https://www.altercraft.in/"
+        jsonLd={[homeLocalBusinessSchema]}
+      />
       <HomeHeader />
 
       <main>
