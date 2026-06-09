@@ -342,6 +342,51 @@ export default function Home() {
 
   const blogPosts = [
     {
+      category: 'Project Story',
+      title: 'Office interior project in Ghaziabad',
+      summary:
+        'Workstation, reception, waiting area, storage and lighting notes for a practical Ghaziabad office interior.',
+      href: '/blog/office-interior-project-ghaziabad/',
+      image: canvaVisuals.office,
+      readTime: '5 min read',
+    },
+    {
+      category: 'Project Detail',
+      title: 'Blue carpet office waiting area design',
+      summary:
+        'How to balance blue carpet with reception furniture, warm lighting, brand walls and durable commercial storage.',
+      href: '/blog/blue-carpet-office-waiting-area-design/',
+      image: canvaVisuals.office,
+      readTime: '4 min read',
+    },
+    {
+      category: 'Kitchen Project',
+      title: 'Modular kitchen with warm profile lights',
+      summary:
+        'Plan profile lighting with storage, sink durability, appliance clearance and a human-verified execution quote.',
+      href: '/blog/modular-kitchen-warm-profile-lights/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '5 min read',
+    },
+    {
+      category: 'Wardrobe Project',
+      title: 'Custom wardrobe for saree storage',
+      summary:
+        'Internal wardrobe planning for sarees, luggage, drawers, hanging space, lofts and daily-use access.',
+      href: '/blog/custom-wardrobe-saree-storage/',
+      image: canvaVisuals.wardrobeVisual,
+      readTime: '4 min read',
+    },
+    {
+      category: 'Space Conversion',
+      title: 'Garage to office interior transformation',
+      summary:
+        'A practical checklist for converting an unused garage or utility space into a small working office.',
+      href: '/blog/garage-to-office-interior-transformation/',
+      image: canvaVisuals.office,
+      readTime: '5 min read',
+    },
+    {
       category: 'Kitchen Cost Guide',
       title: 'What changes modular kitchen cost in Delhi NCR?',
       summary:
@@ -881,13 +926,13 @@ export default function Home() {
             <div className="home-split-head">
               <div>
                 <p className="home-kicker">Design Journal</p>
-                <h2>Planning guides from the AlterCraft blog</h2>
+                <h2>Project stories and planning guides from AlterCraft</h2>
                 <p>
-                  Practical guides for modular kitchen cost in Delhi NCR, Noida and Ghaziabad,
-                  small kitchen storage, wardrobe planning, finishes and site-visit preparation.
+                  Crawlable project stories and practical guides for office interiors, modular
+                  kitchens, wardrobes, custom furniture, finishes and site-visit preparation.
                 </p>
               </div>
-              <a href="/blog/modular-kitchen-cost-delhi-ncr/" className="home-inline-link">
+              <a href="/blog/office-interior-project-ghaziabad/" className="home-inline-link">
                 Start reading
                 <ArrowRight size={16} />
               </a>

@@ -38,10 +38,29 @@ import {
   type UploadAsset,
 } from '../data/aiPlanner';
 import { canvaVisuals } from '../data/visualAssets';
+import { SEOHead } from '../components/seo/SEOHead';
+import { siteDetails } from '../data/siteDetails';
 
 const DRAFT_KEY = 'altercraft_ai_planner_draft';
 const PROJECTS_KEY = 'altercraft_ai_planner_projects';
 const LATEST_REQUEST_KEY = 'altercraft_latest_request_id';
+
+const aiPlannerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'AI-Assisted Interior Design Planner India',
+  serviceType: 'AI-assisted imagination preview and human-verified interior execution planning',
+  url: 'https://www.altercraft.in/ai-planner/',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'AlterCraft',
+    telephone: '+918817503658',
+    email: siteDetails.email,
+  },
+  areaServed: siteDetails.serviceAreas,
+  description:
+    'Upload room photos, dimensions, budget and requirements to request an AI-assisted imagination preview. AlterCraft human designers verify dimensions, feasibility, materials, quotation and execution details before project confirmation.',
+};
 
 const readJson = <T,>(key: string, fallback: T): T => {
   if (typeof window === 'undefined') return fallback;
@@ -142,6 +161,12 @@ function PlannerHero({
 export function AIPlannerLanding() {
   return (
     <PlannerPageShell>
+      <SEOHead
+        title="AI Interior Design Planner India | AlterCraft Imagination Preview"
+        description="Upload room photos and dimensions for an AI-assisted imagination preview. AlterCraft converts selected concepts into human-verified execution design, quotation and installation planning."
+        canonical="https://www.altercraft.in/ai-planner/"
+        jsonLd={[aiPlannerSchema]}
+      />
       <PlannerHero
         kicker="Design Preview"
         title="Share Your Space With AlterCraft"
