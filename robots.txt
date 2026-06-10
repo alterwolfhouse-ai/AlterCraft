@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /cart/
+Disallow: /my-projects/
+Disallow: /ai-planner/submitted
 Sitemap: https://www.altercraft.in/sitemap.xml
