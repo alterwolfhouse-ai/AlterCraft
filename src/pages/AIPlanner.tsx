@@ -40,6 +40,7 @@ import {
 import { canvaVisuals } from '../data/visualAssets';
 import { SEOHead } from '../components/seo/SEOHead';
 import { siteDetails } from '../data/siteDetails';
+import { createWhatsappLink } from '../utils/contact';
 
 const DRAFT_KEY = 'altercraft_ai_planner_draft';
 const PROJECTS_KEY = 'altercraft_ai_planner_projects';
@@ -659,8 +660,13 @@ export function MyProjectDetail() {
               <div className="planner-empty-state">
                 <Eye size={24} />
                 <h3>Your previews are being prepared</h3>
-                <p>The team can add design ideas from the admin project page when ready.</p>
-                <CTAButton to={`/admin/projects/${record.project.requestId}`} variant="secondary">Open Admin Upload</CTAButton>
+                <p>The AlterCraft team will add design ideas after reviewing your photos, measurements and requirement.</p>
+                <CTAButton
+                  href={createWhatsappLink(`Hi AlterCraft, I want an update for request ${record.project.requestId}.`)}
+                  variant="secondary"
+                >
+                  Ask for an Update
+                </CTAButton>
               </div>
             )}
           </section>

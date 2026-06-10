@@ -125,6 +125,7 @@ export function CreativeMotion() {
 
     const revealedItems = new WeakSet<HTMLElement>();
     const magneticCleanups = new Map<HTMLElement, () => void>();
+    const motionRoot = document.getElementById('root') ?? document.body;
 
     const attachMagnetic = (item: HTMLElement) => {
       if (magneticCleanups.has(item)) return;
@@ -176,7 +177,20 @@ export function CreativeMotion() {
 
     scanMotionTargets();
 
-    const mutationObserver = new MutationObserver(() => {
+    const mutationObserver = new MutationObserver((mutations) => {
+      const hasMotionCandidate = mutations.some((mutation) =>
+        Array.from(mutation.addedNodes).some((node) => {
+          if (!(node instanceof HTMLElement)) return false;
+          return (
+            node.matches(REVEAL_SELECTOR) ||
+            node.querySelector(REVEAL_SELECTOR) ||
+            (enableMagnetic &&
+              (node.matches(MAGNETIC_SELECTOR) || node.querySelector(MAGNETIC_SELECTOR)))
+          );
+        })
+      );
+
+      if (!hasMotionCandidate) return;
       if (scanFrame) return;
       scanFrame = window.requestAnimationFrame(() => {
         scanMotionTargets();
@@ -184,7 +198,7 @@ export function CreativeMotion() {
       });
     });
 
-    mutationObserver.observe(document.body, {
+    mutationObserver.observe(motionRoot, {
       childList: true,
       subtree: true,
     });

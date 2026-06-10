@@ -37,6 +37,7 @@ const canUseLocalDemo = () => {
 
 const readSession = (): ACOSUser | null => {
   if (typeof window === 'undefined') return null;
+  if (!canUseLocalDemo()) return null;
   try {
     const raw = window.localStorage.getItem(SESSION_KEY);
     return raw ? (JSON.parse(raw) as ACOSUser) : null;
@@ -95,7 +96,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return {
       user,
-      isAdmin: user?.role === 'admin' && user.enabled,
+      isAdmin: canUseLocalDemo() && user?.role === 'admin' && user.enabled,
       signIn,
       signOut,
     };

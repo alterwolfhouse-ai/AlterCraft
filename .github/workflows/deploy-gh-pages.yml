@@ -22,6 +22,8 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Security audit
+        run: npm run audit
       - name: Build
         run: npm run build
       - name: Read CNAME
