@@ -21,7 +21,6 @@ import {
 import { ElegantFooter, FloatingWhatsApp, MobileBottomNav } from '../components/elegant/ElegantLayout';
 import { QuoteForm } from '../components/elegant/QuoteForm';
 import { PreviewDisclaimer, ServiceCard } from '../components/aiPlanner/PlannerComponents';
-import { catalogProducts } from '../data/catalog';
 import { products } from '../data/products';
 import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
@@ -181,13 +180,7 @@ function HomeHeader() {
 export default function Home() {
   const bedStartingPrice = useMemo(() => lowestProductPrice('Beds'), []);
   const wardrobeStartingPrice = useMemo(() => lowestProductPrice('Wardrobes'), []);
-  const kitchenCatalogStarting = useMemo(() => {
-    const kitchenPrices = catalogProducts
-      .filter((product) => product.category === 'kitchen')
-      .map((product) => product.marketBuy)
-      .filter(Boolean);
-    return kitchenPrices.length ? Math.min(...kitchenPrices) : 0;
-  }, []);
+  const [expandedOffer, setExpandedOffer] = useState<string | null>(null);
 
   const trustBadges = [
     { icon: Award, label: 'Custom made furniture' },
@@ -197,13 +190,21 @@ export default function Home() {
     { icon: Ruler, label: 'Site measurement support' },
   ];
 
+  const kitchenMaterialDetails = [
+    'BWP/BWR plywood options for moisture-prone kitchen zones.',
+    'Laminate finish with clean edge banding for daily-use shutters.',
+    'Soft-close drawer and shutter hardware where selected in the scope.',
+    'Base, wall and tall unit planning after site measurement.',
+    'Written quotation before work starts, so the agreed scope stays clear.',
+  ];
+
   const offerCards = [
     {
       title: 'Modular Kitchen',
-      price: 'Starting from INR 460 / sq.ft.',
-      note: kitchenCatalogStarting
-        ? `Catalog kitchen units also listed from ${formatInr(kitchenCatalogStarting)}.`
-        : 'Final quote depends on site size, hardware and finish.',
+      price: 'Modular kitchen at INR 1,200 / sq. ft.',
+      note: 'No hidden cost in the agreed modular cabinet scope. Material, hardware and finish are explained before work starts.',
+      detailsLabel: 'View material details',
+      details: kitchenMaterialDetails,
       image: canvaVisuals.kitchenVisual,
       to: '/modular-kitchen-near-me',
       cta: 'Kitchen Near Me',
@@ -729,28 +730,51 @@ export default function Home() {
               <p className="home-kicker">Popular Starting Points</p>
               <h2>Clear starting prices for common furniture work</h2>
               <p>
-                Prices shown here come from the current product data. Final quotations are shared
-                after measurement, material choice and scope confirmation.
+                Prices shown here are starting points for planning. Final quotations are shared
+                after measurement, material choice and clear scope confirmation.
               </p>
             </div>
 
             <div className="home-offer-grid">
-              {offerCards.map((card) => (
-                <article key={card.title} className="home-offer-card">
-                  <div className="home-offer-image">
-                    <img src={card.image} alt={card.title} />
-                  </div>
-                  <div className="home-offer-body">
-                    <h3>{card.title}</h3>
-                    <strong>{card.price}</strong>
-                    <p>{card.note}</p>
-                    <Link to={card.to} className="home-card-link">
-                      {card.cta}
-                      <ArrowRight size={16} />
-                    </Link>
-                  </div>
-                </article>
-              ))}
+              {offerCards.map((card) => {
+                const isExpanded = expandedOffer === card.title;
+
+                return (
+                  <article key={card.title} className="home-offer-card">
+                    <div className="home-offer-image">
+                      <img src={card.image} alt={card.title} />
+                    </div>
+                    <div className="home-offer-body">
+                      <h3>{card.title}</h3>
+                      <strong>{card.price}</strong>
+                      <p>{card.note}</p>
+                      {card.details ? (
+                        <div className="home-offer-details">
+                          <button
+                            type="button"
+                            className="home-offer-detail-toggle"
+                            aria-expanded={isExpanded}
+                            onClick={() => setExpandedOffer(isExpanded ? null : card.title)}
+                          >
+                            {isExpanded ? 'Hide material details' : card.detailsLabel}
+                          </button>
+                          {isExpanded ? (
+                            <ul className="home-offer-material-list">
+                              {card.details.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </div>
+                      ) : null}
+                      <Link to={card.to} className="home-card-link">
+                        {card.cta}
+                        <ArrowRight size={16} />
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
