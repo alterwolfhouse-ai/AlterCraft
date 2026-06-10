@@ -16,6 +16,7 @@ import { PageHero } from '../components/elegant/PageHero';
 import { SEOHead } from '../components/seo/SEOHead';
 import { siteDetails } from '../data/siteDetails';
 import { canvaVisuals } from '../data/visualAssets';
+import { modularKitchenPricingLine, modularKitchenStartingPrice } from '../data/pricingFacts';
 import { createWhatsappLink } from '../utils/contact';
 
 const canonical = 'https://www.altercraft.in/modular-kitchen-near-me/';
@@ -140,7 +141,7 @@ const faqs = [
   {
     question: 'How much does a modular kitchen cost?',
     answer:
-      'The cost depends on kitchen size, layout, material, finish, hardware, accessories and site conditions. AlterCraft provides a measured quote after understanding your room and requirements.',
+      `${modularKitchenPricingLine} Final pricing depends on kitchen size, layout, material, finish, hardware, accessories and site conditions.`,
   },
   {
     question: 'Which modular kitchen layout is best for small homes?',
@@ -177,7 +178,7 @@ const localBusinessSchema = {
   },
   areaServed: serviceAreas,
   openingHours: 'Mo-Sa 10:00-19:00',
-  priceRange: 'Measured quote',
+  priceRange: `From ${modularKitchenStartingPrice}`,
 };
 
 const serviceSchema = {
@@ -193,7 +194,14 @@ const serviceSchema = {
   serviceType: 'Modular Kitchen',
   url: canonical,
   description:
-    'Custom modular kitchen design, manufacturing and installation across Ghaziabad, Noida, Greater Noida and Delhi NCR with site measurement and material guidance.',
+    `${modularKitchenPricingLine} Custom modular kitchen design, manufacturing and installation across Ghaziabad, Noida, Greater Noida and Delhi NCR with site measurement and material guidance.`,
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: 'INR',
+    price: '1200',
+    unitText: 'sq. ft.',
+    description: 'Starting price for agreed modular cabinet scope; final quote after measurement and scope confirmation.',
+  },
 };
 
 const faqSchema = {
@@ -217,19 +225,19 @@ export function ModularKitchenNearMe() {
   return (
     <ElegantLayout>
       <SEOHead
-        title="Modular Kitchen Near Me in Ghaziabad & Delhi NCR | AlterCraft"
-        description="Looking for a modular kitchen near me? AlterCraft designs and executes custom modular kitchens in Ghaziabad, Noida, Greater Noida and Delhi NCR with measured quotes, premium materials and installation support."
+        title={`Modular Kitchen Near Me from ${modularKitchenStartingPrice} | AlterCraft`}
+        description={`Looking for a modular kitchen near me? AlterCraft starts modular kitchens at ${modularKitchenStartingPrice} with no hidden cost in the agreed cabinet scope, plus measured quotes, premium materials and installation support in Ghaziabad, Noida and Delhi NCR.`}
         canonical={canonical}
         jsonLd={[localBusinessSchema, serviceSchema, faqSchema]}
       />
 
       <PageHero
         title="Modular Kitchen Near Me - Custom Kitchens by AlterCraft"
-        subtitle="Looking for a reliable modular kitchen near you? AlterCraft designs, manufactures and installs custom modular kitchens for homes across Ghaziabad, Noida, Greater Noida and Delhi NCR. From site measurement to layout planning, material selection, manufacturing and installation, we help you build a kitchen that looks premium, works practically and fits your daily cooking routine."
+        subtitle={`Looking for a reliable modular kitchen near you? AlterCraft starts modular kitchens at ${modularKitchenStartingPrice} for the agreed modular cabinet scope, then confirms final pricing after site measurement, material selection, hardware and installation scope.`}
         breadcrumb="Local SEO / Modular Kitchen Near Me"
         image={canvaVisuals.kitchenVisual}
         imageAlt="modular kitchen design by AlterCraft in Ghaziabad"
-        priceTag="Measured kitchen quotes across Ghaziabad, Noida and Delhi NCR"
+        priceTag={`Modular kitchen from ${modularKitchenStartingPrice}`}
       />
 
       <section className="seo-cta-strip">
@@ -334,8 +342,9 @@ export function ModularKitchenNearMe() {
             <p className="elegant-kicker">Measured Pricing</p>
             <h2 className="elegant-heading">Modular Kitchen Price Near Me</h2>
             <p className="elegant-copy">
-              Every modular kitchen price depends on size, material, finish, hardware, countertop,
-              accessories and site work.
+              AlterCraft modular kitchen pricing starts at {modularKitchenStartingPrice} for the
+              agreed modular cabinet scope. Final pricing depends on size, material, finish,
+              hardware, countertop, accessories and site work.
             </p>
             <p className="elegant-copy">A measured quote usually considers:</p>
             <div className="seo-check-grid">

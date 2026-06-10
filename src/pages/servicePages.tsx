@@ -3,6 +3,8 @@ import { ServicePage } from '../components/elegant/ServicePage';
 import { products } from '../data/products';
 import { catalogProducts } from '../data/catalog';
 import { canvaVisuals } from '../data/visualAssets';
+import { modularKitchenPricingLine, modularKitchenStartingPrice } from '../data/pricingFacts';
+import { siteDetails } from '../data/siteDetails';
 import { formatInr } from '../utils/pricing';
 
 const productPrice = (id: string) => {
@@ -20,20 +22,50 @@ const flushDoorStart = formatInr(7600);
 export function ModularKitchen() {
   return (
     <ServicePage
+      seo={{
+        title: `Modular Kitchen from ${modularKitchenStartingPrice} in Ghaziabad & Delhi NCR | AlterCraft`,
+        description: `${modularKitchenPricingLine} AlterCraft designs, manufactures and installs modular kitchens with BWP/BWR plywood options, laminate finishes, hardware guidance and measured quotations.`,
+        canonical: 'https://www.altercraft.in/modular-kitchen/',
+        jsonLd: [
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            name: 'Modular Kitchen Design, Manufacturing and Installation',
+            serviceType: 'Modular Kitchen',
+            url: 'https://www.altercraft.in/modular-kitchen/',
+            provider: {
+              '@type': 'LocalBusiness',
+              name: 'AlterCraft',
+              telephone: '+918817503658',
+              email: siteDetails.email,
+            },
+            areaServed: siteDetails.serviceAreas,
+            description: `${modularKitchenPricingLine} Includes material guidance, measured planning and installation support after scope confirmation.`,
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'INR',
+              price: '1200',
+              unitText: 'sq. ft.',
+              description:
+                'Starting price for agreed modular cabinet scope; final quote after measurement and scope confirmation.',
+            },
+          },
+        ],
+      }}
       hero={{
         title: 'Modular Kitchen Solutions',
         subtitle:
-          'Measured modular kitchens for Delhi NCR, Noida, Ghaziabad and Greater Noida West with practical storage, moisture-aware materials, branded hardware and elegant finishes.',
+          `Measured modular kitchens from ${modularKitchenStartingPrice} for Delhi NCR, Noida, Ghaziabad and Greater Noida West with practical storage, moisture-aware materials, branded hardware and elegant finishes.`,
         breadcrumb: 'Products / Modular Kitchen',
         image:
           'https://images.unsplash.com/photo-1559554704-0f74b35a8718?auto=format&fit=crop&w=1800&q=82',
         imageAlt: 'Elegant modular kitchen with warm cabinetry',
-        priceTag: `Kitchen wall units from ${catalogBuyPrice('kitchen-wall-unit')}`,
+        priceTag: `Modular kitchen from ${modularKitchenStartingPrice}`,
       }}
       priceStrip={{
-        title: 'Kitchen wall units from',
-        highlight: catalogBuyPrice('kitchen-wall-unit'),
-        note: 'Pricing uses the current kitchen catalog data and is refined after measurement.',
+        title: 'Modular kitchen starts at',
+        highlight: modularKitchenStartingPrice,
+        note: 'No hidden cost in the agreed modular cabinet scope after material, hardware, finish and site work are confirmed.',
       }}
       intro={{
         kicker: 'Kitchen Planning',
@@ -81,19 +113,24 @@ export function ModularKitchen() {
       }}
       prices={[
         {
+          label: 'Modular kitchen starting price',
+          value: modularKitchenStartingPrice,
+          note: 'Per sq. ft. for the agreed modular cabinet scope; final quote follows measurement and scope confirmation.',
+        },
+        {
           label: 'Kitchen wall unit',
           value: catalogBuyPrice('kitchen-wall-unit'),
-          note: 'Current catalog buy price',
+          note: 'Current catalog buy price for unit-level planning',
         },
         {
           label: 'Kitchen tall unit',
           value: catalogBuyPrice('kitchen-tall-unit'),
-          note: 'Current catalog buy price',
+          note: 'Current catalog buy price for unit-level planning',
         },
         {
           label: 'Kitchen base unit',
           value: catalogBuyPrice('kitchen-base-unit'),
-          note: 'Current catalog buy price',
+          note: 'Current catalog buy price for unit-level planning',
         },
       ]}
       gallery={[

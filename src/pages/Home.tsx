@@ -22,6 +22,7 @@ import { ElegantFooter, FloatingWhatsApp, MobileBottomNav } from '../components/
 import { QuoteForm } from '../components/elegant/QuoteForm';
 import { PreviewDisclaimer, ServiceCard } from '../components/aiPlanner/PlannerComponents';
 import { products } from '../data/products';
+import { modularKitchenStartingPrice } from '../data/pricingFacts';
 import { siteDetails } from '../data/siteDetails';
 import { trackEvent } from '../utils/analytics';
 import { createWhatsappLink } from '../utils/contact';
@@ -58,7 +59,7 @@ const homeLocalBusinessSchema = {
   email: siteDetails.email,
   image: `https://www.altercraft.in${canvaVisuals.aiJourney}`,
   description:
-    'Custom furniture, modular kitchens, wardrobes, beds, doors, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR.',
+    `Custom furniture, modular kitchens from ${modularKitchenStartingPrice}, wardrobes, beds, doors, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR.`,
   taxID: `GSTIN ${siteDetails.gstin}`,
   identifier: siteDetails.udyamRegistration,
   address: {
@@ -201,7 +202,7 @@ export default function Home() {
   const offerCards = [
     {
       title: 'Modular Kitchen',
-      price: 'Modular kitchen at INR 1,200 / sq. ft.',
+      price: `Modular kitchen at ${modularKitchenStartingPrice}`,
       note: 'No hidden cost in the agreed modular cabinet scope. Material, hardware and finish are explained before work starts.',
       detailsLabel: 'View material details',
       details: kitchenMaterialDetails,
@@ -569,7 +570,7 @@ export default function Home() {
     <div className="home-site">
       <SEOHead
         title="Custom Furniture & Modular Kitchen in Ghaziabad | AlterCraft"
-        description="AlterCraft designs and executes custom furniture, modular kitchens, wardrobes, beds, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR."
+        description={`AlterCraft designs custom furniture, modular kitchens from ${modularKitchenStartingPrice}, wardrobes, beds, office interiors and AI-assisted imagination previews in Ghaziabad, Noida, Greater Noida and Delhi NCR.`}
         canonical="https://www.altercraft.in/"
         jsonLd={[homeLocalBusinessSchema]}
       />

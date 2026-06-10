@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle, ShieldCheck } from 'lucide-react';
 import { ElegantLayout } from './ElegantLayout';
 import { PageHero } from './PageHero';
 import { QuoteForm } from './QuoteForm';
+import { SEOHead } from '../seo/SEOHead';
 
 type CardItem = {
   title: string;
@@ -18,6 +19,12 @@ type PriceItem = {
 };
 
 type ServicePageProps = {
+  seo?: {
+    title: string;
+    description: string;
+    canonical?: string;
+    jsonLd?: Array<Record<string, unknown>>;
+  };
   hero: {
     title: string;
     subtitle: string;
@@ -50,6 +57,7 @@ type ServicePageProps = {
 };
 
 export function ServicePage({
+  seo,
   hero,
   priceStrip,
   intro,
@@ -60,6 +68,7 @@ export function ServicePage({
 }: ServicePageProps) {
   return (
     <ElegantLayout>
+      {seo ? <SEOHead {...seo} /> : null}
       <PageHero {...hero} />
 
       <section className="elegant-price-strip">

@@ -6,6 +6,7 @@ import { PageHero } from '../components/elegant/PageHero';
 import { SEOHead } from '../components/seo/SEOHead';
 import { siteDetails } from '../data/siteDetails';
 import { canvaVisuals } from '../data/visualAssets';
+import { modularKitchenPricingLine, modularKitchenStartingPrice } from '../data/pricingFacts';
 import { createWhatsappLink } from '../utils/contact';
 
 type TextCard = {
@@ -89,6 +90,7 @@ const localBusinessSchema = {
 
 const schemaForPage = (page: LocalPageData) => {
   const canonical = `https://www.altercraft.in/${page.slug}/`;
+  const isModularKitchen = page.serviceType === 'Modular Kitchen';
 
   return [
     localBusinessSchema,
@@ -105,6 +107,18 @@ const schemaForPage = (page: LocalPageData) => {
       },
       areaServed: baseAreas,
       description: page.metaDescription,
+      ...(isModularKitchen
+        ? {
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'INR',
+              price: '1200',
+              unitText: 'sq. ft.',
+              description:
+                'Starting price for agreed modular cabinet scope; final quote after measurement and scope confirmation.',
+            },
+          }
+        : {}),
     },
     {
       '@context': 'https://schema.org',
@@ -147,16 +161,16 @@ const commonProcess = [
 const pages: Record<string, LocalPageData> = {
   modularKitchenGhaziabad: {
     slug: 'modular-kitchen-ghaziabad',
-    metaTitle: 'Modular Kitchen in Ghaziabad | Custom Kitchen by AlterCraft',
+    metaTitle: `Modular Kitchen in Ghaziabad from ${modularKitchenStartingPrice} | AlterCraft`,
     metaDescription:
-      'AlterCraft designs, manufactures and installs custom modular kitchens in Ghaziabad with measured planning, practical storage, premium finishes and installation support.',
+      `AlterCraft modular kitchens in Ghaziabad start at ${modularKitchenStartingPrice} for the agreed modular cabinet scope, with measured planning, practical storage, premium finishes and installation support.`,
     breadcrumb: 'Local Service / Modular Kitchen Ghaziabad',
     title: 'Modular Kitchen in Ghaziabad',
     subtitle:
-      'Plan a measured modular kitchen for your Ghaziabad home with practical storage, moisture-aware materials, elegant finishes and clear execution support from AlterCraft.',
+      `Plan a measured modular kitchen for your Ghaziabad home from ${modularKitchenStartingPrice}, with practical storage, moisture-aware materials, elegant finishes and clear execution support from AlterCraft.`,
     image: canvaVisuals.kitchenVisual,
     imageAlt: 'AlterCraft modular kitchen in Ghaziabad',
-    priceTag: 'Measured kitchen quote after photos, dimensions and site review',
+    priceTag: `Modular kitchen from ${modularKitchenStartingPrice}`,
     serviceName: 'Modular Kitchen Design and Installation in Ghaziabad',
     serviceType: 'Modular Kitchen',
     city: 'Ghaziabad',
@@ -164,7 +178,7 @@ const pages: Record<string, LocalPageData> = {
     introTitle: 'A kitchen should fit the room, not just the catalogue.',
     introCopy: [
       'A good Ghaziabad kitchen needs more than shutters and cabinets. It needs the right layout for cooking flow, sink usage, appliance clearance, tall storage and daily cleaning.',
-      'AlterCraft plans modular kitchens around real wall sizes, sink points, electrical points, budget range and the way your family uses the kitchen every day.',
+      `${modularKitchenPricingLine} AlterCraft plans around real wall sizes, sink points, electrical points, budget range and the way your family uses the kitchen every day.`,
     ],
     planningTitle: 'What we plan before quoting',
     planningCopy:
@@ -183,7 +197,7 @@ const pages: Record<string, LocalPageData> = {
     ],
     faqs: [
       { question: 'Do you make modular kitchens in Ghaziabad?', answer: 'Yes. AlterCraft designs, manufactures and installs modular kitchens in Ghaziabad and nearby Delhi NCR areas.' },
-      { question: 'Can I get a kitchen quote from photos?', answer: 'Photos and rough dimensions help us prepare an initial direction. Final pricing depends on measurement, material, finish, hardware and site scope.' },
+      { question: 'Can I get a kitchen quote from photos?', answer: `Yes. Photos and rough dimensions help us prepare an initial direction. Modular kitchen pricing starts at ${modularKitchenStartingPrice} for the agreed cabinet scope, and final pricing depends on measurement, material, finish, hardware and site scope.` },
       { question: 'Do you support AI design previews for kitchens?', answer: 'Yes, where useful we can prepare an AI-assisted imagination preview. Final feasibility and quotation are checked by the AlterCraft team.' },
     ],
     related: [
