@@ -202,7 +202,56 @@ const pages: Record<string, LocalPageData> = {
     ],
     related: [
       { to: '/modular-kitchen-near-me', label: 'Modular Kitchen Near Me' },
+      { to: '/modular-kitchen-noida', label: 'Modular Kitchen Noida' },
       { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
+      { to: '/ai-planner/start', label: 'Start Design Preview' },
+    ],
+  },
+  modularKitchenNoida: {
+    slug: 'modular-kitchen-noida',
+    metaTitle: `Modular Kitchen in Noida from ${modularKitchenStartingPrice} | AlterCraft`,
+    metaDescription:
+      `AlterCraft modular kitchens in Noida start at ${modularKitchenStartingPrice} for the agreed modular cabinet scope, with no hidden cost after scope confirmation, measured planning, storage design and installation support.`,
+    breadcrumb: 'Local Service / Modular Kitchen Noida',
+    title: 'Modular Kitchen in Noida',
+    subtitle:
+      `Plan a practical modular kitchen for your Noida home from ${modularKitchenStartingPrice}, with clear storage zones, moisture-aware materials, premium finishes and human-verified execution support.`,
+    image: canvaVisuals.kitchenVisual,
+    imageAlt: 'AlterCraft modular kitchen in Noida',
+    priceTag: `Modular kitchen from ${modularKitchenStartingPrice}`,
+    serviceName: 'Modular Kitchen Design and Installation in Noida',
+    serviceType: 'Modular Kitchen',
+    city: 'Noida',
+    ctaMessage: 'Hi AlterCraft, I want a modular kitchen in Noida. I can share photos and dimensions.',
+    introTitle: 'A Noida kitchen should be planned around daily movement.',
+    introCopy: [
+      'Noida apartments and homes often need smart storage, appliance clearance, sink planning and a finish palette that stays easy to maintain.',
+      `${modularKitchenPricingLine} We review wall size, sink point, electrical points, appliance positions, budget and material preference before giving a final measured quote.`,
+    ],
+    planningTitle: 'What we check before your kitchen quote',
+    planningCopy:
+      'A useful kitchen estimate should connect cabinet scope, site condition, material choice, finish and installation sequence.',
+    cards: [
+      { title: 'Apartment Layouts', description: 'Straight, L-shape, parallel and U-shape kitchen directions based on the actual room.' },
+      { title: 'Storage Planning', description: 'Base cabinets, wall units, tall storage, drawers, pantry zones and daily-use access.' },
+      { title: 'Material Guidance', description: 'Moisture-aware plywood options, laminates, acrylic direction and durable hardware planning.' },
+      { title: 'Execution Support', description: 'Measurement, production, installation checks and warranty support across eligible work.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Noida Apartment Kitchen', scope: 'L-shape kitchen planning', need: 'Better corner storage and appliance position', result: 'Measured cabinet direction with practical hardware and finish planning' },
+      { title: 'Compact Noida Kitchen', scope: 'Straight kitchen with wall units', need: 'More storage without crowding the counter', result: 'Cabinet scope prepared around sink, hob and daily-use shelves' },
+      { title: 'New Flat Kitchen in Noida', scope: 'Parallel kitchen direction', need: 'Clear quote before move-in furniture work', result: 'Material and layout checklist prepared for measurement confirmation' },
+    ],
+    faqs: [
+      { question: 'Do you make modular kitchens in Noida?', answer: 'Yes. AlterCraft designs, manufactures and installs modular kitchens in Noida and nearby Delhi NCR locations based on schedule and project scope.' },
+      { question: 'What is the starting price for modular kitchen work?', answer: `Modular kitchen pricing starts at ${modularKitchenStartingPrice} for the agreed modular cabinet scope. Final pricing depends on site measurement, material, finish, hardware and installation scope.` },
+      { question: 'Can you show an AI-assisted preview first?', answer: 'Yes. AlterCraft can prepare an AI-assisted imagination preview to discuss the direction. Final dimensions, feasibility, materials and quotation are verified by the human design team.' },
+    ],
+    related: [
+      { to: '/modular-kitchen-near-me', label: 'Modular Kitchen Near Me' },
+      { to: '/modular-kitchen-ghaziabad', label: 'Modular Kitchen Ghaziabad' },
+      { to: '/custom-furniture-noida', label: 'Custom Furniture Noida' },
       { to: '/ai-planner/start', label: 'Start Design Preview' },
     ],
   },
@@ -297,6 +346,8 @@ const pages: Record<string, LocalPageData> = {
     related: [
       { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
       { to: '/custom-furniture-greater-noida', label: 'Custom Furniture Greater Noida' },
+      { to: '/modular-kitchen-noida', label: 'Modular Kitchen Noida' },
+      { to: '/office-interior-noida', label: 'Office Interior Noida' },
       { to: '/ai-planner/start', label: 'Start Design Preview' },
     ],
   },
@@ -391,7 +442,61 @@ const pages: Record<string, LocalPageData> = {
     related: [
       { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
       { to: '/shoe-rack-design', label: 'Shoe Rack Design' },
+      { to: '/ai-interior-design-planner', label: 'AI Interior Design Planner' },
       { to: '/ai-planner/start', label: 'Create Imagination Preview' },
+    ],
+  },
+  aiInteriorDesignPlanner: {
+    slug: 'ai-interior-design-planner',
+    metaTitle: 'AI Interior Design Planner India | AlterCraft Imagination Preview',
+    metaDescription:
+      'Create an AI-assisted imagination preview with AlterCraft by uploading real space photos, exact dimensions, budget and style. Human designers verify feasibility, materials, quotation and execution.',
+    breadcrumb: 'AI Planner / Interior Design With Dimensions',
+    title: 'AI Interior Design Planner',
+    subtitle:
+      'Upload your real space, add exact dimensions, budget and style, then receive an AI-assisted imagination preview that AlterCraft can review and convert into an execution-ready direction.',
+    image: canvaVisuals.aiJourney,
+    imageAlt: 'AI-assisted interior design planner by AlterCraft',
+    priceTag: 'AI-assisted imagination preview with human designer review',
+    serviceName: 'AI-Assisted Interior Design Planner',
+    serviceType: 'AI Interior Design Planner',
+    city: 'India and Delhi NCR',
+    ctaMessage: 'Hi AlterCraft, I want to create an AI-assisted imagination preview for my space.',
+    introTitle: 'Imagine the space first, then verify it for real execution.',
+    introCopy: [
+      'The AI planner helps customers share better inputs: clear photos, exact length, width, height, door and window positions, budget range, preferred style and reference images if available.',
+      "This is an AI-assisted imagination preview. Final dimensions, feasibility, materials, quotation and execution details are verified by AlterCraft's human design team before project confirmation.",
+    ],
+    planningTitle: 'Inputs that make the preview more useful',
+    planningCopy:
+      'The better the site information, the more useful the first imagination direction becomes for discussion and quotation.',
+    cards: [
+      { title: 'Real Site Photos', description: 'Upload clear photos from multiple angles so the team can understand the actual room.' },
+      { title: 'Fixed Measurements', description: 'Length, width, height, door, window and service points are treated as site constraints.' },
+      { title: 'Style and Budget', description: 'Modern, luxury, minimal, Indian practical, beige, wood-white or custom directions can be selected.' },
+      { title: 'Human Review', description: 'The selected imagination concept is checked for feasibility, materials, quotation and execution scope.' },
+    ],
+    process: [
+      { title: 'Upload Space', description: 'Share photos, rough sketch or plan photo, and reference images if available.' },
+      { title: 'Lock Dimensions', description: 'Enter exact dimensions. Missing details are shown as Not provided instead of being invented.' },
+      { title: 'Receive Preview', description: 'Get an AI-assisted imagination preview to understand possible style and layout direction.' },
+      { title: 'Move to Execution', description: 'AlterCraft reviews the selected concept for practical design, quote, production and installation.' },
+    ],
+    proof: [
+      { title: 'Blank Room to Direction', scope: 'Bedroom or living room preview', need: 'Understand what the space can become before final quote', result: 'AI-assisted imagination preview prepared for human review' },
+      { title: 'Kitchen Planning Preview', scope: 'Modular kitchen style direction', need: 'Compare storage and finish direction with real room constraints', result: 'Concept direction checked against measurement and material scope' },
+      { title: 'Office Interior Preview', scope: 'Reception, workstation or cabin direction', need: 'See a calmer office style before execution discussion', result: 'Preview handed to the design team for feasibility and quotation review' },
+    ],
+    faqs: [
+      { question: 'Is the AI preview a final design?', answer: "No. It is an AI-assisted imagination preview only. Final dimensions, feasibility, materials, quotation and execution details are verified by AlterCraft's human design team." },
+      { question: 'Do I need exact dimensions?', answer: 'Yes. Dimensions entered in the planner are treated as fixed site constraints. If a detail is missing, it should remain Not provided instead of being assumed.' },
+      { question: 'Can AlterCraft execute the selected concept?', answer: 'AlterCraft can review the selected imagination concept and then prepare a human-verified execution direction, measured quote, production plan and installation scope where feasible.' },
+    ],
+    related: [
+      { to: '/ai-planner', label: 'AI Planner' },
+      { to: '/ai-planner/start', label: 'Start New Request' },
+      { to: '/modular-kitchen-noida', label: 'Modular Kitchen Noida' },
+      { to: '/custom-furniture-maker-near-me', label: 'Custom Furniture Maker Near Me' },
     ],
   },
   officeInteriorGhaziabad: {
@@ -437,7 +542,56 @@ const pages: Record<string, LocalPageData> = {
     ],
     related: [
       { to: '/office-commercial', label: 'Office & Commercial Interiors' },
+      { to: '/office-interior-noida', label: 'Office Interior Noida' },
       { to: '/custom-furniture-ghaziabad', label: 'Custom Office Furniture' },
+      { to: '/ai-planner/start', label: 'Start Office Preview' },
+    ],
+  },
+  officeInteriorNoida: {
+    slug: 'office-interior-noida',
+    metaTitle: 'Office Interior in Noida | Workstations & Commercial Furniture',
+    metaDescription:
+      'AlterCraft plans office interiors in Noida with workstations, reception counters, cabins, storage walls, meeting rooms, cable-friendly furniture and measured commercial execution.',
+    breadcrumb: 'Local Service / Office Interior Noida',
+    title: 'Office Interior in Noida',
+    subtitle:
+      'Plan a cleaner, more practical Noida office with custom workstations, reception furniture, cabins, storage, meeting-room units and commercial execution support from AlterCraft.',
+    image: canvaVisuals.office,
+    imageAlt: 'Office interior in Noida by AlterCraft',
+    priceTag: 'Office quote based on layout, furniture, storage and site scope',
+    serviceName: 'Office Interior and Commercial Furniture in Noida',
+    serviceType: 'Office Interior',
+    city: 'Noida',
+    ctaMessage: 'Hi AlterCraft, I need office interior work in Noida. I can share office photos and size.',
+    introTitle: 'A Noida office should look professional and work smoothly.',
+    introCopy: [
+      'Office interiors need a balance of seating count, visitor movement, cable planning, storage, durability and a brand-facing reception or cabin area.',
+      'AlterCraft plans commercial interiors and office furniture from real site photos, team size, room dimensions, work style and budget range before preparing the final measured quote.',
+    ],
+    planningTitle: 'Commercial scope we plan carefully',
+    planningCopy:
+      'Office projects move faster when furniture, electrical points, storage, workstation depth and installation sequence are clear early.',
+    cards: [
+      { title: 'Workstations', description: 'Team desks, privacy panels, wire access, under-desk storage and durable work surfaces.' },
+      { title: 'Reception Areas', description: 'Reception counters, waiting seating, display walls and clean visitor-facing furniture.' },
+      { title: 'Cabins and Meetings', description: 'Executive desks, backdrop walls, credenzas, meeting tables and storage planning.' },
+      { title: 'Commercial Storage', description: 'File cabinets, pantry units, back-office storage and utility furniture for daily operations.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Noida Office Workstations', scope: 'Team workstation planning', need: 'More seats with cleaner wiring and storage', result: 'Furniture direction prepared around team count and circulation' },
+      { title: 'Reception Counter in Noida', scope: 'Front desk and visitor zone', need: 'Professional first impression with practical storage', result: 'Measured counter direction with finish and lighting guidance' },
+      { title: 'Cabin and Meeting Setup', scope: 'Desk, wall storage and meeting table', need: 'Daily-use executive space with premium look', result: 'Quote checklist prepared around furniture, materials and installation' },
+    ],
+    faqs: [
+      { question: 'Do you do office interiors in Noida?', answer: 'Yes. AlterCraft handles office furniture and commercial interior enquiries in Noida and nearby Delhi NCR areas.' },
+      { question: 'Can you plan an office from photos and team count?', answer: 'Yes. Photos, approximate dimensions, team count, cabin requirement and storage needs help prepare the first direction before final measurement.' },
+      { question: 'Can I get an AI-assisted office preview?', answer: 'Yes. An AI-assisted imagination preview can help discuss the style direction, but final feasibility, materials and quotation are verified by the AlterCraft team.' },
+    ],
+    related: [
+      { to: '/office-commercial', label: 'Office & Commercial Interiors' },
+      { to: '/office-interior-ghaziabad', label: 'Office Interior Ghaziabad' },
+      { to: '/custom-furniture-noida', label: 'Custom Office Furniture Noida' },
       { to: '/ai-planner/start', label: 'Start Office Preview' },
     ],
   },
@@ -761,6 +915,10 @@ export function ModularKitchenGhaziabad() {
   return <LocalServicePage page={pages.modularKitchenGhaziabad} />;
 }
 
+export function ModularKitchenNoida() {
+  return <LocalServicePage page={pages.modularKitchenNoida} />;
+}
+
 export function CustomFurnitureGhaziabad() {
   return <LocalServicePage page={pages.customFurnitureGhaziabad} />;
 }
@@ -777,8 +935,16 @@ export function CustomFurnitureMakerNearMe() {
   return <LocalServicePage page={pages.customFurnitureMakerNearMe} />;
 }
 
+export function AIInteriorDesignPlanner() {
+  return <LocalServicePage page={pages.aiInteriorDesignPlanner} />;
+}
+
 export function OfficeInteriorGhaziabad() {
   return <LocalServicePage page={pages.officeInteriorGhaziabad} />;
+}
+
+export function OfficeInteriorNoida() {
+  return <LocalServicePage page={pages.officeInteriorNoida} />;
 }
 
 export function WardrobeDesignGhaziabad() {

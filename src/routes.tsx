@@ -13,6 +13,9 @@ const ModularKitchenNearMe = lazy(() =>
 const ModularKitchenGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.ModularKitchenGhaziabad }))
 );
+const ModularKitchenNoida = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.ModularKitchenNoida }))
+);
 const CustomFurnitureGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureGhaziabad }))
 );
@@ -25,8 +28,14 @@ const CustomFurnitureGreaterNoida = lazy(() =>
 const CustomFurnitureMakerNearMe = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureMakerNearMe }))
 );
+const AIInteriorDesignPlanner = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.AIInteriorDesignPlanner }))
+);
 const OfficeInteriorGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.OfficeInteriorGhaziabad }))
+);
+const OfficeInteriorNoida = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.OfficeInteriorNoida }))
 );
 const WardrobeDesignGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.WardrobeDesignGhaziabad }))
@@ -195,6 +204,10 @@ export const router = createBrowserRouter([
     Component: ModularKitchenGhaziabad,
   },
   {
+    path: "/modular-kitchen-noida",
+    Component: ModularKitchenNoida,
+  },
+  {
     path: "/custom-furniture-ghaziabad",
     Component: CustomFurnitureGhaziabad,
   },
@@ -211,8 +224,16 @@ export const router = createBrowserRouter([
     Component: CustomFurnitureMakerNearMe,
   },
   {
+    path: "/ai-interior-design-planner",
+    Component: AIInteriorDesignPlanner,
+  },
+  {
     path: "/office-interior-ghaziabad",
     Component: OfficeInteriorGhaziabad,
+  },
+  {
+    path: "/office-interior-noida",
+    Component: OfficeInteriorNoida,
   },
   {
     path: "/wardrobe-design-ghaziabad",
