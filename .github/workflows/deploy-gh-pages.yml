@@ -26,6 +26,8 @@ jobs:
         run: npm run audit
       - name: Build
         run: npm run build
+      - name: SEO smoke check
+        run: npm run seo:check
       - name: Read CNAME
         id: cname
         if: ${{ hashFiles('CNAME') != '' }}

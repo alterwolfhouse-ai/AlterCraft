@@ -57,6 +57,7 @@
       "scripts": {
           "dev": "vite",
           "audit": "npm audit --audit-level=high",
+          "seo:check": "node scripts/check-seo.mjs",
           "build": "vite build && node scripts/postbuild.mjs"
       }
   }

@@ -1,5 +1,6 @@
-import { copyFileSync, existsSync, mkdirSync, readFileSync } from 'node:fs';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { applySeoMetadata } from './seoMetadata.mjs';
 
 const outDir = join(process.cwd(), 'build');
 const indexPath = join(outDir, 'index.html');
@@ -50,7 +51,9 @@ if (!existsSync(indexPath)) {
   throw new Error(`Missing build output: ${indexPath}`);
 }
 
-copyFileSync(indexPath, notFoundPath);
+const indexHtml = readFileSync(indexPath, 'utf8');
+
+writeFileSync(notFoundPath, applySeoMetadata(indexHtml, '/404'));
 
 const sitemapRoutes = existsSync(sitemapPath)
   ? Array.from(readFileSync(sitemapPath, 'utf8').matchAll(/<loc>https:\/\/www\.altercraft\.in([^<]+)<\/loc>/g))
@@ -64,7 +67,7 @@ const writeRouteCopy = (route) => {
   const routeIndexPath = join(outDir, ...cleanRoute.replace(/^\/+/, '').split('/'), 'index.html');
   if (existsSync(routeIndexPath)) return false;
   mkdirSync(dirname(routeIndexPath), { recursive: true });
-  copyFileSync(indexPath, routeIndexPath);
+  writeFileSync(routeIndexPath, applySeoMetadata(indexHtml, cleanRoute));
   return true;
 };
 
