@@ -51,13 +51,13 @@
       },
       "devDependencies": {
             "@types/node": "^20.10.0",
-            "@vitejs/plugin-react-swc": "^3.10.2",
-            "vite": "^6.4.3"
+            "@vitejs/plugin-react-swc": "^4.3.1",
+            "vite": "^8.0.16"
       },
       "scripts": {
-          "dev": "vite",
-          "audit": "npm audit --audit-level=high",
-          "seo:check": "node scripts/check-seo.mjs",
-          "build": "vite build && node scripts/postbuild.mjs"
+            "dev": "vite",
+            "audit": "npm audit --audit-level=high",
+            "seo:check": "node scripts/check-seo.mjs",
+            "build": "vite build && node scripts/postbuild.mjs"
       }
-  }
+}
