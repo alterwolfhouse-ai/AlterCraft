@@ -97,6 +97,26 @@ const routeSeo = {
     description:
       'Custom wardrobe design in Ghaziabad for sliding wardrobes, swing wardrobes, lofts, saree storage, luggage storage and premium bedroom finishes.',
   },
+  '/wardrobe-ghaziabad': {
+    title: 'Wardrobe in Ghaziabad | Sliding & Custom Wardrobes AlterCraft',
+    description:
+      'AlterCraft builds custom wardrobes in Ghaziabad with sliding, hinged, loft, mirror, saree storage, luggage storage and made-to-measure internal planning.',
+  },
+  '/tv-unit-ghaziabad': {
+    title: 'TV Unit Design in Ghaziabad | Custom TV Wall by AlterCraft',
+    description:
+      'Custom TV unit design in Ghaziabad for living rooms with wall panels, storage, cable concealment, lighting, drawers and made-to-measure execution.',
+  },
+  '/office-furniture-ghaziabad': {
+    title: 'Office Furniture in Ghaziabad | Workstations & Storage AlterCraft',
+    description:
+      'Office furniture in Ghaziabad by AlterCraft for workstations, reception desks, cabins, storage, meeting tables and commercial furniture execution.',
+  },
+  '/interiors-ghaziabad': {
+    title: 'Interiors in Ghaziabad | Furniture-Led Home & Office Execution',
+    description:
+      'AlterCraft interiors in Ghaziabad for modular kitchens, wardrobes, beds, TV units, office furniture, storage and furniture-led execution planning.',
+  },
   '/bed-manufacturer-ghaziabad': {
     title: 'Bed Manufacturer in Ghaziabad | Custom Beds by AlterCraft',
     description:

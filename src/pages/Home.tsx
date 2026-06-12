@@ -344,6 +344,42 @@ export default function Home() {
 
   const blogPosts = [
     {
+      category: 'Ghaziabad Cost Guide',
+      title: 'Modular kitchen cost in Ghaziabad',
+      summary:
+        'See how layout, cabinet scope, material, finish, hardware, accessories and site work affect a practical kitchen quote.',
+      href: '/blog/modular-kitchen-cost-ghaziabad/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '7 min read',
+    },
+    {
+      category: 'Kitchen Quote Guide',
+      title: 'Modular kitchen price per sq ft in Ghaziabad',
+      summary:
+        'Understand what INR 1,200 / sq. ft. means, where per-sq-ft pricing helps and what must be written in the estimate.',
+      href: '/blog/modular-kitchen-price-per-sq-ft-ghaziabad/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Wardrobe Cost Guide',
+      title: 'Wardrobe cost in Ghaziabad',
+      summary:
+        'Compare wardrobe cost drivers including sliding versus hinged shutters, internals, lofts, drawers, material and finish.',
+      href: '/blog/wardrobe-cost-ghaziabad/',
+      image: canvaVisuals.wardrobeVisual,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Kitchen Comparison',
+      title: 'Factory-made vs carpenter-made modular kitchen',
+      summary:
+        'A practical comparison for Ghaziabad homes covering finish consistency, timeline, cost myths and site execution risk.',
+      href: '/blog/factory-made-vs-carpenter-made-modular-kitchen-ghaziabad/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '6 min read',
+    },
+    {
       category: 'Project Story',
       title: 'Office interior project in Ghaziabad',
       summary:

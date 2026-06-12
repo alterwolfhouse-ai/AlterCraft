@@ -642,6 +642,198 @@ const pages: Record<string, LocalPageData> = {
       { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
     ],
   },
+  wardrobeGhaziabad: {
+    slug: 'wardrobe-ghaziabad',
+    metaTitle: 'Wardrobe in Ghaziabad | Sliding & Custom Wardrobes AlterCraft',
+    metaDescription:
+      'AlterCraft builds custom wardrobes in Ghaziabad with sliding, hinged, loft, mirror, saree storage, luggage storage and made-to-measure internal planning.',
+    breadcrumb: 'Local Service / Wardrobe Ghaziabad',
+    title: 'Wardrobe in Ghaziabad',
+    subtitle:
+      'Plan a wardrobe around your actual bedroom size, shutter clearance, saree storage, luggage, daily wear and finish preference, with AlterCraft measurement and execution support.',
+    image: canvaVisuals.wardrobeVisual,
+    imageAlt: 'AlterCraft custom wardrobe in Ghaziabad',
+    priceTag: 'Wardrobe quote based on size and finish',
+    serviceName: 'Custom Wardrobe Design and Installation in Ghaziabad',
+    serviceType: 'Wardrobe',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want a wardrobe in Ghaziabad. I can share room photos and dimensions.',
+    introTitle: 'A wardrobe should solve storage before it becomes a finish decision.',
+    introCopy: [
+      'Many wardrobe quotes look similar until you compare the inside. Hanging height, drawer count, loft access, shutter type and daily-use zones change both comfort and cost.',
+      'AlterCraft plans wardrobes for Indian bedrooms where sarees, luggage, winter bedding, daily wear, accessories and dressing needs often share one wall.',
+      'The first discussion should include wall width, room height, bed position, door swing, window position and how you use the storage every day.',
+    ],
+    planningTitle: 'Wardrobe planning for compact and full-wall bedrooms',
+    planningCopy:
+      'A good wardrobe begins with clearance. Sliding shutters help tight rooms, hinged shutters offer full access where space allows, and lofts should be planned only where they remain practical to use.',
+    cards: [
+      { title: 'Sliding Wardrobes', description: 'Useful where the bed or walkway leaves limited shutter opening clearance.' },
+      { title: 'Hinged Wardrobes', description: 'Simple access, easier maintenance and flexible internal planning where room size allows.' },
+      { title: 'Loft and Luggage Storage', description: 'Upper storage for suitcases, blankets and seasonal items without crowding daily shelves.' },
+      { title: 'Saree and Accessory Zones', description: 'Shelf height, drawer depth and hanging zones planned for Indian wardrobes.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Compact Bedroom Wardrobe', scope: 'Sliding wardrobe with loft', need: 'Storage without blocking bed movement', result: 'Clear shutter direction with drawer and loft planning' },
+      { title: 'Saree Storage Wall', scope: 'Full-height wardrobe internals', need: 'Better folding and luggage space', result: 'Shelf, hanging and drawer zones planned before finish selection' },
+      { title: 'Mirror Wardrobe Direction', scope: 'Wardrobe with dressing function', need: 'Reduce need for separate dresser', result: 'Mirror shutter direction with lighting and movement review' },
+    ],
+    faqs: [
+      { question: 'Which wardrobe is better for a small bedroom in Ghaziabad?', answer: 'Sliding wardrobes often work better in tight bedrooms because shutters do not open into the room. Hinged wardrobes can still be better when full access is important and the room has enough clearance.' },
+      { question: 'Can you plan wardrobe internals before final quote?', answer: 'Yes. Photos, wall width, height, bed position and storage requirements help AlterCraft prepare a practical first direction before final measurement.' },
+      { question: 'Do wardrobe prices change by shutter type?', answer: 'Yes. Size, shutter type, material, finish, drawers, lofts, hardware and installation scope all affect the final quote.' },
+    ],
+    related: [
+      { to: '/wardrobe-design-ghaziabad', label: 'Wardrobe Design Ghaziabad' },
+      { to: '/blog/wardrobe-cost-ghaziabad/', label: 'Wardrobe Cost Guide' },
+      { to: '/blog/sliding-vs-swing-wardrobe-small-bedroom/', label: 'Sliding vs Swing Guide' },
+    ],
+  },
+  tvUnitGhaziabad: {
+    slug: 'tv-unit-ghaziabad',
+    metaTitle: 'TV Unit Design in Ghaziabad | Custom TV Wall by AlterCraft',
+    metaDescription:
+      'Custom TV unit design in Ghaziabad for living rooms with wall panels, storage, cable concealment, lighting, drawers and made-to-measure execution.',
+    breadcrumb: 'Local Service / TV Unit Ghaziabad',
+    title: 'TV Unit Design in Ghaziabad',
+    subtitle:
+      'Create a clean living-room TV wall with storage, wiring access, panel depth, lighting direction and finish coordination planned before execution.',
+    image: canvaVisuals.aiJourney,
+    imageAlt: 'AlterCraft custom TV unit design in Ghaziabad',
+    priceTag: 'TV unit quote based on wall size',
+    serviceName: 'Custom TV Unit Design in Ghaziabad',
+    serviceType: 'TV Unit',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want a custom TV unit in Ghaziabad. I can share my TV wall photo and size.',
+    introTitle: 'A TV unit should hide clutter, not create another heavy wall.',
+    introCopy: [
+      'The best TV unit design starts with the actual wall: TV size, socket position, cable route, set-top box, speaker, router, storage need and viewing distance.',
+      'For Ghaziabad flats and builder floors, wall depth and movement space matter. A good TV wall should feel premium without making the room tight.',
+      'AlterCraft can plan paneling, drawers, floating consoles, display shelves, profile lights and cable service access as one coordinated furniture system.',
+    ],
+    planningTitle: 'Plan wiring, storage and lighting before panel work',
+    planningCopy:
+      'TV walls become expensive to fix when electrical points and cable routes are decided late. Share a straight wall photo and measurements before choosing the finish.',
+    cards: [
+      { title: 'Floating TV Consoles', description: 'Light-looking storage for compact rooms where floor space matters.' },
+      { title: 'Wall Panel TV Units', description: 'Wood, fluted, laminate or mixed panel directions coordinated with room finishes.' },
+      { title: 'Cable Concealment', description: 'Access planned for wires, routers, set-top boxes, speakers and future servicing.' },
+      { title: 'Display and Storage', description: 'Open shelves, drawers and shutters planned according to daily living-room use.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Small Living Room TV Wall', scope: 'Floating console with panel', need: 'Cable control without bulky storage', result: 'Slim unit direction with concealed wiring path' },
+      { title: 'Feature Wall TV Unit', scope: 'Panel, shelves and drawers', need: 'Premium living-room focus wall', result: 'Balanced wall elevation with storage and lighting planning' },
+      { title: 'Rental-Friendly Console', scope: 'Low-impact TV storage', need: 'Storage that can be installed cleanly', result: 'Console-led direction with minimal wall dependency' },
+    ],
+    faqs: [
+      { question: 'What details are needed for a TV unit quote?', answer: 'Share wall width, TV size, socket position, router or set-top box location, storage need and one straight photo of the wall.' },
+      { question: 'Can cables be hidden inside the TV unit?', answer: 'Yes, but cable concealment should be planned before fabrication so access remains possible for repairs and upgrades.' },
+      { question: 'Do you make TV units for small living rooms?', answer: 'Yes. Floating consoles, shallow drawers and light paneling can keep compact rooms open while still giving storage.' },
+    ],
+    related: [
+      { to: '/blog/tv-unit-planning-guide/', label: 'TV Unit Planning Guide' },
+      { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
+      { to: '/ai-planner/start', label: 'Create TV Wall Preview' },
+    ],
+  },
+  officeFurnitureGhaziabad: {
+    slug: 'office-furniture-ghaziabad',
+    metaTitle: 'Office Furniture in Ghaziabad | Workstations & Storage AlterCraft',
+    metaDescription:
+      'Office furniture in Ghaziabad by AlterCraft for workstations, reception desks, cabins, storage, meeting tables and commercial furniture execution.',
+    breadcrumb: 'Local Service / Office Furniture Ghaziabad',
+    title: 'Office Furniture in Ghaziabad',
+    subtitle:
+      'Plan workstations, reception counters, cabin furniture, meeting tables and storage around your team size, wiring, movement and business use.',
+    image: canvaVisuals.office,
+    imageAlt: 'AlterCraft office furniture in Ghaziabad',
+    priceTag: 'Office furniture quote based on layout',
+    serviceName: 'Office Furniture Manufacturer in Ghaziabad',
+    serviceType: 'Office Furniture',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want office furniture in Ghaziabad. I can share office photos, team count and layout.',
+    introTitle: 'Office furniture should support work, wiring and visitors at the same time.',
+    introCopy: [
+      'A useful office setup is not only desks and chairs. It needs wire movement, team seating, document storage, visitor flow, reception impression and maintenance planning.',
+      'AlterCraft supports commercial furniture for Ghaziabad offices, showrooms and small teams that need practical furniture with a clean business look.',
+      'The first quote becomes better when you share team count, room dimensions, power point positions, storage needs and any brand-facing reception requirement.',
+    ],
+    planningTitle: 'Commercial furniture planned around workflow',
+    planningCopy:
+      'Reception, workstations and cabin furniture should be measured together so movement, wiring and storage do not fight each other after installation.',
+    cards: [
+      { title: 'Workstations', description: 'Team desks, privacy panels, wire access and under-desk storage.' },
+      { title: 'Reception Counters', description: 'Front-desk furniture with storage, brand wall and visitor-facing finish direction.' },
+      { title: 'Cabin Furniture', description: 'Executive desks, back storage, credenzas and meeting corners.' },
+      { title: 'Office Storage', description: 'File storage, pantry units, display walls and back-office utility cabinets.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Small Office Workstations', scope: 'Team desk planning', need: 'More seats with wire control', result: 'Workstation direction with cable and movement planning' },
+      { title: 'Reception Counter', scope: 'Visitor-facing desk and storage', need: 'Professional first impression', result: 'Counter direction with finish and storage plan' },
+      { title: 'Cabin Furniture', scope: 'Desk, backdrop and file storage', need: 'Daily-use cabin with premium look', result: 'Measured furniture package for quote discussion' },
+    ],
+    faqs: [
+      { question: 'Do you manufacture office furniture in Ghaziabad?', answer: 'Yes. AlterCraft makes workstations, reception counters, cabin furniture, storage and meeting-room furniture based on site measurements and requirement.' },
+      { question: 'Can office wiring be planned inside furniture?', answer: 'Yes. Wire access should be planned before production so power, data and charging points stay usable after installation.' },
+      { question: 'Can you handle small offices?', answer: 'Yes. Small offices often benefit most from measured workstation and storage planning because every inch has to work harder.' },
+    ],
+    related: [
+      { to: '/office-interior-ghaziabad', label: 'Office Interior Ghaziabad' },
+      { to: '/blog/office-interior-project-ghaziabad/', label: 'Office Project Guide' },
+      { to: '/custom-furniture-ghaziabad', label: 'Custom Office Furniture' },
+    ],
+  },
+  interiorsGhaziabad: {
+    slug: 'interiors-ghaziabad',
+    metaTitle: 'Interiors in Ghaziabad | Furniture-Led Home & Office Execution',
+    metaDescription:
+      'AlterCraft interiors in Ghaziabad for modular kitchens, wardrobes, beds, TV units, office furniture, storage and furniture-led execution planning.',
+    breadcrumb: 'Local Service / Interiors Ghaziabad',
+    title: 'Interiors in Ghaziabad',
+    subtitle:
+      'Plan furniture-led interiors for your home or office with modular kitchen, wardrobes, TV unit, bed, storage, office furniture and execution support in one flow.',
+    image: canvaVisuals.aiJourney,
+    imageAlt: 'AlterCraft interiors in Ghaziabad',
+    priceTag: 'Room-wise interior quote after measurement',
+    serviceName: 'Furniture-Led Interior Execution in Ghaziabad',
+    serviceType: 'Interior Execution',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want interior work in Ghaziabad. I can share room photos, dimensions and budget.',
+    introTitle: 'Interiors become easier when furniture planning leads the scope.',
+    introCopy: [
+      'Many homes do not need a vague full-interior package first. They need clear room-wise planning for kitchen, wardrobes, TV wall, beds, storage and work areas.',
+      'AlterCraft’s furniture-led approach keeps the discussion practical: what needs to be built, where it will fit, which material should be used and how the quote is formed.',
+      'This page is for Ghaziabad homeowners and offices who want execution-ready planning without losing clarity on measurement, material and budget.',
+    ],
+    planningTitle: 'Room-wise planning before final quotation',
+    planningCopy:
+      'Share each room photo, wall sizes, budget range and priority list. Missing details can be marked clearly instead of being guessed.',
+    cards: [
+      { title: 'Kitchen and Storage', description: 'Modular kitchen, pantry, utility storage and cooking-flow planning.' },
+      { title: 'Bedroom Furniture', description: 'Wardrobes, beds, headboards, side tables and dressing directions.' },
+      { title: 'Living Room Units', description: 'TV units, wall panels, shoe racks, mandir and display storage.' },
+      { title: 'Office and Commercial', description: 'Workstations, reception, cabins and commercial storage furniture.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: '2BHK Furniture Planning', scope: 'Kitchen, wardrobes and TV unit', need: 'Move-in ready storage and finish direction', result: 'Room-wise quote discussion with measurement checklist' },
+      { title: 'Home Office Corner', scope: 'Study unit and storage', need: 'Work-from-home setup inside a compact room', result: 'Furniture-led planning without crowding the room' },
+      { title: 'Office Interior Package', scope: 'Reception, workstations and storage', need: 'Coordinated commercial setup', result: 'Execution direction for production and installation' },
+    ],
+    faqs: [
+      { question: 'Do you do full interiors in Ghaziabad?', answer: 'AlterCraft focuses on furniture-led interior execution such as kitchens, wardrobes, beds, TV units, storage and office furniture. Larger scope is discussed room by room.' },
+      { question: 'Can you give a 2BHK or 3BHK interior cost?', answer: 'A practical range needs room sizes, furniture scope, material preference and finish selection. AlterCraft can prepare a room-wise estimate after photos and measurement details.' },
+      { question: 'Is the design preview final?', answer: 'No. Any imagination preview is only for direction. Final feasibility, dimensions, materials, quotation and execution details are checked by the human team before confirmation.' },
+    ],
+    related: [
+      { to: '/modular-kitchen-ghaziabad', label: 'Kitchen Ghaziabad' },
+      { to: '/wardrobe-ghaziabad', label: 'Wardrobe Ghaziabad' },
+      { to: '/tv-unit-ghaziabad', label: 'TV Unit Ghaziabad' },
+    ],
+  },
   bedManufacturerGhaziabad: {
     slug: 'bed-manufacturer-ghaziabad',
     metaTitle: 'Bed Manufacturer in Ghaziabad | Custom Beds by AlterCraft',
@@ -949,6 +1141,22 @@ export function OfficeInteriorNoida() {
 
 export function WardrobeDesignGhaziabad() {
   return <LocalServicePage page={pages.wardrobeDesignGhaziabad} />;
+}
+
+export function WardrobeGhaziabad() {
+  return <LocalServicePage page={pages.wardrobeGhaziabad} />;
+}
+
+export function TVUnitGhaziabad() {
+  return <LocalServicePage page={pages.tvUnitGhaziabad} />;
+}
+
+export function OfficeFurnitureGhaziabad() {
+  return <LocalServicePage page={pages.officeFurnitureGhaziabad} />;
+}
+
+export function InteriorsGhaziabad() {
+  return <LocalServicePage page={pages.interiorsGhaziabad} />;
 }
 
 export function BedManufacturerGhaziabad() {

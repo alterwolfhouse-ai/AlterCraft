@@ -40,6 +40,18 @@ const OfficeInteriorNoida = lazy(() =>
 const WardrobeDesignGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.WardrobeDesignGhaziabad }))
 );
+const WardrobeGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.WardrobeGhaziabad }))
+);
+const TVUnitGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.TVUnitGhaziabad }))
+);
+const OfficeFurnitureGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.OfficeFurnitureGhaziabad }))
+);
+const InteriorsGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.InteriorsGhaziabad }))
+);
 const BedManufacturerGhaziabad = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.BedManufacturerGhaziabad }))
 );
@@ -238,6 +250,22 @@ export const router = createBrowserRouter([
   {
     path: "/wardrobe-design-ghaziabad",
     Component: WardrobeDesignGhaziabad,
+  },
+  {
+    path: "/wardrobe-ghaziabad",
+    Component: WardrobeGhaziabad,
+  },
+  {
+    path: "/tv-unit-ghaziabad",
+    Component: TVUnitGhaziabad,
+  },
+  {
+    path: "/office-furniture-ghaziabad",
+    Component: OfficeFurnitureGhaziabad,
+  },
+  {
+    path: "/interiors-ghaziabad",
+    Component: InteriorsGhaziabad,
   },
   {
     path: "/bed-manufacturer-ghaziabad",
