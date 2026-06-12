@@ -76,6 +76,26 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.altercraft.in/wardrobe-ghaziabad/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.altercraft.in/tv-unit-ghaziabad/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.altercraft.in/office-furniture-ghaziabad/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.altercraft.in/interiors-ghaziabad/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.altercraft.in/bed-manufacturer-ghaziabad/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
@@ -100,6 +120,10 @@
   <url><loc>https://www.altercraft.in/blog/wardrobe-lighting-ventilation-guide/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://www.altercraft.in/blog/sliding-vs-swing-wardrobe-small-bedroom/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.altercraft.in/blog/modular-kitchen-cost-delhi-ncr/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/modular-kitchen-cost-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.altercraft.in/blog/modular-kitchen-price-per-sq-ft-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://www.altercraft.in/blog/factory-made-vs-carpenter-made-modular-kitchen-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.altercraft.in/blog/wardrobe-cost-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
   <url><loc>https://www.altercraft.in/blog/office-interior-project-ghaziabad/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://www.altercraft.in/blog/blue-carpet-office-waiting-area-design/</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://www.altercraft.in/blog/modular-kitchen-warm-profile-lights/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>

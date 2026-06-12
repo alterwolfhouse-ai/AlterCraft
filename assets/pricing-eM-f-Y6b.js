@@ -1,0 +1,1 @@
+var e=e=>`INR ${Math.round(e).toLocaleString(`en-IN`)}`;export{e as t};
