@@ -40,6 +40,19 @@ const privateRoutes = [
   '/ai-planner/submitted',
 ];
 
+const blogRoutesToCheck = [
+  '/blog/best-modular-kitchen-layout-2bhk-ghaziabad/',
+  '/blog/modular-kitchen-indirapuram-vaishali-vasundhara/',
+  '/blog/small-bedroom-wardrobe-design-ghaziabad-flats/',
+  '/blog/best-material-for-modular-kitchen-delhi-ncr/',
+  '/blog/hettich-vs-blum-vs-hafele-kitchen-wardrobe/',
+  '/blog/interior-design-cost-ghaziabad-2bhk-3bhk/',
+  '/blog/custom-furniture-cost-ghaziabad/',
+  '/blog/tv-unit-design-small-living-room-ghaziabad/',
+  '/blog/office-furniture-manufacturer-ghaziabad/',
+  '/blog/custom-furniture-maker-near-me-checklist/',
+];
+
 const errors = [];
 
 const readRouteHtml = (route) => {
@@ -90,6 +103,28 @@ for (const route of routesToCheck) {
   }
 }
 
+for (const route of blogRoutesToCheck) {
+  const html = readRouteHtml(route);
+  if (!html) continue;
+
+  const title = extract(html, /<title>([\s\S]*?)<\/title>/i);
+  const description = extract(html, /<meta\s+name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
+  const canonical = extract(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i);
+  const expectedCanonical = `${baseUrl}${route}`;
+
+  if (!title) errors.push(`${route} is missing blog <title>.`);
+  if (!description) errors.push(`${route} is missing blog meta description.`);
+  if (canonical !== expectedCanonical) {
+    errors.push(`${route} blog canonical mismatch. Expected ${expectedCanonical}, found ${canonical || 'none'}.`);
+  }
+  if (!html.includes('"@type":"Article"')) {
+    errors.push(`${route} is missing Article structured data.`);
+  }
+  if (!html.includes('https://wa.me/918817503658')) {
+    errors.push(`${route} is missing WhatsApp lead CTA.`);
+  }
+}
+
 const sitemapPath = join(outDir, 'sitemap.xml');
 if (!existsSync(sitemapPath)) {
   errors.push('Missing build/sitemap.xml.');
@@ -98,6 +133,11 @@ if (!existsSync(sitemapPath)) {
   for (const route of privateRoutes) {
     if (sitemap.includes(`${baseUrl}${route}`)) {
       errors.push(`Private route ${route} should not be listed in sitemap.xml.`);
+    }
+  }
+  for (const route of blogRoutesToCheck) {
+    if (!sitemap.includes(`${baseUrl}${route}`)) {
+      errors.push(`Blog route ${route} is missing from sitemap.xml.`);
     }
   }
 }
@@ -119,5 +159,5 @@ if (errors.length) {
   for (const error of errors) console.error(`- ${error}`);
   process.exitCode = 1;
 } else {
-  console.log(`SEO check passed for ${routesToCheck.length} representative routes.`);
+  console.log(`SEO check passed for ${routesToCheck.length} representative routes and ${blogRoutesToCheck.length} blog routes.`);
 }

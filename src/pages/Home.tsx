@@ -362,6 +362,24 @@ export default function Home() {
       readTime: '6 min read',
     },
     {
+      category: '2BHK Kitchen Planning',
+      title: 'Best modular kitchen layout for 2BHK flats in Ghaziabad',
+      summary:
+        'Choose between straight, L-shaped, parallel and compact layouts using movement, storage, ventilation and quote scope.',
+      href: '/blog/best-modular-kitchen-layout-2bhk-ghaziabad/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '7 min read',
+    },
+    {
+      category: 'Local Kitchen Guide',
+      title: 'Modular kitchen for Indirapuram, Vaishali and Vasundhara flats',
+      summary:
+        'Local flat kitchen planning notes for layout, moisture-aware material, storage and INR 1,200 / sq. ft. starting scope.',
+      href: '/blog/modular-kitchen-indirapuram-vaishali-vasundhara/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '6 min read',
+    },
+    {
       category: 'Wardrobe Cost Guide',
       title: 'Wardrobe cost in Ghaziabad',
       summary:
@@ -369,6 +387,78 @@ export default function Home() {
       href: '/blog/wardrobe-cost-ghaziabad/',
       image: canvaVisuals.wardrobeVisual,
       readTime: '6 min read',
+    },
+    {
+      category: 'Wardrobe Planning',
+      title: 'Small bedroom wardrobe design ideas for Ghaziabad flats',
+      summary:
+        'Plan sliding shutters, lofts, mirrors and internal storage without making compact bedrooms feel blocked.',
+      href: '/blog/small-bedroom-wardrobe-design-ghaziabad-flats/',
+      image: canvaVisuals.wardrobeVisual,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Material Guide',
+      title: 'Best material for modular kitchen in Delhi NCR',
+      summary:
+        'Compare plywood, BWR, BWP, HDHMR, laminate and finish choices by kitchen zone, moisture risk and budget.',
+      href: '/blog/best-material-for-modular-kitchen-delhi-ncr/',
+      image: canvaVisuals.kitchenVisual,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Hardware Comparison',
+      title: 'Hettich vs Blum vs Hafele for kitchens and wardrobes',
+      summary:
+        'Understand when premium hinges, channels, lift-ups and pull-outs are worth paying for in daily-use cabinets.',
+      href: '/blog/hettich-vs-blum-vs-hafele-kitchen-wardrobe/',
+      image: canvaVisuals.aiJourney,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Interior Budget Guide',
+      title: 'Interior design cost in Ghaziabad for 2BHK and 3BHK homes',
+      summary:
+        'Build a room-wise budget for kitchen, wardrobes, beds, TV unit, storage, office furniture and finishes.',
+      href: '/blog/interior-design-cost-ghaziabad-2bhk-3bhk/',
+      image: canvaVisuals.aiJourney,
+      readTime: '7 min read',
+    },
+    {
+      category: 'Custom Furniture Cost',
+      title: 'Custom furniture cost in Ghaziabad',
+      summary:
+        'See how size, material, finish, hardware, storage complexity and installation scope affect custom furniture quotes.',
+      href: '/blog/custom-furniture-cost-ghaziabad/',
+      image: canvaVisuals.wardrobeVisual,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Living Room Planning',
+      title: 'TV unit design for small living rooms in Ghaziabad',
+      summary:
+        'Plan cable concealment, panel depth, storage and service access for a clean compact living room TV wall.',
+      href: '/blog/tv-unit-design-small-living-room-ghaziabad/',
+      image: canvaVisuals.office,
+      readTime: '5 min read',
+    },
+    {
+      category: 'Office Furniture',
+      title: 'Office furniture manufacturer in Ghaziabad',
+      summary:
+        'Plan workstations, reception desks, cabins, meeting tables, storage and commercial furniture around real workflow.',
+      href: '/blog/office-furniture-manufacturer-ghaziabad/',
+      image: canvaVisuals.office,
+      readTime: '6 min read',
+    },
+    {
+      category: 'Buyer Checklist',
+      title: 'Custom furniture maker near me: quote checklist',
+      summary:
+        'A practical checklist for measurements, material, finish, hardware, warranty support and written quote comparison.',
+      href: '/blog/custom-furniture-maker-near-me-checklist/',
+      image: canvaVisuals.wardrobeVisual,
+      readTime: '5 min read',
     },
     {
       category: 'Kitchen Comparison',
