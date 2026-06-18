@@ -10106,3 +10106,94 @@ iframe {
   color: #fffaf1;
   box-shadow: 0 16px 34px rgba(151, 91, 31, 0.24);
 }
+
+/* Final mobile gutter pass: keep every public page on the same phone rhythm. */
+@media (max-width: 760px) {
+  :root {
+    --ac-mobile-gutter: 16px;
+    --ac-mobile-header-gap: 10px;
+  }
+
+  html,
+  body,
+  #root,
+  .home-site,
+  .elegant-site,
+  .planner-page {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .home-container,
+  .elegant-container,
+  .hero-poster-content,
+  .hero-poster-meta-inner,
+  .planner-hero .elegant-container,
+  .planner-section .elegant-container {
+    width: calc(100% - (var(--ac-mobile-gutter) * 2));
+    max-width: calc(100% - (var(--ac-mobile-gutter) * 2));
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .home-header,
+  .elegant-header {
+    width: calc(100% - (var(--ac-mobile-header-gap) * 2));
+    max-width: calc(100% - (var(--ac-mobile-header-gap) * 2));
+  }
+
+  .home-header-inner,
+  .elegant-header-inner {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 0.62rem;
+    padding-right: 0.62rem;
+  }
+
+  .home-mobile-panel .home-container,
+  .elegant-mobile-panel .elegant-container {
+    width: calc(100% - (var(--ac-mobile-gutter) * 2));
+    max-width: calc(100% - (var(--ac-mobile-gutter) * 2));
+  }
+
+  .hero-poster-actions,
+  .home-ai-actions,
+  .spatial-actions,
+  .canva-showcase-actions,
+  .planner-hero-actions,
+  .planner-form-actions,
+  .planner-card-actions,
+  .seo-cta-actions {
+    padding-right: 0;
+  }
+
+  .hero-poster-actions > *,
+  .home-ai-actions > *,
+  .spatial-actions > *,
+  .canva-showcase-actions > *,
+  .planner-hero-actions > *,
+  .planner-form-actions > *,
+  .planner-card-actions > *,
+  .seo-cta-actions > *,
+  .elegant-price-strip .elegant-button,
+  .elegant-hero .elegant-button,
+  .planner-cta,
+  .elegant-footer-cta {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .elegant-floating-whatsapp {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 380px) {
+  :root {
+    --ac-mobile-gutter: 14px;
+    --ac-mobile-header-gap: 8px;
+  }
+}

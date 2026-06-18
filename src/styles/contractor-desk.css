@@ -1056,7 +1056,7 @@
 @media (max-width: 640px) {
   .contractor-hero {
     min-height: auto;
-    padding-inline: 0.9rem;
+    padding-inline: 1rem;
     padding-bottom: 2.4rem;
   }
 
@@ -1105,6 +1105,8 @@
     inset: -14% 0 auto 0;
     width: 100%;
     height: 46%;
+    transform: none;
+    filter: blur(8px);
   }
 
   .contractor-apk-orbit {
@@ -1154,6 +1156,8 @@
 
   .contractor-section {
     padding-block: 3.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 
   .contractor-risk-table article {
@@ -1173,6 +1177,26 @@
     gap: 0.16rem;
     min-height: 48px;
     font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .contractor-hero,
+  .contractor-section,
+  .contractor-strip,
+  .contractor-final {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  .contractor-hero-grid,
+  .contractor-section-copy,
+  .contractor-section-head,
+  .contractor-card,
+  .contractor-module-card,
+  .contractor-article-card,
+  .contractor-apk-card {
+    min-width: 0;
   }
 }
 
