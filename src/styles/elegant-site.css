@@ -7051,13 +7051,13 @@ body,
 }
 
 .hero-poster-panel-wrap {
-  min-height: 440px;
+  min-height: 510px;
 }
 
 .hero-poster-journey-stack {
-  height: 212px;
+  height: 282px;
   width: min(100%, 456px);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.95rem;
 }
 
 .hero-poster-journey-card {
@@ -7071,11 +7071,11 @@ body,
 }
 
 .hero-poster-journey-card.site {
-  top: 72px;
+  top: 58px;
 }
 
 .hero-poster-journey-card.execution {
-  top: 68px;
+  top: 58px;
 }
 
 .hero-poster-journey-number {
