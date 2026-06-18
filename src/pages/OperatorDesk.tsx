@@ -10,6 +10,41 @@ import {
 
 type Screen = "dashboard" | "lead" | "job" | "payment" | "report" | "dispute";
 
+type OperatorSession = {
+  name: string;
+  phone: string;
+  email?: string;
+  token?: string;
+  mode: "server" | "local";
+};
+
+const OPERATOR_SESSION_KEY = "altercraft-operator-desk-session";
+const OPERATOR_API_BASE_KEY = "altercraft-operator-desk-api-base";
+
+const readOperatorSession = (): OperatorSession | null => {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = window.localStorage.getItem(OPERATOR_SESSION_KEY);
+    return raw ? (JSON.parse(raw) as OperatorSession) : null;
+  } catch {
+    return null;
+  }
+};
+
+const writeOperatorSession = (session: OperatorSession | null) => {
+  if (typeof window === "undefined") return;
+  if (!session) {
+    window.localStorage.removeItem(OPERATOR_SESSION_KEY);
+    return;
+  }
+  window.localStorage.setItem(OPERATOR_SESSION_KEY, JSON.stringify(session));
+};
+
+const operatorApiBase = () => {
+  if (typeof window === "undefined") return "http://localhost:8787";
+  return window.localStorage.getItem(OPERATOR_API_BASE_KEY) || "http://localhost:8787";
+};
+
 // ─── Atomic components ────────────────────────────────────────────────────────
 
 function Chip({
@@ -176,7 +211,15 @@ function PrimaryButton({
 
 // ─── Screen 1: Dashboard ─────────────────────────────────────────────────────
 
-function Dashboard({ setScreen }: { setScreen: (s: Screen) => void }) {
+function Dashboard({
+  setScreen,
+  session,
+  onSignOut,
+}: {
+  setScreen: (s: Screen) => void;
+  session: OperatorSession;
+  onSignOut: () => void;
+}) {
   const [checked, setChecked] = useState<number[]>([0, 2]);
 
   const toggle = (i: number) =>
@@ -253,7 +296,7 @@ function Dashboard({ setScreen }: { setScreen: (s: Screen) => void }) {
               Contractor Desk
             </h1>
             <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 tracking-widest uppercase mt-0.5">
-              Execution Backend
+              Powered by AlterLabs
             </div>
           </div>
           <div className="text-right">
@@ -264,6 +307,13 @@ function Dashboard({ setScreen }: { setScreen: (s: Screen) => void }) {
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[9px] font-['JetBrains_Mono'] text-emerald-400 tracking-wider">ACTIVE</span>
             </div>
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="text-[9px] font-['JetBrains_Mono'] text-white/35 tracking-wider uppercase mt-2"
+            >
+              {session.name || "Operator"} · Sign out
+            </button>
           </div>
         </div>
       </div>
@@ -1198,13 +1248,177 @@ function BottomNav({
 
 // ─── App Root ─────────────────────────────────────────────────────────────────
 
+function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => void }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [status, setStatus] = useState("Create a local MVP session, or connect the Node server at localhost:8787.");
+  const [busy, setBusy] = useState(false);
+
+  const signIn = async (mode: "signup" | "login") => {
+    const cleanName = name.trim() || "Contractor Operator";
+    const cleanPhone = phone.trim() || "Not provided";
+    const cleanEmail = email.trim().toLowerCase();
+
+    setBusy(true);
+    setStatus("Checking server...");
+
+    try {
+      const response = await fetch(`${operatorApiBase()}/api/auth/${mode}`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: cleanName,
+          phone: cleanPhone,
+          email: cleanEmail || `${cleanPhone.replace(/\D/g, "") || "operator"}@local.contractor`,
+          password: password || "OperatorDesk#2026",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Server auth failed");
+      }
+
+      const data = (await response.json()) as { token?: string; user?: { name?: string; phone?: string; email?: string } };
+      const nextSession: OperatorSession = {
+        name: data.user?.name || cleanName,
+        phone: data.user?.phone || cleanPhone,
+        email: data.user?.email || cleanEmail,
+        token: data.token,
+        mode: "server",
+      };
+      writeOperatorSession(nextSession);
+      onSignedIn(nextSession);
+      return;
+    } catch {
+      const nextSession: OperatorSession = {
+        name: cleanName,
+        phone: cleanPhone,
+        email: cleanEmail,
+        mode: "local",
+      };
+      writeOperatorSession(nextSession);
+      setStatus("Server is not connected, so this APK is using a local MVP session on this device.");
+      onSignedIn(nextSession);
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="h-full flex flex-col bg-[#050506]">
+      <div className="relative overflow-hidden border-b border-[#1a1a1e]" style={{ flex: "0 0 60%" }}>
+        <div className="absolute inset-0 bg-amber-500/8" />
+        <div className="absolute -top-12 -right-12 w-72 h-72 rounded-full bg-amber-500/15" />
+        <div className="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-blue-500/10" />
+        <div className="relative z-10 h-full flex flex-col justify-between p-5">
+          <div>
+            <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/70 mb-1">
+              Contractor Desk
+            </div>
+            <h1 className="text-[32px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+              Operator Access
+            </h1>
+            <div className="text-[10px] font-['JetBrains_Mono'] text-white/35 tracking-widest uppercase mt-1">
+              Powered by AlterLabs
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              ["Payment Gate", "Blocks risky work"],
+              ["Proof Vault", "Photos and scope"],
+              ["Cash Desk", "Bucket discipline"],
+              ["Site Reports", "Daily control"],
+            ].map(([title, copy]) => (
+              <Card key={title} className="p-3 bg-[#111113]/80">
+                <div className="text-[10px] font-['Barlow_Condensed'] font-bold tracking-widest text-white uppercase">
+                  {title}
+                </div>
+                <div className="text-[9px] font-['JetBrains_Mono'] text-white/28 mt-1">
+                  {copy}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex-1 p-4 flex flex-col gap-3 justify-center">
+        <div>
+          <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.18em] uppercase text-white/35 mb-2">
+            Signup / Login
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <input
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              placeholder="Name"
+              className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+            />
+            <input
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              placeholder="Phone"
+              className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+            />
+          </div>
+          <input
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email, optional"
+            className="w-full mt-2 bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+          />
+          <input
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password, optional for local MVP"
+            type="password"
+            className="w-full mt-2 bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => signIn("signup")}
+            className="bg-amber-500 text-black font-['Barlow_Condensed'] font-bold text-[13px] tracking-widest uppercase py-3 rounded-[5px] disabled:opacity-60"
+          >
+            Create
+          </button>
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => signIn("login")}
+            className="bg-[#131315] border border-[#1f1f23] text-white/70 font-['Barlow_Condensed'] font-bold text-[13px] tracking-widest uppercase py-3 rounded-[5px] disabled:opacity-60"
+          >
+            Login
+          </button>
+        </div>
+        <div className="text-[9px] font-['JetBrains_Mono'] text-white/28 leading-relaxed">
+          {status}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ContractorDeskMobileApp() {
   const [screen, setScreen] = useState<Screen>("dashboard");
+  const [session, setSession] = useState<OperatorSession | null>(() => readOperatorSession());
+
+  const signOut = () => {
+    writeOperatorSession(null);
+    setSession(null);
+    setScreen("dashboard");
+  };
 
   const renderScreen = () => {
     switch (screen) {
       case "dashboard":
-        return <Dashboard setScreen={setScreen} />;
+        return session ? <Dashboard setScreen={setScreen} session={session} onSignOut={signOut} /> : null;
       case "lead":
         return <NewLead />;
       case "job":
@@ -1219,46 +1433,21 @@ function ContractorDeskMobileApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050506] flex items-center justify-center p-4 sm:p-6">
-      {/* Phone shell */}
-      <div
-        className="w-full max-w-[390px] bg-[#0b0b0d] rounded-[28px] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.8)] border border-[#1a1a1e] flex flex-col"
-        style={{ height: "min(844px, calc(100vh - 48px))" }}
-      >
-        {/* Status bar */}
-        <div className="flex items-center justify-between px-6 pt-3 pb-1 shrink-0">
-          <span className="text-[11px] font-['JetBrains_Mono'] text-white/40">9:41</span>
-          <div className="flex items-center gap-1.5">
-            <div className="flex gap-0.5">
-              {[3, 4, 5, 5].map((h, i) => (
-                <div
-                  key={i}
-                  className="w-0.5 bg-white/35 rounded-full"
-                  style={{ height: h }}
-                />
-              ))}
-            </div>
-            <div className="text-[10px] font-['JetBrains_Mono'] text-white/35">5G</div>
-            <div className="w-5 h-2.5 border border-white/30 rounded-sm relative">
-              <div className="absolute inset-0.5 left-0.5 right-1 bg-white/40 rounded-[1px]" />
-              <div className="absolute right-[-3px] top-[3px] w-0.5 h-1 bg-white/30 rounded-full" />
-            </div>
-          </div>
-        </div>
-
-        {/* Screen */}
-        <div className="flex-1 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "none" }}>
-          {renderScreen()}
-        </div>
-
-        {/* Bottom nav */}
-        <BottomNav screen={screen} setScreen={setScreen} />
-
-        {/* Home indicator */}
-        <div className="flex justify-center pb-2 pt-1.5 shrink-0">
-          <div className="w-24 h-1 bg-white/20 rounded-full" />
-        </div>
+    <div
+      className="min-h-screen bg-[#050506] flex flex-col overflow-hidden"
+      style={{
+        minHeight: "100svh",
+        paddingTop: "env(safe-area-inset-top)",
+        paddingRight: "env(safe-area-inset-right)",
+        paddingBottom: "env(safe-area-inset-bottom)",
+        paddingLeft: "env(safe-area-inset-left)",
+      }}
+    >
+      <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "none" }}>
+        {session ? renderScreen() : <LoginGate onSignedIn={setSession} />}
       </div>
+
+      {session ? <BottomNav screen={screen} setScreen={setScreen} /> : null}
     </div>
   );
 }

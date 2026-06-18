@@ -52,6 +52,9 @@ const blogRoutesToCheck = [
   '/blog/tv-unit-design-small-living-room-ghaziabad/',
   '/blog/office-furniture-manufacturer-ghaziabad/',
   '/blog/custom-furniture-maker-near-me-checklist/',
+  '/blog/contractor-desk-payment-gate-system/',
+  '/blog/contractor-desk-labour-material-site-control/',
+  '/blog/contractor-desk-dispute-proof-cash-ledger/',
 ];
 
 const errors = [];

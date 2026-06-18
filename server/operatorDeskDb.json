@@ -1,0 +1,29 @@
+{
+  "users": [],
+  "sessions": [],
+  "leads": [],
+  "jobs": [
+    {
+      "id": "job-empro-office",
+      "siteName": "Empro Motor Office",
+      "serviceType": "Full Execution Desk",
+      "status": "Site Execution",
+      "paymentGate": "Gate Cleared",
+      "risk": "Low",
+      "value": 420000,
+      "createdAt": "2026-06-18T00:00:00.000Z"
+    },
+    {
+      "id": "job-devala-site",
+      "siteName": "Devala Site",
+      "serviceType": "Site Control Desk",
+      "status": "Blocked",
+      "paymentGate": "Advance Pending",
+      "risk": "High",
+      "value": 185000,
+      "createdAt": "2026-06-18T00:00:00.000Z"
+    }
+  ],
+  "siteReports": [],
+  "cashEntries": []
+}

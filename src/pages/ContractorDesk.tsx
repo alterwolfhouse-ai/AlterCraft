@@ -8,13 +8,16 @@ import {
   Camera,
   CheckCircle2,
   ClipboardList,
+  Download,
   FileLock2,
   Hammer,
   Layers3,
   LockKeyhole,
   PackageCheck,
+  Server,
   ShieldCheck,
   Sparkles,
+  Smartphone,
   Users,
   WalletCards,
   Zap,
@@ -136,6 +139,26 @@ const seedJobs = [
   { name: 'Labour Deployment Batch', service: 'Labour Desk', status: '2 Carpenters + 1 Helper Assigned', risk: 'Medium' },
 ];
 
+const apkDownloadPath = '/downloads/operator-desk-debug.apk';
+
+const seoArticles = [
+  {
+    title: 'Why contractor jobs bleed cash without payment gates',
+    copy: 'A practical guide to advance control, milestone discipline and blocking risky work before the site consumes profit.',
+    href: '/blog/contractor-desk-payment-gate-system/',
+  },
+  {
+    title: 'Labour, material and site reports in one contractor desk',
+    copy: 'How a daily control desk reduces missed attendance, vague procurement, weak updates and avoidable site confusion.',
+    href: '/blog/contractor-desk-labour-material-site-control/',
+  },
+  {
+    title: 'Dispute protection for contractors: proof before emotion',
+    copy: 'How written scope, photos, WhatsApp records and cash ledgers protect contractors when payment or scope disputes start.',
+    href: '/blog/contractor-desk-dispute-proof-cash-ledger/',
+  },
+];
+
 const whatsappLink = createWhatsappLink(
   'Hi AlterCraft, I want to know about Contractor Desk for execution control, payment gates and site management.',
 );
@@ -204,6 +227,57 @@ function OperatorMockup() {
   );
 }
 
+function OperatorDownloadPanel() {
+  return (
+    <div className="contractor-apk-card" id="download">
+      <div className="contractor-apk-creative">
+        <div className="contractor-apk-orbit" />
+        <div className="contractor-apk-phone">
+          <div className="contractor-apk-status">
+            <span>AC</span>
+            <em>Live Desk</em>
+          </div>
+          <div className="contractor-apk-rows">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="contractor-apk-mini-grid">
+            <strong>₹2.1L</strong>
+            <strong>14</strong>
+            <strong>Gate</strong>
+            <strong>Proof</strong>
+          </div>
+        </div>
+        <div className="contractor-apk-chip is-top">
+          <Server size={17} />
+          Backend-ready
+        </div>
+        <div className="contractor-apk-chip is-bottom">
+          <Smartphone size={17} />
+          Mobile APK
+        </div>
+      </div>
+
+      <div className="contractor-apk-signup">
+        <p className="contractor-kicker">Powered by AlterLabs</p>
+        <h2>Download the OperatorDesk APK</h2>
+        <p>
+          Install the current mobile MVP. The app opens with a signup gate, then loads the
+          bottom-nav contractor dashboard for leads, jobs, cash and reports.
+        </p>
+        <div className="contractor-signup-preview" aria-label="Signup fields preview">
+          <span>Name</span>
+          <span>Phone</span>
+        </div>
+        <a href={apkDownloadPath} download className="contractor-primary contractor-download-button">
+          Download APK <Download size={17} />
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function ContractorDesk() {
   return (
     <main className="contractor-desk-page">
@@ -221,12 +295,13 @@ export default function ContractorDesk() {
             <span>AC</span>
             <div>
               <strong>AlterCraft</strong>
-              <small>Contractor Desk</small>
+              <small>Contractor Desk · Powered by AlterLabs</small>
             </div>
           </Link>
           <div className="contractor-nav-links">
             <a href="#desks">Desks</a>
             <a href="#modules">Modules</a>
+            <a href="#download">Download APK</a>
             <a href="#doctrine">Payment Gates</a>
             <a href="#demo">Request Access</a>
           </div>
@@ -236,7 +311,7 @@ export default function ContractorDesk() {
           <div className="contractor-hero-copy">
             <p className="contractor-kicker">
               <Sparkles size={15} />
-              Main product by AlterCraft
+              Main product by AlterCraft · Powered by AlterLabs
             </p>
             <h1>Contractor execution control, without site chaos.</h1>
             <p className="contractor-lede">
@@ -247,6 +322,9 @@ export default function ContractorDesk() {
             <div className="contractor-actions">
               <a href={whatsappLink} className="contractor-primary">
                 Request access <ArrowRight size={17} />
+              </a>
+              <a href={apkDownloadPath} download className="contractor-secondary">
+                Download APK <Download size={17} />
               </a>
               <a href="#modules" className="contractor-secondary">
                 See modules
@@ -259,7 +337,7 @@ export default function ContractorDesk() {
             </div>
           </div>
 
-          <OperatorMockup />
+          <OperatorDownloadPanel />
         </div>
       </section>
 
@@ -365,6 +443,27 @@ export default function ContractorDesk() {
         </div>
       </section>
 
+      <section className="contractor-section contractor-article-section" id="seo">
+        <div className="contractor-section-head">
+          <p className="contractor-kicker">Problem / solution guides</p>
+          <h2>SEO pages for contractors searching for execution control.</h2>
+          <p>
+            These guides explain the real site problems Contractor Desk is meant to solve:
+            cash leakage, untracked labour, vague material movement, weak proof and disputes.
+          </p>
+        </div>
+        <div className="contractor-article-grid">
+          {seoArticles.map((article) => (
+            <a className="contractor-article-card" href={article.href} key={article.href}>
+              <span>Contractor Desk SEO</span>
+              <h3>{article.title}</h3>
+              <p>{article.copy}</p>
+              <em>Read guide <ArrowRight size={15} /></em>
+            </a>
+          ))}
+        </div>
+      </section>
+
       <section className="contractor-final" id="demo">
         <BadgeCheck size={42} />
         <h2>Run contractor-backed work with payment discipline and proof.</h2>
@@ -376,6 +475,25 @@ export default function ContractorDesk() {
           Request Contractor Desk access <Zap size={17} />
         </a>
       </section>
+
+      <nav className="contractor-bottom-dock" aria-label="Contractor Desk quick navigation">
+        <a href="#download">
+          <Download size={16} />
+          APK
+        </a>
+        <a href="#modules">
+          <Layers3 size={16} />
+          Modules
+        </a>
+        <a href="#seo">
+          <ClipboardList size={16} />
+          Guides
+        </a>
+        <a href={whatsappLink}>
+          <Zap size={16} />
+          Access
+        </a>
+      </nav>
     </main>
   );
 }

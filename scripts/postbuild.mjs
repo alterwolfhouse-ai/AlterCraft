@@ -6,6 +6,13 @@ const outDir = join(process.cwd(), 'build');
 const indexPath = join(outDir, 'index.html');
 const notFoundPath = join(outDir, '404.html');
 const sitemapPath = join(outDir, 'sitemap.xml');
+const cleanHtml = (html) =>
+  html
+    .replace(/\r\n?/g, '\n')
+    .trimStart()
+    .replace(/[ \t]+$/gm, '')
+    .trimEnd() + '\n';
+
 const spaRoutes = [
   '/gallery',
   '/portfolio',
@@ -69,9 +76,9 @@ if (!existsSync(indexPath)) {
   throw new Error(`Missing build output: ${indexPath}`);
 }
 
-const indexHtml = readFileSync(indexPath, 'utf8');
+const indexHtml = cleanHtml(readFileSync(indexPath, 'utf8'));
 
-writeFileSync(notFoundPath, applySeoMetadata(indexHtml, '/404'));
+writeFileSync(notFoundPath, cleanHtml(applySeoMetadata(indexHtml, '/404')));
 
 const sitemapRoutes = existsSync(sitemapPath)
   ? Array.from(readFileSync(sitemapPath, 'utf8').matchAll(/<loc>https:\/\/www\.altercraft\.in([^<]+)<\/loc>/g))
@@ -85,7 +92,7 @@ const writeRouteCopy = (route) => {
   const routeIndexPath = join(outDir, ...cleanRoute.replace(/^\/+/, '').split('/'), 'index.html');
   if (existsSync(routeIndexPath)) return false;
   mkdirSync(dirname(routeIndexPath), { recursive: true });
-  writeFileSync(routeIndexPath, applySeoMetadata(indexHtml, cleanRoute));
+  writeFileSync(routeIndexPath, cleanHtml(applySeoMetadata(indexHtml, cleanRoute)));
   return true;
 };
 

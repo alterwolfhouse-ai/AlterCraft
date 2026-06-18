@@ -1,21 +1,23 @@
 .contractor-desk-page {
-  --desk-bg: #5e5144;
-  --desk-bg-deep: #302822;
-  --desk-panel: rgba(246, 235, 219, 0.12);
-  --desk-panel-strong: rgba(246, 235, 219, 0.18);
-  --desk-cream: #fff6e8;
-  --desk-muted: rgba(255, 246, 232, 0.68);
-  --desk-soft: rgba(255, 246, 232, 0.48);
-  --desk-amber: #d5a24a;
-  --desk-border: rgba(232, 199, 146, 0.26);
-  --desk-danger: #c8705d;
+  --desk-bg: #766a5d;
+  --desk-bg-deep: #3c332c;
+  --desk-panel: rgba(255, 248, 234, 0.15);
+  --desk-panel-strong: rgba(255, 248, 234, 0.24);
+  --desk-cream: #fff8ec;
+  --desk-muted: rgba(255, 248, 236, 0.74);
+  --desk-soft: rgba(255, 248, 236, 0.52);
+  --desk-amber: #d8a44f;
+  --desk-border: rgba(241, 210, 158, 0.32);
+  --desk-danger: #ca735f;
   --desk-ok: #a6c58a;
   min-height: 100vh;
   overflow: hidden;
   background:
-    linear-gradient(115deg, rgba(255, 239, 202, 0.12), transparent 36%),
-    linear-gradient(180deg, #675847 0%, #524539 42%, #392f28 100%);
+    radial-gradient(circle at 20% 10%, rgba(255, 236, 190, 0.2), transparent 32rem),
+    linear-gradient(115deg, rgba(255, 239, 202, 0.14), transparent 38%),
+    linear-gradient(180deg, #7b6d5d 0%, #5e5145 46%, #3d342d 100%);
   color: var(--desk-cream);
+  padding-bottom: 72px;
 }
 
 .contractor-desk-page * {
@@ -253,6 +255,198 @@
   perspective: 1200px;
 }
 
+.contractor-apk-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 60fr 40fr;
+  min-height: min(720px, 82svh);
+  overflow: hidden;
+  border: 1px solid var(--desk-border);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, rgba(255, 250, 239, 0.24), rgba(255, 250, 239, 0.08)),
+    rgba(70, 58, 48, 0.72);
+  box-shadow: 0 34px 100px rgba(35, 26, 18, 0.3);
+  backdrop-filter: blur(22px);
+}
+
+.contractor-apk-creative {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: clamp(1.4rem, 4vw, 2.8rem);
+  isolation: isolate;
+}
+
+.contractor-apk-creative::before {
+  content: "";
+  position: absolute;
+  inset: 10%;
+  border: 1px solid rgba(255, 232, 177, 0.22);
+  border-radius: 999px;
+  transform: rotate(-16deg);
+}
+
+.contractor-apk-orbit {
+  position: absolute;
+  inset: 12% -18% 10% 10%;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 246, 232, 0.34), transparent 8%),
+    conic-gradient(from 20deg, transparent, rgba(255, 225, 164, 0.5), transparent 32%, rgba(255, 246, 232, 0.28), transparent 72%);
+  filter: blur(1px);
+  opacity: 0.85;
+  animation: contractor-drift 9s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+.contractor-apk-phone {
+  width: min(270px, 82%);
+  min-height: 360px;
+  border: 1px solid rgba(255, 246, 232, 0.22);
+  border-radius: 26px;
+  padding: 1rem;
+  background: linear-gradient(180deg, #11100f, #1d1714);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 246, 232, 0.06),
+    0 22px 60px rgba(17, 12, 8, 0.44);
+  transform: rotate(-3deg);
+}
+
+.contractor-apk-status,
+.contractor-apk-mini-grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.contractor-apk-status span {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid rgba(255, 224, 166, 0.34);
+  border-radius: 12px;
+  color: var(--desk-amber);
+  font-weight: 800;
+}
+
+.contractor-apk-status em,
+.contractor-apk-chip,
+.contractor-signup-preview span,
+.contractor-article-card span,
+.contractor-article-card em {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.contractor-apk-status em {
+  color: rgba(166, 197, 138, 0.86);
+}
+
+.contractor-apk-rows {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1.4rem 0;
+}
+
+.contractor-apk-rows span {
+  min-height: 42px;
+  border: 1px solid rgba(255, 246, 232, 0.08);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(216, 164, 79, 0.28), transparent 42%),
+    rgba(255, 246, 232, 0.04);
+}
+
+.contractor-apk-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.contractor-apk-mini-grid strong {
+  display: grid;
+  min-height: 62px;
+  place-items: center;
+  border: 1px solid rgba(255, 246, 232, 0.09);
+  border-radius: 8px;
+  color: var(--desk-cream);
+  background: rgba(255, 246, 232, 0.05);
+}
+
+.contractor-apk-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(255, 232, 177, 0.28);
+  border-radius: 999px;
+  padding: 0.62rem 0.78rem;
+  color: var(--desk-cream);
+  background: rgba(67, 55, 45, 0.78);
+  box-shadow: 0 18px 50px rgba(27, 18, 11, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.contractor-apk-chip.is-top {
+  top: 13%;
+  left: 7%;
+}
+
+.contractor-apk-chip.is-bottom {
+  right: 7%;
+  bottom: 17%;
+}
+
+.contractor-apk-signup {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-top: 1px solid var(--desk-border);
+  padding: clamp(1.2rem, 4vw, 2rem);
+  background:
+    linear-gradient(135deg, rgba(255, 248, 236, 0.2), rgba(255, 248, 236, 0.08)),
+    rgba(60, 51, 44, 0.76);
+}
+
+.contractor-apk-signup h2 {
+  margin: 0;
+  color: var(--desk-cream);
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  line-height: 0.98;
+}
+
+.contractor-apk-signup p {
+  margin: 0.8rem 0 0;
+  color: var(--desk-muted);
+  line-height: 1.6;
+}
+
+.contractor-signup-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-top: 1.1rem;
+}
+
+.contractor-signup-preview span {
+  border: 1px solid rgba(255, 246, 232, 0.16);
+  border-radius: 8px;
+  padding: 0.78rem 0.85rem;
+  color: var(--desk-soft);
+  background: rgba(255, 246, 232, 0.08);
+}
+
+.contractor-download-button {
+  margin-top: 1rem;
+}
+
 .contractor-mockup::before {
   content: "";
   position: absolute;
@@ -450,6 +644,16 @@
   }
   50% {
     transform: translateY(-12px);
+  }
+}
+
+@keyframes contractor-drift {
+  from {
+    transform: translate3d(-2%, 2%, 0) rotate(-8deg) scale(0.98);
+  }
+
+  to {
+    transform: translate3d(3%, -2%, 0) rotate(8deg) scale(1.03);
   }
 }
 
@@ -696,6 +900,100 @@
   background: rgba(200, 112, 93, 0.12);
 }
 
+.contractor-article-section {
+  border-top: 1px solid var(--desk-border);
+}
+
+.contractor-article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.contractor-article-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 232, 0.16);
+  border-radius: 8px;
+  padding: 1.2rem;
+  color: var(--desk-cream);
+  background:
+    linear-gradient(145deg, rgba(255, 248, 236, 0.14), rgba(255, 248, 236, 0.05)),
+    rgba(60, 51, 44, 0.52);
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.contractor-article-card:hover {
+  border-color: rgba(255, 232, 177, 0.38);
+  transform: translateY(-3px);
+}
+
+.contractor-article-card span,
+.contractor-article-card em {
+  color: rgba(255, 222, 160, 0.86);
+  font-weight: 800;
+}
+
+.contractor-article-card h3 {
+  margin: 0.8rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  line-height: 1.08;
+}
+
+.contractor-article-card p {
+  margin: 0.8rem 0 1rem;
+  color: var(--desk-muted);
+  line-height: 1.6;
+}
+
+.contractor-article-card em {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.contractor-bottom-dock {
+  position: fixed;
+  z-index: 30;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+  width: min(560px, calc(100% - 2rem));
+  margin-inline: auto;
+  border: 1px solid rgba(255, 232, 177, 0.26);
+  border-radius: 10px;
+  padding: 0.45rem;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 239, 0.2), rgba(255, 250, 239, 0.08)),
+    rgba(55, 46, 39, 0.78);
+  box-shadow: 0 22px 60px rgba(32, 24, 17, 0.26);
+  backdrop-filter: blur(20px);
+}
+
+.contractor-bottom-dock a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 42px;
+  border-radius: 8px;
+  color: var(--desk-cream);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contractor-bottom-dock a:first-child {
+  background: linear-gradient(135deg, #d8a44f, #a8712f);
+  color: #24170f;
+}
+
 .contractor-final {
   position: relative;
   overflow: hidden;
@@ -745,7 +1043,8 @@
 
   .contractor-strip,
   .contractor-card-grid,
-  .contractor-module-grid {
+  .contractor-module-grid,
+  .contractor-article-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -796,6 +1095,10 @@
     min-height: 520px;
   }
 
+  .contractor-apk-card {
+    min-height: 760px;
+  }
+
   .contractor-device {
     inset: 2.5rem 0.15rem 1.5rem 0.55rem;
     transform: none;
@@ -822,7 +1125,8 @@
   .contractor-strip,
   .contractor-card-grid,
   .contractor-module-grid,
-  .contractor-stage-flow {
+  .contractor-stage-flow,
+  .contractor-article-grid {
     grid-template-columns: 1fr;
   }
 
@@ -843,10 +1147,28 @@
     grid-template-columns: 1fr;
     gap: 0.55rem;
   }
+
+  .contractor-bottom-dock {
+    right: 0.55rem;
+    bottom: 0.55rem;
+    left: 0.55rem;
+    width: auto;
+  }
+
+  .contractor-bottom-dock a {
+    flex-direction: column;
+    gap: 0.16rem;
+    min-height: 48px;
+    font-size: 0.62rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .contractor-float-chip {
+    animation: none;
+  }
+
+  .contractor-apk-orbit {
     animation: none;
   }
 
