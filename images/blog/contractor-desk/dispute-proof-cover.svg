@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Contractor dispute proof visual</title>
+  <desc id="desc">Contractor Desk proof trail with photos, scope, payments and dispute documents locked together.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#251711"/>
+      <stop offset=".5" stop-color="#5d3d27"/>
+      <stop offset="1" stop-color="#e8d6bb"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="26" stdDeviation="24" flood-color="#1b0d06" flood-opacity=".36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="930" cy="160" r="260" fill="#fff2d8" opacity=".22"/>
+  <g transform="translate(90 112)">
+    <text x="0" y="0" fill="#e2b86f" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="5">DISPUTE PROTECTION</text>
+    <text x="0" y="82" fill="#fff8ec" font-family="Georgia, serif" font-size="72" font-weight="700">Proof before</text>
+    <text x="0" y="154" fill="#fff8ec" font-family="Georgia, serif" font-size="72" font-style="italic">emotion.</text>
+    <text x="0" y="220" fill="#f3e3cf" font-family="Arial, sans-serif" font-size="22">Scope, photos, payment trail and handover notes kept visible before conflict grows.</text>
+  </g>
+  <g transform="translate(682 80)" filter="url(#shadow)">
+    <rect x="0" y="56" width="360" height="450" rx="30" fill="#fff8ec" opacity=".94"/>
+    <rect x="28" y="96" width="304" height="78" rx="18" fill="#efe0c7"/>
+    <rect x="28" y="196" width="138" height="112" rx="18" fill="#2a211b"/>
+    <rect x="194" y="196" width="138" height="112" rx="18" fill="#d9bd93"/>
+    <rect x="28" y="334" width="304" height="52" rx="16" fill="#ead8bd"/>
+    <rect x="28" y="408" width="304" height="52" rx="16" fill="#ead8bd"/>
+    <g font-family="Arial, sans-serif" font-weight="700">
+      <text x="52" y="144" fill="#3b2719" font-size="22">Proof File</text>
+      <text x="52" y="252" fill="#fff8ec" font-size="19">Photos</text>
+      <text x="216" y="252" fill="#3b2719" font-size="19">Scope</text>
+      <text x="52" y="367" fill="#3b2719" font-size="17">Payment Trail</text>
+      <text x="52" y="441" fill="#3b2719" font-size="17">Settlement Notes</text>
+    </g>
+  </g>
+  <g transform="translate(570 238)" fill="none" stroke="#edc77e" stroke-width="4" stroke-linecap="round">
+    <path d="M0 34h66M66 34 48 16M66 34 48 52"/>
+    <path d="M0 112h92M92 112 74 94M92 112 74 130" opacity=".72"/>
+    <path d="M0 190h76M76 190 58 172M76 190 58 208" opacity=".58"/>
+  </g>
+</svg>
