@@ -1,0 +1,858 @@
+.contractor-desk-page {
+  --desk-bg: #5e5144;
+  --desk-bg-deep: #302822;
+  --desk-panel: rgba(246, 235, 219, 0.12);
+  --desk-panel-strong: rgba(246, 235, 219, 0.18);
+  --desk-cream: #fff6e8;
+  --desk-muted: rgba(255, 246, 232, 0.68);
+  --desk-soft: rgba(255, 246, 232, 0.48);
+  --desk-amber: #d5a24a;
+  --desk-border: rgba(232, 199, 146, 0.26);
+  --desk-danger: #c8705d;
+  --desk-ok: #a6c58a;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    linear-gradient(115deg, rgba(255, 239, 202, 0.12), transparent 36%),
+    linear-gradient(180deg, #675847 0%, #524539 42%, #392f28 100%);
+  color: var(--desk-cream);
+}
+
+.contractor-desk-page * {
+  box-sizing: border-box;
+}
+
+.contractor-hero {
+  position: relative;
+  min-height: 100svh;
+  padding: 1rem clamp(1rem, 3vw, 2.4rem) 4rem;
+}
+
+.contractor-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 246, 232, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 246, 232, 0.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, black, transparent 86%);
+}
+
+.contractor-beam {
+  position: absolute;
+  inset: -18% -20% auto 20%;
+  height: 58%;
+  pointer-events: none;
+  background: linear-gradient(104deg, transparent 8%, rgba(255, 232, 177, 0.28), rgba(255, 232, 177, 0.04) 62%, transparent 74%);
+  transform: rotate(-8deg);
+  filter: blur(10px);
+}
+
+.contractor-nav,
+.contractor-hero-grid,
+.contractor-strip,
+.contractor-section,
+.contractor-final {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100%);
+  margin-inline: auto;
+}
+
+.contractor-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 74px;
+  border: 1px solid var(--desk-border);
+  border-radius: 8px;
+  padding: 0.7rem 0.78rem;
+  background:
+    linear-gradient(135deg, rgba(255, 246, 232, 0.22), rgba(255, 246, 232, 0.08)),
+    rgba(58, 48, 40, 0.68);
+  box-shadow: 0 24px 70px rgba(32, 24, 17, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.contractor-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.78rem;
+  min-width: 0;
+}
+
+.contractor-brand > span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 232, 177, 0.42);
+  border-radius: 8px;
+  background: rgba(255, 246, 232, 0.12);
+  color: var(--desk-amber);
+  font-family: var(--font-heading);
+  font-weight: 800;
+}
+
+.contractor-brand div {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.contractor-brand strong {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.contractor-brand small,
+.contractor-kicker,
+.contractor-nav-links a,
+.contractor-proof-row span,
+.contractor-strip span,
+.contractor-strip small,
+.contractor-device-top span,
+.contractor-device-top em,
+.contractor-device-metrics span,
+.contractor-device-metrics small,
+.contractor-job-list em,
+.contractor-job-list span,
+.contractor-stage-flow em,
+.contractor-risk-table span,
+.contractor-risk-table em {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contractor-brand small {
+  color: var(--desk-soft);
+}
+
+.contractor-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.contractor-nav-links a {
+  color: var(--desk-muted);
+  transition: color 160ms ease;
+}
+
+.contractor-nav-links a:hover {
+  color: var(--desk-cream);
+}
+
+.contractor-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.96fr) minmax(360px, 0.84fr);
+  align-items: center;
+  gap: clamp(2.2rem, 5vw, 5rem);
+  padding: clamp(4.2rem, 8vw, 7rem) 0 2rem;
+}
+
+.contractor-hero-copy {
+  max-width: 680px;
+}
+
+.contractor-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  color: rgba(255, 222, 160, 0.86);
+  font-weight: 800;
+}
+
+.contractor-hero h1,
+.contractor-section h2,
+.contractor-final h2 {
+  margin: 0;
+  font-family: var(--font-heading);
+  color: var(--desk-cream);
+  letter-spacing: 0;
+}
+
+.contractor-hero h1 {
+  max-width: 10.8ch;
+  font-size: clamp(3.25rem, 8vw, 7.6rem);
+  line-height: 0.86;
+}
+
+.contractor-lede {
+  max-width: 650px;
+  margin: 1.4rem 0 0;
+  color: var(--desk-muted);
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.contractor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 2rem;
+}
+
+.contractor-primary,
+.contractor-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  border-radius: 8px;
+  padding: 0.88rem 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.contractor-primary {
+  border: 1px solid rgba(255, 236, 190, 0.36);
+  background: linear-gradient(135deg, #d6a14b, #a8712f);
+  color: #261b13;
+  box-shadow: 0 20px 60px rgba(41, 30, 21, 0.22);
+}
+
+.contractor-secondary {
+  border: 1px solid var(--desk-border);
+  color: var(--desk-cream);
+  background: rgba(255, 246, 232, 0.08);
+}
+
+.contractor-primary:hover,
+.contractor-secondary:hover {
+  transform: translateY(-2px);
+}
+
+.contractor-proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.contractor-proof-row span {
+  border: 1px solid var(--desk-border);
+  border-radius: 8px;
+  padding: 0.48rem 0.62rem;
+  color: var(--desk-muted);
+  background: rgba(255, 246, 232, 0.08);
+}
+
+.contractor-mockup {
+  position: relative;
+  min-height: 600px;
+  perspective: 1200px;
+}
+
+.contractor-mockup::before {
+  content: "";
+  position: absolute;
+  inset: 7% 5% 12% 12%;
+  border: 1px solid rgba(255, 232, 177, 0.22);
+  border-radius: 8px;
+  transform: rotate(-6deg) skewY(-4deg);
+}
+
+.contractor-mockup-light {
+  position: absolute;
+  left: 10%;
+  right: 0;
+  top: 4%;
+  height: 30%;
+  background: linear-gradient(120deg, transparent, rgba(255, 226, 164, 0.22), transparent 68%);
+  filter: blur(18px);
+  transform: rotate(-10deg);
+}
+
+.contractor-device {
+  position: absolute;
+  inset: 4rem 2rem 2rem 4rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 232, 177, 0.28);
+  border-radius: 8px;
+  padding: 0.9rem;
+  background:
+    linear-gradient(145deg, rgba(83, 70, 57, 0.96), rgba(43, 35, 29, 0.96)),
+    var(--desk-bg-deep);
+  box-shadow:
+    0 32px 100px rgba(31, 23, 17, 0.42),
+    inset 0 1px 0 rgba(255, 246, 232, 0.14);
+  transform: rotateX(10deg) rotateY(-12deg);
+}
+
+.contractor-device::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 246, 232, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 246, 232, 0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.contractor-device-top,
+.contractor-device-metrics,
+.contractor-job-list {
+  position: relative;
+  z-index: 1;
+}
+
+.contractor-device-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(255, 246, 232, 0.12);
+  padding: 0.35rem 0.3rem 0.8rem;
+}
+
+.contractor-device-top div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.contractor-device-top span {
+  color: rgba(255, 222, 160, 0.72);
+}
+
+.contractor-device-top strong {
+  font-family: var(--font-heading);
+  font-size: 1.38rem;
+}
+
+.contractor-device-top em {
+  border: 1px solid rgba(166, 197, 138, 0.36);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  color: var(--desk-ok);
+  font-style: normal;
+  background: rgba(166, 197, 138, 0.12);
+}
+
+.contractor-device-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.62rem;
+  margin-top: 0.9rem;
+}
+
+.contractor-device-metrics article,
+.contractor-job-list article {
+  border: 1px solid rgba(255, 246, 232, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 246, 232, 0.07);
+}
+
+.contractor-device-metrics article {
+  padding: 0.75rem;
+}
+
+.contractor-device-metrics span,
+.contractor-device-metrics small,
+.contractor-job-list span {
+  color: rgba(255, 246, 232, 0.48);
+}
+
+.contractor-device-metrics strong {
+  display: block;
+  margin-top: 0.5rem;
+  color: var(--desk-cream);
+  font-size: 1.55rem;
+}
+
+.contractor-device-metrics small {
+  display: block;
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.contractor-job-list {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.contractor-job-list article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.7rem;
+  padding: 0.82rem;
+}
+
+.contractor-job-list strong {
+  display: block;
+  font-size: 0.94rem;
+}
+
+.contractor-job-list em {
+  max-width: 45%;
+  border: 1px solid rgba(255, 232, 177, 0.22);
+  border-radius: 8px;
+  padding: 0.35rem 0.45rem;
+  color: rgba(255, 232, 177, 0.86);
+  font-style: normal;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.contractor-job-list .is-critical em {
+  border-color: rgba(200, 112, 93, 0.38);
+  color: #ffd3ca;
+}
+
+.contractor-float-chip {
+  position: absolute;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid rgba(255, 232, 177, 0.26);
+  border-radius: 8px;
+  padding: 0.72rem 0.78rem;
+  background: rgba(82, 69, 57, 0.72);
+  color: var(--desk-cream);
+  box-shadow: 0 20px 60px rgba(31, 23, 17, 0.24);
+  backdrop-filter: blur(16px);
+  animation: contractorFloat 5.6s ease-in-out infinite;
+}
+
+.contractor-float-chip span {
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.contractor-float-chip-a {
+  top: 3.4rem;
+  right: 0;
+}
+
+.contractor-float-chip-b {
+  bottom: 5.2rem;
+  left: 0.4rem;
+  animation-delay: -2s;
+}
+
+@keyframes contractorFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.contractor-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--desk-border);
+  border-radius: 8px;
+  background: rgba(246, 235, 219, 0.1);
+  box-shadow: 0 24px 70px rgba(32, 24, 17, 0.18);
+}
+
+.contractor-strip article {
+  min-width: 0;
+  border-right: 1px solid var(--desk-border);
+  padding: clamp(1rem, 2vw, 1.45rem);
+}
+
+.contractor-strip article:last-child {
+  border-right: 0;
+}
+
+.contractor-strip span,
+.contractor-strip small {
+  display: block;
+  color: var(--desk-soft);
+}
+
+.contractor-strip strong {
+  display: block;
+  margin: 0.45rem 0 0.25rem;
+  font-size: clamp(1.8rem, 4vw, 3.25rem);
+  color: var(--desk-cream);
+}
+
+.contractor-section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.contractor-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.18fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.contractor-section-copy,
+.contractor-section-head {
+  max-width: 760px;
+}
+
+.contractor-section h2,
+.contractor-final h2 {
+  font-size: clamp(2.45rem, 5.7vw, 5.4rem);
+  line-height: 0.94;
+}
+
+.contractor-section p,
+.contractor-final p,
+.contractor-card p,
+.contractor-module-card p {
+  color: var(--desk-muted);
+  line-height: 1.72;
+}
+
+.contractor-section-copy > p:not(.contractor-kicker),
+.contractor-final p {
+  margin-top: 1.2rem;
+  font-size: 1rem;
+}
+
+.contractor-card-grid,
+.contractor-module-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.contractor-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contractor-module-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.contractor-card,
+.contractor-module-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--desk-border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  background:
+    linear-gradient(135deg, rgba(255, 246, 232, 0.15), rgba(255, 246, 232, 0.06)),
+    rgba(60, 50, 42, 0.56);
+  box-shadow: 0 18px 54px rgba(32, 24, 17, 0.16);
+}
+
+.contractor-card::before,
+.contractor-module-card::before,
+.contractor-final::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent, rgba(255, 235, 190, 0.12), transparent 54%);
+  transform: translateX(-100%);
+  transition: transform 480ms ease;
+}
+
+.contractor-card:hover::before,
+.contractor-module-card:hover::before,
+.contractor-final:hover::before {
+  transform: translateX(100%);
+}
+
+.contractor-card svg,
+.contractor-module-card svg,
+.contractor-doctrine svg,
+.contractor-final > svg {
+  color: rgba(255, 222, 160, 0.9);
+}
+
+.contractor-card h3,
+.contractor-module-card h3 {
+  margin: 1.2rem 0 0.6rem;
+  font-family: var(--font-heading);
+  color: var(--desk-cream);
+  font-size: 1.36rem;
+  line-height: 1.05;
+}
+
+.contractor-card p,
+.contractor-module-card p {
+  margin: 0;
+  font-size: 0.94rem;
+}
+
+.contractor-card-arrow {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: rgba(255, 246, 232, 0.42);
+}
+
+.contractor-doctrine {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.08fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  border-block: 1px solid var(--desk-border);
+}
+
+.contractor-doctrine h2 {
+  margin-top: 1rem;
+}
+
+.contractor-rule-list {
+  display: grid;
+  gap: 0.66rem;
+}
+
+.contractor-rule-list article {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  border: 1px solid rgba(255, 246, 232, 0.16);
+  border-radius: 8px;
+  padding: 0.8rem 0.95rem;
+  background: rgba(255, 246, 232, 0.08);
+  color: var(--desk-cream);
+}
+
+.contractor-stage-flow {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 2rem;
+}
+
+.contractor-stage-flow span {
+  display: grid;
+  gap: 0.5rem;
+  min-height: 100px;
+  border: 1px solid rgba(255, 246, 232, 0.16);
+  border-radius: 8px;
+  padding: 0.78rem;
+  color: var(--desk-cream);
+  background: rgba(255, 246, 232, 0.08);
+  font-size: 0.88rem;
+  line-height: 1.25;
+}
+
+.contractor-stage-flow em {
+  color: rgba(255, 222, 160, 0.8);
+  font-style: normal;
+}
+
+.contractor-risk-table {
+  display: grid;
+  gap: 0.7rem;
+  margin-top: 2rem;
+}
+
+.contractor-risk-table article {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid rgba(255, 246, 232, 0.16);
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(255, 246, 232, 0.08);
+}
+
+.contractor-risk-table strong,
+.contractor-risk-table span {
+  display: block;
+}
+
+.contractor-risk-table strong {
+  color: var(--desk-cream);
+}
+
+.contractor-risk-table p {
+  margin: 0;
+  color: var(--desk-muted);
+}
+
+.contractor-risk-table em {
+  border: 1px solid rgba(255, 222, 160, 0.22);
+  border-radius: 8px;
+  padding: 0.42rem 0.55rem;
+  color: rgba(255, 222, 160, 0.9);
+  font-style: normal;
+  background: rgba(255, 222, 160, 0.08);
+}
+
+.contractor-risk-table .is-critical em {
+  border-color: rgba(200, 112, 93, 0.38);
+  color: #ffd1c8;
+  background: rgba(200, 112, 93, 0.12);
+}
+
+.contractor-final {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--desk-border);
+  border-radius: 8px;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(255, 232, 177, 0.18), rgba(255, 246, 232, 0.08)),
+    rgba(54, 45, 38, 0.72);
+  box-shadow: 0 30px 90px rgba(32, 24, 17, 0.24);
+}
+
+.contractor-final h2 {
+  max-width: 850px;
+  margin: 1rem auto 0;
+}
+
+.contractor-final p {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.contractor-final .contractor-primary {
+  margin-top: 1.6rem;
+}
+
+@media (max-width: 980px) {
+  .contractor-nav-links {
+    display: none;
+  }
+
+  .contractor-hero-grid,
+  .contractor-split,
+  .contractor-doctrine {
+    grid-template-columns: 1fr;
+  }
+
+  .contractor-mockup {
+    min-height: 540px;
+  }
+
+  .contractor-device {
+    inset: 3rem 1.2rem 2rem 2.6rem;
+  }
+
+  .contractor-strip,
+  .contractor-card-grid,
+  .contractor-module-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contractor-stage-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .contractor-hero {
+    min-height: auto;
+    padding-inline: 0.9rem;
+    padding-bottom: 2.4rem;
+  }
+
+  .contractor-nav {
+    min-height: 64px;
+  }
+
+  .contractor-brand > span {
+    width: 38px;
+    height: 38px;
+  }
+
+  .contractor-hero-grid {
+    gap: 1.8rem;
+    padding-top: 3.2rem;
+  }
+
+  .contractor-hero h1 {
+    max-width: 100%;
+    font-size: clamp(2.7rem, 14vw, 4rem);
+    line-height: 0.94;
+  }
+
+  .contractor-actions,
+  .contractor-primary,
+  .contractor-secondary {
+    width: 100%;
+  }
+
+  .contractor-proof-row span {
+    flex: 1 1 46%;
+    text-align: center;
+  }
+
+  .contractor-mockup {
+    min-height: 520px;
+  }
+
+  .contractor-device {
+    inset: 2.5rem 0.15rem 1.5rem 0.55rem;
+    transform: none;
+  }
+
+  .contractor-device-metrics {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contractor-job-list article {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contractor-job-list em {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .contractor-float-chip {
+    display: none;
+  }
+
+  .contractor-strip,
+  .contractor-card-grid,
+  .contractor-module-grid,
+  .contractor-stage-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .contractor-strip article {
+    border-right: 0;
+    border-bottom: 1px solid var(--desk-border);
+  }
+
+  .contractor-strip article:last-child {
+    border-bottom: 0;
+  }
+
+  .contractor-section {
+    padding-block: 3.3rem;
+  }
+
+  .contractor-risk-table article {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contractor-float-chip {
+    animation: none;
+  }
+
+  .contractor-card::before,
+  .contractor-module-card::before,
+  .contractor-final::before {
+    display: none;
+  }
+}

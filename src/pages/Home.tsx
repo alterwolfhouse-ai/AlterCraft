@@ -36,6 +36,7 @@ import { SEOHead } from '../components/seo/SEOHead';
 const NAV_LINKS: Array<{ to: string; label: string; anchor?: boolean }> = [
   { to: '/', label: 'Home' },
   { to: '/ai-planner', label: 'Design Preview' },
+  { to: '/ContractorDesk', label: 'Contractor Desk' },
   { to: '/modular-kitchen-near-me', label: 'Kitchen' },
   { to: '/designer-beds', label: 'Beds' },
   { to: '/flush-doors', label: 'Doors' },

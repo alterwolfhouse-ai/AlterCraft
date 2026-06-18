@@ -160,6 +160,7 @@ const ACOSUsers = lazy(() =>
 const ACOSBackendGuide = lazy(() =>
   import("./pages/ACOS").then((module) => ({ default: module.ACOSBackendGuide }))
 );
+const ContractorDesk = lazy(() => import("./pages/ContractorDesk"));
 
 function AdminOnly({ children }: { children: React.ReactNode }) {
   const { user, isAdmin } = useAuth();
@@ -198,6 +199,14 @@ export const router = createBrowserRouter([
   {
     path: "/products",
     Component: ProductGalleryPage,
+  },
+  {
+    path: "/ContractorDesk",
+    Component: ContractorDesk,
+  },
+  {
+    path: "/contractor-desk",
+    Component: ContractorDesk,
   },
   {
     path: "/modular-kitchen",

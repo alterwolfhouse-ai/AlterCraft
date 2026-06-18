@@ -37,6 +37,18 @@ const routeSeo = {
       'Browse AlterCraft furniture categories, product pricing, modular kitchen units, wardrobes, beds, doors and custom furniture options.',
     canonical: `${baseUrl}/products`,
   },
+  '/ContractorDesk': {
+    title: 'AlterCraft Contractor Desk | Execution Control System',
+    description:
+      'Mobile-first contractor execution control system for payment gates, labour deployment, material desk, site reports, cash ledger and dispute protection.',
+    canonical: `${baseUrl}/ContractorDesk/`,
+  },
+  '/contractor-desk': {
+    title: 'AlterCraft Contractor Desk | Execution Control System',
+    description:
+      'Mobile-first contractor execution control system for payment gates, labour deployment, material desk, site reports, cash ledger and dispute protection.',
+    canonical: `${baseUrl}/ContractorDesk/`,
+  },
   '/modular-kitchen': {
     title: `Modular Kitchen from ${modularKitchenPrice} in Ghaziabad & Delhi NCR | AlterCraft`,
     description:

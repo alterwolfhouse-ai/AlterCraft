@@ -1,17 +1,17 @@
 :root {
-  --background: #f8f4ee;
-  --foreground: #2a1810;
-  --card: #fefbf5;
-  --card-foreground: #2a1810;
-  --primary: #5c3317;
-  --primary-soft: #7a5236;
+  --background: #efe4d3;
+  --foreground: #261b13;
+  --card: #f7eddf;
+  --card-foreground: #261b13;
+  --primary: #463021;
+  --primary-soft: #76583f;
   --primary-foreground: #fff8ec;
-  --secondary: #e8d5b8;
-  --muted: #efe7d9;
-  --muted-foreground: #7c6b5a;
-  --accent: #b8891a;
-  --border: #ddc7aa;
-  --ring: #b8891a;
+  --secondary: #d7bea0;
+  --muted: #e5d6c2;
+  --muted-foreground: #766554;
+  --accent: #b8872c;
+  --border: #c9aa7d;
+  --ring: #b8872c;
   --radius: 8px;
   --shadow-soft: 0 18px 40px rgba(42, 24, 16, 0.1);
   --shadow-card: 0 14px 30px rgba(92, 51, 23, 0.08);
@@ -46,7 +46,9 @@ body.elegant-lock {
 .elegant-site {
   min-height: 100vh;
   background:
-    linear-gradient(180deg, rgba(248, 244, 238, 0.98), rgba(239, 231, 217, 0.82)),
+    radial-gradient(circle at 18% 10%, rgba(255, 237, 191, 0.34), transparent 26rem),
+    radial-gradient(circle at 84% 18%, rgba(70, 48, 33, 0.16), transparent 30rem),
+    linear-gradient(180deg, rgba(239, 228, 211, 0.98), rgba(225, 207, 181, 0.84)),
     var(--background);
   color: var(--foreground);
 }

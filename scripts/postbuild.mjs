@@ -10,6 +10,8 @@ const spaRoutes = [
   '/gallery',
   '/portfolio',
   '/products',
+  '/ContractorDesk',
+  '/contractor-desk',
   '/modular-kitchen',
   '/modular-kitchen-near-me',
   '/modular-kitchen-ghaziabad',
