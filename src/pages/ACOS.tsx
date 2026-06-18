@@ -196,7 +196,7 @@ const moduleMap: Record<ACOSModuleId, ACOSModule> = {
     title: 'User Management',
     kicker: 'RBAC',
     description:
-      'Create internal users, assign roles, disable accounts and review login activity after the backend is connected.',
+      'Create internal users, assign roles, disable accounts and review login activity from one secure control area.',
     icon: UserCog,
     kpis: [
       { label: 'Active users', value: '6' },
@@ -334,7 +334,7 @@ export function ACOSLogin() {
   return (
     <ACOSAuthShell
       title="Admin sign in"
-      copy="Hidden access for AlterCraft internal users. The live site stays locked until the secure backend auth service is connected."
+      copy="Secure access for AlterCraft internal users. Admin tools remain locked unless the signed-in user has permission."
     >
       <form className="acos-auth-form" onSubmit={submit}>
         <label>
@@ -376,13 +376,13 @@ export function ACOSSignUp() {
   return (
     <ACOSAuthShell
       title="Request admin access"
-      copy="Keep this form minimal. A backend invitation flow will verify email/phone and create the RBAC user record."
+      copy="Request access for an AlterCraft team member. Approval is required before any internal tools are available."
     >
       <form
         className="acos-auth-form"
         onSubmit={(event) => {
           event.preventDefault();
-          setMessage('Access request captured in the frontend shell. Connect backend email/OTP verification before using this live.');
+          setMessage('Access request noted. AlterCraft will verify the team member before enabling admin access.');
         }}
       >
         <label>Email<input type="email" autoComplete="email" required /></label>
@@ -402,13 +402,13 @@ export function ACOSResetPassword() {
   return (
     <ACOSAuthShell
       title="Reset password"
-      copy="Request a secure reset link. The backend should send a time-limited token and never expose passwords to the browser."
+      copy="Request a secure reset link for an approved AlterCraft admin account."
     >
       <form
         className="acos-auth-form"
         onSubmit={(event) => {
           event.preventDefault();
-          setMessage('Reset request queued in the frontend shell. Connect backend email delivery before live use.');
+          setMessage('Password reset request noted. AlterCraft will verify the account before sharing reset access.');
         }}
       >
         <label>Email<input type="email" autoComplete="email" required /></label>
@@ -431,19 +431,19 @@ export function ACOSForbidden() {
   );
 }
 
-function SecurityTodoPanel() {
+function SecurityChecklistPanel() {
   const items = [
-    'POST /auth/login should verify Argon2id/bcrypt hashes and set httpOnly secure JWT cookies.',
-    'Every write endpoint must enforce RBAC on the server, not only in React.',
-    'Use CSRF tokens, rate limiting, input validation and audit logs before live data entry.',
-    'Create migrations for users, roles, leads, orders, finance, marketing, HR and marketplace tables.',
+    'Verify every sign-in with secure password handling and protected sessions.',
+    'Enforce role permissions before any internal record can be created or changed.',
+    'Use request validation, rate limits and audit history for sensitive actions.',
+    'Keep customer, finance, production and marketing records separated by role.',
   ];
 
   return (
     <article className="acos-security-panel">
       <div>
         <Lock size={22} />
-        <h2>Backend security handoff</h2>
+        <h2>Security checklist</h2>
       </div>
       <ul>
         {items.map((item) => <li key={item}>{item}</li>)}
@@ -516,7 +516,7 @@ export function ACOSDashboard() {
         ))}
       </section>
 
-      <SecurityTodoPanel />
+      <SecurityChecklistPanel />
     </ACOSShell>
   );
 }
@@ -605,12 +605,12 @@ function UserManagementPanel() {
         <label>Email<input type="email" autoComplete="email" /></label>
         <label>Role<select>{roles.map((role) => <option key={role}>{role}</option>)}</select></label>
         <label className="acos-toggle"><input type="checkbox" defaultChecked /> Account enabled</label>
-        <button type="button">Create backend user</button>
+        <button type="button">Create user</button>
       </form>
       <div className="acos-audit-log">
-        <h3>Audit log preview</h3>
+        <h3>Audit activity</h3>
         {['Admin signed in', 'Sales module opened', 'Finance export requested'].map((item) => (
-          <p key={item}><Activity size={15} /> {item}<span>logged with timestamp and IP by backend</span></p>
+          <p key={item}><Activity size={15} /> {item}<span>time and device details recorded</span></p>
         ))}
       </div>
     </section>
@@ -628,8 +628,8 @@ export function ACOSUsers() { return <ModuleView moduleId="users" />; }
 
 export function ACOSBackendGuide() {
   return (
-    <ACOSShell title="Backend integration guide" kicker="Security">
-      <SecurityTodoPanel />
+    <ACOSShell title="Security implementation guide" kicker="Security">
+      <SecurityChecklistPanel />
       <section className="acos-table-card">
         <div className="acos-card-head">
           <div>

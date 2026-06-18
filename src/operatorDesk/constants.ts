@@ -75,7 +75,7 @@ export const doctrineRules = [
 ];
 
 export const futureUpgradeNotes = [
-  'Supabase backend',
+  'Cloud data sync',
   'Authentication and contractor login portal',
   'Vendor database',
   'Labour QR attendance',

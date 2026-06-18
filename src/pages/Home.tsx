@@ -740,7 +740,7 @@ export default function Home() {
                   <ArrowRight size={16} />
                 </Link>
                 <Link to="/my-projects/AC-IMG-0001" className="home-button home-button-ghost">
-                  See Sample Preview
+                  View Preview Example
                   <ArrowRight size={16} />
                 </Link>
               </div>

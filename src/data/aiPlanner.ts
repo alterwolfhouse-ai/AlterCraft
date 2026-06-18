@@ -57,12 +57,12 @@ export const LEAD_STATUS_FLOW = [
   'Completed',
 ] as const;
 
-export const AI_AUTOMATION_TODOS = [
-  'TODO Model 1: convert user inputs into a professional design brief.',
-  'TODO Measurement validation: flag missing or conflicting site constraints without inventing dimensions.',
-  'TODO Model 2: generate four AI-assisted imagination concepts from approved brief and photos.',
-  'TODO Output quality check: verify category, style, material direction and obvious site conflicts.',
-  'TODO Customer concept delivery: publish approved concepts to the customer project page.',
+export const DESIGN_PREVIEW_STANDARDS = [
+  'Convert customer photos, dimensions and notes into a clear design brief.',
+  'Flag missing or conflicting site constraints without inventing measurements.',
+  'Prepare practical imagination preview directions after photos and requirements are reviewed.',
+  'Check category, style, material direction and obvious site conflicts before sharing.',
+  'Publish approved previews to the customer project page for selection and review.',
 ];
 
 export type ProjectType = (typeof PROJECT_TYPES)[number];
@@ -217,11 +217,11 @@ export const emptyPlannerDraft = (): PlannerDraft => ({
   requirements: emptyRequirements(),
 });
 
-export const mockPlannerProjects: PlannerProjectRecord[] = [
+export const examplePlannerProjects: PlannerProjectRecord[] = [
   {
     user: {
       id: 'usr-demo-1',
-      name: 'Demo Customer',
+      name: 'AlterCraft Preview Client',
       phone: '+91 88175 03658',
       email: 'support@altercraft.in',
       city: 'Ghaziabad',
@@ -232,7 +232,7 @@ export const mockPlannerProjects: PlannerProjectRecord[] = [
       requestId: 'AC-IMG-0001',
       userId: 'usr-demo-1',
       projectType: 'Modular Kitchen',
-      title: 'Design Preview for Modular Kitchen',
+      title: 'Example Design Preview for Modular Kitchen',
       budgetRange: 'Premium but practical',
       city: 'Ghaziabad',
       status: 'Imagination Ready',
@@ -258,7 +258,7 @@ export const mockPlannerProjects: PlannerProjectRecord[] = [
         fileUrl: '',
         fileType: 'image',
         label: 'Main site photo',
-        fileName: 'demo-kitchen-site-photo.jpg',
+        fileName: 'example-kitchen-site-photo.jpg',
         uploadedAt: '2026-06-07T10:03:00.000Z',
       },
     ],
@@ -269,7 +269,7 @@ export const mockPlannerProjects: PlannerProjectRecord[] = [
       city: 'Ghaziabad',
       expectedTimeline: '30-45 days',
       specialNotes: 'Use soft-close hardware and keep maintenance simple.',
-      customerName: 'Demo Customer',
+      customerName: 'AlterCraft Preview Client',
       customerPhone: '+91 88175 03658',
       customerEmail: 'support@altercraft.in',
     },
@@ -331,13 +331,13 @@ export const mockPlannerProjects: PlannerProjectRecord[] = [
       id: 'lead-demo-1',
       projectId: 'prj-demo-1',
       selectedConceptId: '',
-      customerName: 'Demo Customer',
+      customerName: 'AlterCraft Preview Client',
       customerPhone: '+91 88175 03658',
       leadStatus: 'Imagination Ready',
       assignedTo: 'AlterCraft Design Team',
       createdAt: '2026-06-07T10:00:00.000Z',
     },
     selectedConceptId: '',
-    internalNotes: 'Demo project for the manual imagination preview workflow.',
+    internalNotes: 'Reference request for showing the preview selection workflow.',
   },
 ];

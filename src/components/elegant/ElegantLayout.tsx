@@ -95,7 +95,7 @@ export function FloatingWhatsApp() {
       aria-label="Chat with AlterCraft on WhatsApp"
     >
       <MessageCircle size={19} />
-      WhatsApp
+      <span className="elegant-floating-whatsapp-text">WhatsApp</span>
     </a>
   );
 }

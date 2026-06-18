@@ -1,5 +1,5 @@
 import React, { lazy } from "react";
-import { Navigate, createBrowserRouter, useLocation } from "react-router";
+import { Navigate, createBrowserRouter, useLocation, type RouteObject } from "react-router";
 import Home from "./pages/Home";
 import { useAuth } from "./contexts/AuthContext";
 
@@ -163,6 +163,22 @@ const ACOSBackendGuide = lazy(() =>
 const ContractorDesk = lazy(() => import("./pages/ContractorDesk"));
 const OperatorDesk = lazy(() => import("./pages/OperatorDesk"));
 
+function SiteErrorFallback() {
+  return (
+    <main className="site-error-fallback">
+      <div className="site-error-fallback__panel">
+        <p>AlterCraft</p>
+        <h1>We could not load this page properly.</h1>
+        <span>Please return home or contact AlterCraft and we will help you continue.</span>
+        <div>
+          <a href="/">Go Home</a>
+          <a href="/contact">Contact Us</a>
+        </div>
+      </div>
+    </main>
+  );
+}
+
 function AdminOnly({ children }: { children: React.ReactNode }) {
   const { user, isAdmin } = useAuth();
   const location = useLocation();
@@ -180,7 +196,22 @@ function AdminOnly({ children }: { children: React.ReactNode }) {
 
 const adminOnly = (children: React.ReactNode) => <AdminOnly>{children}</AdminOnly>;
 
-export const router = createBrowserRouter([
+function withSiteErrorFallback(routes: RouteObject[]): RouteObject[] {
+  return routes.map((route) => {
+    const routeWithFallback: RouteObject = {
+      ...route,
+      errorElement: route.errorElement ?? <SiteErrorFallback />,
+    };
+
+    if (route.children) {
+      routeWithFallback.children = withSiteErrorFallback(route.children);
+    }
+
+    return routeWithFallback;
+  });
+}
+
+export const router = createBrowserRouter(withSiteErrorFallback([
   {
     path: "/",
     Component: Home,
@@ -465,4 +496,4 @@ export const router = createBrowserRouter([
     path: "*",
     Component: NotFound,
   },
-]);
+]));

@@ -255,7 +255,7 @@ export function UploadField({ id, label, helper, multiple, onFilesSelected }: Up
         multiple={multiple}
         onChange={(event) => onFilesSelected?.(event.currentTarget.files)}
       />
-      <em>For now, the selected file names are saved on this device.</em>
+      <em>Selected file names stay on this device while you complete the request.</em>
     </label>
   );
 }

@@ -62,12 +62,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const signIn = (email: string, password: string): SignInResult => {
       const normalizedEmail = email.trim().toLowerCase();
 
-      // Static hosting cannot securely verify passwords. Local demo login exists only for
-      // development preview; production must replace this with the backend JWT cookie flow.
+      // Static hosting cannot securely verify live admin passwords.
       if (!canUseLocalDemo()) {
         return {
           ok: false,
-          message: 'Secure backend authentication is not connected on the live site yet.',
+          message: 'Admin access is not available from this browser.',
         };
       }
 

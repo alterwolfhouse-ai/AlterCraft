@@ -25,12 +25,12 @@ import {
   UploadField,
 } from '../components/aiPlanner/PlannerComponents';
 import {
-  AI_AUTOMATION_TODOS,
+  DESIGN_PREVIEW_STANDARDS,
   LEAD_STATUS_FLOW,
   PREFERRED_STYLES,
   PROJECT_TYPES,
   emptyPlannerDraft,
-  mockPlannerProjects,
+  examplePlannerProjects,
   type ImaginationConcept,
   type LeadStatus,
   type PlannerDraft,
@@ -91,8 +91,8 @@ const saveStoredProjects = (projects: PlannerProjectRecord[]) => writeJson(PROJE
 const loadAllProjects = () => {
   const stored = loadStoredProjects();
   const storedIds = new Set(stored.map((record) => record.project.requestId));
-  const remainingMocks = mockPlannerProjects.filter((record) => !storedIds.has(record.project.requestId));
-  return [...stored, ...remainingMocks];
+  const remainingExamples = examplePlannerProjects.filter((record) => !storedIds.has(record.project.requestId));
+  return [...stored, ...remainingExamples];
 };
 
 const saveProjectRecord = (record: PlannerProjectRecord) => {
@@ -174,7 +174,7 @@ export function AIPlannerLanding() {
         copy="Upload photos, add the important sizes, and tell us what you want. We will prepare a first design preview and then discuss the practical details with you."
       >
         <CTAButton to="/ai-planner/start">Start My Request</CTAButton>
-        <CTAButton to="/my-projects/AC-IMG-0001" variant="secondary">See Sample Preview</CTAButton>
+        <CTAButton to="/my-projects/AC-IMG-0001" variant="secondary">View Preview Example</CTAButton>
       </PlannerHero>
 
       <section className="planner-section">
@@ -283,8 +283,8 @@ export function AIPlannerUpload() {
             <p className="planner-kicker">Step 2</p>
             <h1>Upload Site Photo</h1>
             <p>
-              Add clear photos from multiple angles. For now, the selected file names are saved
-              on this device so you can review the request flow.
+              Add clear photos from multiple angles. The selected file names stay on this
+              device while you complete the request.
             </p>
             <PreviewDisclaimer compact />
             <div className="planner-upload-grid">
@@ -577,8 +577,8 @@ export function MyProjectDetail() {
         <section className="planner-section planner-section-top">
           <div className="elegant-container planner-success-card">
             <h1>Project not found</h1>
-            <p>Check the request ID or open the sample project.</p>
-            <CTAButton to="/my-projects/AC-IMG-0001">Open Sample Output</CTAButton>
+            <p>Check the request ID or view the preview example.</p>
+            <CTAButton to="/my-projects/AC-IMG-0001">Open Preview Example</CTAButton>
           </div>
         </section>
       </PlannerPageShell>
@@ -687,9 +687,9 @@ export function AdminDashboard() {
       <section className="planner-section planner-section-top">
         <div className="elegant-container">
           <SectionHeader
-            kicker="Manual Backend"
+            kicker="Request Desk"
             title="Admin Dashboard"
-            copy="Simple internal structure for reviewing requests, locking measurements, changing status and manually adding imagination concept outputs."
+            copy="Internal desk for reviewing requests, confirming measurements, updating status and adding customer-visible design previews."
           />
           <div className="planner-admin-stats">
             <article><LayoutDashboard size={22} /><strong>{projects.length}</strong><span>Total requests</span></article>
@@ -700,7 +700,7 @@ export function AdminDashboard() {
           <AdminLeadTable projects={projects} />
           <div className="planner-form-actions">
             <CTAButton to="/admin/design-requests">Open Leads</CTAButton>
-            <CTAButton to="/ai-planner/start" variant="secondary">Create Test Request</CTAButton>
+            <CTAButton to="/ai-planner/start" variant="secondary">Create New Request</CTAButton>
           </div>
         </div>
       </section>
@@ -718,7 +718,7 @@ export function AdminLeads() {
           <SectionHeader
             kicker="Leads"
             title="Design Preview Requests"
-            copy="Manual lead view for request intake, project status and selected concept tracking."
+            copy="Lead view for request intake, project status and selected concept tracking."
           />
           <AdminLeadTable projects={projects} />
         </div>
@@ -771,13 +771,13 @@ export function AdminProjectDetail() {
     const concept: ImaginationConcept = {
       id: `concept-${Date.now()}`,
       projectId: record.project.id,
-      conceptName: conceptDraft.conceptName || 'Manual Imagination Concept',
+      conceptName: conceptDraft.conceptName || 'AlterCraft Design Preview',
       conceptType: conceptDraft.conceptType || 'Design Preview',
       imageUrl:
         conceptDraft.imageUrl ||
         canvaVisuals.aiJourney,
-      description: conceptDraft.description || 'Manual concept output uploaded by AlterCraft team for customer selection.',
-      materials: conceptDraft.materials || 'Material direction to be verified during human designer review.',
+      description: conceptDraft.description || 'Design preview added by the AlterCraft team for customer selection.',
+      materials: conceptDraft.materials || 'Material direction to be confirmed during designer review.',
       budgetLevel: conceptDraft.budgetLevel || 'To be estimated',
       executionComplexity: conceptDraft.executionComplexity || 'To be reviewed',
       status: 'Ready',
@@ -848,9 +848,9 @@ export function AdminProjectDetail() {
                 )}
               </div>
               <div className="planner-side-card">
-                <h2>Future AI Automation Hooks</h2>
+                <h2>Preview Preparation Standards</h2>
                 <ul>
-                  {AI_AUTOMATION_TODOS.map((todo) => <li key={todo}><ListChecks size={16} /> {todo}</li>)}
+                  {DESIGN_PREVIEW_STANDARDS.map((item) => <li key={item}><ListChecks size={16} /> {item}</li>)}
                 </ul>
               </div>
             </div>
@@ -858,15 +858,15 @@ export function AdminProjectDetail() {
 
           <section className="planner-section-inner">
             <SectionHeader
-              kicker="Manual Concept Upload"
-              title="Add imagination concept output"
-              copy="Use image URL for now, or keep it blank to use a placeholder. Real storage can replace this form later."
+              kicker="Design Preview"
+              title="Add imagination preview"
+              copy="Add the concept image link and customer-friendly details. If no image is added, AlterCraft will use the current journey visual until the concept file is ready."
             />
             <form className="planner-form planner-admin-form" onSubmit={addConcept}>
               <div className="planner-form-grid">
                 <label>Concept name<input value={conceptDraft.conceptName} onChange={(event) => setConceptDraft({ ...conceptDraft, conceptName: event.target.value })} /></label>
                 <label>Concept type<input value={conceptDraft.conceptType} onChange={(event) => setConceptDraft({ ...conceptDraft, conceptType: event.target.value })} /></label>
-                <label className="planner-form-wide">Image URL or upload placeholder<input value={conceptDraft.imageUrl} onChange={(event) => setConceptDraft({ ...conceptDraft, imageUrl: event.target.value })} placeholder="https://..." /></label>
+                <label className="planner-form-wide">Concept image URL<input value={conceptDraft.imageUrl} onChange={(event) => setConceptDraft({ ...conceptDraft, imageUrl: event.target.value })} placeholder="https://..." /></label>
                 <label className="planner-form-wide">Short description<textarea value={conceptDraft.description} onChange={(event) => setConceptDraft({ ...conceptDraft, description: event.target.value })} /></label>
                 <label>Materials idea<input value={conceptDraft.materials} onChange={(event) => setConceptDraft({ ...conceptDraft, materials: event.target.value })} /></label>
                 <label>Budget level<input value={conceptDraft.budgetLevel} onChange={(event) => setConceptDraft({ ...conceptDraft, budgetLevel: event.target.value })} /></label>
@@ -888,7 +888,7 @@ export function AdminProjectDetail() {
               <div className="planner-empty-state">
                 <Sparkles size={24} />
                 <h3>No concepts added yet</h3>
-                <p>Use the manual concept form above to publish customer-visible outputs.</p>
+                <p>Use the concept form above to publish customer-visible previews.</p>
               </div>
             )}
           </section>

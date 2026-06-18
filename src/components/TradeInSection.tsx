@@ -25,8 +25,8 @@ export function TradeInSection() {
           </div>
           <h2 className="text-[#2C2419] mb-4">Upgrade with Trade-In Credits</h2>
           <p className="text-[#5A4D3F] text-lg max-w-2xl mx-auto">
-            Trade-in rules will be finalized soon. For now, share your furniture details and we
-            will respond with a custom offer.
+            Share your furniture photos, condition and size details. AlterCraft will review the
+            item and respond with a practical buyback or upgrade-credit offer.
           </p>
         </div>
 

@@ -1093,10 +1093,23 @@
 
   .contractor-mockup {
     min-height: 520px;
+    overflow: hidden;
   }
 
   .contractor-apk-card {
-    min-height: 760px;
+    min-height: min(720px, 86svh);
+    max-width: 100%;
+  }
+
+  .contractor-beam {
+    inset: -14% 0 auto 0;
+    width: 100%;
+    height: 46%;
+  }
+
+  .contractor-apk-orbit {
+    inset: 16% 4% 16%;
+    transform: scale(1.08);
   }
 
   .contractor-device {

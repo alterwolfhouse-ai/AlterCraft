@@ -1258,7 +1258,7 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState("Create a local MVP session, or connect the Node server at localhost:8787.");
+  const [status, setStatus] = useState("Sign in to start a private OperatorDesk session on this device.");
   const [busy, setBusy] = useState(false);
 
   const signIn = async (mode: "signup" | "login") => {
@@ -1267,7 +1267,7 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
     const cleanEmail = email.trim().toLowerCase();
 
     setBusy(true);
-    setStatus("Checking server...");
+    setStatus("Checking OperatorDesk access...");
 
     try {
       const response = await fetch(`${operatorApiBase()}/api/auth/${mode}`, {
@@ -1282,7 +1282,7 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
       });
 
       if (!response.ok) {
-        throw new Error("Server auth failed");
+        throw new Error("OperatorDesk access check failed");
       }
 
       const data = (await response.json()) as { token?: string; user?: { name?: string; phone?: string; email?: string } };
@@ -1304,7 +1304,7 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
         mode: "local",
       };
       writeOperatorSession(nextSession);
-      setStatus("Server is not connected, so this APK is using a local MVP session on this device.");
+      setStatus("Cloud sync is unavailable right now, so this device will continue in private offline mode.");
       onSignedIn(nextSession);
     } finally {
       setBusy(false);
@@ -1383,7 +1383,7 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
           <input
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            placeholder="Password, optional for local MVP"
+            placeholder="Password, if assigned"
             type="password"
             className="w-full mt-2 bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
           />

@@ -253,7 +253,7 @@ function OperatorDownloadPanel() {
         </div>
         <div className="contractor-apk-chip is-top">
           <Server size={17} />
-          Backend-ready
+          Sync-ready
         </div>
         <div className="contractor-apk-chip is-bottom">
           <Smartphone size={17} />
@@ -265,7 +265,7 @@ function OperatorDownloadPanel() {
         <p className="contractor-kicker">Powered by AlterLabs</p>
         <h2>Download the OperatorDesk APK</h2>
         <p>
-          Install the current mobile MVP. The app opens with a signup gate, then loads the
+          Install the current mobile app. It opens with a signup gate, then loads the
           bottom-nav contractor dashboard for leads, jobs, cash and reports.
         </p>
         <div className="contractor-signup-preview" aria-label="Signup fields preview">
@@ -358,7 +358,7 @@ export default function ContractorDesk() {
       <section className="contractor-section contractor-split" id="desks">
         <div className="contractor-section-copy">
           <p className="contractor-kicker">Execution desks</p>
-          <h2>You bring the order. AlterCraft manages the backend.</h2>
+          <h2>You bring the order. AlterCraft manages the execution desk.</h2>
           <p>
             Contractor Desk turns execution support into clear service lanes: material sourcing,
             labour deployment, production, site control and full execution. Every lane has a
@@ -430,7 +430,7 @@ export default function ContractorDesk() {
 
       <section className="contractor-section contractor-risk-section">
         <div className="contractor-section-head">
-          <p className="contractor-kicker">Seed control data</p>
+          <p className="contractor-kicker">Control view</p>
           <h2>The first dashboard already knows what is active, blocked and risky.</h2>
         </div>
         <div className="contractor-risk-table">
@@ -450,7 +450,7 @@ export default function ContractorDesk() {
       <section className="contractor-section contractor-article-section" id="seo">
         <div className="contractor-section-head">
           <p className="contractor-kicker">Problem / solution guides</p>
-          <h2>SEO pages for contractors searching for execution control.</h2>
+          <h2>Guides for contractors who want stronger execution control.</h2>
           <p>
             These guides explain the real site problems Contractor Desk is meant to solve:
             cash leakage, untracked labour, vague material movement, weak proof and disputes.
@@ -459,7 +459,7 @@ export default function ContractorDesk() {
         <div className="contractor-article-grid">
           {seoArticles.map((article) => (
             <a className="contractor-article-card" href={article.href} key={article.href}>
-              <span>Contractor Desk SEO</span>
+              <span>Contractor Desk Guide</span>
               <h3>{article.title}</h3>
               <p>{article.copy}</p>
               <em>Read guide <ArrowRight size={15} /></em>
@@ -472,7 +472,7 @@ export default function ContractorDesk() {
         <BadgeCheck size={42} />
         <h2>Run contractor-backed work with payment discipline and proof.</h2>
         <p>
-          Start with the mobile-first MVP: dashboard, leads, job tracker, payment gate, cash ledger,
+          Start with the mobile-first control desk: dashboard, leads, job tracker, payment gate, cash ledger,
           labour, material desk, daily site reports, disputes, JSON import and export.
         </p>
         <a href={whatsappLink} className="contractor-primary">
