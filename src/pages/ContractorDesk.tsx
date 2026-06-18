@@ -143,19 +143,87 @@ const apkDownloadPath = '/downloads/operator-desk-debug-d428fcf.apk';
 
 const seoArticles = [
   {
+    category: 'APK launch guide',
+    title: 'Contractor Desk APK for contractors',
+    copy: 'A premium introduction to the OperatorDesk APK, private rollout direction, access levels and the core contractor workflow.',
+    href: '/blog/contractor-desk-apk-for-contractors/',
+    image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+  },
+  {
+    category: 'India market guide',
+    title: 'What a contractor management app in India must solve',
+    copy: 'Why Indian contractor teams need mobile-first execution control around cash, field work, roles and proof.',
+    href: '/blog/contractor-management-app-india/',
+    image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+  },
+  {
+    category: 'Payment gates',
     title: 'Why contractor jobs bleed cash without payment gates',
     copy: 'A practical guide to advance control, milestone discipline and blocking risky work before the site consumes profit.',
     href: '/blog/contractor-desk-payment-gate-system/',
+    image: '/images/blog/contractor-desk/payment-gate-cover.svg',
   },
   {
+    category: 'Site control',
     title: 'Labour, material and site reports in one contractor desk',
     copy: 'How a daily control desk reduces missed attendance, vague procurement, weak updates and avoidable site confusion.',
     href: '/blog/contractor-desk-labour-material-site-control/',
+    image: '/images/blog/contractor-desk/labour-material-cover.svg',
   },
   {
+    category: 'Daily reporting',
+    title: 'Daily site report app for contractors',
+    copy: 'A field-ready guide to attendance, progress photos, material usage, client approvals and next action discipline.',
+    href: '/blog/daily-site-report-app-for-contractors/',
+    image: '/images/blog/contractor-desk/labour-material-cover.svg',
+  },
+  {
+    category: 'Cash ledger',
+    title: 'Every contractor rupee needs a bucket',
+    copy: 'How job money should be separated into material, labour, reserve, tools, debt and profit before spending.',
+    href: '/blog/contractor-cash-ledger-app/',
+    image: '/images/blog/contractor-desk/cash-ledger-cover.svg',
+  },
+  {
+    category: 'Proof and dispute',
     title: 'Dispute protection for contractors: proof before emotion',
     copy: 'How written scope, photos, WhatsApp records and cash ledgers protect contractors when payment or scope disputes start.',
     href: '/blog/contractor-desk-dispute-proof-cash-ledger/',
+    image: '/images/blog/contractor-desk/dispute-proof-cover.svg',
+  },
+  {
+    category: 'APK onboarding',
+    title: 'Contractor Desk APK installation guide',
+    copy: 'How to download, install, test and roll out the current OperatorDesk APK with founder, manager and worker access.',
+    href: '/blog/contractor-desk-apk-installation-guide/',
+    image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+  },
+];
+
+const promotionSlides = [
+  {
+    eyebrow: 'Launch story',
+    title: 'Promote the APK as a field discipline product',
+    copy: 'The message is clear: Contractor Desk helps a contractor see payment, labour, material and proof before the next risky site decision.',
+    image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+  },
+  {
+    eyebrow: 'Carousel angle',
+    title: 'Payment gates before work movement',
+    copy: 'A strong slide sequence: advance gate, material gate, labour gate and milestone gate. Each one protects real cash.',
+    image: '/images/blog/contractor-desk/payment-gate-cover.svg',
+  },
+  {
+    eyebrow: 'Reel angle',
+    title: 'One daily report that protects tomorrow',
+    copy: 'Show a before/after story: scattered updates versus one job card with attendance, material, photos and next action.',
+    image: '/images/blog/contractor-desk/labour-material-cover.svg',
+  },
+  {
+    eyebrow: 'Founder angle',
+    title: 'Proof before emotion',
+    copy: 'Turn dispute protection into a calm, premium promise: scope, payment trail, site photos and settlement notes stay visible.',
+    image: '/images/blog/contractor-desk/dispute-proof-cover.svg',
   },
 ];
 
@@ -168,10 +236,10 @@ const productSchema = {
   '@type': 'SoftwareApplication',
   name: 'AlterCraft Contractor Desk',
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
+  operatingSystem: 'Android, Web',
   url: 'https://www.altercraft.in/ContractorDesk/',
   description:
-    'Mobile-first execution control system for contractor leads, work orders, payment gates, labour deployment, material desk, site reports, cash ledger and dispute protection.',
+    'Mobile-first Contractor Desk APK and execution control system for contractor leads, work orders, payment gates, labour deployment, material desk, site reports, cash ledger and dispute protection.',
   creator: {
     '@type': 'Organization',
     name: siteDetails.legalName,
@@ -245,7 +313,7 @@ function OperatorDownloadPanel() {
             <span />
           </div>
           <div className="contractor-apk-mini-grid">
-            <strong>₹2.1L</strong>
+            <strong>INR 2.1L</strong>
             <strong>14</strong>
             <strong>Gate</strong>
             <strong>Proof</strong>
@@ -447,6 +515,29 @@ export default function ContractorDesk() {
         </div>
       </section>
 
+      <section className="contractor-section contractor-promo-section" id="content">
+        <div className="contractor-section-head">
+          <p className="contractor-kicker">Marketing arm</p>
+          <h2>Product stories, slides and graphics for the Contractor Desk APK.</h2>
+          <p>
+            The content cluster now explains the product like a serious execution system:
+            APK rollout, contractor management, payment gates, site reports, cash ledger and proof control.
+          </p>
+        </div>
+        <div className="contractor-slide-grid">
+          {promotionSlides.map((slide) => (
+            <article className="contractor-slide-card" key={slide.title}>
+              <img src={slide.image} alt="" loading="lazy" />
+              <div>
+                <span>{slide.eyebrow}</span>
+                <h3>{slide.title}</h3>
+                <p>{slide.copy}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="contractor-section contractor-article-section" id="seo">
         <div className="contractor-section-head">
           <p className="contractor-kicker">Problem / solution guides</p>
@@ -459,7 +550,8 @@ export default function ContractorDesk() {
         <div className="contractor-article-grid">
           {seoArticles.map((article) => (
             <a className="contractor-article-card" href={article.href} key={article.href}>
-              <span>Contractor Desk Guide</span>
+              <img src={article.image} alt="" loading="lazy" />
+              <span>{article.category}</span>
               <h3>{article.title}</h3>
               <p>{article.copy}</p>
               <em>Read guide <ArrowRight size={15} /></em>

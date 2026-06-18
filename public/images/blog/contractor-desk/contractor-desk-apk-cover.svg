@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Contractor Desk APK product cover</title>
+  <desc id="desc">Premium mobile contractor execution dashboard with payment gates, job status cards and site proof panels.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#15110e"/>
+      <stop offset=".52" stop-color="#3a2d23"/>
+      <stop offset="1" stop-color="#8b6a40"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".72" cy=".3" r=".62">
+      <stop offset="0" stop-color="#f5cf87" stop-opacity=".58"/>
+      <stop offset=".46" stop-color="#d9a34c" stop-opacity=".12"/>
+      <stop offset="1" stop-color="#d9a34c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="phone" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#27221d"/>
+      <stop offset="1" stop-color="#0d0c0b"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="30" stdDeviation="24" flood-color="#000" flood-opacity=".42"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <g opacity=".28" stroke="#f6deb2" stroke-width="1">
+    <path d="M0 116H1200M0 232H1200M0 348H1200M0 464H1200M0 580H1200"/>
+    <path d="M105 0V675M221 0V675M337 0V675M453 0V675M569 0V675M685 0V675M801 0V675M917 0V675M1033 0V675M1149 0V675"/>
+  </g>
+  <path d="M82 520c164-68 295-89 462-49 171 41 285 36 566-104" fill="none" stroke="#e8bd72" stroke-width="2" opacity=".38"/>
+  <path d="M74 546c164-68 311-92 487-49 187 46 307 35 570-113" fill="none" stroke="#fff2d6" stroke-width="1" opacity=".22"/>
+  <g transform="translate(690 76)" filter="url(#shadow)">
+    <rect width="308" height="528" rx="42" fill="#080807" stroke="#ead09f" stroke-opacity=".35"/>
+    <rect x="18" y="24" width="272" height="480" rx="28" fill="url(#phone)"/>
+    <circle cx="154" cy="48" r="5" fill="#3a332c"/>
+    <g transform="translate(38 78)">
+      <text x="0" y="0" fill="#d9a34c" font-family="Arial, sans-serif" font-size="13" letter-spacing="4">ALTERCRAFT</text>
+      <text x="0" y="35" fill="#fff7e8" font-family="Georgia, serif" font-size="30" font-weight="700">Contractor Desk</text>
+      <rect x="0" y="66" width="222" height="74" rx="16" fill="#171512" stroke="#f0d9ac" stroke-opacity=".18"/>
+      <rect x="0" y="154" width="104" height="82" rx="16" fill="#1d2420" stroke="#85c783" stroke-opacity=".33"/>
+      <rect x="118" y="154" width="104" height="82" rx="16" fill="#251a18" stroke="#d67568" stroke-opacity=".36"/>
+      <rect x="0" y="252" width="222" height="58" rx="15" fill="#171512" stroke="#f0d9ac" stroke-opacity=".15"/>
+      <rect x="0" y="324" width="222" height="58" rx="15" fill="#171512" stroke="#f0d9ac" stroke-opacity=".15"/>
+      <rect x="0" y="396" width="222" height="30" rx="10" fill="#d9a34c" opacity=".86"/>
+      <g fill="#fff7e8" opacity=".88" font-family="Arial, sans-serif" font-size="15" font-weight="700">
+        <text x="18" y="112">Payment Gate</text>
+        <text x="18" y="198">Cleared</text>
+        <text x="136" y="198">Blocked</text>
+        <text x="18" y="288">Site Proof</text>
+        <text x="18" y="360">Cash Ledger</text>
+      </g>
+    </g>
+  </g>
+  <g transform="translate(92 126)">
+    <text x="0" y="0" fill="#d9a34c" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="6">CONTRACTOR DESK APK</text>
+    <text x="0" y="76" fill="#fff7e8" font-family="Georgia, serif" font-size="68" font-weight="700">Execution control</text>
+    <text x="0" y="144" fill="#fff7e8" font-family="Georgia, serif" font-size="68" font-style="italic">for serious sites.</text>
+    <text x="0" y="206" fill="#eadfcf" font-family="Arial, sans-serif" font-size="22">Payment gates, labour, material, site proof, cash ledger and reports.</text>
+    <g transform="translate(0 260)">
+      <rect width="182" height="52" rx="26" fill="#d9a34c"/>
+      <text x="30" y="33" fill="#1d120b" font-family="Arial, sans-serif" font-size="15" font-weight="700">Download APK</text>
+      <rect x="204" width="202" height="52" rx="26" fill="none" stroke="#ead09f" stroke-opacity=".55"/>
+      <text x="232" y="33" fill="#fff7e8" font-family="Arial, sans-serif" font-size="15" font-weight="700">Request Access</text>
+    </g>
+  </g>
+  <g opacity=".78">
+    <circle cx="1040" cy="116" r="7" fill="#8fd48a"/>
+    <circle cx="1064" cy="116" r="7" fill="#d9a34c"/>
+    <circle cx="1088" cy="116" r="7" fill="#d67568"/>
+  </g>
+</svg>

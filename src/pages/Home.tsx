@@ -347,6 +347,42 @@ export default function Home() {
 
   const blogPosts = [
     {
+      category: 'Contractor Desk APK',
+      title: 'Contractor Desk APK for contractors',
+      summary:
+        'A mobile-first execution control app for contractor jobs, payment gates, labour, material, site reports, cash ledger and dispute protection.',
+      href: '/blog/contractor-desk-apk-for-contractors/',
+      image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+      readTime: '7 min read',
+    },
+    {
+      category: 'Contractor Management',
+      title: 'What a contractor management app in India must actually solve',
+      summary:
+        'A practical guide to field-ready contractor software for Indian teams handling site work, cash, labour, material and proof.',
+      href: '/blog/contractor-management-app-india/',
+      image: '/images/blog/contractor-desk/contractor-desk-apk-cover.svg',
+      readTime: '7 min read',
+    },
+    {
+      category: 'Payment Gates',
+      title: 'Contractor payment gate system',
+      summary:
+        'How advance, material, labour and milestone gates can stop risky site movement before cash leakage begins.',
+      href: '/blog/contractor-desk-payment-gate-system/',
+      image: '/images/blog/contractor-desk/payment-gate-cover.svg',
+      readTime: '6 min read',
+    },
+    {
+      category: 'Site Reports',
+      title: 'Daily site report app for contractors',
+      summary:
+        "A clean reporting rhythm for attendance, progress photos, material usage, client approvals and tomorrow's next action.",
+      href: '/blog/daily-site-report-app-for-contractors/',
+      image: '/images/blog/contractor-desk/labour-material-cover.svg',
+      readTime: '6 min read',
+    },
+    {
       category: 'Ghaziabad Cost Guide',
       title: 'Modular kitchen cost in Ghaziabad',
       summary:
