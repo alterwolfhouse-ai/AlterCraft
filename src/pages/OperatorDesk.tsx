@@ -1,909 +1,1300 @@
-import React, { FormEvent, useEffect, useMemo, useState } from 'react';
-import { Link, Navigate, NavLink, useParams } from 'react-router';
+import type * as React from "react";
+import { useEffect, useRef, useState } from "react";
+import { createRoot, type Root } from "react-dom/client";
+import operatorDeskStyles from "../styles/operator-desk-figma.css?raw";
 import {
-  AlertTriangle,
-  ArrowRight,
-  Banknote,
-  BriefcaseBusiness,
-  CalendarClock,
-  CheckCircle2,
-  ClipboardList,
-  FileText,
-  Filter,
-  Gauge,
-  HardHat,
-  Layers3,
-  PackageCheck,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  Upload,
-  Users,
-} from 'lucide-react';
-import {
-  BottomNav,
-  DashboardCard,
-  DisputeCard,
-  EmptyState,
-  ImportExportPanel,
-  JobCard,
-  LabourCard,
-  LeadCard,
-  MaterialCard,
-  QuickActionButton,
-  RiskBadge,
-  ScreenSlug,
-  StatusBadge,
-  screenNav,
-} from '../operatorDesk/components';
-import { cashBuckets, doctrineRules, futureUpgradeNotes, jobStages, labourRoles, serviceTypes, workStatuses } from '../operatorDesk/constants';
-import type { CashBucket, CashEntry, Dispute, Job, Labour, Lead, Material, ServiceType, SiteReport, WorkStatus } from '../operatorDesk/types';
-import { formatMoney, useOperatorDeskStore } from '../operatorDesk/useOperatorDeskStore';
+  LayoutDashboard, UserPlus, Briefcase, Wallet, FileText,
+  Shield, AlertTriangle, CheckCircle2, ChevronRight,
+  DollarSign, Send, Check, Circle, AlertCircle, Camera,
+} from "lucide-react";
 
-type ActionForm = 'lead' | 'job' | 'cash' | 'labour' | 'material' | 'site-report' | 'dispute' | null;
+type Screen = "dashboard" | "lead" | "job" | "payment" | "report" | "dispute";
 
-const validScreens = new Set(screenNav.map((item) => item.slug));
+// ─── Atomic components ────────────────────────────────────────────────────────
 
-const screenMeta: Record<ScreenSlug, { title: string; kicker: string; copy: string }> = {
-  dashboard: {
-    title: 'OperatorDesk',
-    kicker: 'ACOS mobile command',
-    copy: 'Control money, work, proof, people and risk from one focused execution desk.',
-  },
-  leads: {
-    title: 'Leads',
-    kicker: 'Contractor pipeline',
-    copy: 'Capture contractor enquiries and convert only documented leads into jobs.',
-  },
-  jobs: {
-    title: 'Jobs',
-    kicker: 'Execution control',
-    copy: 'Watch stages, payment gates, blockers, proof and next actions before work moves.',
-  },
-  cash: {
-    title: 'Cash',
-    kicker: 'Bucket discipline',
-    copy: 'Record inflow and outflow with proof, bucket, mode and related job.',
-  },
-  labour: {
-    title: 'Labour',
-    kicker: 'Deployment desk',
-    copy: 'Track roles, daily rate, attendance, advance and reliability before site work starts.',
-  },
-  materials: {
-    title: 'Materials',
-    kicker: 'Procurement desk',
-    copy: 'Lock vendor, cost, client payment, delivery status and material proof.',
-  },
-  'site-reports': {
-    title: 'Site Reports',
-    kicker: 'Daily proof',
-    copy: 'Record what happened today, what is pending, issues, photos and customer update status.',
-  },
-  disputes: {
-    title: 'Disputes',
-    kicker: 'Evidence desk',
-    copy: 'Keep documents, WhatsApp proof, witnesses, money at risk and next lawful action visible.',
-  },
-  reports: {
-    title: 'Reports',
-    kicker: 'Owner review',
-    copy: 'Summarize active value, pending payment, proof gaps, cash risk and disputed exposure.',
-  },
-  settings: {
-    title: 'Settings',
-    kicker: 'Local MVP',
-    copy: 'Export, import, reset and review the rules that protect the business.',
-  },
-};
-
-const actionForScreen = (screen: ScreenSlug): ActionForm => {
-  if (screen === 'leads') return 'lead';
-  if (screen === 'jobs' || screen === 'dashboard') return 'job';
-  if (screen === 'cash') return 'cash';
-  if (screen === 'labour') return 'labour';
-  if (screen === 'materials') return 'material';
-  if (screen === 'site-reports') return 'site-report';
-  if (screen === 'disputes') return 'dispute';
-  return null;
-};
-
-const actionLabel = (action: ActionForm) => {
-  if (action === 'lead') return 'Add lead';
-  if (action === 'job') return 'Add job';
-  if (action === 'cash') return 'Add cash';
-  if (action === 'labour') return 'Add labour';
-  if (action === 'material') return 'Add material';
-  if (action === 'site-report') return 'Add report';
-  if (action === 'dispute') return 'Add dispute';
-  return 'Add';
-};
-
-const today = () => new Date().toISOString().slice(0, 10);
-
-const includes = (value: unknown, needle: string) => String(value ?? '').toLowerCase().includes(needle.toLowerCase());
-
-function TextField({
+function Chip({
   label,
-  value,
-  onChange,
-  placeholder,
-  type = 'text',
-  required,
+  color,
 }: {
   label: string;
-  value: string | number;
-  onChange: (value: string) => void;
-  placeholder?: string;
-  type?: string;
-  required?: boolean;
+  color: "amber" | "red" | "green" | "blue" | "gray";
+}) {
+  const c = {
+    amber: "bg-amber-500/15 text-amber-400 border-amber-500/30",
+    red: "bg-red-500/15 text-red-400 border-red-500/30",
+    green: "bg-emerald-500/15 text-emerald-400 border-emerald-500/30",
+    blue: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+    gray: "bg-white/5 text-white/40 border-white/10",
+  }[color];
+  return (
+    <span
+      className={`inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-['JetBrains_Mono'] font-medium border tracking-wider uppercase ${c}`}
+    >
+      {label}
+    </span>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="text-[9px] font-['JetBrains_Mono'] font-medium tracking-[0.18em] uppercase text-white/25 mb-2 px-0.5">
+      {children}
+    </div>
+  );
+}
+
+function Card({
+  children,
+  className = "",
+  onClick,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
 }) {
   return (
-    <label className="od-field">
-      <span>{label}</span>
+    <div
+      className={`bg-[#131315] border border-[#1f1f23] rounded-[5px] ${onClick ? "cursor-pointer hover:border-white/15 transition-colors active:bg-white/5" : ""} ${className}`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Field({
+  label,
+  placeholder,
+  type = "text",
+}: {
+  label: string;
+  placeholder: string;
+  type?: string;
+}) {
+  return (
+    <div>
+      <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.15em] uppercase text-white/35 mb-1.5">
+        {label}
+      </div>
       <input
         type={type}
-        value={value}
-        required={required}
         placeholder={placeholder}
-        onChange={(event) => onChange(event.target.value)}
+        className="w-full bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[13px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50 transition-colors"
       />
-    </label>
+    </div>
   );
 }
 
-function TextAreaField({
+function TextArea({
   label,
-  value,
-  onChange,
   placeholder,
+  rows = 3,
+  danger = false,
 }: {
   label: string;
-  value: string;
-  onChange: (value: string) => void;
-  placeholder?: string;
+  placeholder: string;
+  rows?: number;
+  danger?: boolean;
 }) {
   return (
-    <label className="od-field wide">
-      <span>{label}</span>
-      <textarea value={value} placeholder={placeholder} rows={3} onChange={(event) => onChange(event.target.value)} />
-    </label>
+    <div>
+      <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.15em] uppercase text-white/35 mb-1.5">
+        {label}
+      </div>
+      <textarea
+        placeholder={placeholder}
+        rows={rows}
+        className={`w-full bg-[#0f0f12] border rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none resize-none transition-colors leading-relaxed ${danger ? "border-red-500/25 focus:border-red-500/50" : "border-[#1f1f23] focus:border-amber-500/50"}`}
+      />
+    </div>
   );
 }
 
-function SelectField<T extends string>({
-  label,
-  value,
-  options,
-  onChange,
+function WarningBanner({ text, variant = "amber" }: { text: string; variant?: "amber" | "red" }) {
+  const styles = variant === "red"
+    ? "bg-red-500/8 border-red-500/25 text-red-400/90"
+    : "bg-amber-500/8 border-amber-500/25 text-amber-400/90";
+  const Icon = variant === "red" ? Shield : AlertTriangle;
+  return (
+    <div className={`flex items-start gap-2.5 border rounded-[5px] px-3 py-2.5 ${styles}`}>
+      <Icon className="w-3.5 h-3.5 mt-0.5 shrink-0 text-current" />
+      <span className="text-[10px] font-['JetBrains_Mono'] leading-relaxed tracking-wide font-medium">
+        {text}
+      </span>
+    </div>
+  );
+}
+
+function ScreenHeader({
+  brand,
+  title,
+  sub,
 }: {
-  label: string;
-  value: T;
-  options: readonly T[];
-  onChange: (value: T) => void;
+  brand: string;
+  title: string;
+  sub?: string;
 }) {
   return (
-    <label className="od-field">
-      <span>{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value as T)}>
-        {options.map((option) => (
-          <option key={option} value={option}>{option}</option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function BooleanField({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-}) {
-  return (
-    <label className="od-check">
-      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
-      <span>{label}</span>
-    </label>
-  );
-}
-
-function LeadForm({ onSubmit }: { onSubmit: (lead: Omit<Lead, 'id' | 'createdAt'>) => void }) {
-  const [lead, setLead] = useState<Omit<Lead, 'id' | 'createdAt'>>({
-    contractorName: '',
-    phone: '',
-    siteLocation: '',
-    leadSource: 'WhatsApp',
-    workType: '',
-    approxBudget: 0,
-    timeline: '',
-    materialPreference: '',
-    labourRequired: true,
-    drawingAvailable: false,
-    notes: '',
-    serviceType: 'Full Execution Desk',
-    status: 'New',
-  });
-
-  const update = <K extends keyof typeof lead>(key: K, value: (typeof lead)[K]) => setLead((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(lead); }}>
-      <TextField label="Contractor / client" value={lead.contractorName} required onChange={(value) => update('contractorName', value)} />
-      <TextField label="Phone" value={lead.phone} onChange={(value) => update('phone', value)} />
-      <TextField label="Site location" value={lead.siteLocation} onChange={(value) => update('siteLocation', value)} />
-      <TextField label="Lead source" value={lead.leadSource} onChange={(value) => update('leadSource', value)} />
-      <TextField label="Work type" value={lead.workType} required onChange={(value) => update('workType', value)} />
-      <TextField label="Approx budget" type="number" value={lead.approxBudget} onChange={(value) => update('approxBudget', Number(value))} />
-      <TextField label="Timeline" value={lead.timeline} onChange={(value) => update('timeline', value)} />
-      <SelectField label="Service type" value={lead.serviceType} options={serviceTypes} onChange={(value) => update('serviceType', value)} />
-      <SelectField label="Status" value={lead.status} options={workStatuses} onChange={(value) => update('status', value)} />
-      <TextAreaField label="Material preference" value={lead.materialPreference} onChange={(value) => update('materialPreference', value)} />
-      <TextAreaField label="Notes" value={lead.notes} onChange={(value) => update('notes', value)} />
-      <div className="od-form-checks">
-        <BooleanField label="Labour required" checked={lead.labourRequired} onChange={(value) => update('labourRequired', value)} />
-        <BooleanField label="Drawing available" checked={lead.drawingAvailable} onChange={(value) => update('drawingAvailable', value)} />
+    <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
+      <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
+        {brand}
       </div>
-      <button type="submit" className="od-submit">Save lead</button>
-    </form>
-  );
-}
-
-function JobForm({ onSubmit }: { onSubmit: (job: Omit<Job, 'id' | 'createdAt' | 'pendingAmount'>) => void }) {
-  const [job, setJob] = useState<Omit<Job, 'id' | 'createdAt' | 'pendingAmount'>>({
-    siteName: '',
-    contractorName: '',
-    serviceType: 'Full Execution Desk',
-    totalValue: 0,
-    advanceReceived: 0,
-    paymentGateStatus: 'Pending',
-    currentStage: 'Lead',
-    workCompleted: '',
-    workPending: '',
-    materialRequired: '',
-    labourRequired: '',
-    assignedOwner: 'Operator Desk',
-    deadline: '',
-    blocker: '',
-    writtenConfirmation: false,
-    photosProof: false,
-    riskLevel: 'Medium',
-    status: 'New',
-    nextAction: '',
-  });
-
-  const update = <K extends keyof typeof job>(key: K, value: (typeof job)[K]) => setJob((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(job); }}>
-      <TextField label="Site name" value={job.siteName} required onChange={(value) => update('siteName', value)} />
-      <TextField label="Contractor / client" value={job.contractorName} required onChange={(value) => update('contractorName', value)} />
-      <SelectField label="Service type" value={job.serviceType} options={serviceTypes} onChange={(value) => update('serviceType', value)} />
-      <SelectField label="Stage" value={job.currentStage} options={jobStages} onChange={(value) => update('currentStage', value)} />
-      <SelectField label="Status" value={job.status} options={workStatuses} onChange={(value) => update('status', value)} />
-      <SelectField label="Risk" value={job.riskLevel} options={['Low', 'Medium', 'High', 'Critical']} onChange={(value) => update('riskLevel', value)} />
-      <TextField label="Total value" type="number" value={job.totalValue} onChange={(value) => update('totalValue', Number(value))} />
-      <TextField label="Advance received" type="number" value={job.advanceReceived} onChange={(value) => update('advanceReceived', Number(value))} />
-      <TextField label="Owner" value={job.assignedOwner} onChange={(value) => update('assignedOwner', value)} />
-      <TextField label="Deadline" type="date" value={job.deadline} onChange={(value) => update('deadline', value)} />
-      <TextAreaField label="Work completed" value={job.workCompleted} onChange={(value) => update('workCompleted', value)} />
-      <TextAreaField label="Work pending" value={job.workPending} onChange={(value) => update('workPending', value)} />
-      <TextAreaField label="Material required" value={job.materialRequired} onChange={(value) => update('materialRequired', value)} />
-      <TextAreaField label="Labour required" value={job.labourRequired} onChange={(value) => update('labourRequired', value)} />
-      <TextAreaField label="Blocker" value={job.blocker} onChange={(value) => update('blocker', value)} />
-      <TextAreaField label="Next action" value={job.nextAction} onChange={(value) => update('nextAction', value)} />
-      <div className="od-form-checks">
-        <BooleanField label="Written confirmation" checked={job.writtenConfirmation} onChange={(value) => update('writtenConfirmation', value)} />
-        <BooleanField label="Photos / proof available" checked={job.photosProof} onChange={(value) => update('photosProof', value)} />
-      </div>
-      <button type="submit" className="od-submit">Save job</button>
-    </form>
-  );
-}
-
-function CashEntryForm({ jobs, onSubmit }: { jobs: Job[]; onSubmit: (entry: Omit<CashEntry, 'id'>) => void }) {
-  const [entry, setEntry] = useState<Omit<CashEntry, 'id'>>({
-    date: today(),
-    type: 'Inflow',
-    amount: 0,
-    bucket: '',
-    relatedJobId: '',
-    sourceOrPaidTo: '',
-    mode: 'UPI',
-    proof: false,
-    notes: '',
-  });
-  const update = <K extends keyof typeof entry>(key: K, value: (typeof entry)[K]) => setEntry((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(entry); }}>
-      <TextField label="Date" type="date" value={entry.date} onChange={(value) => update('date', value)} />
-      <SelectField label="Type" value={entry.type} options={['Inflow', 'Outflow']} onChange={(value) => update('type', value)} />
-      <TextField label="Amount" type="number" value={entry.amount} onChange={(value) => update('amount', Number(value))} />
-      <SelectField label="Bucket" value={(entry.bucket || '') as CashBucket | ''} options={['', ...cashBuckets]} onChange={(value) => update('bucket', value)} />
-      <label className="od-field">
-        <span>Related job</span>
-        <select value={entry.relatedJobId} onChange={(event) => update('relatedJobId', event.target.value)}>
-          <option value="">Not linked</option>
-          {jobs.map((job) => <option key={job.id} value={job.id}>{job.siteName}</option>)}
-        </select>
-      </label>
-      <TextField label="Source / paid to" value={entry.sourceOrPaidTo} onChange={(value) => update('sourceOrPaidTo', value)} />
-      <TextField label="Mode" value={entry.mode} onChange={(value) => update('mode', value)} />
-      <TextAreaField label="Notes" value={entry.notes} onChange={(value) => update('notes', value)} />
-      <BooleanField label="Payment proof available" checked={entry.proof} onChange={(value) => update('proof', value)} />
-      <button type="submit" className="od-submit">Save cash entry</button>
-    </form>
-  );
-}
-
-function LabourForm({ onSubmit }: { onSubmit: (labour: Omit<Labour, 'id'>) => void }) {
-  const [labour, setLabour] = useState<Omit<Labour, 'id'>>({
-    name: '',
-    role: 'Carpenter',
-    assignedSite: '',
-    dailyRate: 0,
-    paymentType: 'Daily',
-    attendanceStatus: 'Not Marked',
-    advancePaid: 0,
-    workStatus: 'New',
-    reliabilityScore: 70,
-    notes: '',
-  });
-  const update = <K extends keyof typeof labour>(key: K, value: (typeof labour)[K]) => setLabour((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(labour); }}>
-      <TextField label="Name" value={labour.name} required onChange={(value) => update('name', value)} />
-      <SelectField label="Role" value={labour.role} options={labourRoles} onChange={(value) => update('role', value)} />
-      <TextField label="Assigned site" value={labour.assignedSite} onChange={(value) => update('assignedSite', value)} />
-      <TextField label="Daily rate" type="number" value={labour.dailyRate} onChange={(value) => update('dailyRate', Number(value))} />
-      <TextField label="Payment type" value={labour.paymentType} onChange={(value) => update('paymentType', value)} />
-      <TextField label="Advance paid" type="number" value={labour.advancePaid} onChange={(value) => update('advancePaid', Number(value))} />
-      <SelectField label="Status" value={labour.workStatus} options={workStatuses} onChange={(value) => update('workStatus', value)} />
-      <TextField label="Reliability score" type="number" value={labour.reliabilityScore} onChange={(value) => update('reliabilityScore', Number(value))} />
-      <TextAreaField label="Notes" value={labour.notes} onChange={(value) => update('notes', value)} />
-      <button type="submit" className="od-submit">Save labour</button>
-    </form>
-  );
-}
-
-function MaterialForm({ jobs, onSubmit }: { jobs: Job[]; onSubmit: (material: Omit<Material, 'id'>) => void }) {
-  const [material, setMaterial] = useState<Omit<Material, 'id'>>({
-    itemName: '',
-    relatedJobId: jobs[0]?.id || '',
-    vendor: '',
-    quantity: '',
-    rate: 0,
-    totalCost: 0,
-    clientPaid: false,
-    procurementStatus: 'Required',
-    deliveryStatus: 'Pending',
-    proof: false,
-    notes: '',
-  });
-  const update = <K extends keyof typeof material>(key: K, value: (typeof material)[K]) => setMaterial((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(material); }}>
-      <TextField label="Item name" value={material.itemName} required onChange={(value) => update('itemName', value)} />
-      <label className="od-field">
-        <span>Related job</span>
-        <select value={material.relatedJobId} onChange={(event) => update('relatedJobId', event.target.value)}>
-          {jobs.map((job) => <option key={job.id} value={job.id}>{job.siteName}</option>)}
-        </select>
-      </label>
-      <TextField label="Vendor" value={material.vendor} onChange={(value) => update('vendor', value)} />
-      <TextField label="Quantity" value={material.quantity} onChange={(value) => update('quantity', value)} />
-      <TextField label="Rate" type="number" value={material.rate} onChange={(value) => update('rate', Number(value))} />
-      <TextField label="Total cost" type="number" value={material.totalCost} onChange={(value) => update('totalCost', Number(value))} />
-      <SelectField label="Procurement" value={material.procurementStatus} options={['Required', 'Quoted', 'Ordered', 'Received', 'Used']} onChange={(value) => update('procurementStatus', value)} />
-      <SelectField label="Delivery" value={material.deliveryStatus} options={['Pending', 'In Transit', 'Delivered', 'Partial']} onChange={(value) => update('deliveryStatus', value)} />
-      <BooleanField label="Client payment clear" checked={material.clientPaid} onChange={(value) => update('clientPaid', value)} />
-      <BooleanField label="Proof available" checked={material.proof} onChange={(value) => update('proof', value)} />
-      <TextAreaField label="Notes" value={material.notes} onChange={(value) => update('notes', value)} />
-      <button type="submit" className="od-submit">Save material</button>
-    </form>
-  );
-}
-
-function SiteReportForm({ jobs, onSubmit }: { jobs: Job[]; onSubmit: (report: Omit<SiteReport, 'id'>) => void }) {
-  const [report, setReport] = useState<Omit<SiteReport, 'id'>>({
-    id: '',
-    date: today(),
-    siteName: jobs[0]?.siteName || '',
-    relatedJobId: jobs[0]?.id || '',
-    labourPresent: '',
-    workCompletedToday: '',
-    workPending: '',
-    materialUsed: '',
-    materialRequired: '',
-    photosTaken: false,
-    issues: '',
-    nextAction: '',
-    updateSent: false,
-    notes: '',
-  } as Omit<SiteReport, 'id'>);
-  const update = <K extends keyof typeof report>(key: K, value: (typeof report)[K]) => setReport((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(report); }}>
-      <TextField label="Date" type="date" value={report.date} onChange={(value) => update('date', value)} />
-      <label className="od-field">
-        <span>Related job</span>
-        <select
-          value={report.relatedJobId}
-          onChange={(event) => {
-            const job = jobs.find((item) => item.id === event.target.value);
-            update('relatedJobId', event.target.value);
-            update('siteName', job?.siteName || '');
-          }}
-        >
-          {jobs.map((job) => <option key={job.id} value={job.id}>{job.siteName}</option>)}
-        </select>
-      </label>
-      <TextField label="Labour present" value={report.labourPresent} onChange={(value) => update('labourPresent', value)} />
-      <TextAreaField label="Completed today" value={report.workCompletedToday} onChange={(value) => update('workCompletedToday', value)} />
-      <TextAreaField label="Work pending" value={report.workPending} onChange={(value) => update('workPending', value)} />
-      <TextAreaField label="Material used" value={report.materialUsed} onChange={(value) => update('materialUsed', value)} />
-      <TextAreaField label="Material required" value={report.materialRequired} onChange={(value) => update('materialRequired', value)} />
-      <TextAreaField label="Issues" value={report.issues} onChange={(value) => update('issues', value)} />
-      <TextAreaField label="Next action" value={report.nextAction} onChange={(value) => update('nextAction', value)} />
-      <div className="od-form-checks">
-        <BooleanField label="Photos taken" checked={report.photosTaken} onChange={(value) => update('photosTaken', value)} />
-        <BooleanField label="Update sent" checked={report.updateSent} onChange={(value) => update('updateSent', value)} />
-      </div>
-      <TextAreaField label="Notes" value={report.notes} onChange={(value) => update('notes', value)} />
-      <button type="submit" className="od-submit">Save report</button>
-    </form>
-  );
-}
-
-function DisputeForm({ jobs, onSubmit }: { jobs: Job[]; onSubmit: (dispute: Omit<Dispute, 'id'>) => void }) {
-  const [dispute, setDispute] = useState<Omit<Dispute, 'id'>>({
-    disputeName: '',
-    relatedJobId: jobs[0]?.id || '',
-    personOrCompany: '',
-    amountAtRisk: 0,
-    assetAtRisk: '',
-    documentsAvailable: false,
-    whatsappProof: false,
-    witnesses: '',
-    currentStatus: '',
-    settlementOption: '',
-    nextLawfulAction: '',
-    deadline: '',
-    notes: '',
-  });
-  const update = <K extends keyof typeof dispute>(key: K, value: (typeof dispute)[K]) => setDispute((current) => ({ ...current, [key]: value }));
-
-  return (
-    <form className="od-form-grid" onSubmit={(event) => { event.preventDefault(); onSubmit(dispute); }}>
-      <TextField label="Dispute name" value={dispute.disputeName} required onChange={(value) => update('disputeName', value)} />
-      <label className="od-field">
-        <span>Related job</span>
-        <select value={dispute.relatedJobId} onChange={(event) => update('relatedJobId', event.target.value)}>
-          {jobs.map((job) => <option key={job.id} value={job.id}>{job.siteName}</option>)}
-        </select>
-      </label>
-      <TextField label="Person / company" value={dispute.personOrCompany} onChange={(value) => update('personOrCompany', value)} />
-      <TextField label="Amount at risk" type="number" value={dispute.amountAtRisk} onChange={(value) => update('amountAtRisk', Number(value))} />
-      <TextField label="Asset at risk" value={dispute.assetAtRisk} onChange={(value) => update('assetAtRisk', value)} />
-      <TextField label="Witnesses" value={dispute.witnesses} onChange={(value) => update('witnesses', value)} />
-      <TextField label="Deadline" type="date" value={dispute.deadline} onChange={(value) => update('deadline', value)} />
-      <TextAreaField label="Current status" value={dispute.currentStatus} onChange={(value) => update('currentStatus', value)} />
-      <TextAreaField label="Settlement option" value={dispute.settlementOption} onChange={(value) => update('settlementOption', value)} />
-      <TextAreaField label="Next lawful action" value={dispute.nextLawfulAction} onChange={(value) => update('nextLawfulAction', value)} />
-      <div className="od-form-checks">
-        <BooleanField label="Documents available" checked={dispute.documentsAvailable} onChange={(value) => update('documentsAvailable', value)} />
-        <BooleanField label="WhatsApp proof" checked={dispute.whatsappProof} onChange={(value) => update('whatsappProof', value)} />
-      </div>
-      <TextAreaField label="Notes" value={dispute.notes} onChange={(value) => update('notes', value)} />
-      <button type="submit" className="od-submit">Save dispute</button>
-    </form>
-  );
-}
-
-function ActionPanel({
-  action,
-  onClose,
-  jobs,
-  handlers,
-}: {
-  action: ActionForm;
-  onClose: () => void;
-  jobs: Job[];
-  handlers: {
-    addLead: ReturnType<typeof useOperatorDeskStore>['addLead'];
-    addJob: ReturnType<typeof useOperatorDeskStore>['addJob'];
-    addCashEntry: ReturnType<typeof useOperatorDeskStore>['addCashEntry'];
-    addLabour: ReturnType<typeof useOperatorDeskStore>['addLabour'];
-    addMaterial: ReturnType<typeof useOperatorDeskStore>['addMaterial'];
-    addSiteReport: ReturnType<typeof useOperatorDeskStore>['addSiteReport'];
-    addDispute: ReturnType<typeof useOperatorDeskStore>['addDispute'];
-  };
-}) {
-  if (!action) return null;
-
-  const submitAndClose = <T,>(handler: (value: T) => void) => (value: T) => {
-    handler(value);
-    onClose();
-  };
-
-  return (
-    <section className="od-action-panel" aria-label={`${actionLabel(action)} panel`}>
-      <div className="od-panel-head">
-        <div>
-          <p className="od-eyebrow">Quick action</p>
-          <h2>{actionLabel(action)}</h2>
+      <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+        {title}
+      </h1>
+      {sub && (
+        <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 tracking-widest uppercase mt-0.5">
+          {sub}
         </div>
-        <button type="button" onClick={onClose}>Close</button>
+      )}
+    </div>
+  );
+}
+
+function PrimaryButton({
+  children,
+  onClick,
+  danger = false,
+}: {
+  children: React.ReactNode;
+  onClick?: () => void;
+  danger?: boolean;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`w-full font-['Barlow_Condensed'] font-bold text-[15px] tracking-[0.12em] uppercase py-3.5 rounded-[5px] transition-colors flex items-center justify-center gap-2 ${
+        danger
+          ? "bg-red-600 hover:bg-red-500 text-white"
+          : "bg-amber-500 hover:bg-amber-400 text-black"
+      }`}
+    >
+      {children}
+    </button>
+  );
+}
+
+// ─── Screen 1: Dashboard ─────────────────────────────────────────────────────
+
+function Dashboard({ setScreen }: { setScreen: (s: Screen) => void }) {
+  const [checked, setChecked] = useState<number[]>([0, 2]);
+
+  const toggle = (i: number) =>
+    setChecked((p) => (p.includes(i) ? p.filter((x) => x !== i) : [...p, i]));
+
+  const checklist = [
+    "Labour attendance updated",
+    "Material requirement updated",
+    "Photos uploaded",
+    "Payment follow-up done",
+    "Written confirmation sent",
+  ];
+
+  const kpis = [
+    { label: "Active Jobs", value: "3", sub: "+1 this week", color: "text-white" },
+    { label: "Payment Pending", value: "₹2.1L", sub: "2 invoices due", color: "text-amber-400" },
+    { label: "Labour Deployed", value: "14", sub: "Across 2 sites", color: "text-white" },
+    { label: "Blocked Sites", value: "1", sub: "Devala — cash hold", color: "text-red-400" },
+  ];
+
+  const actions = [
+    { label: "New Lead", icon: UserPlus, screen: "lead" as Screen },
+    { label: "Create Work Order", icon: Briefcase, screen: "job" as Screen },
+    { label: "Add Site Report", icon: FileText, screen: "report" as Screen },
+    { label: "Log Payment", icon: DollarSign, screen: "payment" as Screen },
+  ];
+
+  const jobs = [
+    {
+      name: "Empro Motor Office",
+      service: "Full Execution Desk",
+      stage: "Site Execution",
+      gate: "Gate Cleared",
+      gateColor: "green" as const,
+      next: "QC Inspection — 20 Jun",
+      risk: "LOW",
+      riskColor: "green" as const,
+      value: "₹4,20,000",
+    },
+    {
+      name: "Devala Site",
+      service: "Site Control Desk",
+      stage: "Material Procurement",
+      gate: "Advance Pending",
+      gateColor: "red" as const,
+      next: "Collect 30% advance — BLOCKED",
+      risk: "HIGH",
+      riskColor: "red" as const,
+      value: "₹1,85,000",
+    },
+    {
+      name: "Current Shop Production",
+      service: "Production Desk",
+      stage: "Production",
+      gate: "50% Received",
+      gateColor: "amber" as const,
+      next: "Submit milestone invoice",
+      risk: "MED",
+      riskColor: "amber" as const,
+      value: "₹92,500",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col pb-6">
+      {/* Header */}
+      <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
+        <div className="flex items-start justify-between">
+          <div>
+            <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
+              AlterCraft
+            </div>
+            <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+              Contractor Desk
+            </h1>
+            <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 tracking-widest uppercase mt-0.5">
+              Execution Backend
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 uppercase tracking-wider">
+              18 Jun 2026
+            </div>
+            <div className="flex items-center gap-1.5 justify-end mt-1.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[9px] font-['JetBrains_Mono'] text-emerald-400 tracking-wider">ACTIVE</span>
+            </div>
+          </div>
+        </div>
       </div>
-      {action === 'lead' ? <LeadForm onSubmit={submitAndClose(handlers.addLead)} /> : null}
-      {action === 'job' ? <JobForm onSubmit={submitAndClose(handlers.addJob)} /> : null}
-      {action === 'cash' ? <CashEntryForm jobs={jobs} onSubmit={submitAndClose(handlers.addCashEntry)} /> : null}
-      {action === 'labour' ? <LabourForm onSubmit={submitAndClose(handlers.addLabour)} /> : null}
-      {action === 'material' ? <MaterialForm jobs={jobs} onSubmit={submitAndClose(handlers.addMaterial)} /> : null}
-      {action === 'site-report' ? <SiteReportForm jobs={jobs} onSubmit={submitAndClose(handlers.addSiteReport)} /> : null}
-      {action === 'dispute' ? <DisputeForm jobs={jobs} onSubmit={submitAndClose(handlers.addDispute)} /> : null}
-    </section>
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        {/* KPIs */}
+        <div className="grid grid-cols-2 gap-2">
+          {kpis.map((k) => (
+            <Card key={k.label} className="p-3">
+              <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.12em] uppercase text-white/30 mb-2">
+                {k.label}
+              </div>
+              <div className={`text-[26px] font-['Barlow_Condensed'] font-bold leading-none ${k.color}`}>
+                {k.value}
+              </div>
+              <div className="text-[10px] font-['JetBrains_Mono'] text-white/25 mt-1.5">{k.sub}</div>
+            </Card>
+          ))}
+        </div>
+
+        {/* Payment Gate Warning */}
+        <WarningBanner text="NO WORK STARTS WITHOUT PAYMENT GATE" />
+
+        {/* Quick Actions */}
+        <div>
+          <SectionLabel>Quick Actions</SectionLabel>
+          <div className="grid grid-cols-2 gap-2">
+            {actions.map((a) => (
+              <button
+                key={a.label}
+                onClick={() => setScreen(a.screen)}
+                className="flex items-center gap-2.5 bg-[#131315] border border-[#1f1f23] hover:border-amber-500/35 hover:bg-amber-500/5 rounded-[5px] px-3 py-3 transition-colors active:scale-95 text-left"
+              >
+                <a.icon className="w-4 h-4 text-amber-400 shrink-0" />
+                <span className="text-[11px] font-['JetBrains_Mono'] text-white/60 leading-tight">
+                  {a.label}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Active Jobs */}
+        <div>
+          <SectionLabel>Active Jobs — 3 Running</SectionLabel>
+          <div className="flex flex-col gap-2">
+            {jobs.map((job) => (
+              <Card key={job.name} onClick={() => setScreen("job")} className="p-3">
+                <div className="flex items-start justify-between mb-2">
+                  <div>
+                    <div className="text-[14px] font-['Barlow_Condensed'] font-bold text-white tracking-wider leading-none">
+                      {job.name.toUpperCase()}
+                    </div>
+                    <div className="text-[10px] font-['JetBrains_Mono'] text-white/30 mt-1">
+                      {job.service}
+                    </div>
+                  </div>
+                  <span className="text-[12px] font-['JetBrains_Mono'] font-medium text-white/45 ml-2 shrink-0">
+                    {job.value}
+                  </span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 mb-2.5">
+                  <Chip label={job.stage} color="blue" />
+                  <Chip label={job.gate} color={job.gateColor} />
+                  <Chip label={`RISK ${job.risk}`} color={job.riskColor} />
+                </div>
+                <div className="flex items-center gap-1.5 border-t border-[#1a1a1e] pt-2">
+                  <ChevronRight className="w-3 h-3 text-amber-400/70 shrink-0" />
+                  <span className="text-[10px] font-['JetBrains_Mono'] text-amber-400/70 leading-tight">
+                    {job.next}
+                  </span>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Dispute Alert */}
+        <button
+          onClick={() => setScreen("dispute")}
+          className="flex items-center gap-3 bg-red-500/8 border border-red-500/25 hover:border-red-500/45 rounded-[5px] px-3 py-2.5 transition-colors w-full text-left"
+        >
+          <Shield className="w-4 h-4 text-red-400 shrink-0" />
+          <div className="flex-1">
+            <div className="text-[10px] font-['JetBrains_Mono'] font-medium text-red-400 tracking-wider">
+              ACTIVE DISPUTE — Devala Site
+            </div>
+            <div className="text-[10px] font-['JetBrains_Mono'] text-white/30 mt-0.5">
+              ₹68,000 at risk · Open dispute file →
+            </div>
+          </div>
+          <ChevronRight className="w-4 h-4 text-red-400/50" />
+        </button>
+
+        {/* Daily Checklist */}
+        <div>
+          <SectionLabel>
+            Daily Checklist — {checked.length}/{checklist.length} Done
+          </SectionLabel>
+          <Card>
+            {checklist.map((item, i) => (
+              <button
+                key={item}
+                onClick={() => toggle(i)}
+                className="flex items-center gap-3 w-full px-3 py-2.5 border-b border-[#191919] last:border-0 hover:bg-white/2 transition-colors text-left"
+              >
+                <div
+                  className={`w-3.5 h-3.5 rounded-sm border shrink-0 flex items-center justify-center transition-colors ${
+                    checked.includes(i)
+                      ? "bg-emerald-500 border-emerald-500"
+                      : "border-white/20"
+                  }`}
+                >
+                  {checked.includes(i) && (
+                    <Check className="w-2.5 h-2.5 text-black" strokeWidth={3} />
+                  )}
+                </div>
+                <span
+                  className={`text-[11px] font-['JetBrains_Mono'] flex-1 ${
+                    checked.includes(i)
+                      ? "text-white/25 line-through"
+                      : "text-white/60"
+                  }`}
+                >
+                  {item}
+                </span>
+                {checked.includes(i) ? (
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                ) : (
+                  <Circle className="w-3.5 h-3.5 text-white/12 shrink-0" />
+                )}
+              </button>
+            ))}
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Screen 2: New Contractor Lead ───────────────────────────────────────────
+
+function NewLead() {
+  const [services, setServices] = useState<string[]>(["Full Execution Desk"]);
+  const [leadStatus, setLeadStatus] = useState("Hot Lead");
+  const [labour, setLabour] = useState("Yes");
+  const [drawing, setDrawing] = useState("No");
+
+  const allServices = [
+    "Material Desk",
+    "Labour Desk",
+    "Production Desk",
+    "Site Control Desk",
+    "Full Execution Desk",
+  ];
+  const statuses = ["Hot Lead", "Warm", "Cold", "Follow-Up", "Converted"];
+
+  const toggleService = (s: string) =>
+    setServices((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
+
+  return (
+    <div className="flex flex-col pb-8">
+      <ScreenHeader brand="AlterCraft · New Lead" title="New Contractor Lead" />
+
+      <div className="px-4 pt-4 flex flex-col gap-5">
+        {/* Service Selector */}
+        <div>
+          <SectionLabel>Select Service Desk</SectionLabel>
+          <div className="flex flex-col gap-1.5">
+            {allServices.map((s) => {
+              const active = services.includes(s);
+              return (
+                <button
+                  key={s}
+                  onClick={() => toggleService(s)}
+                  className={`flex items-center gap-3 px-3 py-2.5 rounded-[5px] border text-left transition-colors ${
+                    active
+                      ? "bg-amber-500/10 border-amber-500/40"
+                      : "bg-[#131315] border-[#1f1f23] hover:border-white/15"
+                  }`}
+                >
+                  <div
+                    className={`w-3.5 h-3.5 rounded-sm border shrink-0 flex items-center justify-center transition-colors ${
+                      active ? "bg-amber-400 border-amber-400" : "border-white/25"
+                    }`}
+                  >
+                    {active && (
+                      <Check className="w-2.5 h-2.5 text-black" strokeWidth={3} />
+                    )}
+                  </div>
+                  <span
+                    className={`text-[12px] font-['JetBrains_Mono'] ${active ? "text-amber-400" : "text-white/50"}`}
+                  >
+                    {s}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Lead Status */}
+        <div>
+          <SectionLabel>Lead Status</SectionLabel>
+          <div className="flex gap-1.5 flex-wrap">
+            {statuses.map((s) => (
+              <button
+                key={s}
+                onClick={() => setLeadStatus(s)}
+                className={`px-2.5 py-1 rounded text-[10px] font-['JetBrains_Mono'] font-medium border tracking-wider uppercase transition-colors ${
+                  leadStatus === s
+                    ? "bg-amber-500/15 border-amber-500/40 text-amber-400"
+                    : "bg-[#131315] border-[#1f1f23] text-white/30 hover:border-white/20"
+                }`}
+              >
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Contact Info */}
+        <div>
+          <SectionLabel>Contact & Site Info</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <Field label="Contractor / Client Name" placeholder="e.g. Rajan Mehta" />
+            <Field label="Phone Number" placeholder="+91 98XXXXXXXX" type="tel" />
+            <Field label="Site Location" placeholder="Sector 12, Navi Mumbai" />
+            <Field label="Lead Source" placeholder="WhatsApp / Referral / Walk-in" />
+          </div>
+        </div>
+
+        {/* Project Details */}
+        <div>
+          <SectionLabel>Project Details</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <Field label="Work Type" placeholder="Flooring / False Ceiling / Full Interior" />
+            <Field label="Approximate Budget" placeholder="₹ 0,00,000" />
+            <Field label="Timeline" placeholder="Start: Jul 2026 · Duration: 45 days" />
+            <Field label="Material Preference" placeholder="Premium / Mid-range / Client source" />
+          </div>
+        </div>
+
+        {/* Labour & Docs */}
+        <div>
+          <SectionLabel>Labour & Documentation</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <div>
+              <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.15em] uppercase text-white/35 mb-1.5">
+                Labour Required
+              </div>
+              <div className="flex gap-2">
+                {["Yes", "No", "TBD"].map((opt) => (
+                  <button
+                    key={opt}
+                    onClick={() => setLabour(opt)}
+                    className={`flex-1 py-2 rounded-[5px] border text-[11px] font-['JetBrains_Mono'] transition-colors ${
+                      labour === opt
+                        ? "bg-amber-500/12 border-amber-500/40 text-amber-400"
+                        : "bg-[#131315] border-[#1f1f23] text-white/35 hover:border-white/20"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.15em] uppercase text-white/35 mb-1.5">
+                Drawing / Measurement Available
+              </div>
+              <div className="flex gap-2">
+                {["Yes", "No", "Partial"].map((opt) => (
+                  <button
+                    key={opt}
+                    onClick={() => setDrawing(opt)}
+                    className={`flex-1 py-2 rounded-[5px] border text-[11px] font-['JetBrains_Mono'] transition-colors ${
+                      drawing === opt
+                        ? "bg-amber-500/12 border-amber-500/40 text-amber-400"
+                        : "bg-[#131315] border-[#1f1f23] text-white/35 hover:border-white/20"
+                    }`}
+                  >
+                    {opt}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Notes */}
+        <TextArea
+          label="Notes"
+          placeholder="Client expectations, sourcing notes, site access details..."
+          rows={3}
+        />
+
+        <PrimaryButton>Create Lead</PrimaryButton>
+      </div>
+    </div>
+  );
+}
+
+// ─── Screen 3: Job / Site Detail ─────────────────────────────────────────────
+
+function JobDetail({ setScreen }: { setScreen: (s: Screen) => void }) {
+  const stages = [
+    "Lead", "BOQ", "Quotation", "Advance", "Work Order",
+    "Material", "Production", "Site Execution", "QC", "Handover",
+    "Final Payment", "Closed",
+  ];
+  const current = 7;
+
+  const meta = [
+    { label: "Client", value: "Empro Industries Pvt Ltd" },
+    { label: "Service Type", value: "Full Execution Desk" },
+    { label: "Job Owner", value: "Arjun Verma — Site Lead" },
+    { label: "Deadline", value: "30 Jun 2026" },
+    { label: "Blocker", value: "None" },
+    { label: "Written Confirmation", value: "Signed · 10 Jun 2026", accent: "green" },
+    { label: "Photos / Proof", value: "12 uploaded · Day 8", accent: "green" },
+    { label: "Next Action", value: "QC Inspection — 20 Jun 2026", accent: "amber" },
+  ];
+
+  return (
+    <div className="flex flex-col pb-8">
+      <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
+        <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
+          AlterCraft · Job Detail
+        </div>
+        <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+          Empro Motor Office
+        </h1>
+        <div className="flex gap-1.5 mt-2">
+          <Chip label="Site Execution" color="amber" />
+          <Chip label="Full Execution Desk" color="blue" />
+          <Chip label="Risk: Low" color="green" />
+        </div>
+      </div>
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        {/* Financial summary */}
+        <div>
+          <SectionLabel>Financial Summary</SectionLabel>
+          <Card className="p-3">
+            <div className="grid grid-cols-3 gap-3 mb-3">
+              {[
+                { label: "Total Value", value: "₹4,20,000", color: "text-white" },
+                { label: "Advance Rcvd", value: "₹1,26,000", color: "text-emerald-400" },
+                { label: "Pending", value: "₹2,94,000", color: "text-amber-400" },
+              ].map((f) => (
+                <div key={f.label}>
+                  <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 uppercase tracking-wider mb-1">
+                    {f.label}
+                  </div>
+                  <div className={`text-[15px] font-['Barlow_Condensed'] font-bold ${f.color}`}>
+                    {f.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex-1 h-1.5 bg-[#1f1f23] rounded-full overflow-hidden">
+                <div className="h-full bg-emerald-500 rounded-full" style={{ width: "30%" }} />
+              </div>
+              <span className="text-[9px] font-['JetBrains_Mono'] text-white/30 whitespace-nowrap">
+                30% RECEIVED
+              </span>
+            </div>
+          </Card>
+        </div>
+
+        {/* Payment Gate */}
+        <div className="flex items-center gap-2.5 bg-emerald-500/8 border border-emerald-500/25 rounded-[5px] px-3 py-2.5">
+          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div>
+            <div className="text-[10px] font-['JetBrains_Mono'] font-medium text-emerald-400 tracking-wider">
+              PAYMENT GATE CLEARED
+            </div>
+            <div className="text-[9px] font-['JetBrains_Mono'] text-emerald-400/50 mt-0.5">
+              Work authorized — all deployments active
+            </div>
+          </div>
+        </div>
+
+        {/* Meta table */}
+        <div>
+          <SectionLabel>Job Details</SectionLabel>
+          <Card>
+            {meta.map((row) => (
+              <div
+                key={row.label}
+                className="flex items-start justify-between px-3 py-2.5 border-b border-[#191919] last:border-0"
+              >
+                <span className="text-[10px] font-['JetBrains_Mono'] text-white/30">
+                  {row.label}
+                </span>
+                <span
+                  className={`text-[11px] font-['JetBrains_Mono'] font-medium text-right ml-3 ${
+                    row.accent === "green"
+                      ? "text-emerald-400"
+                      : row.accent === "amber"
+                      ? "text-amber-400"
+                      : "text-white/65"
+                  }`}
+                >
+                  {row.value}
+                </span>
+              </div>
+            ))}
+          </Card>
+        </div>
+
+        {/* Timeline */}
+        <div>
+          <SectionLabel>Project Timeline</SectionLabel>
+          <Card className="p-3">
+            <div className="flex flex-wrap gap-x-0 gap-y-1.5">
+              {stages.map((stage, i) => (
+                <div key={stage} className="flex items-center">
+                  <span
+                    className={`text-[10px] font-['JetBrains_Mono'] px-1.5 py-0.5 rounded transition-colors ${
+                      i < current
+                        ? "text-white/20 line-through"
+                        : i === current
+                        ? "bg-amber-500/20 text-amber-400 border border-amber-500/40 font-medium"
+                        : "text-white/20"
+                    }`}
+                  >
+                    {stage}
+                  </span>
+                  {i < stages.length - 1 && (
+                    <span className="text-white/12 text-[10px] px-0.5">›</span>
+                  )}
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        <div className="flex gap-2">
+          <button
+            onClick={() => setScreen("report")}
+            className="flex-1 bg-[#131315] border border-[#1f1f23] hover:border-white/20 text-white/70 font-['Barlow_Condensed'] font-semibold text-[13px] tracking-wide uppercase py-3.5 rounded-[5px] transition-colors"
+          >
+            Add Site Report
+          </button>
+          <button
+            onClick={() => setScreen("payment")}
+            className="flex-1 bg-amber-500/12 border border-amber-500/35 hover:bg-amber-500/20 text-amber-400 font-['Barlow_Condensed'] font-semibold text-[13px] tracking-wide uppercase py-3.5 rounded-[5px] transition-colors"
+          >
+            Log Payment
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Screen 4: Payment Gate + Cash Allocation ────────────────────────────────
+
+function PaymentGate() {
+  const buckets = [
+    { label: "Material", pct: 35, amount: "₹73,500", color: "bg-blue-500" },
+    { label: "Labour", pct: 20, amount: "₹42,000", color: "bg-amber-500" },
+    { label: "Transport", pct: 5, amount: "₹10,500", color: "bg-purple-500" },
+    { label: "Tools", pct: 5, amount: "₹10,500", color: "bg-cyan-500" },
+    { label: "Rent", pct: 8, amount: "₹16,800", color: "bg-orange-500" },
+    { label: "EMI", pct: 7, amount: "₹14,700", color: "bg-pink-500" },
+    { label: "Personal Survival", pct: 5, amount: "₹10,500", color: "bg-red-500" },
+    { label: "Business Reserve", pct: 8, amount: "₹16,800", color: "bg-emerald-500" },
+    { label: "Profit", pct: 5, amount: "₹10,500", color: "bg-green-400" },
+    { label: "Debt Repayment", pct: 2, amount: "₹4,200", color: "bg-slate-400" },
+  ];
+
+  const gateRules = [
+    {
+      desk: "Material Desk",
+      rule: "100% material cost + sourcing fee — collected before procurement",
+      chip: "100% UPFRONT" as const,
+    },
+    {
+      desk: "Labour Desk",
+      rule: "1–3 days labour advance per deployment cycle",
+      chip: "ROLLING ADV" as const,
+    },
+    {
+      desk: "Production Desk",
+      rule: "50% + 30% + 15% + 5% milestone gates",
+      chip: "4 MILESTONES" as const,
+    },
+    {
+      desk: "Site Control Desk",
+      rule: "Weekly or monthly advance per signed agreement",
+      chip: "PERIODIC" as const,
+    },
+    {
+      desk: "Full Execution Desk",
+      rule: "Custom milestone payment schedule per BOQ",
+      chip: "CUSTOM" as const,
+    },
+  ];
+
+  return (
+    <div className="flex flex-col pb-8">
+      <ScreenHeader brand="AlterCraft · Cash" title="Payment Gate + Cash" />
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        {/* Incoming cash card */}
+        <Card className="p-4">
+          <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 uppercase tracking-widest mb-2 text-center">
+            Incoming Cash — Devala Site Advance
+          </div>
+          <div className="text-[32px] font-['Barlow_Condensed'] font-bold text-white text-center leading-none">
+            ₹2,10,000
+          </div>
+          <div className="text-[10px] font-['JetBrains_Mono'] text-amber-400/60 mt-1.5 text-center">
+            Received · 18 Jun 2026 · Assignment pending
+          </div>
+        </Card>
+
+        <WarningBanner text="INCOMING CASH IS OXYGEN, NOT FREEDOM. ASSIGN IT BEFORE SPENDING." />
+
+        {/* Cash Allocation */}
+        <div>
+          <SectionLabel>Cash Allocation Buckets</SectionLabel>
+          <Card className="p-3">
+            {/* Stacked bar */}
+            <div className="flex h-2 rounded-full overflow-hidden mb-3.5">
+              {buckets.map((b) => (
+                <div
+                  key={b.label}
+                  className={`${b.color} opacity-85`}
+                  style={{ width: `${b.pct}%` }}
+                />
+              ))}
+            </div>
+            <div className="flex flex-col divide-y divide-[#191919]">
+              {buckets.map((b) => (
+                <div key={b.label} className="flex items-center gap-2.5 py-2">
+                  <div className={`w-2 h-2 rounded-full ${b.color} shrink-0`} />
+                  <span className="text-[11px] font-['JetBrains_Mono'] text-white/55 flex-1">
+                    {b.label}
+                  </span>
+                  <span className="text-[10px] font-['JetBrains_Mono'] text-white/25 w-7 text-right">
+                    {b.pct}%
+                  </span>
+                  <span className="text-[11px] font-['JetBrains_Mono'] font-medium text-white/70 w-16 text-right">
+                    {b.amount}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </Card>
+        </div>
+
+        {/* Gate Rules */}
+        <div>
+          <SectionLabel>Payment Gate Rules by Desk</SectionLabel>
+          <div className="flex flex-col gap-2">
+            {gateRules.map((r) => (
+              <Card key={r.desk} className="px-3 py-3">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="text-[12px] font-['Barlow_Condensed'] font-bold text-amber-400 tracking-widest uppercase">
+                    {r.desk}
+                  </div>
+                  <Chip label={r.chip} color="gray" />
+                </div>
+                <div className="text-[11px] font-['JetBrains_Mono'] text-white/45 leading-relaxed">
+                  {r.rule}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <PrimaryButton>
+          <DollarSign className="w-4 h-4" />
+          Log Payment
+        </PrimaryButton>
+      </div>
+    </div>
+  );
+}
+
+// ─── Screen 5: Daily Site Report ─────────────────────────────────────────────
+
+function SiteReport({ setScreen }: { setScreen: (s: Screen) => void }) {
+  const [photosTaken, setPhotosTaken] = useState(true);
+  const [updateSent, setUpdateSent] = useState(false);
+
+  return (
+    <div className="flex flex-col pb-8">
+      <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
+        <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
+          AlterCraft · Reports
+        </div>
+        <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+          Daily Site Report
+        </h1>
+        <button
+          onClick={() => setScreen("dispute")}
+          className="mt-2 text-[10px] font-['JetBrains_Mono'] text-red-400/70 hover:text-red-400 transition-colors flex items-center gap-1"
+        >
+          <Shield className="w-3 h-3" />
+          Open Dispute Protection File →
+        </button>
+      </div>
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        {/* Metadata */}
+        <div>
+          <SectionLabel>Report Metadata</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <Field label="Site Name" placeholder="Empro Motor Office" />
+            <div className="grid grid-cols-2 gap-2">
+              <Field label="Date" placeholder="18 Jun 2026" />
+              <Field label="Labour Present" placeholder="8 of 14" />
+            </div>
+          </div>
+        </div>
+
+        {/* Work Summary */}
+        <div>
+          <SectionLabel>Work Summary</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <TextArea
+              label="Work Completed Today"
+              placeholder="False ceiling grid complete — Bay A & B. Flooring tiles laid — 60% west wing."
+              rows={3}
+            />
+            <TextArea
+              label="Pending Work"
+              placeholder="East wing flooring, electrical first fix — est. 2 days remaining"
+              rows={2}
+            />
+          </div>
+        </div>
+
+        {/* Material */}
+        <div>
+          <SectionLabel>Material Status</SectionLabel>
+          <div className="flex flex-col gap-3">
+            <Field label="Material Used Today" placeholder="120 tiles 600×600, 8 bags cement" />
+            <Field label="Material Required Tomorrow" placeholder="60 tiles, conduit 25mm × 50m" />
+          </div>
+        </div>
+
+        {/* Issues */}
+        <TextArea
+          label="Issues / Blockers"
+          placeholder="Log site issues, delays, material shortage, labour absences, client instructions..."
+          rows={2}
+          danger
+        />
+
+        {/* Proof & Communication */}
+        <div>
+          <SectionLabel>Proof & Communication</SectionLabel>
+          <Card>
+            {[
+              {
+                label: "Photos Taken",
+                sub: photosTaken ? "12 photos ready to upload" : "Required before submit",
+                value: photosTaken,
+                set: setPhotosTaken,
+                icon: Camera,
+              },
+              {
+                label: "Update Sent to Client",
+                sub: updateSent ? "WhatsApp sent · 6:15 PM" : "No verbal — written only",
+                value: updateSent,
+                set: setUpdateSent,
+                icon: Send,
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="flex items-center gap-3 px-3 py-3 border-b border-[#191919] last:border-0"
+              >
+                <button
+                  onClick={() => item.set(!item.value)}
+                  className="relative shrink-0 transition-colors"
+                  style={{ width: 40, height: 22 }}
+                >
+                  <div
+                    className={`absolute inset-0 rounded-full border transition-colors ${
+                      item.value
+                        ? "bg-emerald-500 border-emerald-500"
+                        : "bg-transparent border-white/20"
+                    }`}
+                  />
+                  <div
+                    className={`absolute top-0.5 w-4 h-4 rounded-full transition-all ${
+                      item.value ? "left-5 bg-white" : "left-0.5 bg-white/30"
+                    }`}
+                  />
+                </button>
+                <item.icon className="w-3.5 h-3.5 text-white/25 shrink-0" />
+                <div className="flex-1">
+                  <div className="text-[11px] font-['JetBrains_Mono'] text-white/65">
+                    {item.label}
+                  </div>
+                  <div className="text-[10px] font-['JetBrains_Mono'] text-white/25 mt-0.5">
+                    {item.sub}
+                  </div>
+                </div>
+                {item.value ? (
+                  <Chip label="Done" color="green" />
+                ) : (
+                  <Chip label="Pending" color="red" />
+                )}
+              </div>
+            ))}
+          </Card>
+        </div>
+
+        <Field
+          label="Next Action"
+          placeholder="Electrical supervisor on-site — 7 AM sharp"
+        />
+
+        <PrimaryButton>
+          <Send className="w-4 h-4" />
+          Submit Site Report
+        </PrimaryButton>
+      </div>
+    </div>
+  );
+}
+
+// ─── Screen 6: Dispute Protection File ───────────────────────────────────────
+
+function DisputeProtection() {
+  const evidence = [
+    { item: "Signed Work Order", secured: true },
+    { item: "Payment Invoice #14", secured: true },
+    { item: "WhatsApp Chat Export (148 msgs)", secured: true },
+    { item: "Site Photos — Day 1–12", secured: true },
+    { item: "Bank Transfer Proof", secured: true },
+    { item: "Written Confirmation Email", secured: false },
+    { item: "Witness Statement", secured: false },
+  ];
+
+  const secured = evidence.filter((e) => e.secured).length;
+
+  const disputeMeta = [
+    { label: "Dispute Name", value: "Devala Site — Payment Default" },
+    { label: "Related Job", value: "Devala Warehouse Project" },
+    { label: "Party Involved", value: "Devala Constructions Pvt Ltd" },
+    { label: "Amount at Risk", value: "₹68,000", accent: "red" },
+    { label: "Current Status", value: "Negotiation Stage", accent: "amber" },
+    { label: "Settlement Offered", value: "₹50,000 partial — pending", accent: "amber" },
+    { label: "Deadline", value: "25 Jun 2026", accent: "red" },
+  ];
+
+  return (
+    <div className="flex flex-col pb-8">
+      <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
+        <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-red-400/60 mb-0.5">
+          AlterCraft · Legal
+        </div>
+        <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+          Dispute Protection File
+        </h1>
+        <div className="flex gap-1.5 mt-2">
+          <Chip label="Active Dispute" color="red" />
+          <Chip label="Negotiation" color="amber" />
+        </div>
+      </div>
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        {/* Doctrine */}
+        <div className="flex items-start gap-2.5 bg-red-500/8 border border-red-500/25 rounded-[5px] px-3 py-3">
+          <Shield className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+          <div>
+            <div className="text-[9px] font-['JetBrains_Mono'] text-red-400/50 uppercase tracking-widest mb-1">
+              Doctrine
+            </div>
+            <div className="text-[11px] font-['JetBrains_Mono'] text-red-300/85 leading-relaxed font-medium">
+              NO EMOTIONAL FIGHT. EVIDENCE FIRST. SETTLEMENT FIRST. LAWFUL ESCALATION ONLY.
+            </div>
+          </div>
+        </div>
+
+        {/* Dispute Details */}
+        <div>
+          <SectionLabel>Dispute Details</SectionLabel>
+          <Card>
+            {disputeMeta.map((row) => (
+              <div
+                key={row.label}
+                className="flex items-center justify-between px-3 py-2.5 border-b border-[#191919] last:border-0"
+              >
+                <span className="text-[10px] font-['JetBrains_Mono'] text-white/28">
+                  {row.label}
+                </span>
+                <span
+                  className={`text-[11px] font-['JetBrains_Mono'] font-medium text-right ml-3 ${
+                    row.accent === "red"
+                      ? "text-red-400"
+                      : row.accent === "amber"
+                      ? "text-amber-400"
+                      : "text-white/65"
+                  }`}
+                >
+                  {row.value}
+                </span>
+              </div>
+            ))}
+          </Card>
+        </div>
+
+        {/* Evidence Tracker */}
+        <div>
+          <SectionLabel>
+            Evidence Tracker — {secured}/{evidence.length} Secured
+          </SectionLabel>
+          <div className="mb-2">
+            <div className="h-1 bg-[#1f1f23] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-emerald-500 rounded-full transition-all"
+                style={{ width: `${(secured / evidence.length) * 100}%` }}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            {evidence.map((ev) => (
+              <div
+                key={ev.item}
+                className="flex items-center gap-2.5 px-3 py-2.5 bg-[#131315] border border-[#1f1f23] rounded-[5px]"
+              >
+                <div
+                  className={`w-3.5 h-3.5 rounded-full border shrink-0 flex items-center justify-center ${
+                    ev.secured ? "bg-emerald-500 border-emerald-500" : "border-white/20"
+                  }`}
+                >
+                  {ev.secured && (
+                    <Check className="w-2 h-2 text-black" strokeWidth={3} />
+                  )}
+                </div>
+                <span
+                  className={`text-[11px] font-['JetBrains_Mono'] flex-1 ${
+                    ev.secured ? "text-white/65" : "text-white/28"
+                  }`}
+                >
+                  {ev.item}
+                </span>
+                {ev.secured ? (
+                  <Chip label="Secured" color="green" />
+                ) : (
+                  <Chip label="Missing" color="red" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Escalation */}
+        <div>
+          <SectionLabel>Next Lawful Action</SectionLabel>
+          <Card className="p-3 border-red-500/18 bg-red-500/5">
+            <div className="text-[9px] font-['JetBrains_Mono'] text-red-400/50 uppercase tracking-widest mb-1">
+              Escalation Path
+            </div>
+            <div className="text-[12px] font-['JetBrains_Mono'] text-red-300 leading-relaxed">
+              Send legal notice via advocate — 25 Jun 2026 if settlement not reached
+            </div>
+            <div className="text-[10px] font-['JetBrains_Mono'] text-white/28 mt-1.5">
+              Consumer Forum filing ready as fallback. No verbal threats.
+            </div>
+          </Card>
+        </div>
+
+        <div className="flex gap-2">
+          <button className="flex-1 bg-[#131315] border border-[#1f1f23] hover:border-white/20 text-white/65 font-['Barlow_Condensed'] font-semibold text-[13px] tracking-widest uppercase py-3.5 rounded-[5px] transition-colors">
+            Add Evidence
+          </button>
+          <button className="flex-1 bg-red-600/12 border border-red-500/30 hover:bg-red-600/22 text-red-400 font-['Barlow_Condensed'] font-semibold text-[13px] tracking-widest uppercase py-3.5 rounded-[5px] transition-colors">
+            Escalate
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Bottom Navigation ────────────────────────────────────────────────────────
+
+function BottomNav({
+  screen,
+  setScreen,
+}: {
+  screen: Screen;
+  setScreen: (s: Screen) => void;
+}) {
+  const tabs = [
+    { id: "dashboard" as Screen, label: "Dashboard", icon: LayoutDashboard },
+    { id: "lead" as Screen, label: "Leads", icon: UserPlus },
+    { id: "job" as Screen, label: "Jobs", icon: Briefcase },
+    { id: "payment" as Screen, label: "Cash", icon: Wallet },
+    { id: "report" as Screen, label: "Reports", icon: FileText },
+  ];
+
+  const active = tabs.some((t) => t.id === screen) ? screen : "report";
+
+  return (
+    <div className="border-t border-[#1a1a1e] bg-[#090909] flex shrink-0">
+      {tabs.map((tab) => {
+        const isActive = active === tab.id;
+        return (
+          <button
+            key={tab.id}
+            onClick={() => setScreen(tab.id)}
+            className={`flex-1 flex flex-col items-center gap-1 py-3 transition-colors active:scale-95 ${
+              isActive ? "text-amber-400" : "text-white/22 hover:text-white/40"
+            }`}
+          >
+            <tab.icon
+              className="w-4 h-4"
+              strokeWidth={isActive ? 2.5 : 1.5}
+            />
+            <span className="text-[9px] font-['JetBrains_Mono'] uppercase tracking-widest leading-none">
+              {tab.label}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── App Root ─────────────────────────────────────────────────────────────────
+
+function ContractorDeskMobileApp() {
+  const [screen, setScreen] = useState<Screen>("dashboard");
+
+  const renderScreen = () => {
+    switch (screen) {
+      case "dashboard":
+        return <Dashboard setScreen={setScreen} />;
+      case "lead":
+        return <NewLead />;
+      case "job":
+        return <JobDetail setScreen={setScreen} />;
+      case "payment":
+        return <PaymentGate />;
+      case "report":
+        return <SiteReport setScreen={setScreen} />;
+      case "dispute":
+        return <DisputeProtection />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#050506] flex items-center justify-center p-4 sm:p-6">
+      {/* Phone shell */}
+      <div
+        className="w-full max-w-[390px] bg-[#0b0b0d] rounded-[28px] overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.8)] border border-[#1a1a1e] flex flex-col"
+        style={{ height: "min(844px, calc(100vh - 48px))" }}
+      >
+        {/* Status bar */}
+        <div className="flex items-center justify-between px-6 pt-3 pb-1 shrink-0">
+          <span className="text-[11px] font-['JetBrains_Mono'] text-white/40">9:41</span>
+          <div className="flex items-center gap-1.5">
+            <div className="flex gap-0.5">
+              {[3, 4, 5, 5].map((h, i) => (
+                <div
+                  key={i}
+                  className="w-0.5 bg-white/35 rounded-full"
+                  style={{ height: h }}
+                />
+              ))}
+            </div>
+            <div className="text-[10px] font-['JetBrains_Mono'] text-white/35">5G</div>
+            <div className="w-5 h-2.5 border border-white/30 rounded-sm relative">
+              <div className="absolute inset-0.5 left-0.5 right-1 bg-white/40 rounded-[1px]" />
+              <div className="absolute right-[-3px] top-[3px] w-0.5 h-1 bg-white/30 rounded-full" />
+            </div>
+          </div>
+        </div>
+
+        {/* Screen */}
+        <div className="flex-1 overflow-y-auto overscroll-contain" style={{ scrollbarWidth: "none" }}>
+          {renderScreen()}
+        </div>
+
+        {/* Bottom nav */}
+        <BottomNav screen={screen} setScreen={setScreen} />
+
+        {/* Home indicator */}
+        <div className="flex justify-center pb-2 pt-1.5 shrink-0">
+          <div className="w-24 h-1 bg-white/20 rounded-full" />
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default function OperatorDesk() {
-  const params = useParams();
-  const routeScreen = (params.screen || 'dashboard') as ScreenSlug;
-  const screen = validScreens.has(routeScreen) ? routeScreen : 'dashboard';
-  const {
-    state,
-    reports,
-    addLead,
-    convertLeadToJob,
-    addJob,
-    updateJob,
-    addCashEntry,
-    addLabour,
-    updateLabour,
-    addMaterial,
-    addSiteReport,
-    addDispute,
-    resetSeed,
-    exportJson,
-    importJson,
-  } = useOperatorDeskStore();
-  const [query, setQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<WorkStatus | 'All'>('All');
-  const [action, setAction] = useState<ActionForm>(null);
+  const hostRef = useRef<HTMLDivElement | null>(null);
+  const rootRef = useRef<Root | null>(null);
 
   useEffect(() => {
-    document.body.classList.add('operator-desk-active');
-    return () => document.body.classList.remove('operator-desk-active');
+    document.body.classList.add("operator-desk-active");
+
+    const host = hostRef.current;
+    if (!host) {
+      return () => document.body.classList.remove("operator-desk-active");
+    }
+
+    const shadowRoot = host.shadowRoot ?? host.attachShadow({ mode: "open" });
+    shadowRoot.innerHTML = "";
+
+    const style = document.createElement("style");
+    style.textContent = operatorDeskStyles;
+
+    const mount = document.createElement("div");
+    shadowRoot.append(style, mount);
+
+    const root = createRoot(mount);
+    rootRef.current = root;
+    root.render(<ContractorDeskMobileApp />);
+
+    return () => {
+      document.body.classList.remove("operator-desk-active");
+      root.unmount();
+      rootRef.current = null;
+      shadowRoot.innerHTML = "";
+    };
   }, []);
 
-  if (params.screen && !validScreens.has(params.screen as ScreenSlug)) {
-    return <Navigate to="/operator-desk/dashboard" replace />;
-  }
-
-  const meta = screenMeta[screen];
-  const primaryAction = actionForScreen(screen);
-
-  const filteredLeads = useMemo(
-    () => state.leads.filter((lead) => (statusFilter === 'All' || lead.status === statusFilter) && [lead.contractorName, lead.siteLocation, lead.workType, lead.serviceType].some((value) => includes(value, query))),
-    [state.leads, query, statusFilter]
-  );
-
-  const filteredJobs = useMemo(
-    () => state.jobs.filter((job) => (statusFilter === 'All' || job.status === statusFilter) && [job.siteName, job.contractorName, job.serviceType, job.currentStage, job.nextAction].some((value) => includes(value, query))),
-    [state.jobs, query, statusFilter]
-  );
-
-  const todaysActions = [
-    ...state.jobs.filter((job) => job.paymentGateStatus !== 'Clear').map((job) => ({
-      label: job.siteName,
-      copy: job.nextAction || 'Payment follow-up required.',
-      tone: 'danger' as const,
-    })),
-    ...state.jobs.filter((job) => !job.writtenConfirmation).map((job) => ({
-      label: job.siteName,
-      copy: 'Written confirmation missing. Do not expand scope verbally.',
-      tone: 'warn' as const,
-    })),
-    ...state.jobs.filter((job) => !job.photosProof).slice(0, 4).map((job) => ({
-      label: job.siteName,
-      copy: 'Photo proof pending for operator review.',
-      tone: 'warn' as const,
-    })),
-  ].slice(0, 8);
-
-  const renderContent = () => {
-    if (screen === 'dashboard') {
-      return (
-        <>
-          <section className="od-hero-card">
-            <div>
-              <p className="od-eyebrow">You bring the order. AlterCraft manages the backend.</p>
-              <h2>Founder control for contractor execution.</h2>
-              <p>
-                OperatorDesk keeps every active order tied to payment, labour, material, proof and next action.
-                It is built for field reality, not decorative CRM reporting.
-              </p>
-            </div>
-            <div className="od-hero-orbit" aria-hidden="true">
-              <span>Money</span>
-              <span>Work</span>
-              <span>Proof</span>
-              <span>Risk</span>
-            </div>
-          </section>
-          <section className="od-kpi-grid">
-            <DashboardCard label="Active Jobs" value={state.jobs.filter((job) => job.status === 'Active').length} icon={ClipboardList} />
-            <DashboardCard label="Payment Pending" value={state.jobs.filter((job) => job.status === 'Payment Pending').length} tone="warn" icon={Banknote} />
-            <DashboardCard label="Labour Deployed" value={state.labour.filter((item) => item.workStatus === 'Active').length} icon={Users} />
-            <DashboardCard label="Blocked Sites" value={state.jobs.filter((job) => job.status === 'Blocked').length} tone="danger" icon={AlertTriangle} />
-            <DashboardCard label="Disputed Jobs" value={state.disputes.length} tone="danger" icon={ShieldCheck} />
-            <DashboardCard label="Cash Risk" value={reports.cashRisk} note="Unallocated or no proof" tone={reports.cashRisk ? 'warn' : 'good'} icon={Gauge} />
-          </section>
-          <section className="od-section-card">
-            <div className="od-section-head">
-              <div>
-                <p className="od-eyebrow">Today</p>
-                <h2>Actions that protect the business</h2>
-              </div>
-              <span>{todaysActions.length} open</span>
-            </div>
-            <div className="od-action-list">
-              {todaysActions.map((item, index) => (
-                <article key={`${item.label}-${index}`} className={`od-action-item ${item.tone}`}>
-                  <strong>{item.label}</strong>
-                  <p>{item.copy}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-          <section className="od-list-grid">
-            {state.jobs.slice(0, 3).map((job) => (
-              <JobCard key={job.id} job={job} onMarkProof={(jobId) => updateJob(jobId, { photosProof: true })} />
-            ))}
-          </section>
-        </>
-      );
-    }
-
-    if (screen === 'leads') {
-      return filteredLeads.length ? (
-        <section className="od-list-grid">
-          {filteredLeads.map((lead) => <LeadCard key={lead.id} lead={lead} onConvert={convertLeadToJob} />)}
-        </section>
-      ) : <EmptyState title="No matching leads" copy="Add a lead or clear the filters to see the full contractor pipeline." />;
-    }
-
-    if (screen === 'jobs') {
-      return filteredJobs.length ? (
-        <section className="od-list-grid">
-          {filteredJobs.map((job) => <JobCard key={job.id} job={job} onMarkProof={(jobId) => updateJob(jobId, { photosProof: true })} />)}
-        </section>
-      ) : <EmptyState title="No matching jobs" copy="Add a job or use the dashboard to inspect active operational risk." />;
-    }
-
-    if (screen === 'cash') {
-      return (
-        <section className="od-list-grid">
-          {reports.unallocatedCash ? (
-            <div className="od-warning wide"><AlertTriangle size={16} /> {formatMoney(reports.unallocatedCash)} is not allocated to a bucket.</div>
-          ) : null}
-          {state.cashEntries.map((entry) => (
-            <article className="od-card od-list-card" key={entry.id}>
-              <div className="od-card-row">
-                <div>
-                  <p className="od-eyebrow">{entry.date} / {entry.mode}</p>
-                  <h3>{entry.sourceOrPaidTo}</h3>
-                  <small>{entry.bucket || 'No bucket selected'}</small>
-                </div>
-                <StatusBadge status={entry.type === 'Inflow' ? 'Active' : 'Waiting'} />
-              </div>
-              <div className="od-meta-grid">
-                <span><b>{formatMoney(entry.amount)}</b>{entry.type}</span>
-                <span><b>{entry.proof ? 'Yes' : 'No'}</b>Proof</span>
-              </div>
-              <p className="od-muted">{entry.notes}</p>
-            </article>
-          ))}
-        </section>
-      );
-    }
-
-    if (screen === 'labour') {
-      return (
-        <section className="od-list-grid">
-          {state.labour.map((item) => (
-            <LabourCard key={item.id} labour={item} onPresent={(labourId) => updateLabour(labourId, { attendanceStatus: 'Present', workStatus: 'Active' })} />
-          ))}
-        </section>
-      );
-    }
-
-    if (screen === 'materials') {
-      return (
-        <section className="od-list-grid">
-          {state.materials.map((item) => <MaterialCard key={item.id} material={item} />)}
-        </section>
-      );
-    }
-
-    if (screen === 'site-reports') {
-      return (
-        <section className="od-list-grid">
-          {state.siteReports.map((report) => (
-            <article className="od-card od-list-card" key={report.id}>
-              <div className="od-card-row">
-                <div>
-                  <p className="od-eyebrow">{report.date}</p>
-                  <h3>{report.siteName}</h3>
-                  <small>{report.labourPresent || 'Labour not noted'}</small>
-                </div>
-                <StatusBadge status={report.updateSent ? 'Completed' : 'Waiting'} />
-              </div>
-              <p className="od-muted">{report.workCompletedToday}</p>
-              <div className="od-proof-row">
-                <span className={report.photosTaken ? 'is-ok' : 'is-missing'}>Photos</span>
-                <span className={report.updateSent ? 'is-ok' : 'is-missing'}>Update sent</span>
-              </div>
-            </article>
-          ))}
-        </section>
-      );
-    }
-
-    if (screen === 'disputes') {
-      return (
-        <section className="od-list-grid">
-          {state.disputes.map((dispute) => <DisputeCard key={dispute.id} dispute={dispute} />)}
-        </section>
-      );
-    }
-
-    if (screen === 'reports') {
-      return (
-        <>
-          <section className="od-kpi-grid report-grid">
-            <DashboardCard label="Total active job value" value={formatMoney(reports.activeJobValue)} icon={ClipboardList} />
-            <DashboardCard label="Total pending payment" value={formatMoney(reports.pendingPayment)} tone="warn" icon={Banknote} />
-            <DashboardCard label="Total received advance" value={formatMoney(reports.receivedAdvance)} tone="good" icon={CheckCircle2} />
-            <DashboardCard label="Labour cost this week" value={formatMoney(reports.labourCostThisWeek)} icon={HardHat} />
-            <DashboardCard label="Material cost pending" value={formatMoney(reports.materialCostPending)} tone="warn" icon={PackageCheck} />
-            <DashboardCard label="Blocked jobs" value={reports.blockedJobs} tone={reports.blockedJobs ? 'danger' : 'good'} icon={AlertTriangle} />
-            <DashboardCard label="Without written confirmation" value={reports.jobsWithoutWrittenConfirmation} tone={reports.jobsWithoutWrittenConfirmation ? 'warn' : 'good'} icon={FileText} />
-            <DashboardCard label="Without photos/proof" value={reports.jobsWithoutPhotos} tone={reports.jobsWithoutPhotos ? 'warn' : 'good'} icon={Upload} />
-            <DashboardCard label="Disputed amount at risk" value={formatMoney(reports.disputedAmount)} tone="danger" icon={ShieldCheck} />
-          </section>
-          <section className="od-section-card">
-            <div className="od-section-head">
-              <div>
-                <p className="od-eyebrow">Future automation</p>
-                <h2>AI and backend hooks are reserved</h2>
-              </div>
-            </div>
-            <div className="od-note-grid">
-              <span>TODO: payment reminder automation</span>
-              <span>TODO: PDF work order export</span>
-              <span>TODO: WhatsApp site update automation</span>
-              <span>TODO: Supabase sync</span>
-            </div>
-          </section>
-        </>
-      );
-    }
-
-    return (
-      <section className="od-settings-grid">
-        <ImportExportPanel exportJson={exportJson} importJson={importJson} resetSeed={resetSeed} />
-        <article className="od-card">
-          <p className="od-eyebrow">Company doctrine</p>
-          <h3>Rules before work moves</h3>
-          <ul className="od-rule-list">
-            {doctrineRules.map((rule) => <li key={rule}>{rule}</li>)}
-          </ul>
-        </article>
-        <article className="od-card">
-          <p className="od-eyebrow">Next phase</p>
-          <h3>Upgrade placeholders</h3>
-          <ul className="od-rule-list future">
-            {futureUpgradeNotes.map((note) => <li key={note}>{note}</li>)}
-          </ul>
-        </article>
-      </section>
-    );
-  };
-
-  return (
-    <div className="operator-desk-page">
-      <aside className="od-desktop-rail">
-        <Link to="/operator-desk/dashboard" className="od-brand">
-          <span>AC</span>
-          <div>
-            <strong>OperatorDesk</strong>
-            <small>Powered by ACOS</small>
-          </div>
-        </Link>
-        <nav aria-label="OperatorDesk screens">
-          {screenNav.map(({ slug, label, icon: Icon }) => (
-            <NavLink key={slug} to={`/operator-desk/${slug}`} className={screen === slug ? 'active' : undefined}>
-              <Icon size={17} />
-              <span>{label}</span>
-            </NavLink>
-          ))}
-        </nav>
-        <div className="od-rail-note">
-          <Sparkles size={16} />
-          <p>This MVP stores data on this device. Use export JSON before clearing browser or APK data.</p>
-        </div>
-      </aside>
-
-      <main className="od-main">
-        <header className="od-topbar">
-          <Link to="/" className="od-home-link">AlterCraft</Link>
-          <div className="od-top-status">
-            <span><CalendarClock size={14} /> {new Date().toLocaleDateString('en-IN')}</span>
-            <span><ShieldCheck size={14} /> Local MVP</span>
-          </div>
-        </header>
-
-        <section className="od-page-head">
-          <div>
-            <p className="od-eyebrow">{meta.kicker}</p>
-            <h1>{meta.title}</h1>
-            <p>{meta.copy}</p>
-          </div>
-          {primaryAction ? (
-            <button className="od-primary-action" type="button" onClick={() => setAction(primaryAction)}>
-              {actionLabel(primaryAction)} <ArrowRight size={16} />
-            </button>
-          ) : null}
-        </section>
-
-        <nav className="od-chip-nav" aria-label="OperatorDesk screen shortcuts">
-          {screenNav.map(({ slug, shortLabel }) => (
-            <NavLink key={slug} to={`/operator-desk/${slug}`} className={screen === slug ? 'active' : undefined}>
-              {shortLabel}
-            </NavLink>
-          ))}
-        </nav>
-
-        {['leads', 'jobs'].includes(screen) ? (
-          <section className="od-filter-bar">
-            <label>
-              <Search size={15} />
-              <input value={query} placeholder={`Search ${screen}...`} onChange={(event) => setQuery(event.target.value)} />
-            </label>
-            <label>
-              <Filter size={15} />
-              <select value={statusFilter} onChange={(event) => setStatusFilter(event.target.value as WorkStatus | 'All')}>
-                {['All', ...workStatuses].map((status) => <option key={status} value={status}>{status}</option>)}
-              </select>
-            </label>
-          </section>
-        ) : null}
-
-        <ActionPanel
-          action={action}
-          onClose={() => setAction(null)}
-          jobs={state.jobs}
-          handlers={{ addLead, addJob, addCashEntry, addLabour, addMaterial, addSiteReport, addDispute }}
-        />
-
-        {renderContent()}
-
-        <footer className="od-app-footer">
-          <strong>AlterCraft OperatorDesk</strong>
-          <span>No site without payment gate. No scope without writing. No handover without proof.</span>
-        </footer>
-      </main>
-
-      {primaryAction ? <QuickActionButton label={actionLabel(primaryAction)} onClick={() => setAction(primaryAction)} /> : null}
-      <BottomNav active={screen} />
-    </div>
-  );
+  return <div ref={hostRef} />;
 }

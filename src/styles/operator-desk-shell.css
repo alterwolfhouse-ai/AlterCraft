@@ -1,0 +1,13 @@
+body.operator-desk-active {
+  background: #050506;
+  overflow-x: hidden;
+}
+
+body.operator-desk-active .ac-light-field,
+body.operator-desk-active .ac-gold-ribbon,
+body.operator-desk-active .ac-atelier-frame,
+body.operator-desk-active .ac-scroll-rail,
+body.operator-desk-active .ac-cursor-dot,
+body.operator-desk-active .ac-cursor-ring {
+  display: none;
+}
