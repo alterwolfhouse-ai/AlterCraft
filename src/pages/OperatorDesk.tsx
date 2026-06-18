@@ -6,26 +6,95 @@ import {
   LayoutDashboard, UserPlus, Briefcase, Wallet, FileText,
   Shield, AlertTriangle, CheckCircle2, ChevronRight,
   DollarSign, Send, Check, Circle, AlertCircle, Camera,
+  Users,
 } from "lucide-react";
 
-type Screen = "dashboard" | "lead" | "job" | "payment" | "report" | "dispute";
+type Screen = "dashboard" | "lead" | "job" | "payment" | "report" | "dispute" | "team";
+type OperatorRole = "l3-founder" | "l2-manager" | "l1-worker";
+
+type OperatorUser = {
+  id: string;
+  name: string;
+  phone: string;
+  email?: string;
+  role: OperatorRole;
+  accessLevel: 1 | 2 | 3;
+  status: "active" | "suspended";
+  createdAt: string;
+};
 
 type OperatorSession = {
+  id?: string;
   name: string;
   phone: string;
   email?: string;
   token?: string;
   mode: "server" | "local";
+  role: OperatorRole;
+  accessLevel: 1 | 2 | 3;
 };
 
 const OPERATOR_SESSION_KEY = "altercraft-operator-desk-session";
 const OPERATOR_API_BASE_KEY = "altercraft-operator-desk-api-base";
+const ROLE_DETAILS: Record<OperatorRole, { label: string; shortLabel: string; level: 1 | 2 | 3; copy: string }> = {
+  "l3-founder": {
+    label: "L3 Founder",
+    shortLabel: "Founder",
+    level: 3,
+    copy: "Full control over users, money, jobs and system settings.",
+  },
+  "l2-manager": {
+    label: "L2 Manager",
+    shortLabel: "Manager",
+    level: 2,
+    copy: "Can manage workers and daily execution, but cannot change founder control.",
+  },
+  "l1-worker": {
+    label: "L1 Worker",
+    shortLabel: "Worker",
+    level: 1,
+    copy: "Can update assigned work, reports and proof without admin controls.",
+  },
+};
+
+const normalizeRole = (role?: string): OperatorRole =>
+  role === "l3-founder" || role === "l2-manager" || role === "l1-worker" ? role : "l1-worker";
+
+const accessLevelFor = (role: OperatorRole): 1 | 2 | 3 => ROLE_DETAILS[role].level;
+
+const canManageUsers = (role: OperatorRole) => accessLevelFor(role) >= 2;
+
+const normalizeUser = (user: Partial<OperatorUser> | undefined, fallback: OperatorSession): OperatorUser => {
+  const role = normalizeRole(user?.role || fallback.role);
+  return {
+    id: user?.id || fallback.id || `local-${Date.now()}`,
+    name: user?.name || fallback.name,
+    phone: user?.phone || fallback.phone,
+    email: user?.email || fallback.email,
+    role,
+    accessLevel: user?.accessLevel || accessLevelFor(role),
+    status: user?.status || "active",
+    createdAt: user?.createdAt || new Date().toISOString(),
+  };
+};
 
 const readOperatorSession = (): OperatorSession | null => {
   if (typeof window === "undefined") return null;
   try {
     const raw = window.localStorage.getItem(OPERATOR_SESSION_KEY);
-    return raw ? (JSON.parse(raw) as OperatorSession) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<OperatorSession>;
+    const role = normalizeRole(parsed.role || "l3-founder");
+    return {
+      name: parsed.name || "Contractor Operator",
+      phone: parsed.phone || "Not provided",
+      email: parsed.email,
+      token: parsed.token,
+      mode: parsed.mode || "local",
+      role,
+      accessLevel: parsed.accessLevel || accessLevelFor(role),
+      id: parsed.id,
+    };
   } catch {
     return null;
   }
@@ -44,6 +113,53 @@ const operatorApiBase = () => {
   if (typeof window === "undefined") return "http://localhost:8787";
   return window.localStorage.getItem(OPERATOR_API_BASE_KEY) || "http://localhost:8787";
 };
+
+const operatorDeskRuntimeStyles = `${operatorDeskStyles}
+:host {
+  --font-size: 15px;
+  --background: #0b0b0d;
+  --foreground: #f0f0f2;
+  --card: #131315;
+  --border: #1f1f23;
+  --ring: #e8a93a;
+  display: block;
+  width: 100%;
+  min-height: 100dvh;
+  background: #050506;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  font-synthesis: none;
+}
+
+:host *,
+:host *::before,
+:host *::after {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+:host button,
+:host input,
+:host textarea {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:host img {
+  image-rendering: auto;
+}
+
+:host svg {
+  shape-rendering: geometricPrecision;
+}
+
+.operator-desk-shadow-root {
+  min-height: 100dvh;
+  background: #050506;
+  overflow: hidden;
+}
+`;
 
 // ─── Atomic components ────────────────────────────────────────────────────────
 
@@ -160,6 +276,22 @@ function WarningBanner({ text, variant = "amber" }: { text: string; variant?: "a
   );
 }
 
+function RoleBadge({ role }: { role: OperatorRole }) {
+  const detail = ROLE_DETAILS[role];
+  const color =
+    role === "l3-founder"
+      ? "bg-amber-500/15 text-amber-400 border-amber-500/35"
+      : role === "l2-manager"
+      ? "bg-blue-500/15 text-blue-400 border-blue-500/35"
+      : "bg-white/5 text-white/42 border-white/12";
+
+  return (
+    <span className={`inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-['JetBrains_Mono'] font-medium border tracking-wider uppercase ${color}`}>
+      {detail.label}
+    </span>
+  );
+}
+
 function ScreenHeader({
   brand,
   title,
@@ -244,7 +376,9 @@ function Dashboard({
     { label: "New Lead", icon: UserPlus, screen: "lead" as Screen },
     { label: "Create Work Order", icon: Briefcase, screen: "job" as Screen },
     { label: "Add Site Report", icon: FileText, screen: "report" as Screen },
-    { label: "Log Payment", icon: DollarSign, screen: "payment" as Screen },
+    canManageUsers(session.role)
+      ? { label: "Manage Team", icon: Users, screen: "team" as Screen }
+      : { label: "Log Payment", icon: DollarSign, screen: "payment" as Screen },
   ];
 
   const jobs = [
@@ -311,6 +445,9 @@ function Dashboard({
             <div className="flex items-center gap-1.5 justify-end mt-1.5">
               <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[9px] font-['JetBrains_Mono'] text-emerald-400 tracking-wider">ACTIVE</span>
+            </div>
+            <div className="mt-1.5 flex justify-end">
+              <RoleBadge role={session.role} />
             </div>
             <button
               type="button"
@@ -1208,19 +1345,248 @@ function DisputeProtection() {
 
 // ─── Bottom Navigation ────────────────────────────────────────────────────────
 
+function TeamManagement({ session }: { session: OperatorSession }) {
+  const [users, setUsers] = useState<OperatorUser[]>([]);
+  const [message, setMessage] = useState("Loading team access...");
+  const [busy, setBusy] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    password: "",
+    role: "l1-worker" as OperatorRole,
+  });
+
+  const canManage = session.mode === "server" && canManageUsers(session.role) && Boolean(session.token);
+  const roleOptions: OperatorRole[] = session.role === "l3-founder"
+    ? ["l2-manager", "l1-worker"]
+    : ["l1-worker"];
+
+  const authHeaders = () => ({
+    "content-type": "application/json",
+    authorization: `Bearer ${session.token || ""}`,
+  });
+
+  const loadUsers = async () => {
+    if (!canManage) {
+      setMessage(
+        session.mode === "local"
+          ? "Team management needs the OperatorDesk server. This device is currently in offline mode."
+          : "Your access level cannot manage team accounts."
+      );
+      return;
+    }
+
+    setBusy(true);
+    try {
+      const response = await fetch(`${operatorApiBase()}/api/operator-desk/users`, {
+        headers: authHeaders(),
+      });
+      if (!response.ok) throw new Error("Could not load team users.");
+      const data = (await response.json()) as { users?: Partial<OperatorUser>[] };
+      setUsers((data.users || []).map((user) => normalizeUser(user, session)));
+      setMessage("Team access loaded.");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not load team users.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, [canManage, session.token, session.role, session.mode]);
+
+  const createUser = async () => {
+    if (!canManage) return;
+    const cleanEmail = form.email.trim().toLowerCase();
+    if (!form.name.trim() || !cleanEmail) {
+      setMessage("Name and email are required to create an operator.");
+      return;
+    }
+
+    setBusy(true);
+    setMessage("Creating operator access...");
+    try {
+      const response = await fetch(`${operatorApiBase()}/api/operator-desk/users`, {
+        method: "POST",
+        headers: authHeaders(),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.phone.trim(),
+          email: cleanEmail,
+          password: form.password || "OperatorDesk#2026",
+          role: form.role,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(error.error || "Could not create operator.");
+      }
+
+      setForm({ name: "", phone: "", email: "", password: "", role: roleOptions[0] || "l1-worker" });
+      setMessage("Operator access created.");
+      await loadUsers();
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not create operator.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const toggleStatus = async (user: OperatorUser) => {
+    if (!canManage || user.id === session.id) return;
+    const nextStatus = user.status === "active" ? "suspended" : "active";
+    setBusy(true);
+    try {
+      const response = await fetch(`${operatorApiBase()}/api/operator-desk/users/${encodeURIComponent(user.id)}`, {
+        method: "PATCH",
+        headers: authHeaders(),
+        body: JSON.stringify({ status: nextStatus }),
+      });
+
+      if (!response.ok) {
+        const error = (await response.json().catch(() => ({}))) as { error?: string };
+        throw new Error(error.error || "Could not update operator.");
+      }
+
+      setUsers((current) => current.map((item) => (item.id === user.id ? { ...item, status: nextStatus } : item)));
+      setMessage(`Operator ${nextStatus === "active" ? "activated" : "suspended"}.`);
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "Could not update operator.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="flex flex-col pb-6">
+      <ScreenHeader brand="AlterCraft Access" title="Team Control" sub={ROLE_DETAILS[session.role].label} />
+
+      <div className="px-4 pt-4 flex flex-col gap-4">
+        <WarningBanner
+          text="L3 Founder has full control. L2 Manager can create and manage workers. L1 Worker cannot access account controls."
+        />
+
+        <div>
+          <SectionLabel>Create Operator</SectionLabel>
+          <Card className="p-3">
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              <input
+                value={form.name}
+                onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                placeholder="Name"
+                className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+              />
+              <input
+                value={form.phone}
+                onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
+                placeholder="Phone"
+                className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+              />
+            </div>
+            <input
+              value={form.email}
+              onChange={(event) => setForm((current) => ({ ...current, email: event.target.value }))}
+              placeholder="Email"
+              className="w-full mb-2 bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+            />
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                value={form.password}
+                onChange={(event) => setForm((current) => ({ ...current, password: event.target.value }))}
+                placeholder="Temp password"
+                type="password"
+                className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 placeholder-white/18 focus:outline-none focus:border-amber-500/50"
+              />
+              <select
+                value={form.role}
+                onChange={(event) => setForm((current) => ({ ...current, role: normalizeRole(event.target.value) }))}
+                className="bg-[#0f0f12] border border-[#1f1f23] rounded px-3 py-2.5 text-[12px] font-['JetBrains_Mono'] text-white/75 focus:outline-none focus:border-amber-500/50"
+              >
+                {roleOptions.map((role) => (
+                  <option key={role} value={role}>{ROLE_DETAILS[role].label}</option>
+                ))}
+              </select>
+            </div>
+            <button
+              type="button"
+              disabled={!canManage || busy}
+              onClick={createUser}
+              className="mt-3 w-full bg-amber-500 text-black font-['Barlow_Condensed'] font-bold text-[13px] tracking-widest uppercase py-3 rounded-[5px] disabled:opacity-50"
+            >
+              Create Access
+            </button>
+          </Card>
+        </div>
+
+        <div>
+          <SectionLabel>Current Team</SectionLabel>
+          <div className="flex flex-col gap-2">
+            {users.map((user) => (
+              <Card key={user.id} className="p-3">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <div className="text-[14px] font-['Barlow_Condensed'] font-bold text-white tracking-wider leading-none uppercase">
+                      {user.name}
+                    </div>
+                    <div className="text-[10px] font-['JetBrains_Mono'] text-white/30 mt-1 break-all">
+                      {user.email || user.phone || "No contact saved"}
+                    </div>
+                  </div>
+                  <RoleBadge role={user.role} />
+                </div>
+                <div className="mt-3 flex items-center justify-between border-t border-[#1a1a1e] pt-2">
+                  <span className={`text-[10px] font-['JetBrains_Mono'] uppercase tracking-wider ${user.status === "active" ? "text-emerald-400" : "text-red-400"}`}>
+                    {user.status}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={busy || user.id === session.id}
+                    onClick={() => toggleStatus(user)}
+                    className="text-[10px] font-['JetBrains_Mono'] text-white/45 uppercase tracking-wider disabled:opacity-30"
+                  >
+                    {user.status === "active" ? "Suspend" : "Activate"}
+                  </button>
+                </div>
+              </Card>
+            ))}
+            {!users.length ? (
+              <Card className="p-3">
+                <div className="text-[11px] font-['JetBrains_Mono'] text-white/38 leading-relaxed">
+                  {message}
+                </div>
+              </Card>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="text-[9px] font-['JetBrains_Mono'] text-white/28 leading-relaxed">
+          {message}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function BottomNav({
   screen,
   setScreen,
+  session,
 }: {
   screen: Screen;
   setScreen: (s: Screen) => void;
+  session: OperatorSession;
 }) {
   const tabs = [
     { id: "dashboard" as Screen, label: "Dashboard", icon: LayoutDashboard },
     { id: "lead" as Screen, label: "Leads", icon: UserPlus },
     { id: "job" as Screen, label: "Jobs", icon: Briefcase },
     { id: "payment" as Screen, label: "Cash", icon: Wallet },
-    { id: "report" as Screen, label: "Reports", icon: FileText },
+    canManageUsers(session.role)
+      ? { id: "team" as Screen, label: "Team", icon: Users }
+      : { id: "report" as Screen, label: "Reports", icon: FileText },
   ];
 
   const active = tabs.some((t) => t.id === screen) ? screen : "report";
@@ -1285,13 +1651,24 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
         throw new Error("OperatorDesk access check failed");
       }
 
-      const data = (await response.json()) as { token?: string; user?: { name?: string; phone?: string; email?: string } };
+      const data = (await response.json()) as { token?: string; user?: Partial<OperatorUser> };
+      const serverUser = normalizeUser(data.user, {
+        name: cleanName,
+        phone: cleanPhone,
+        email: cleanEmail,
+        mode: "server",
+        role: "l1-worker",
+        accessLevel: 1,
+      });
       const nextSession: OperatorSession = {
-        name: data.user?.name || cleanName,
-        phone: data.user?.phone || cleanPhone,
-        email: data.user?.email || cleanEmail,
+        id: serverUser.id,
+        name: serverUser.name,
+        phone: serverUser.phone,
+        email: serverUser.email,
         token: data.token,
         mode: "server",
+        role: serverUser.role,
+        accessLevel: serverUser.accessLevel,
       };
       writeOperatorSession(nextSession);
       onSignedIn(nextSession);
@@ -1302,6 +1679,8 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
         phone: cleanPhone,
         email: cleanEmail,
         mode: "local",
+        role: "l3-founder",
+        accessLevel: 3,
       };
       writeOperatorSession(nextSession);
       setStatus("Cloud sync is unavailable right now, so this device will continue in private offline mode.");
@@ -1359,6 +1738,9 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
         <div>
           <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.18em] uppercase text-white/35 mb-2">
             Signup / Login
+          </div>
+          <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 leading-relaxed mb-2">
+            The first server account becomes L3 Founder. Managers and workers should be created from Team Control.
           </div>
           <div className="grid grid-cols-2 gap-2">
             <input
@@ -1439,6 +1821,8 @@ function ContractorDeskMobileApp() {
         return <SiteReport setScreen={setScreen} />;
       case "dispute":
         return <DisputeProtection />;
+      case "team":
+        return session ? <TeamManagement session={session} /> : null;
     }
   };
 
@@ -1457,7 +1841,7 @@ function ContractorDeskMobileApp() {
         {session ? renderScreen() : <LoginGate onSignedIn={setSession} />}
       </div>
 
-      {session ? <BottomNav screen={screen} setScreen={setScreen} /> : null}
+      {session ? <BottomNav screen={screen} setScreen={setScreen} session={session} /> : null}
     </div>
   );
 }
@@ -1478,9 +1862,10 @@ export default function OperatorDesk() {
     shadowRoot.innerHTML = "";
 
     const style = document.createElement("style");
-    style.textContent = operatorDeskStyles;
+    style.textContent = operatorDeskRuntimeStyles;
 
     const mount = document.createElement("div");
+    mount.className = "operator-desk-shadow-root";
     shadowRoot.append(style, mount);
 
     const root = createRoot(mount);

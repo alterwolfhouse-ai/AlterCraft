@@ -49,6 +49,16 @@ Files:
 
 Use Settings -> Export JSON before resetting browser/app data.
 
+## Access Levels
+
+OperatorDesk now uses three access levels in the JSON server:
+
+- `L3 Founder`: full account, team, job, cash and system control.
+- `L2 Manager`: can manage workers and daily execution, but cannot create or edit founder/manager control.
+- `L1 Worker`: can update assigned work, reports and proof without account controls.
+
+The first account created on the OperatorDesk server becomes `L3 Founder`. Later public signups default to `L1 Worker`; founders and managers should create team accounts from the mobile Team Control screen.
+
 ## Local Run
 
 ```bash
@@ -98,4 +108,4 @@ android/app/build/outputs/apk/debug/app-debug.apk
 - photo/file upload
 - Notion sync
 - payment reminders
-- role-based access
+- hosted database and production authentication provider
