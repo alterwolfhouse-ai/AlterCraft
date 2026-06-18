@@ -6927,7 +6927,9 @@ body,
 }
 
 .home-header .home-button-solid,
-.elegant-actions .elegant-button {
+.elegant-actions .elegant-button,
+.elegant-actions .elegant-button-secondary {
+  flex: 0 0 auto;
   min-width: max-content;
   white-space: nowrap;
 }
