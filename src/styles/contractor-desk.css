@@ -1178,3 +1178,28 @@
     display: none;
   }
 }
+
+.contractor-logo-chip {
+  overflow: hidden;
+  padding: 0.35rem;
+  background: #f8f4ee;
+}
+
+.contractor-logo-chip img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.contractor-brand > .contractor-logo-chip {
+  background: #f8f4ee;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+}
+
+.contractor-apk-status .contractor-logo-chip {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(198, 138, 54, 0.32);
+}

@@ -234,7 +234,9 @@ function OperatorDownloadPanel() {
         <div className="contractor-apk-orbit" />
         <div className="contractor-apk-phone">
           <div className="contractor-apk-status">
-            <span>AC</span>
+            <span className="contractor-logo-chip">
+              <img src="/altercraft-logo-mark.png" alt="" />
+            </span>
             <em>Live Desk</em>
           </div>
           <div className="contractor-apk-rows">
@@ -292,10 +294,12 @@ export default function ContractorDesk() {
         <div className="contractor-beam" />
         <nav className="contractor-nav" aria-label="Contractor Desk navigation">
           <Link to="/" className="contractor-brand">
-            <span>AC</span>
+            <span className="contractor-logo-chip">
+              <img src="/altercraft-logo-mark.png" alt="" />
+            </span>
             <div>
               <strong>AlterCraft</strong>
-              <small>Contractor Desk · Powered by AlterLabs</small>
+              <small>Contractor Desk - Powered by AlterLabs</small>
             </div>
           </Link>
           <div className="contractor-nav-links">
@@ -311,7 +315,7 @@ export default function ContractorDesk() {
           <div className="contractor-hero-copy">
             <p className="contractor-kicker">
               <Sparkles size={15} />
-              Main product by AlterCraft · Powered by AlterLabs
+              Main product by AlterCraft - Powered by AlterLabs
             </p>
             <h1>Contractor execution control, without site chaos.</h1>
             <p className="contractor-lede">

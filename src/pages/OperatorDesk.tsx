@@ -287,16 +287,21 @@ function Dashboard({
     <div className="flex flex-col pb-6">
       {/* Header */}
       <div className="bg-[#0b0b0d] border-b border-[#1a1a1e] px-4 py-3.5 sticky top-0 z-10">
-        <div className="flex items-start justify-between">
-          <div>
-            <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
-              AlterCraft
-            </div>
-            <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
-              Contractor Desk
-            </h1>
-            <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 tracking-widest uppercase mt-0.5">
-              Powered by AlterLabs
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-start gap-2.5 min-w-0">
+            <span className="w-10 h-10 rounded-[8px] bg-[#f8f4ee] border border-amber-500/25 p-1.5 shrink-0 shadow-[0_10px_26px_rgba(0,0,0,0.28)]">
+              <img src="/altercraft-logo-mark.png" alt="" className="w-full h-full object-contain" />
+            </span>
+            <div className="min-w-0">
+              <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/60 mb-0.5">
+                AlterCraft
+              </div>
+              <h1 className="text-[18px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+                Contractor Desk
+              </h1>
+              <div className="text-[9px] font-['JetBrains_Mono'] text-white/25 tracking-widest uppercase mt-0.5">
+                Powered by AlterLabs
+              </div>
             </div>
           </div>
           <div className="text-right">
@@ -1313,15 +1318,20 @@ function LoginGate({ onSignedIn }: { onSignedIn: (session: OperatorSession) => v
         <div className="absolute -top-12 -right-12 w-72 h-72 rounded-full bg-amber-500/15" />
         <div className="absolute -bottom-12 -left-12 w-64 h-64 rounded-full bg-blue-500/10" />
         <div className="relative z-10 h-full flex flex-col justify-between p-5">
-          <div>
-            <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/70 mb-1">
-              Contractor Desk
-            </div>
-            <h1 className="text-[32px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
-              Operator Access
-            </h1>
-            <div className="text-[10px] font-['JetBrains_Mono'] text-white/35 tracking-widest uppercase mt-1">
-              Powered by AlterLabs
+          <div className="flex items-start gap-3">
+            <span className="w-12 h-12 rounded-[9px] bg-[#f8f4ee] border border-amber-500/25 p-1.5 shrink-0 shadow-[0_14px_34px_rgba(0,0,0,0.35)]">
+              <img src="/altercraft-logo-mark.png" alt="" className="w-full h-full object-contain" />
+            </span>
+            <div>
+              <div className="text-[9px] font-['JetBrains_Mono'] tracking-[0.22em] uppercase text-amber-400/70 mb-1">
+                Contractor Desk
+              </div>
+              <h1 className="text-[32px] font-['Barlow_Condensed'] font-bold tracking-widest text-white leading-none uppercase">
+                Operator Access
+              </h1>
+              <div className="text-[10px] font-['JetBrains_Mono'] text-white/35 tracking-widest uppercase mt-1">
+                Powered by AlterLabs
+              </div>
             </div>
           </div>
 

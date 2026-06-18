@@ -248,7 +248,9 @@ function ACOSShell({ children, title, kicker }: { children: React.ReactNode; tit
     <div className="acos-page">
       <aside className="acos-sidebar" aria-label="ACOS modules">
         <Link to="/admin" className="acos-brand">
-          <span>AC</span>
+          <span className="acos-brand-mark">
+            <img src="/altercraft-logo-mark.png" alt="" />
+          </span>
           <div>
             <strong>AlterCraft OS</strong>
             <small>Internal control center</small>

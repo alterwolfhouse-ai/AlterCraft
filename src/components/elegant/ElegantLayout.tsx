@@ -127,7 +127,9 @@ export function ElegantHeader() {
       <header className="elegant-header">
         <div className="elegant-container elegant-header-inner">
           <Link to="/" className="elegant-brand" aria-label="AlterCraft home">
-            <span className="elegant-brand-mark" aria-hidden="true">AC</span>
+            <span className="elegant-brand-mark ac-logo-mark" aria-hidden="true">
+              <img src="/altercraft-logo-mark.png" alt="" />
+            </span>
             <span className="elegant-brand-text">
               <span className="elegant-brand-name">AlterCraft</span>
               <span className="elegant-brand-subtitle">Woods & Furniture</span>

@@ -71,7 +71,9 @@ export function Navigation() {
               aria-label="AlterCraft"
               className="transition-opacity hover:opacity-80"
             >
-              <span className="nav-logo-mark">AC</span>
+              <span className="nav-logo-mark ac-logo-mark" aria-hidden="true">
+                <img src="/altercraft-logo-mark.png" alt="" />
+              </span>
             </a>
 
             <div className="hidden md:flex items-center gap-8">

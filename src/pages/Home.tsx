@@ -104,7 +104,9 @@ function HomeHeader() {
     <header className={`home-header ${scrolled ? 'scrolled' : ''}`}>
       <div className="home-container home-header-inner">
         <Link to="/" className="home-brand" aria-label="AlterCraft home">
-          <span className="home-brand-mark">AC</span>
+          <span className="home-brand-mark ac-logo-mark" aria-hidden="true">
+            <img src="/altercraft-logo-mark.png" alt="" />
+          </span>
           <span>
             <span className="home-brand-kicker">Premium Interiors</span>
             <span className="home-brand-name">AlterCraft</span>
