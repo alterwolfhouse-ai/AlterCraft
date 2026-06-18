@@ -139,7 +139,7 @@ const seedJobs = [
   { name: 'Labour Deployment Batch', service: 'Labour Desk', status: '2 Carpenters + 1 Helper Assigned', risk: 'Medium' },
 ];
 
-const apkDownloadPath = '/downloads/operator-desk-debug.apk';
+const apkDownloadPath = '/downloads/operator-desk-debug-d428fcf.apk';
 
 const seoArticles = [
   {
