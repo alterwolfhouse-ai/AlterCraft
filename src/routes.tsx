@@ -161,6 +161,7 @@ const ACOSBackendGuide = lazy(() =>
   import("./pages/ACOS").then((module) => ({ default: module.ACOSBackendGuide }))
 );
 const ContractorDesk = lazy(() => import("./pages/ContractorDesk"));
+const OperatorDesk = lazy(() => import("./pages/OperatorDesk"));
 
 function AdminOnly({ children }: { children: React.ReactNode }) {
   const { user, isAdmin } = useAuth();
@@ -207,6 +208,18 @@ export const router = createBrowserRouter([
   {
     path: "/contractor-desk",
     Component: ContractorDesk,
+  },
+  {
+    path: "/OperatorDesk",
+    element: <Navigate to="/operator-desk/dashboard" replace />,
+  },
+  {
+    path: "/operator-desk",
+    Component: OperatorDesk,
+  },
+  {
+    path: "/operator-desk/:screen",
+    Component: OperatorDesk,
   },
   {
     path: "/modular-kitchen",

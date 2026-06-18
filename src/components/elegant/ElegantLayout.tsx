@@ -103,7 +103,7 @@ export function FloatingWhatsApp() {
 export function ElegantHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const { isAdmin } = useAuth();
-  const visibleNavItems = isAdmin ? [...navItems, { to: '/admin', label: 'ACOS' }] : navItems;
+  const visibleNavItems = isAdmin ? [...navItems, { to: '/operator-desk/dashboard', label: 'OperatorDesk' }] : navItems;
 
   return (
     <>

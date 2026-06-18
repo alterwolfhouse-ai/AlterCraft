@@ -41,6 +41,14 @@ export default function App() {
   const cleanupScrollReset = useRef<null | (() => void)>(null);
 
   useEffect(() => {
+    const capacitor = (window as typeof window & {
+      Capacitor?: { isNativePlatform?: () => boolean };
+    }).Capacitor;
+
+    if (window.location.pathname === '/' && capacitor?.isNativePlatform?.()) {
+      router.navigate('/operator-desk/dashboard', { replace: true });
+    }
+
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }

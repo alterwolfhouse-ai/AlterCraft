@@ -49,6 +49,70 @@ const routeSeo = {
       'Mobile-first contractor execution control system for payment gates, labour deployment, material desk, site reports, cash ledger and dispute protection.',
     canonical: `${baseUrl}/ContractorDesk/`,
   },
+  '/OperatorDesk': {
+    title: 'OperatorDesk | AlterCraft Internal Execution App',
+    description:
+      'AlterCraft OperatorDesk mobile command center for contractor leads, jobs, payment gates, cash, labour, materials, reports and disputes.',
+    robots: 'noindex, follow',
+    canonical: `${baseUrl}/operator-desk/dashboard`,
+  },
+  '/operator-desk': {
+    title: 'OperatorDesk | AlterCraft Internal Execution App',
+    description:
+      'AlterCraft OperatorDesk mobile command center for contractor leads, jobs, payment gates, cash, labour, materials, reports and disputes.',
+    robots: 'noindex, follow',
+    canonical: `${baseUrl}/operator-desk/dashboard`,
+  },
+  '/operator-desk/dashboard': {
+    title: 'OperatorDesk Dashboard | AlterCraft',
+    description: 'Mobile execution dashboard for AlterCraft contractor jobs, payment gates, labour, materials and operational risk.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/leads': {
+    title: 'OperatorDesk Leads | AlterCraft',
+    description: 'Local MVP lead desk for contractor enquiries and job conversion.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/jobs': {
+    title: 'OperatorDesk Jobs | AlterCraft',
+    description: 'Local MVP job desk for execution stages, proof, blockers and payment-gate control.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/cash': {
+    title: 'OperatorDesk Cash | AlterCraft',
+    description: 'Local MVP cash ledger with inflow, outflow, buckets, proof and job linkage.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/labour': {
+    title: 'OperatorDesk Labour | AlterCraft',
+    description: 'Local MVP labour deployment desk for attendance, advances, daily rates and reliability.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/materials': {
+    title: 'OperatorDesk Materials | AlterCraft',
+    description: 'Local MVP material desk for vendor, rate, payment, procurement and delivery tracking.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/site-reports': {
+    title: 'OperatorDesk Site Reports | AlterCraft',
+    description: 'Local MVP daily site report desk for work updates, proof, issues and next actions.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/disputes': {
+    title: 'OperatorDesk Disputes | AlterCraft',
+    description: 'Local MVP dispute desk for evidence, amount at risk, proof and lawful next actions.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/reports': {
+    title: 'OperatorDesk Reports | AlterCraft',
+    description: 'Local MVP owner reports for active job value, pending payment, proof gaps and cash risk.',
+    robots: 'noindex, follow',
+  },
+  '/operator-desk/settings': {
+    title: 'OperatorDesk Settings | AlterCraft',
+    description: 'Local MVP settings for JSON import, export, seed reset and company doctrine.',
+    robots: 'noindex, follow',
+  },
   '/modular-kitchen': {
     title: `Modular Kitchen from ${modularKitchenPrice} in Ghaziabad & Delhi NCR | AlterCraft`,
     description:

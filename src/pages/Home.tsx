@@ -89,7 +89,7 @@ function HomeHeader() {
   const [scrolled, setScrolled] = useState(false);
   const { isAdmin } = useAuth();
   const navLinks = useMemo(
-    () => (isAdmin ? [...NAV_LINKS, { to: '/admin', label: 'ACOS' }] : NAV_LINKS),
+    () => (isAdmin ? [...NAV_LINKS, { to: '/operator-desk/dashboard', label: 'OperatorDesk' }] : NAV_LINKS),
     [isAdmin]
   );
 
