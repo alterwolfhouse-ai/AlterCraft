@@ -10107,6 +10107,66 @@ iframe {
   box-shadow: 0 16px 34px rgba(151, 91, 31, 0.24);
 }
 
+/* Blog card polish: keep guide cards readable and stop decorative motion from crowding copy. */
+.home-blog-grid {
+  align-items: stretch;
+  gap: clamp(1rem, 1.8vw, 1.35rem);
+  overflow: visible;
+}
+
+.home-blog-card {
+  position: relative;
+  min-width: 0;
+  transform: none;
+  isolation: isolate;
+}
+
+.home-blog-card:nth-child(3),
+.home-blog-card:nth-child(5) {
+  transform: none;
+}
+
+.home-blog-card:hover {
+  transform: translateY(-3px);
+}
+
+.home-blog-body {
+  min-width: 0;
+  align-content: start;
+}
+
+.home-blog-meta {
+  align-items: flex-start;
+}
+
+.home-blog-meta > span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.home-blog-body strong,
+.home-blog-body > span:not(.home-blog-meta):not(.home-blog-link) {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.home-blog-link {
+  align-self: end;
+  width: max-content;
+  max-width: 100%;
+}
+
+body:has(.home-blog-card:hover) .ac-cursor-ring {
+  width: 24px;
+  height: 24px;
+  border-color: rgba(185, 135, 61, 0.24);
+  opacity: 0.38;
+}
+
+body:has(.home-blog-card:hover) .ac-cursor-dot {
+  opacity: 0.55;
+}
+
 /* Final mobile gutter pass: keep every public page on the same phone rhythm. */
 @media (max-width: 760px) {
   :root {
