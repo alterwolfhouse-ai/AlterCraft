@@ -144,6 +144,42 @@ const routeSeo = {
     description:
       'AlterCraft makes custom wardrobes, beds, shoe racks, TV units, office furniture and storage units for Ghaziabad, Noida, Greater Noida and Delhi NCR.',
   },
+  '/furniture-maker-ghaziabad': {
+    title: 'Furniture Maker in Ghaziabad | Custom Furniture by AlterCraft',
+    description:
+      'AlterCraft is a furniture maker in Ghaziabad for wardrobes, beds, modular kitchens, TV units, shoe racks, office furniture and measured custom storage work.',
+  },
+  '/furniture-maker-modinagar-ghaziabad': {
+    title: 'Furniture Maker in Modinagar Ghaziabad | AlterCraft',
+    description:
+      'Furniture maker in Modinagar Ghaziabad for custom wardrobes, beds, shoe racks, TV units, office furniture, modular kitchen and made-to-measure storage.',
+  },
+  '/furniture-maker-in-modinagar-ghaziabad': {
+    title: 'Furniture Maker in Modinagar Ghaziabad | AlterCraft',
+    description:
+      'Furniture maker in Modinagar Ghaziabad for custom wardrobes, beds, shoe racks, TV units, office furniture, modular kitchen and made-to-measure storage.',
+    canonical: `${baseUrl}/furniture-maker-modinagar-ghaziabad/`,
+  },
+  '/modular-kitchen-quotation-ghaziabad': {
+    title: `Modular Kitchen Quotation in Ghaziabad from ${modularKitchenPrice} | AlterCraft`,
+    description:
+      `Request a modular kitchen quotation in Ghaziabad from ${modularKitchenPrice} for agreed cabinet scope, with material, finish, hardware and installation details checked before final quote.`,
+  },
+  '/wardrobe-quotation-ghaziabad': {
+    title: 'Wardrobe Quotation in Ghaziabad | Sliding, Swing and Loft Wardrobes',
+    description:
+      'Request a wardrobe quotation in Ghaziabad for sliding wardrobes, swing wardrobes, lofts, drawers, saree storage, luggage zones, material, finish and hardware.',
+  },
+  '/custom-furniture-quotation-ghaziabad': {
+    title: 'Custom Furniture Quotation in Ghaziabad | AlterCraft',
+    description:
+      'Get a custom furniture quotation in Ghaziabad for wardrobes, beds, shoe racks, TV units, mandirs, office furniture and made-to-measure storage.',
+  },
+  '/workstation-manufacturers-ghaziabad': {
+    title: 'Workstation Manufacturers in Ghaziabad | Office Furniture AlterCraft',
+    description:
+      'Workstation manufacturers in Ghaziabad for office desks, team workstations, cable-managed tables, storage, reception counters and commercial furniture.',
+  },
   '/custom-furniture-ghaziabad': {
     title: 'Custom Furniture Maker in Ghaziabad | AlterCraft',
     description:

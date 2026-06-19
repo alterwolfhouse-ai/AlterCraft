@@ -28,6 +28,24 @@ const CustomFurnitureGreaterNoida = lazy(() =>
 const CustomFurnitureMakerNearMe = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureMakerNearMe }))
 );
+const FurnitureMakerGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.FurnitureMakerGhaziabad }))
+);
+const FurnitureMakerModinagarGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.FurnitureMakerModinagarGhaziabad }))
+);
+const ModularKitchenQuotationGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.ModularKitchenQuotationGhaziabad }))
+);
+const WardrobeQuotationGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.WardrobeQuotationGhaziabad }))
+);
+const CustomFurnitureQuotationGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.CustomFurnitureQuotationGhaziabad }))
+);
+const WorkstationManufacturersGhaziabad = lazy(() =>
+  import("./pages/LocalServicePages").then((module) => ({ default: module.WorkstationManufacturersGhaziabad }))
+);
 const AIInteriorDesignPlanner = lazy(() =>
   import("./pages/LocalServicePages").then((module) => ({ default: module.AIInteriorDesignPlanner }))
 );
@@ -287,6 +305,34 @@ export const router = createBrowserRouter(withSiteErrorFallback([
   {
     path: "/custom-furniture-maker-near-me",
     Component: CustomFurnitureMakerNearMe,
+  },
+  {
+    path: "/furniture-maker-ghaziabad",
+    Component: FurnitureMakerGhaziabad,
+  },
+  {
+    path: "/furniture-maker-modinagar-ghaziabad",
+    Component: FurnitureMakerModinagarGhaziabad,
+  },
+  {
+    path: "/furniture-maker-in-modinagar-ghaziabad",
+    Component: FurnitureMakerModinagarGhaziabad,
+  },
+  {
+    path: "/modular-kitchen-quotation-ghaziabad",
+    Component: ModularKitchenQuotationGhaziabad,
+  },
+  {
+    path: "/wardrobe-quotation-ghaziabad",
+    Component: WardrobeQuotationGhaziabad,
+  },
+  {
+    path: "/custom-furniture-quotation-ghaziabad",
+    Component: CustomFurnitureQuotationGhaziabad,
+  },
+  {
+    path: "/workstation-manufacturers-ghaziabad",
+    Component: WorkstationManufacturersGhaziabad,
   },
   {
     path: "/ai-interior-design-planner",

@@ -10,6 +10,11 @@
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
       <link rel="manifest" href="/site.webmanifest" />
       <meta name="theme-color" content="#f8f4ee" />
+      <script>
+        if (location.protocol === 'http:' && /(^|\.)altercraft\.in$/i.test(location.hostname)) {
+          location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+        }
+      </script>
       <title>Custom Furniture & Modular Kitchen from INR 1,200 / sq. ft. in Ghaziabad | AlterCraft</title>
       <meta
         name="description"

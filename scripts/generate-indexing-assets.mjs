@@ -8,6 +8,40 @@ const blogDir = join(publicDir, 'blog');
 const sitemapPath = join(publicDir, 'sitemap.xml');
 const blogIndexPath = join(blogDir, 'index.html');
 const lastmod = process.env.SITE_LASTMOD || '2026-06-19';
+const whatsappNumber = '918817503658';
+
+const blogSeoOverrides = {
+  'wardrobe-internal-layout-guide': {
+    title: 'Modular Wardrobe Planning Guide for Small Bedrooms | AlterCraft Ghaziabad',
+    description:
+      'Plan a modular wardrobe for small bedrooms with hanging space, drawers, lofts, saree storage, luggage zones and a quotation-ready internal layout.',
+  },
+  'sliding-vs-swing-wardrobe-small-bedroom': {
+    title: 'Sliding vs Swing Wardrobe for Small Bedrooms | AlterCraft Ghaziabad',
+    description:
+      'Compare sliding and swing wardrobes for compact bedrooms with clearance, access, maintenance, storage planning, hardware and quote guidance.',
+  },
+  'tv-unit-planning-guide': {
+    title: 'TV Unit Planning Guide: Cost, Storage and Cable Access | AlterCraft',
+    description:
+      'Plan a custom TV unit wall with storage, cable access, panel depth, lighting, ventilation, service clearance and quotation inputs.',
+  },
+  'hettich-vs-blum-vs-hafele-kitchen-wardrobe': {
+    title: 'Soft Close Hinges Guide: Hettich vs Blum vs Hafele | AlterCraft',
+    description:
+      'Compare Hettich, Blum and Hafele soft-close hinges, channels and lift-ups for modular kitchens and wardrobes before final quotation.',
+  },
+  'small-kitchen-storage-ideas-noida-ghaziabad': {
+    title: 'Modular Kitchen Storage Zones for Small Flats | AlterCraft NCR',
+    description:
+      'Storage-zone ideas for small modular kitchens in Noida, Ghaziabad and Greater Noida flats, including pantry, drawers, corners and tall units.',
+  },
+  'modular-kitchen-warm-profile-lights': {
+    title: 'Modular Kitchen Warm Profile Lights and Storage Guide | AlterCraft',
+    description:
+      'Plan warm profile lights in a modular kitchen with practical storage, sink durability, appliance spacing, finish selection and quote guidance.',
+  },
+};
 
 const publicRoutes = [
   '/',
@@ -22,6 +56,12 @@ const publicRoutes = [
   '/modular-kitchen-ghaziabad',
   '/modular-kitchen-noida',
   '/custom-furniture-maker-near-me',
+  '/furniture-maker-ghaziabad',
+  '/furniture-maker-modinagar-ghaziabad',
+  '/modular-kitchen-quotation-ghaziabad',
+  '/wardrobe-quotation-ghaziabad',
+  '/custom-furniture-quotation-ghaziabad',
+  '/workstation-manufacturers-ghaziabad',
   '/custom-furniture-ghaziabad',
   '/custom-furniture-noida',
   '/custom-furniture-greater-noida',
@@ -64,6 +104,12 @@ const routePriority = new Map([
   ['/modular-kitchen-near-me', '0.95'],
   ['/modular-kitchen-ghaziabad', '0.95'],
   ['/custom-furniture-maker-near-me', '0.95'],
+  ['/furniture-maker-ghaziabad', '0.95'],
+  ['/furniture-maker-modinagar-ghaziabad', '0.94'],
+  ['/modular-kitchen-quotation-ghaziabad', '0.95'],
+  ['/wardrobe-quotation-ghaziabad', '0.92'],
+  ['/custom-furniture-quotation-ghaziabad', '0.92'],
+  ['/workstation-manufacturers-ghaziabad', '0.9'],
   ['/custom-furniture-ghaziabad', '0.95'],
   ['/modular-kitchen', '0.9'],
   ['/designer-beds', '0.85'],
@@ -91,6 +137,8 @@ const htmlEscape = (value) =>
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 
+const titleWithBrand = (title) => (/\bAlterCraft\b/i.test(title) ? title : `${title} | AlterCraft`);
+
 const extract = (html, pattern) => html.match(pattern)?.[1]?.trim() || '';
 
 const absoluteUrl = (url) => {
@@ -116,6 +164,7 @@ const getBlogSlugs = () =>
 const readBlogMeta = (slug) => {
   const filePath = join(blogDir, slug, 'index.html');
   const html = readFileSync(filePath, 'utf8');
+  const override = blogSeoOverrides[slug] || {};
   const title = extract(html, /<title>([\s\S]*?)<\/title>/i).replace(/\s+\|\s+AlterCraft.*$/i, '');
   const description = extract(html, /<meta\s+name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i);
   const canonical = extract(html, /<link\s+rel=["']canonical["'][^>]*href=["']([^"']+)["'][^>]*>/i) || `${baseUrl}/blog/${slug}/`;
@@ -140,8 +189,8 @@ const readBlogMeta = (slug) => {
     slug,
     filePath,
     html,
-    title: title || slug.replace(/-/g, ' '),
-    description,
+    title: override.title || title || slug.replace(/-/g, ' '),
+    description: override.description || description,
     canonical,
     image: absoluteUrl(image),
     category,
@@ -151,6 +200,92 @@ const readBlogMeta = (slug) => {
 };
 
 const insertBeforeHeadEnd = (html, snippet) => html.replace(/<\/head>/i, `  ${snippet}\n</head>`);
+
+const upsertTag = (html, pattern, snippet) =>
+  pattern.test(html) ? html.replace(pattern, snippet) : insertBeforeHeadEnd(html, snippet);
+
+const upsertJsonLd = (html, type, schema) => {
+  const snippet = `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+  let replaced = false;
+  const nextHtml = html.replace(
+    /<script\s+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+    (fullMatch, jsonText) => {
+      if (replaced) return fullMatch;
+      try {
+        const parsed = JSON.parse(jsonText.trim());
+        if (parsed?.['@type'] === type) {
+          replaced = true;
+          return snippet;
+        }
+      } catch {
+        return fullMatch;
+      }
+      return fullMatch;
+    },
+  );
+
+  return replaced ? nextHtml : insertBeforeHeadEnd(nextHtml, snippet);
+};
+
+const encodedWhatsAppMessage = (meta) =>
+  encodeURIComponent(
+    `Hi AlterCraft, I read your guide "${meta.title}" and want a free quotation. I can share photos and dimensions.`,
+  );
+
+const blogLeadCta = (meta, label) => `
+  <div class="blog-lead-cta" data-ac-blog-cta="${label}">
+    <strong>Need this design for your home?</strong>
+    <p>Get a free quotation on WhatsApp. Share photos, wall sizes, budget and location so AlterCraft can guide the next practical step.</p>
+    <a href="https://wa.me/${whatsappNumber}?text=${encodedWhatsAppMessage(meta)}">Get free quotation on WhatsApp</a>
+  </div>`;
+
+const insertBlogCtasAfterParagraphs = (html, insertions) => {
+  let seen = 0;
+  let insertedCount = 0;
+  let nextHtml = html.replace(/<\/p>/gi, (match) => {
+    seen += 1;
+    const snippet = insertions.get(seen);
+    if (!snippet) return match;
+    insertedCount += 1;
+    return `${match}${snippet}`;
+  });
+
+  for (const snippet of insertions.values()) {
+    if (nextHtml.includes(snippet)) continue;
+    nextHtml = nextHtml.replace(/<\/main>/i, `${snippet}\n</main>`);
+  }
+
+  return insertedCount ? nextHtml : html.replace(/<\/main>/i, `${Array.from(insertions.values()).join('\n')}\n</main>`);
+};
+
+const stripBlogLeadCtas = (html) =>
+  html.replace(/\s*<div\s+class=["']blog-lead-cta["']\s+data-ac-blog-cta=["'][^"']+["']>[\s\S]*?<\/div>/gi, '');
+
+const ensureBlogLeadCtas = (html, meta) => {
+  let nextHtml = html;
+  if (!/href=["']\/blog\/blog-style\.css["']/i.test(nextHtml)) {
+    nextHtml = insertBeforeHeadEnd(nextHtml, '<link rel="stylesheet" href="/blog/blog-style.css" />');
+  }
+  nextHtml = stripBlogLeadCtas(nextHtml);
+
+  const paragraphCount = (nextHtml.match(/<\/p>/gi) || []).length;
+  const introParagraph = Math.min(2, Math.max(paragraphCount, 1));
+  const middleParagraph = Math.min(Math.max(3, Math.ceil(paragraphCount / 2)), Math.max(paragraphCount, 1));
+  const introCta = blogLeadCta(meta, 'intro');
+  const middleCta = blogLeadCta(meta, 'middle');
+  const insertions = new Map([[introParagraph, introCta]]);
+  if (middleParagraph !== introParagraph) {
+    insertions.set(middleParagraph, middleCta);
+  }
+  nextHtml = insertBlogCtasAfterParagraphs(nextHtml, insertions);
+  if (middleParagraph === introParagraph) {
+    nextHtml = /<h2[\s>]/i.test(nextHtml)
+      ? nextHtml.replace(/<h2/i, `${middleCta}\n  <h2`)
+      : nextHtml.replace(/<\/main>/i, `${middleCta}\n</main>`);
+  }
+  nextHtml = nextHtml.replace(/<\/main>/i, `${blogLeadCta(meta, 'final')}\n</main>`);
+  return nextHtml;
+};
 
 const ensureBlogSeo = (meta) => {
   let html = meta.html;
@@ -176,27 +311,45 @@ const ensureBlogSeo = (meta) => {
     ],
   };
 
-  if (!/<meta\s+property=["']og:title["']/i.test(html)) {
-    html = insertBeforeHeadEnd(html, `<meta property="og:title" content="${htmlEscape(meta.title)}" />`);
-  }
-  if (!/<meta\s+property=["']og:description["']/i.test(html)) {
-    html = insertBeforeHeadEnd(html, `<meta property="og:description" content="${htmlEscape(meta.description)}" />`);
-  }
-  if (!/<meta\s+property=["']og:image["']/i.test(html)) {
-    html = insertBeforeHeadEnd(html, `<meta property="og:image" content="${htmlEscape(meta.image)}" />`);
-  }
-  if (!/<meta\s+property=["']og:url["']/i.test(html)) {
-    html = insertBeforeHeadEnd(html, `<meta property="og:url" content="${htmlEscape(meta.canonical)}" />`);
-  }
-  if (!/<meta\s+property=["']og:type["']/i.test(html)) {
-    html = insertBeforeHeadEnd(html, '<meta property="og:type" content="article" />');
-  }
-  if (!html.includes('"@type":"Article"') && !html.includes('"@type": "Article"')) {
-    html = insertBeforeHeadEnd(html, `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>`);
-  }
-  if (!html.includes('"@type":"BreadcrumbList"') && !html.includes('"@type": "BreadcrumbList"')) {
-    html = insertBeforeHeadEnd(html, `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`);
-  }
+  html = upsertTag(html, /<title>[\s\S]*?<\/title>/i, `<title>${htmlEscape(titleWithBrand(meta.title))}</title>`);
+  html = upsertTag(
+    html,
+    /<meta\s+name=["']description["'][^>]*>/i,
+    `<meta name="description" content="${htmlEscape(meta.description)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<link\s+rel=["']canonical["'][^>]*>/i,
+    `<link rel="canonical" href="${htmlEscape(meta.canonical)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property=["']og:title["'][^>]*>/i,
+    `<meta property="og:title" content="${htmlEscape(meta.title)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property=["']og:description["'][^>]*>/i,
+    `<meta property="og:description" content="${htmlEscape(meta.description)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property=["']og:image["'][^>]*>/i,
+    `<meta property="og:image" content="${htmlEscape(meta.image)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property=["']og:url["'][^>]*>/i,
+    `<meta property="og:url" content="${htmlEscape(meta.canonical)}" />`,
+  );
+  html = upsertTag(
+    html,
+    /<meta\s+property=["']og:type["'][^>]*>/i,
+    '<meta property="og:type" content="article" />',
+  );
+  html = upsertJsonLd(html, 'Article', articleSchema);
+  html = upsertJsonLd(html, 'BreadcrumbList', breadcrumbSchema);
+  html = ensureBlogLeadCtas(html, meta);
 
   const nextHtml = cleanHtml(html);
   if (nextHtml !== meta.html) {

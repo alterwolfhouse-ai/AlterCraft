@@ -446,6 +446,294 @@ const pages: Record<string, LocalPageData> = {
       { to: '/ai-planner/start', label: 'Create Imagination Preview' },
     ],
   },
+  furnitureMakerGhaziabad: {
+    slug: 'furniture-maker-ghaziabad',
+    metaTitle: 'Furniture Maker in Ghaziabad | Custom Furniture by AlterCraft',
+    metaDescription:
+      'AlterCraft is a furniture maker in Ghaziabad for wardrobes, beds, modular kitchens, TV units, shoe racks, office furniture and measured custom storage work.',
+    breadcrumb: 'Local Service / Furniture Maker Ghaziabad',
+    title: 'Furniture Maker in Ghaziabad',
+    subtitle:
+      'Find a practical furniture maker in Ghaziabad for wardrobes, beds, modular kitchens, shoe racks, TV units, office furniture and custom storage planned around real room sizes.',
+    image: canvaVisuals.wardrobeVisual,
+    imageAlt: 'Furniture maker in Ghaziabad by AlterCraft',
+    priceTag: 'Furniture quote after measurement, material and finish scope',
+    serviceName: 'Furniture Maker in Ghaziabad',
+    serviceType: 'Custom Furniture',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I need a furniture maker in Ghaziabad. I can share photos and measurements.',
+    introTitle: 'A good furniture maker starts with the room and the use case.',
+    introCopy: [
+      'The search data shows strong local intent around furniture maker and custom furniture maker near me. These customers usually want measurement, material clarity and installation support, not generic catalogue furniture.',
+      'AlterCraft plans furniture around wall size, usable depth, storage need, movement clearance, finish preference and budget before final quotation.',
+    ],
+    planningTitle: 'Furniture work we can plan in Ghaziabad',
+    planningCopy:
+      'Send room photos, approximate measurements and the furniture list. The quote becomes clearer when size, material, finish and hardware are discussed together.',
+    cards: [
+      { title: 'Wardrobes and Lofts', description: 'Sliding, swing, mirror, loft and internal storage planning for bedrooms.' },
+      { title: 'Beds and Bedroom Units', description: 'Storage beds, headboards, side tables and coordinated bedroom furniture.' },
+      { title: 'Kitchen and Utility', description: 'Modular kitchen cabinet scope, tall storage, pantry and utility cabinets.' },
+      { title: 'Office Furniture', description: 'Workstations, reception counters, cabins, storage and commercial furniture.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Bedroom Furniture in Ghaziabad', scope: 'Wardrobe, bed and side storage', need: 'More organized storage without crowding the room', result: 'Measured furniture direction with finish and hardware checklist' },
+      { title: 'Entrance Furniture', scope: 'Shoe rack and compact storage', need: 'Cleaner entrance and daily-use storage', result: 'Ventilated custom unit direction with easy-clean planning' },
+      { title: 'Office Furniture', scope: 'Workstations and file storage', need: 'Durable commercial furniture with wiring access', result: 'Quote-ready scope based on team count and room size' },
+    ],
+    faqs: [
+      { question: 'Do you make custom furniture in Ghaziabad?', answer: 'Yes. AlterCraft makes custom furniture in Ghaziabad for homes, offices and commercial spaces based on measurement and scope.' },
+      { question: 'Can I get a quote from photos?', answer: 'Photos and rough measurements help us prepare an initial direction. Final pricing depends on confirmed size, material, finish, hardware and installation scope.' },
+      { question: 'Do you handle modular kitchen and furniture together?', answer: 'Yes. AlterCraft can plan modular kitchen, wardrobes, beds, TV units and storage as a connected furniture package.' },
+    ],
+    related: [
+      { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
+      { to: '/furniture-maker-modinagar-ghaziabad', label: 'Furniture Maker Modinagar' },
+      { to: '/modular-kitchen-quotation-ghaziabad', label: 'Kitchen Quotation' },
+      { to: '/contact', label: 'Get Quote' },
+    ],
+  },
+  furnitureMakerModinagarGhaziabad: {
+    slug: 'furniture-maker-modinagar-ghaziabad',
+    metaTitle: 'Furniture Maker in Modinagar Ghaziabad | AlterCraft',
+    metaDescription:
+      'Furniture maker in Modinagar Ghaziabad for custom wardrobes, beds, shoe racks, TV units, office furniture, modular kitchen and made-to-measure storage.',
+    breadcrumb: 'Local Service / Furniture Maker Modinagar Ghaziabad',
+    title: 'Furniture Maker in Modinagar Ghaziabad',
+    subtitle:
+      'For Modinagar and nearby Ghaziabad enquiries, AlterCraft helps plan custom furniture, wardrobes, beds, modular kitchens, TV units, shoe racks and office furniture with measurement-led execution.',
+    image: canvaVisuals.wardrobeVisual,
+    imageAlt: 'Furniture maker in Modinagar Ghaziabad by AlterCraft',
+    priceTag: 'Modinagar furniture quote after photos, size and material review',
+    serviceName: 'Furniture Maker in Modinagar Ghaziabad',
+    serviceType: 'Custom Furniture',
+    city: 'Modinagar and Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I need a furniture maker in Modinagar Ghaziabad. I can share photos and sizes.',
+    introTitle: 'Modinagar searches need a clear local answer.',
+    introCopy: [
+      'Search Console showed impressions for furniture maker in Modinagar Ghaziabad. This page gives Google and customers a direct landing page for that local intent.',
+      'AlterCraft can begin with photos, rough sizes and a furniture list, then confirm feasibility, schedule and final quotation after the project scope is clear.',
+    ],
+    planningTitle: 'Custom furniture scope for Modinagar homes and offices',
+    planningCopy:
+      'The first discussion should include the room, wall size, desired furniture item, material expectation, finish preference and budget range.',
+    cards: [
+      { title: 'Custom Wardrobes', description: 'Saree storage, lofts, luggage zones, sliding shutters and practical bedroom internals.' },
+      { title: 'Storage Beds', description: 'Hydraulic or box storage beds planned around mattress size and room clearance.' },
+      { title: 'TV Units and Panels', description: 'TV wall furniture, cable access, display shelves, drawers and panel finishes.' },
+      { title: 'Office Furniture', description: 'Workstations, reception counters, storage and commercial furniture for small teams.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Modinagar Wardrobe Enquiry', scope: 'Custom bedroom storage', need: 'Daily clothes, sarees and luggage in one wall', result: 'Internal layout direction for measurement and quotation' },
+      { title: 'Modinagar Kitchen Enquiry', scope: 'Modular cabinet planning', need: 'Clear cabinet price direction before site visit', result: 'Scope checklist prepared around size, material and finish' },
+      { title: 'Local Office Furniture', scope: 'Desk and document storage', need: 'Budget-aware commercial furniture', result: 'Practical furniture direction with production scope' },
+    ],
+    faqs: [
+      { question: 'Do you serve Modinagar?', answer: 'AlterCraft can review Modinagar and nearby Ghaziabad enquiries based on schedule, distance, project scope and measurement feasibility.' },
+      { question: 'What should I send for a furniture quote?', answer: 'Send photos, wall width, height, depth if available, location, budget range, material preference and reference images.' },
+      { question: 'Can I start on WhatsApp?', answer: 'Yes. WhatsApp is the fastest way to share photos, sizes and requirement details for the first review.' },
+    ],
+    related: [
+      { to: '/furniture-maker-ghaziabad', label: 'Furniture Maker Ghaziabad' },
+      { to: '/custom-furniture-maker-near-me', label: 'Custom Furniture Near Me' },
+      { to: '/wardrobe-quotation-ghaziabad', label: 'Wardrobe Quotation' },
+      { to: '/contact', label: 'Contact AlterCraft' },
+    ],
+  },
+  modularKitchenQuotationGhaziabad: {
+    slug: 'modular-kitchen-quotation-ghaziabad',
+    metaTitle: `Modular Kitchen Quotation in Ghaziabad from ${modularKitchenStartingPrice} | AlterCraft`,
+    metaDescription:
+      `Request a modular kitchen quotation in Ghaziabad from ${modularKitchenStartingPrice} for agreed cabinet scope, with material, finish, hardware and installation details checked before final quote.`,
+    breadcrumb: 'Quotation / Modular Kitchen Ghaziabad',
+    title: 'Modular Kitchen Quotation in Ghaziabad',
+    subtitle:
+      `Get a practical modular kitchen quotation in Ghaziabad from ${modularKitchenStartingPrice} for agreed cabinet scope, with no hidden cost after scope confirmation and final pricing based on measurement, material, finish and hardware.`,
+    image: canvaVisuals.kitchenVisual,
+    imageAlt: 'Modular kitchen quotation in Ghaziabad by AlterCraft',
+    priceTag: `Starting reference: ${modularKitchenStartingPrice}`,
+    serviceName: 'Modular Kitchen Quotation in Ghaziabad',
+    serviceType: 'Modular Kitchen',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want a modular kitchen quotation in Ghaziabad. I can share photos and measurements.',
+    introTitle: 'A useful quotation should explain what is included.',
+    introCopy: [
+      `${modularKitchenPricingLine} This starting reference is for agreed modular cabinet scope. Final quotation depends on measurement, material, finish, hardware, accessories, countertop, plumbing, electrical and installation scope.`,
+      'AlterCraft keeps the first quote practical by separating cabinet scope, finish choices, hardware level and site work so you can compare the estimate clearly.',
+    ],
+    planningTitle: 'What affects a kitchen quotation',
+    planningCopy:
+      'The same kitchen size can quote differently when storage, finish, hardware, accessories and site work change. This page helps customers submit better inputs.',
+    cards: [
+      { title: 'Cabinet Scope', description: 'Base units, wall units, tall units, lofts, drawers and shutters measured separately.' },
+      { title: 'Material and Finish', description: 'Board, laminate, acrylic, edge detail and moisture exposure affect the final estimate.' },
+      { title: 'Hardware and Accessories', description: 'Hinges, channels, lift-ups, baskets, tandem boxes and soft-close options change comfort and cost.' },
+      { title: 'Site Work', description: 'Countertop, sink, plumbing, electrical, tile, chimney and appliance coordination are confirmed separately.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Compact Kitchen Quote', scope: 'Straight modular cabinet scope', need: 'Clear starting estimate before site visit', result: 'Cabinet, finish and hardware checklist prepared for final measurement' },
+      { title: 'Parallel Kitchen Quote', scope: 'Base, wall and tall units', need: 'Storage-heavy kitchen with clear inclusions', result: 'Quote structure separated into cabinet and accessory scope' },
+      { title: 'Premium Finish Quote', scope: 'Acrylic or premium laminate direction', need: 'Compare finish cost before final selection', result: 'Material options explained before production confirmation' },
+    ],
+    faqs: [
+      { question: 'What is the starting modular kitchen price?', answer: `AlterCraft modular kitchen pricing starts at ${modularKitchenStartingPrice} for the agreed modular cabinet scope. Final quotation depends on measurement, material, finish, hardware and site scope.` },
+      { question: 'Is countertop included in the starting price?', answer: 'Countertop, sink, appliances, plumbing, electrical, tile work and accessories should be confirmed separately unless included in the agreed scope.' },
+      { question: 'How do I get a better kitchen quotation?', answer: 'Share photos, wall measurements, layout type, sink location, appliance list, material preference, finish preference and budget range.' },
+    ],
+    related: [
+      { to: '/modular-kitchen-ghaziabad', label: 'Kitchen Ghaziabad' },
+      { to: '/blog/modular-kitchen-price-per-sq-ft-ghaziabad/', label: 'Price Per Sq Ft Guide' },
+      { to: '/blog/kitchen-design-with-price-delhi-ncr/', label: 'Kitchen Quote Guide' },
+      { to: '/contact', label: 'Get Quote' },
+    ],
+  },
+  wardrobeQuotationGhaziabad: {
+    slug: 'wardrobe-quotation-ghaziabad',
+    metaTitle: 'Wardrobe Quotation in Ghaziabad | Sliding, Swing and Loft Wardrobes',
+    metaDescription:
+      'Request a wardrobe quotation in Ghaziabad for sliding wardrobes, swing wardrobes, lofts, drawers, saree storage, luggage zones, material, finish and hardware.',
+    breadcrumb: 'Quotation / Wardrobe Ghaziabad',
+    title: 'Wardrobe Quotation in Ghaziabad',
+    subtitle:
+      'Get a practical wardrobe quotation in Ghaziabad by sharing wall width, height, depth, shutter type, internal storage needs, finish preference and hardware level.',
+    image: canvaVisuals.wardrobeVisual,
+    imageAlt: 'Wardrobe quotation in Ghaziabad by AlterCraft',
+    priceTag: 'Wardrobe quote depends on size, shutter type, finish and hardware',
+    serviceName: 'Wardrobe Quotation in Ghaziabad',
+    serviceType: 'Wardrobe',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want a wardrobe quotation in Ghaziabad. I can share wall size and room photos.',
+    introTitle: 'Wardrobe pricing is decided inside the wardrobe first.',
+    introCopy: [
+      'A wardrobe quote changes with wall size, shutter type, loft height, drawer count, hanging space, internal finish, mirror, hardware and installation details.',
+      'AlterCraft prepares wardrobe quotations around practical internal use, including saree storage, luggage, bedding, daily-wear shelves and accessories.',
+    ],
+    planningTitle: 'Details needed for a wardrobe quote',
+    planningCopy:
+      'A clear wardrobe quote starts with wall measurements and storage requirements before finish selection.',
+    cards: [
+      { title: 'Wall Size', description: 'Width, height, usable depth and skirting or beam details help estimate cabinet size.' },
+      { title: 'Shutter Type', description: 'Sliding, swing, mirror, laminate, fluted or mixed shutter directions affect cost and usability.' },
+      { title: 'Internal Layout', description: 'Hanging, shelves, drawers, lofts, saree storage and luggage zones should be planned before quote lock.' },
+      { title: 'Hardware Level', description: 'Channels, hinges, handles, locks, accessories and lighting direction affect final scope.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Sliding Wardrobe Quote', scope: 'Compact bedroom wardrobe', need: 'Storage without blocking bed movement', result: 'Sliding shutter and internal layout quote checklist' },
+      { title: 'Saree Storage Wardrobe', scope: 'Full-height wardrobe with loft', need: 'Sarees, luggage and bedding storage', result: 'Shelf and hanging distribution prepared before quote' },
+      { title: 'Premium Wardrobe Wall', scope: 'Mirror and laminate direction', need: 'Clean bedroom finish with daily usability', result: 'Material and hardware scope prepared for customer review' },
+    ],
+    faqs: [
+      { question: 'What measurements are needed for wardrobe quotation?', answer: 'Share wall width, height, available depth, bed position, door or window clearance and the type of storage you need.' },
+      { question: 'Does sliding wardrobe cost more than swing wardrobe?', answer: 'It can, depending on track quality, shutter size, material and finish. Sliding is useful for compact rooms where swing shutters need too much clearance.' },
+      { question: 'Can you quote saree and luggage storage wardrobes?', answer: 'Yes. AlterCraft plans wardrobes for sarees, folded clothes, hanging clothes, bedding, accessories and luggage.' },
+    ],
+    related: [
+      { to: '/wardrobe-ghaziabad', label: 'Wardrobe Ghaziabad' },
+      { to: '/wardrobe-design-ghaziabad', label: 'Wardrobe Design' },
+      { to: '/blog/wardrobe-design-for-sarees-lehengas-luggage/', label: 'Saree Wardrobe Guide' },
+      { to: '/contact', label: 'Get Quote' },
+    ],
+  },
+  customFurnitureQuotationGhaziabad: {
+    slug: 'custom-furniture-quotation-ghaziabad',
+    metaTitle: 'Custom Furniture Quotation in Ghaziabad | AlterCraft',
+    metaDescription:
+      'Get a custom furniture quotation in Ghaziabad for wardrobes, beds, shoe racks, TV units, mandirs, office furniture and made-to-measure storage.',
+    breadcrumb: 'Quotation / Custom Furniture Ghaziabad',
+    title: 'Custom Furniture Quotation in Ghaziabad',
+    subtitle:
+      'Request a measured custom furniture quotation for wardrobes, beds, shoe racks, TV units, mandirs, office furniture and storage units in Ghaziabad.',
+    image: canvaVisuals.aiJourney,
+    imageAlt: 'Custom furniture quotation in Ghaziabad by AlterCraft',
+    priceTag: 'Quote based on size, material, finish, hardware and installation',
+    serviceName: 'Custom Furniture Quotation in Ghaziabad',
+    serviceType: 'Custom Furniture',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I want a custom furniture quotation in Ghaziabad. I can share photos, sizes and requirements.',
+    introTitle: 'Custom furniture quotes should be specific, not vague.',
+    introCopy: [
+      'A useful custom furniture quote explains the item size, material direction, finish, hardware, internal storage, installation and warranty support where applicable.',
+      'AlterCraft prepares quotations after understanding the room, the item, daily use, budget range and finish preference.',
+    ],
+    planningTitle: 'What to send for a faster custom furniture quote',
+    planningCopy:
+      'Photos and measurements help avoid repeated back-and-forth and make the first estimate more practical.',
+    cards: [
+      { title: 'Furniture List', description: 'Wardrobe, bed, TV unit, shoe rack, mandir, work desk, office furniture or storage item.' },
+      { title: 'Room Photos', description: 'Straight photos from multiple angles help understand wall size and nearby obstacles.' },
+      { title: 'Measurements', description: 'Width, height, depth and any fixed constraints should be shared clearly.' },
+      { title: 'Material and Finish', description: 'Share reference images, preferred color, board expectation, laminate or premium finish direction.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Wardrobe Quote', scope: 'Bedroom storage wall', need: 'Saree, daily-wear and luggage planning', result: 'Internal layout and finish direction prepared for quotation' },
+      { title: 'TV Unit Quote', scope: 'Living room wall furniture', need: 'Cable concealment and premium panel direction', result: 'Wall size and storage checklist prepared' },
+      { title: 'Office Furniture Quote', scope: 'Workstations and storage', need: 'Durable furniture with wiring support', result: 'Team count and layout-based quote direction' },
+    ],
+    faqs: [
+      { question: 'Can I get a custom furniture quote on WhatsApp?', answer: 'Yes. Send photos, measurements, location, budget range and reference image if available.' },
+      { question: 'Do you quote single furniture items?', answer: 'Yes. AlterCraft can quote single custom items and room-wise furniture packages depending on scope and schedule.' },
+      { question: 'Does the quote include installation?', answer: 'Installation should be clearly confirmed in the final scope. AlterCraft can include installation support where applicable.' },
+    ],
+    related: [
+      { to: '/custom-furniture-ghaziabad', label: 'Custom Furniture Ghaziabad' },
+      { to: '/furniture-maker-ghaziabad', label: 'Furniture Maker Ghaziabad' },
+      { to: '/modular-kitchen-quotation-ghaziabad', label: 'Kitchen Quotation' },
+      { to: '/contact', label: 'Contact' },
+    ],
+  },
+  workstationManufacturersGhaziabad: {
+    slug: 'workstation-manufacturers-ghaziabad',
+    metaTitle: 'Workstation Manufacturers in Ghaziabad | Office Furniture AlterCraft',
+    metaDescription:
+      'Workstation manufacturers in Ghaziabad for office desks, team workstations, cable-managed tables, storage, reception counters and commercial furniture.',
+    breadcrumb: 'Commercial / Workstation Manufacturers Ghaziabad',
+    title: 'Workstation Manufacturers in Ghaziabad',
+    subtitle:
+      'Plan office workstations in Ghaziabad with cable access, durable surfaces, team seating, storage, privacy panels and commercial furniture execution by AlterCraft.',
+    image: canvaVisuals.office,
+    imageAlt: 'Workstation manufacturers in Ghaziabad by AlterCraft',
+    priceTag: 'Workstation quote based on team count, size, material and wiring scope',
+    serviceName: 'Workstation Manufacturers in Ghaziabad',
+    serviceType: 'Office Furniture',
+    city: 'Ghaziabad',
+    ctaMessage: 'Hi AlterCraft, I need office workstations in Ghaziabad. I can share office size and team count.',
+    introTitle: 'Office workstations should be planned around people and wiring.',
+    introCopy: [
+      'A workstation is not only a table. It needs correct depth, leg space, wire movement, power access, storage, privacy and a finish that survives daily office use.',
+      'AlterCraft supports workstation and office furniture enquiries in Ghaziabad for small offices, growing teams, commercial counters and back-office setups.',
+    ],
+    planningTitle: 'What we check before workstation production',
+    planningCopy:
+      'A clear workstation quote depends on team count, seating layout, power points, data lines, storage needs, privacy and installation sequence.',
+    cards: [
+      { title: 'Team Seating', description: 'Linear, cluster, wall-side and cabin-adjacent workstation directions based on room layout.' },
+      { title: 'Cable Management', description: 'Wire holes, trays, plug access and service paths planned before fabrication.' },
+      { title: 'Storage Add-ons', description: 'Pedestals, overhead units, file storage, side cabinets and printer zones.' },
+      { title: 'Commercial Durability', description: 'Material, edge detail, finish and hardware selected for daily office use.' },
+    ],
+    process: commonProcess,
+    proof: [
+      { title: 'Four-Seat Workstation', scope: 'Compact team desk', need: 'More seats with clean wire access', result: 'Cable-managed workstation direction prepared for quote' },
+      { title: 'Startup Office Setup', scope: 'Workstations and storage', need: 'Budget-aware furniture for quick setup', result: 'Furniture scope separated by desk, storage and installation' },
+      { title: 'Reception Plus Work Area', scope: 'Front counter and back-office desks', need: 'Visitor-facing look with daily work function', result: 'Commercial furniture direction with finish and movement planning' },
+    ],
+    faqs: [
+      { question: 'Do you manufacture office workstations in Ghaziabad?', answer: 'Yes. AlterCraft plans and executes office workstations, reception counters, storage and related commercial furniture.' },
+      { question: 'What details are needed for workstation quote?', answer: 'Share office photos, room size, team count, power point positions, storage requirements and preferred finish.' },
+      { question: 'Can wires be hidden inside the workstation?', answer: 'Yes. Cable access and trays should be planned before production so maintenance remains possible.' },
+    ],
+    related: [
+      { to: '/office-furniture-ghaziabad', label: 'Office Furniture Ghaziabad' },
+      { to: '/office-interior-ghaziabad', label: 'Office Interior Ghaziabad' },
+      { to: '/blog/office-furniture-manufacturer-ghaziabad/', label: 'Office Furniture Guide' },
+      { to: '/contact', label: 'Get Quote' },
+    ],
+  },
   aiInteriorDesignPlanner: {
     slug: 'ai-interior-design-planner',
     metaTitle: 'AI Interior Design Planner India | AlterCraft Imagination Preview',
@@ -1125,6 +1413,30 @@ export function CustomFurnitureGreaterNoida() {
 
 export function CustomFurnitureMakerNearMe() {
   return <LocalServicePage page={pages.customFurnitureMakerNearMe} />;
+}
+
+export function FurnitureMakerGhaziabad() {
+  return <LocalServicePage page={pages.furnitureMakerGhaziabad} />;
+}
+
+export function FurnitureMakerModinagarGhaziabad() {
+  return <LocalServicePage page={pages.furnitureMakerModinagarGhaziabad} />;
+}
+
+export function ModularKitchenQuotationGhaziabad() {
+  return <LocalServicePage page={pages.modularKitchenQuotationGhaziabad} />;
+}
+
+export function WardrobeQuotationGhaziabad() {
+  return <LocalServicePage page={pages.wardrobeQuotationGhaziabad} />;
+}
+
+export function CustomFurnitureQuotationGhaziabad() {
+  return <LocalServicePage page={pages.customFurnitureQuotationGhaziabad} />;
+}
+
+export function WorkstationManufacturersGhaziabad() {
+  return <LocalServicePage page={pages.workstationManufacturersGhaziabad} />;
 }
 
 export function AIInteriorDesignPlanner() {
