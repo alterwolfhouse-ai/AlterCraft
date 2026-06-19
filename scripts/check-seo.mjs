@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { resolveSeoMetadata } from './seoMetadata.mjs';
 
@@ -7,6 +7,7 @@ const baseUrl = 'https://www.altercraft.in';
 
 const routesToCheck = [
   '/',
+  '/blog',
   '/modular-kitchen',
   '/modular-kitchen-ghaziabad',
   '/modular-kitchen-noida',
@@ -41,26 +42,13 @@ const privateRoutes = [
   '/ai-planner/submitted',
 ];
 
-const blogRoutesToCheck = [
-  '/blog/best-modular-kitchen-layout-2bhk-ghaziabad/',
-  '/blog/modular-kitchen-indirapuram-vaishali-vasundhara/',
-  '/blog/small-bedroom-wardrobe-design-ghaziabad-flats/',
-  '/blog/best-material-for-modular-kitchen-delhi-ncr/',
-  '/blog/hettich-vs-blum-vs-hafele-kitchen-wardrobe/',
-  '/blog/interior-design-cost-ghaziabad-2bhk-3bhk/',
-  '/blog/custom-furniture-cost-ghaziabad/',
-  '/blog/tv-unit-design-small-living-room-ghaziabad/',
-  '/blog/office-furniture-manufacturer-ghaziabad/',
-  '/blog/custom-furniture-maker-near-me-checklist/',
-  '/blog/contractor-desk-apk-for-contractors/',
-  '/blog/contractor-management-app-india/',
-  '/blog/contractor-desk-payment-gate-system/',
-  '/blog/contractor-desk-labour-material-site-control/',
-  '/blog/daily-site-report-app-for-contractors/',
-  '/blog/contractor-cash-ledger-app/',
-  '/blog/contractor-desk-dispute-proof-cash-ledger/',
-  '/blog/contractor-desk-apk-installation-guide/',
-];
+const blogRoot = join(outDir, 'blog');
+const blogRoutesToCheck = existsSync(blogRoot)
+  ? readdirSync(blogRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => `/blog/${entry.name}/`)
+      .sort()
+  : [];
 
 const errors = [];
 
@@ -94,6 +82,9 @@ for (const route of routesToCheck) {
   if (!description) errors.push(`${route} is missing meta description.`);
   if (!robots) errors.push(`${route} is missing robots meta.`);
   if (!canonical) errors.push(`${route} is missing canonical link.`);
+  if (canonical && !canonical.startsWith(`${baseUrl}/`)) {
+    errors.push(`${route} canonical should use the preferred www host.`);
+  }
 
   if (route !== '/' && canonical === `${baseUrl}/`) {
     errors.push(`${route} still points canonical to homepage.`);
@@ -149,6 +140,12 @@ if (!existsSync(sitemapPath)) {
       errors.push(`Blog route ${route} is missing from sitemap.xml.`);
     }
   }
+  if (!sitemap.includes(`${baseUrl}/blog/`)) {
+    errors.push('Blog index /blog/ is missing from sitemap.xml.');
+  }
+  if (!sitemap.includes('<lastmod>')) {
+    errors.push('sitemap.xml is missing lastmod entries.');
+  }
 }
 
 const robotsPath = join(outDir, 'robots.txt');
@@ -156,7 +153,7 @@ if (!existsSync(robotsPath)) {
   errors.push('Missing build/robots.txt.');
 } else {
   const robotsTxt = readFileSync(robotsPath, 'utf8');
-  for (const directive of ['Disallow: /admin/', 'Disallow: /my-projects/', 'Disallow: /ai-planner/submitted']) {
+  for (const directive of ['Disallow: /admin/', 'Disallow: /my-projects/', 'Disallow: /ai-planner/submitted', 'Disallow: /downloads/']) {
     if (!robotsTxt.includes(directive)) {
       errors.push(`robots.txt is missing ${directive}`);
     }

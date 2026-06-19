@@ -61,9 +61,10 @@
       "scripts": {
             "dev": "vite",
             "audit": "npm audit --audit-level=high",
+            "seo:generate": "node scripts/generate-indexing-assets.mjs",
             "seo:check": "node scripts/check-seo.mjs",
             "operator-desk:server": "node server/operatorDeskServer.mjs",
-            "build": "vite build && node scripts/postbuild.mjs",
+            "build": "npm run seo:generate && vite build && node scripts/postbuild.mjs",
             "cap:sync": "npm run build && cap sync android && node scripts/fix-capacitor-java.mjs",
             "android:debug": "npm run cap:sync && cd android && gradlew assembleDebug"
       }

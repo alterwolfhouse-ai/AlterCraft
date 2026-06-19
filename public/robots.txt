@@ -4,4 +4,5 @@ Disallow: /admin/
 Disallow: /cart/
 Disallow: /my-projects/
 Disallow: /ai-planner/submitted
+Disallow: /downloads/
 Sitemap: https://www.altercraft.in/sitemap.xml

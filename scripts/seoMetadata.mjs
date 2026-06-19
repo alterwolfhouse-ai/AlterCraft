@@ -37,6 +37,12 @@ const routeSeo = {
       'Browse AlterCraft furniture categories, product pricing, modular kitchen units, wardrobes, beds, doors and custom furniture options.',
     canonical: `${baseUrl}/products`,
   },
+  '/blog': {
+    title: 'AlterCraft Blog | Modular Kitchen, Furniture and Contractor Desk Guides',
+    description:
+      'Read AlterCraft guides on modular kitchen pricing, custom furniture, wardrobes, office interiors, Contractor Desk APK, payment gates and site execution.',
+    canonical: `${baseUrl}/blog/`,
+  },
   '/ContractorDesk': {
     title: 'AlterCraft Contractor Desk | Execution Control System',
     description:

@@ -1122,8 +1122,8 @@ export default function Home() {
                   kitchens, wardrobes, custom furniture, finishes and site-visit preparation.
                 </p>
               </div>
-              <a href="/blog/office-interior-project-ghaziabad/" className="home-inline-link">
-                Start reading
+              <a href="/blog/" className="home-inline-link">
+                View all guides
                 <ArrowRight size={16} />
               </a>
             </div>
